@@ -29,11 +29,11 @@ public class MultiScreenFramework extends Application {
         mainController.loadScreen(MultiScreenFramework.mainpage,MultiScreenFramework.mainpagefile);
         mainController.setScreen(MultiScreenFramework.loginscreen);
         
-        Group root = new Group();
-        root.getChildren().addAll(mainController);
-        
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
-        //Parent root = (Parent)loader.load();
+//        Group root = new Group();
+//        root.getChildren().addAll(mainController);
+//        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+        Parent root = (Parent)loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -7,7 +7,9 @@ import bean.Chalan;
 import dao.DChalan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -35,6 +37,26 @@ public class MainPageController implements MultiScreen {
 	    @FXML
 	    private TableColumn<Chalan,String> duecolumn = new TableColumn<>("Due");
 
+	    @FXML
+	    private Button removebutton;
+
+	    @FXML
+	    void removeRow(ActionEvent event) {
+	    Chalan chalan = newchalantable.getSelectionModel().getSelectedItem();
+	    
+	    listFromDb.forEach(c -> {
+	    	if(c.getProductid()==chalan.getProductid())
+	    	{
+	    		listFromDb.remove(c);
+	    	}
+	    	else{
+	    		System.out.println("there is no element selected");
+	    	}
+	    	
+	    });
+	    }
+	    
+	    ObservableList<Chalan> listFromDb =  FXCollections.observableArrayList();
 	    //why to create instance table column instead of intializing in intialize() method 
 	    @FXML
 	    public void initialize() throws SQLException, IOException {
@@ -44,7 +66,8 @@ public class MainPageController implements MultiScreen {
     	receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("receive"));
     	duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("due"));
     	System.out.println("doen");
-    	newchalantable.setItems(getData());
+    	listFromDb = new DChalan().chalanDataLoad();
+    	newchalantable.setItems(listFromDb);
 	    }   
     
     public ObservableList<Chalan> getData(){

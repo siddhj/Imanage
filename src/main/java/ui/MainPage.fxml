@@ -97,7 +97,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="newchalantable" centerShape="false" layoutX="456.0" layoutY="111.0" prefHeight="576.0" prefWidth="824.0" scaleShape="false" style="-fx-background-color: #ededed;" AnchorPane.bottomAnchor="81.0" AnchorPane.topAnchor="111.0">
+      <TableView fx:id="newchalantable" centerShape="false" layoutX="471.0" layoutY="109.0" prefHeight="594.0" prefWidth="824.0" scaleShape="false" style="-fx-background-color: #ededed;" AnchorPane.bottomAnchor="65.0" AnchorPane.topAnchor="109.0">
         <columns>
           <TableColumn fx:id="productidcolumn" editable="false" prefWidth="100.0" sortable="false" text="Product Id" />
           <TableColumn fx:id="namecolumn" editable="false" prefWidth="250.0" sortable="false" text="Name" />
@@ -106,13 +106,7 @@
             <TableColumn fx:id="duecolumn" editable="false" prefWidth="100.0" sortable="false" text="Due" />
         </columns>
       </TableView>
-      <ButtonBar layoutX="993.0" layoutY="698.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="30.0">
-        <buttons>
-          <Button mnemonicParsing="false" text="First" />
-            <Button mnemonicParsing="false" text="Prev" />
-            <Button mnemonicParsing="false" text="Next" />
-            <Button mnemonicParsing="false" text="Last" />
-        </buttons>
-      </ButtonBar>
+      <ButtonBar layoutX="1140.0" layoutY="698.0" prefHeight="71.0" prefWidth="119.0" AnchorPane.bottomAnchor="66.0" />
+      <Button fx:id="removebutton" layoutX="901.0" layoutY="71.0" mnemonicParsing="false" onAction="#removeRow" text="Remove" />
    </children>
 </AnchorPane>
