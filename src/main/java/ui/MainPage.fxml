@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.AutoCompleteTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainPageController">
+    <stylesheets>
+        <URL value="@mainpage.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
+         <image>
+            <Image url="@../Images/chalan.png" />
+         </image>
+      </ImageView>
+      <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="320.0" text="New Challan" AnchorPane.leftAnchor="0.0" />
+      <Button layoutX="320.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="320.0" text="Product" AnchorPane.leftAnchor="320.0" />
+      <Button layoutX="640.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="320.0" text="Date" AnchorPane.leftAnchor="640.0" />
+      <Button layoutX="960.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="320.0" text="Assignee" AnchorPane.leftAnchor="960.0" />
+      <Button layoutX="1035.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="78.0" text="Print List" AnchorPane.topAnchor="67.0" />
+      <Button layoutX="1145.0" layoutY="67.0" mnemonicParsing="false" text="Export PDF" />
+      <AnchorPane layoutY="48.0" prefHeight="720.0" prefWidth="456.0" style="-fx-border-color: #3c3c3c; -fx-border-width: 0 3 0 0;">
+         <children>
+            <Text layoutX="116.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Challan">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Label layoutX="60.0" layoutY="100.0" text="Name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="170.0" text="Product Id">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="240.0" text="Date">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="350.0" text="Issue">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="401.0" text="Receive">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="453.0" text="Due">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="506.0" text="Paid">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <AutoCompleteTextField layoutX="179.0" layoutY="100.0" prefHeight="25.0" prefWidth="177.0" />
+            <AutoCompleteTextField layoutX="179.0" layoutY="170.0" prefHeight="25.0" prefWidth="179.0" />
+            <DatePicker layoutX="179.0" layoutY="239.0" />
+            <TextField layoutX="180.0" layoutY="350.0" prefHeight="26.0" prefWidth="180.0" />
+            <TextField layoutX="180.0" layoutY="401.0" prefHeight="26.0" prefWidth="180.0" />
+            <TextField layoutX="180.0" layoutY="453.0" prefHeight="26.0" prefWidth="180.0" />
+            <TextField layoutX="180.0" layoutY="506.0" prefHeight="26.0" prefWidth="180.0" />
+            <Button layoutX="293.0" layoutY="624.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="77.0" text="Save" AnchorPane.bottomAnchor="57.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="175.0" layoutY="624.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="77.0" text="Clear" AnchorPane.bottomAnchor="57.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="61.0" layoutY="625.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="77.0" text="Cancel" AnchorPane.bottomAnchor="57.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="newchalantable" centerShape="false" layoutX="456.0" layoutY="111.0" prefHeight="576.0" prefWidth="824.0" scaleShape="false" style="-fx-background-color: #ededed;" AnchorPane.bottomAnchor="81.0" AnchorPane.topAnchor="111.0">
+        <columns>
+          <TableColumn fx:id="productidcolumn" editable="false" prefWidth="100.0" sortable="false" text="Product Id" />
+          <TableColumn fx:id="namecolumn" editable="false" prefWidth="250.0" sortable="false" text="Name" />
+            <TableColumn fx:id="issueitemcolumn" editable="false" minWidth="0.0" prefWidth="100.0" sortable="false" text="Issue Items" />
+            <TableColumn fx:id="receiveitemcolumn" editable="false" prefWidth="100.0" sortable="false" text="Receive Items" />
+            <TableColumn fx:id="duecolumn" editable="false" prefWidth="100.0" sortable="false" text="Due" />
+        </columns>
+      </TableView>
+      <ButtonBar layoutX="993.0" layoutY="698.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="30.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="First" />
+            <Button mnemonicParsing="false" text="Prev" />
+            <Button mnemonicParsing="false" text="Next" />
+            <Button mnemonicParsing="false" text="Last" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
