@@ -14,7 +14,12 @@ import javafx.collections.ObservableList;
 
 public class DChalan {
 
-	public void chalanDataInsert(){
+	public void chalanDataInsert(ObservableList<Chalan> chalan){
+		
+		chalan.forEach(c ->{
+			
+			
+		});
 		
 	}
 	public static void main(String args[]) throws SQLException, IOException

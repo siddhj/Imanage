@@ -12,13 +12,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.MultiScreen;
 
 
 public class MainPageController implements MultiScreen {
+		
+		@FXML
+	    private TextField assigneename;
 	
+	    @FXML
+	    private TextField productidtext;
 	
+	    @FXML
+	    private TextField issuetext;
+	
+	    @FXML
+	    private TextField receivetext;
+	
+	    @FXML
+	    private TextField duetext;
+		
 		@FXML
 	    private TableView<Chalan> newchalantable = new TableView<>();
 
@@ -39,6 +54,9 @@ public class MainPageController implements MultiScreen {
 
 	    @FXML
 	    private Button removebutton;
+	    
+	    @FXML
+	    private Button savebutton;
 
 	    @FXML
 	    void removeRow(ActionEvent event) {
@@ -75,6 +93,11 @@ public class MainPageController implements MultiScreen {
     	list.add(new Chalan("a","b","c","d","e"));
     	list.add(new Chalan("f","g","h","i","j"));
     	return list;
+    }
+    
+    @FXML
+    void saveChalan(ActionEvent event) {
+    	
     }
 
     MainScreenController screencontroller = new MainScreenController();
