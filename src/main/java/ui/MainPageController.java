@@ -11,9 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import service.MultiScreen;
 
 
-public class MainPageController {
+public class MainPageController implements MultiScreen {
+	
 	
 		@FXML
 	    private TableView<Chalan> newchalantable = new TableView<>();
@@ -42,7 +44,7 @@ public class MainPageController {
     	receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("receive"));
     	duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("due"));
     	System.out.println("doen");
-    	newchalantable.setItems(new DChalan().chalanDataLoad());
+    	newchalantable.setItems(getData());
 	    }   
     
     public ObservableList<Chalan> getData(){
@@ -51,4 +53,11 @@ public class MainPageController {
     	list.add(new Chalan("f","g","h","i","j"));
     	return list;
     }
+
+    MainScreenController screencontroller = new MainScreenController();
+	@Override
+	public void setScreenParent(MainScreenController screencontroller) {
+		// TODO Auto-generated method stub
+		this.screencontroller = screencontroller;
+	}
 }
