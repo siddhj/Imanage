@@ -43,4 +43,12 @@ public class Chalan{
 		this.receive = receive;
 		this.due = due;
 	}
+	public Chalan() {
+		// TODO Auto-generated constructor stub
+	this.productid="";
+	this.name="";
+	this.issue="";
+	this.receive="";
+	this.due="";
+	}
   }

@@ -73,13 +73,13 @@
                </font>
             </Label>
             <TextField fx:id="assigneename" layoutX="179.0" layoutY="100.0" onAction="#assigneeName" prefHeight="25.0" prefWidth="177.0" />
-            <TextField layoutX="179.0" layoutY="170.0" prefHeight="25.0" prefWidth="179.0" />
+            <TextField fx:id="productidtext" layoutX="179.0" layoutY="170.0" onAction="#productId" prefHeight="25.0" prefWidth="179.0" />
             <DatePicker layoutX="179.0" layoutY="239.0" />
-            <TextField layoutX="180.0" layoutY="350.0" prefHeight="26.0" prefWidth="180.0" />
-            <TextField layoutX="180.0" layoutY="401.0" prefHeight="26.0" prefWidth="180.0" />
-            <TextField layoutX="180.0" layoutY="453.0" prefHeight="26.0" prefWidth="180.0" />
+            <TextField fx:id="issuetext" layoutX="180.0" layoutY="350.0" onAction="#issueText" prefHeight="26.0" prefWidth="180.0" />
+            <TextField fx:id="receivetext" layoutX="180.0" layoutY="401.0" onAction="#receiveText" prefHeight="26.0" prefWidth="180.0" />
+            <TextField fx:id="duetext" layoutX="180.0" layoutY="453.0" onAction="#dueText" prefHeight="26.0" prefWidth="180.0" />
             <TextField layoutX="180.0" layoutY="506.0" prefHeight="26.0" prefWidth="180.0" />
-            <Button layoutX="293.0" layoutY="624.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="77.0" text="Save" AnchorPane.bottomAnchor="57.0">
+            <Button fx:id="savebutton" layoutX="293.0" layoutY="624.0" mnemonicParsing="false" onAction="#saveChalan" prefHeight="39.0" prefWidth="77.0" text="Save" AnchorPane.bottomAnchor="57.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -89,7 +89,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="61.0" layoutY="625.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="77.0" text="Cancel" AnchorPane.bottomAnchor="57.0">
+            <Button fx:id="savechalandata" layoutX="6.0" layoutY="625.0" mnemonicParsing="false" onAction="#saveChalanData" prefHeight="39.0" prefWidth="164.0" text="Save Chalan Data" AnchorPane.bottomAnchor="57.0">
                <font>
                   <Font size="18.0" />
                </font>
