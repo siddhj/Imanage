@@ -29,11 +29,12 @@ public class DChalan {
 		chalanlist.forEach(c ->{
 		try {
 			System.out.println(c.getName()+"::"+c.getDue());
-			prepare.setString(1, c.getProductid());
-			prepare.setString(2, c.getName());
-			prepare.setString(3, c.getIssue());
-			prepare.setString(4, c.getReceive());
-			prepare.setString(5, c.getDue());
+//** tobe changed according to new chalan bean
+//			prepare.setString(1, c.getProductid());
+//			prepare.setString(2, c.getName());
+//			prepare.setString(3, c.getIssue());
+//			prepare.setString(4, c.getReceive());
+//			prepare.setString(5, c.getDue());
 			prepare.addBatch();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -60,7 +61,9 @@ public class DChalan {
 				
 		while(resultset.next())
 		{
-			list.add(new Chalan(resultset.getString(1),resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5)));
+		// to be changed according to new chalan bean
+//			list.add(new Chalan(resultset.getString(1),resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5)));
+
 		}
 		return list;
 	}

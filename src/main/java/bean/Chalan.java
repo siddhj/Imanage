@@ -2,53 +2,62 @@ package bean;
 
 public class Chalan{
 	
-	private String productid,name,issue,receive,due;
-	
-	
-	public String getProductid() {
+	private int productid,issue,receive,due,paid;
+	private String name;
+//	private Date
+	public int getProductid() {
 		return productid;
 	}
-	public void setProductid(String productid) {
+	public void setProductid(int productid) {
 		this.productid = productid;
+	}
+	public int getIssue() {
+		return issue;
+	}
+	public void setIssue(int issue) {
+		this.issue = issue;
+	}
+	public int getReceive() {
+		return receive;
+	}
+	public void setReceive(int receive) {
+		this.receive = receive;
+	}
+	public int getDue() {
+		return due;
+	}
+	public void setDue(int due) {
+		this.due = due;
+	}
+	public int getPaid() {
+		return paid;
+	}
+	public void setPaid(int paid) {
+		this.paid = paid;
+	}
+	
+	public Chalan(){
+		
+	}
+	
+	public Chalan(int productid, int issue, int receive, int due, int paid, String name) {
+		super();
+		this.productid = productid;
+		this.issue = issue;
+		this.receive = receive;
+		this.due = due;
+		this.paid = paid;
+		this.name = name;
+	}
+	@Override
+	public String toString() {
+		return "Chalan [productid=" + productid + ", issue=" + issue + ", receive=" + receive + ", due=" + due
+				+ ", paid=" + paid + ", name=" + name + "]";
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getIssue() {
-		return issue;
-	}
-	public void setIssue(String issue) {
-		this.issue = issue;
-	}
-	public String getReceive() {
-		return receive;
-	}
-	public void setReceive(String receive) {
-		this.receive = receive;
-	}
-	public String getDue() {
-		return due;
-	}
-	public void setDue(String due) {
-		this.due = due;
-	}
-	public Chalan(String productid, String name, String issue, String receive, String due) {
-		super();
-		this.productid = productid;
-		this.name = name;
-		this.issue = issue;
-		this.receive = receive;
-		this.due = due;
-	}
-	public Chalan() {
-		// TODO Auto-generated constructor stub
-	this.productid="";
-	this.name="";
-	this.issue="";
-	this.receive="";
-	this.due="";
 	}
   }
