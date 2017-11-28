@@ -2,13 +2,13 @@ package bean;
 
 public class Chalan{
 	
-	private int productid,issue,receive,due,paid;
-	private String name;
+	private int assigneeid,issue,receive,due,paid;
+	private String productid;
 //	private Date
-	public int getProductid() {
+	public String getProductid() {
 		return productid;
 	}
-	public void setProductid(int productid) {
+	public void setProductid(String productid) {
 		this.productid = productid;
 	}
 	public int getIssue() {
@@ -40,24 +40,25 @@ public class Chalan{
 		
 	}
 	
-	public Chalan(int productid, int issue, int receive, int due, int paid, String name) {
+	public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid) {
 		super();
 		this.productid = productid;
 		this.issue = issue;
 		this.receive = receive;
 		this.due = due;
 		this.paid = paid;
-		this.name = name;
+		this.assigneeid = assigneeid;
 	}
 	@Override
 	public String toString() {
 		return "Chalan [productid=" + productid + ", issue=" + issue + ", receive=" + receive + ", due=" + due
-				+ ", paid=" + paid + ", name=" + name + "]";
+				+ ", paid=" + paid + ", name=" + assigneeid + "]";
 	}
-	public String getName() {
-		return name;
+	public int getAssigneeid() {
+		return assigneeid;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAssigneeid(int assigneeid) {
+		this.assigneeid = assigneeid;
 	}
+	
   }

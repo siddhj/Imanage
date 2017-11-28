@@ -1,10 +1,16 @@
 package ui;
 
 import java.io.IOException;
+import org.controlsfx.control.textfield.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.sun.javafx.scene.control.skin.TextFieldSkin;
+
+import bean.Assignee;
 import bean.Chalan;
 import dao.DChalan;
+import dao.DLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -88,7 +94,7 @@ public class MainPageController implements MultiScreen {
 	    @FXML
 	    public void initialize() throws SQLException, IOException {
     	productidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("productid"));
-    	namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("name"));
+    	namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("assigneeid"));
     	issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("issue"));
     	receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("receive"));
     	duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("due"));
@@ -96,6 +102,9 @@ public class MainPageController implements MultiScreen {
     	//System.out.println("doen");
     	//listFromDb = new DChalan().chalanDataLoad();
     	//newchalantable.setItems(listFromDb);
+    	ObservableList<ObservableList<String>> parentlist = new DLoader().intialLoader();
+    	TextFields.bindAutoCompletion(assigneename,parentlist.get(1));
+	    TextFields.bindAutoCompletion(productidtext,parentlist.get(0));
 	    }   
     
     public ObservableList<Chalan> getData(){
@@ -108,19 +117,31 @@ public class MainPageController implements MultiScreen {
     @FXML
     void saveChalan(ActionEvent event) {
     	System.out.println(assigneename.getText()+"::"+issuetext.getText());
-    	//int productid, int issue, int receive, int due, int paid, String name
-    	Chalan chalan = new Chalan(Integer.parseInt(productidtext.getText()),
+    	ObservableList<Assignee> assigneelist= DLoader.assigneelist;
+    	System.out.println("assigneelist details"+assigneelist.size());
+    	String name = assigneename.getText();
+    	int AssigneeID=0;
+    	for(Assignee al :assigneelist)
+    	{
+    		if(al.getFirstname().equals(name))
+    				{
+    			AssigneeID = al.getAssigneeid();
+    			System.out.println(AssigneeID);
+    			break;
+    				}
+    	}
+    	Chalan chalan = new Chalan(productidtext.getText(),
     			Integer.parseInt(issuetext.getText()),
     			Integer.parseInt(receivetext.getText()),
     			Integer.parseInt(duetext.getText()),
     			Integer.parseInt(paidtext.getText()),
-    			assigneename.getText());
-//    	Chalan chalan = new Chalan();
-//    	chalan.setName(assigneename.getText());
-//    	chalan.setName(productidtext.getText());
-//    	chalan.setName(issuetext.getText());
-//    	chalan.setName(receivetext.getText());
-   // 	chalan.setName(duetext.getText());
+    			AssigneeID);
+    	//Chalan chalan = new Chalan();
+    	//chalan.setName(assigneename.getText());
+    	//chalan.setName(productidtext.getText());
+    	//chalan.setName(issuetext.getText());
+    	//chalan.setName(receivetext.getText());
+    	//chalan.setName(duetext.getText());
     	newchalantable.getItems().add(chalan);
     	assigneename.setText("");
     	productidtext.setText("");
@@ -131,10 +152,11 @@ public class MainPageController implements MultiScreen {
     
     }
     
+    
+    
     @FXML
     void saveChalanData(ActionEvent event) throws SQLException, IOException {
     	ObservableList<Chalan> chalanlist = newchalantable.getItems();
-    	chalanlist.forEach(c -> System.out.println(c.getName()));
     	DChalan chalan = new DChalan();
     	chalan.chalanDataInsert(chalanlist);
     }

@@ -99,7 +99,7 @@
       <TableView fx:id="newchalantable" centerShape="false" layoutX="471.0" layoutY="109.0" prefHeight="594.0" prefWidth="824.0" scaleShape="false" style="-fx-background-color: #ededed;" AnchorPane.bottomAnchor="65.0" AnchorPane.topAnchor="109.0">
         <columns>
           <TableColumn fx:id="productidcolumn" editable="false" prefWidth="100.0" sortable="false" text="Product Id" />
-          <TableColumn fx:id="namecolumn" editable="false" prefWidth="250.0" sortable="false" text="Name" />
+          <TableColumn fx:id="namecolumn" editable="false" prefWidth="250.0" sortable="false" text="Name ID" />
             <TableColumn fx:id="issueitemcolumn" editable="false" minWidth="0.0" prefWidth="100.0" sortable="false" text="Issue Items" />
             <TableColumn fx:id="receiveitemcolumn" editable="false" prefWidth="100.0" sortable="false" text="Receive Items" />
             <TableColumn fx:id="duecolumn" editable="false" prefWidth="100.0" sortable="false" text="Due" />

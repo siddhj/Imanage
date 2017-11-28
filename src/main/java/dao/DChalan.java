@@ -26,22 +26,15 @@ public class DChalan {
 		Connection connection = chalandata.returnConnection();
 		connection.setAutoCommit(false);
 		Statement statement = connection.createStatement();
-		PreparedStatement prepare = connection.prepareStatement("insert into chalan(productid,name,issue,receive,due,billdate,paid) "
+		PreparedStatement prepare = connection.prepareStatement("insert into challan(ProductID,AssigneeID,Issue,Receive,Due,Billdate,Paid) "
 				+ "values(?,?,?,?,?,?,?)");
 		// what about throw clause at the top
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
 		chalanlist.forEach(c ->{
 		try {
-			System.out.println(c.getName()+"::"+c.getDue());
-//** tobe changed according to new chalan bean
-//			prepare.setString(1, c.getProductid());
-//			prepare.setString(2, c.getName());
-//			prepare.setString(3, c.getIssue());
-//			prepare.setString(4, c.getReceive());
-//			prepare.setString(5, c.getDue());
-			prepare.setInt(1, c.getProductid());
-			prepare.setString(2, c.getName());
+			prepare.setString(1, c.getProductid());
+			prepare.setInt(2, c.getAssigneeid());
 			prepare.setInt(3, c.getIssue());
 			prepare.setInt(4, c.getReceive());
 			prepare.setInt(5, c.getDue());
