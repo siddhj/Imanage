@@ -33,7 +33,10 @@ public class MainPageController implements MultiScreen {
 	
 	    @FXML
 	    private TextField duetext;
-		
+
+	    @FXML
+	    private TextField paidtext;
+	    
 		@FXML
 	    private TableView<Chalan> newchalantable = new TableView<>();
 
@@ -62,6 +65,9 @@ public class MainPageController implements MultiScreen {
 	    private Button savechalandata;
 	    
 	    @FXML
+	    private TableColumn<Chalan,String> paidcolumn = new TableColumn<>("Paid");
+	    
+	    @FXML
 	    void removeRow(ActionEvent event) {
 	    Chalan chalan = newchalantable.getSelectionModel().getSelectedItem();
 	    
@@ -86,23 +92,29 @@ public class MainPageController implements MultiScreen {
     	issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("issue"));
     	receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("receive"));
     	duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("due"));
-    //	System.out.println("doen");
-   // 	listFromDb = new DChalan().chalanDataLoad();
-    //	newchalantable.setItems(listFromDb);
+    	paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,String>("paid"));
+    	//System.out.println("doen");
+    	//listFromDb = new DChalan().chalanDataLoad();
+    	//newchalantable.setItems(listFromDb);
 	    }   
     
     public ObservableList<Chalan> getData(){
     	ObservableList<Chalan> list = FXCollections.observableArrayList();
-    	list.add(new Chalan("a","b","c","d","e"));
-    	list.add(new Chalan("f","g","h","i","j"));
+    	//list.add(new Chalan("a","b","c","d","e"));
+    	//list.add(new Chalan("f","g","h","i","j"));
     	return list;
     }
   
     @FXML
     void saveChalan(ActionEvent event) {
     	System.out.println(assigneename.getText()+"::"+issuetext.getText());
-    	Chalan chalan = new Chalan(assigneename.getText(),
-    			productidtext.getText(),issuetext.getText(),receivetext.getText(),duetext.getText());
+    	//int productid, int issue, int receive, int due, int paid, String name
+    	Chalan chalan = new Chalan(Integer.parseInt(productidtext.getText()),
+    			Integer.parseInt(issuetext.getText()),
+    			Integer.parseInt(receivetext.getText()),
+    			Integer.parseInt(duetext.getText()),
+    			Integer.parseInt(paidtext.getText()),
+    			assigneename.getText());
 //    	Chalan chalan = new Chalan();
 //    	chalan.setName(assigneename.getText());
 //    	chalan.setName(productidtext.getText());
@@ -115,6 +127,7 @@ public class MainPageController implements MultiScreen {
     	issuetext.setText("");
     	receivetext.setText("");
     	duetext.setText("");
+    	paidtext.setText("");
     
     }
     
