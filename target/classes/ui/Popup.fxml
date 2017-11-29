@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PopupController">
+   <center>
+      <TableView fx:id="receiveTable" prefHeight="279.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn fx:id="issueitemcolumn" prefWidth="120.0" text="Issue Items" />
+            <TableColumn fx:id="receiveitemcolumn" prefWidth="129.0" text="Receive Items" />
+            <TableColumn fx:id="duecolumn" prefWidth="100.0" text="Due" />
+            <TableColumn fx:id="paidcolumn" minWidth="0.0" prefWidth="107.0" text="Paid" />
+            <TableColumn fx:id="billdatecolumn" prefWidth="130.0" text="Bill Date" />
+         </columns></TableView>
+   </center>
+   <bottom>
+      <Button fx:id="savedata" mnemonicParsing="false" onAction="#saveReceiveData" text="Save" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

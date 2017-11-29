@@ -1,10 +1,29 @@
 package bean;
 
+import java.util.Date;
+
 public class Chalan{
 	
 	private int assigneeid,issue,receive,due,paid;
 	private String productid;
-//	private Date
+	private Date billdate;
+public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid, Date billdate) {
+		super();
+		this.assigneeid = assigneeid;
+		this.issue = issue;
+		this.receive = receive;
+		this.due = due;
+		this.paid = paid;
+		this.productid = productid;
+		this.billdate = billdate;
+	}
+public Date getBilldate() {
+		return billdate;
+	}
+	public void setBilldate(Date billdate) {
+		this.billdate = billdate;
+	}
+	//	private Date
 	public String getProductid() {
 		return productid;
 	}

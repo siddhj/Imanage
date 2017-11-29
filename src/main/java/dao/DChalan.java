@@ -31,8 +31,11 @@ public class DChalan {
 		// what about throw clause at the top
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
-		chalanlist.forEach(c ->{
-		try {
+
+		
+		for(Chalan c:chalanlist)
+		{
+			try {
 			prepare.setString(1, c.getProductid());
 			prepare.setInt(2, c.getAssigneeid());
 			prepare.setInt(3, c.getIssue());
@@ -46,29 +49,55 @@ public class DChalan {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-			try {
-				prepare.executeBatch();
-				connection.commit();
-				statement.close();
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
+		try {
+			prepare.executeBatch();
+			connection.commit();
+	//		statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		}
+//		not working why
+		//chalanlist.forEach(c ->{
+//		try {
+//			prepare.setString(1, c.getProductid());
+//			prepare.setInt(2, c.getAssigneeid());
+//			prepare.setInt(3, c.getIssue());
+//			prepare.setInt(4, c.getReceive());
+//			prepare.setInt(5, c.getDue());
+//		//Timestamp is not what we need
+//			prepare.setTimestamp(6, new Timestamp(date.getTime()));
+//			prepare.setInt(7, c.getPaid());
+//			prepare.addBatch();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}	
+//		try {
+//			prepare.executeBatch();
+//			connection.commit();
+//			statement.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	});
 	}
 	
 	public ObservableList<Chalan> chalanDataLoad() throws SQLException, IOException{
 		ListTables chalandata = new ListTables();
 		Connection connection = chalandata.returnConnection();
 		Statement statement = connection.createStatement();
-		ResultSet resultset = statement.executeQuery("select * from chalan");
+		ResultSet resultset = statement.executeQuery("select ProductID,Receive,Issue,Due,Paid,AssigneeID,BillDate from challan");
 		ObservableList<Chalan> list = FXCollections.observableArrayList();
 				
 		while(resultset.next())
-		{
+		{//String productid, int issue, int receive, int due, int paid, int assigneeid
 		// to be changed according to new chalan bean
-//			list.add(new Chalan(resultset.getString(1),resultset.getString(2),resultset.getString(3),resultset.getString(4),resultset.getString(5)));
+			list.add(new Chalan(resultset.getString("ProductID"),resultset.getInt("Issue"),resultset.getInt("Receive"),resultset.getInt("Due")
+					,resultset.getInt("Paid"),resultset.getInt("AssigneeID"),resultset.getDate("BillDate")));
 
 		}
 		return list;

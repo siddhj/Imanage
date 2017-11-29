@@ -74,7 +74,7 @@
             </Label>
             <TextField fx:id="assigneename" layoutX="179.0" layoutY="100.0" onAction="#assigneeName" prefHeight="25.0" prefWidth="177.0" />
             <TextField fx:id="productidtext" layoutX="179.0" layoutY="170.0" onAction="#productId" prefHeight="25.0" prefWidth="179.0" />
-            <DatePicker layoutX="179.0" layoutY="239.0" />
+            <DatePicker fx:id="billdate" layoutX="179.0" layoutY="239.0" onAction="#selectDateValue" />
             <TextField fx:id="issuetext" layoutX="180.0" layoutY="350.0" onAction="#issueText" prefHeight="26.0" prefWidth="180.0" />
             <TextField fx:id="receivetext" layoutX="180.0" layoutY="401.0" onAction="#receiveText" prefHeight="26.0" prefWidth="180.0" />
             <TextField fx:id="duetext" layoutX="180.0" layoutY="453.0" onAction="#dueText" prefHeight="26.0" prefWidth="180.0" />
@@ -84,7 +84,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="175.0" layoutY="624.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="77.0" text="Clear" AnchorPane.bottomAnchor="57.0">
+            <Button fx:id="newwindow" layoutX="175.0" layoutY="624.0" mnemonicParsing="false" onAction="#popupWindow" prefHeight="39.0" prefWidth="95.0" text="NewWindow" AnchorPane.bottomAnchor="57.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -96,10 +96,10 @@
             </Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="newchalantable" centerShape="false" layoutX="471.0" layoutY="109.0" prefHeight="594.0" prefWidth="824.0" scaleShape="false" style="-fx-background-color: #ededed;" AnchorPane.bottomAnchor="65.0" AnchorPane.topAnchor="109.0">
+      <TableView fx:id="newchalantable" centerShape="false" layoutX="471.0" layoutY="110.0" prefHeight="594.0" prefWidth="824.0" scaleShape="false" style="-fx-background-color: #ededed;" AnchorPane.bottomAnchor="64.0" AnchorPane.topAnchor="110.0">
         <columns>
           <TableColumn fx:id="productidcolumn" editable="false" prefWidth="100.0" sortable="false" text="Product Id" />
-          <TableColumn fx:id="namecolumn" editable="false" prefWidth="250.0" sortable="false" text="Name" />
+          <TableColumn fx:id="namecolumn" editable="false" prefWidth="250.0" sortable="false" text="Name ID" />
             <TableColumn fx:id="issueitemcolumn" editable="false" minWidth="0.0" prefWidth="100.0" sortable="false" text="Issue Items" />
             <TableColumn fx:id="receiveitemcolumn" editable="false" prefWidth="100.0" sortable="false" text="Receive Items" />
             <TableColumn fx:id="duecolumn" editable="false" prefWidth="100.0" sortable="false" text="Due" />
