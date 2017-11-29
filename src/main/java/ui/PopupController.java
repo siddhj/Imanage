@@ -16,6 +16,7 @@ import dao.DLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,9 +31,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import other.Utility;
+import service.EditingCell;
 import service.MultiScreen;
 import utility.UTable;
-
 
 public class PopupController {
 	// @FXML
@@ -47,38 +48,70 @@ public class PopupController {
 
 	@FXML
 	private TableView<Chalan> receiveTable = new TableView<>();
-	
-	@FXML
-	private TableColumn<Chalan,Integer> issueitemcolumn = new TableColumn<>("Issue Items");
 
 	@FXML
-	private TableColumn<Chalan,Integer> receiveitemcolumn = new TableColumn<>("Receive Items");
+	private TableColumn<Chalan, Integer> issueitemcolumn = new TableColumn<>("Issue Items");
+
+
+	private TableColumn<Chalan, Integer> receiveitemcolumn = new TableColumn<>("Receive Items");
 
 	@FXML
-	private TableColumn<Chalan,Integer> duecolumn = new TableColumn<>("Due");
+	private TableColumn<Chalan, Integer> duecolumn = new TableColumn<>("Due");
 
-	@FXML
-	private TableColumn<Chalan,Integer> paidcolumn = new TableColumn<>("Paid");
-	
+	private TableColumn<Chalan, Integer> paidcolumn = new TableColumn<>("Paid");
+
 	@FXML
 	private TableColumn<Chalan, Date> billdatecolumn = new TableColumn<>("Bill Date");
-	
+
 	@FXML
 	private Button savedata;
 
 	@FXML
 	public void initialize() throws SQLException, IOException {
+
+		Callback<TableColumn<Chalan, Integer>, TableCell<Chalan, Integer>> cellFactory = new Callback<TableColumn<Chalan, Integer>, TableCell<Chalan, Integer>>() {
+			public TableCell<Chalan, Integer> call(TableColumn<Chalan, Integer> p) {
+				return new EditingCell();
+			}
+		};
+
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, Integer>("issue"));
+		duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, Integer>("due"));
+		duecolumn.setCellFactory(cellFactory);
+		duecolumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Chalan, Integer>>() {
+			@Override
+			public void handle(TableColumn.CellEditEvent<Chalan, Integer> t) {
+				((Chalan) t.getTableView().getItems().get(t.getTablePosition().getRow())).setReceive(t.getNewValue());
+			}
+		});
+
+		billdatecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, Date>("billdate"));
+
+		// editable column
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, Integer>("receive"));
-		duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan,Integer>("due"));
 		paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, Integer>("paid"));
-		billdatecolumn.setCellValueFactory(new PropertyValueFactory<Chalan,Date>("billdate"));
-		
-		//receiveitemcolumn.setCellFactory(TextFieldTableCell.forTableColumn());;
+
+		receiveitemcolumn.setCellFactory(cellFactory);
+		receiveitemcolumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Chalan, Integer>>() {
+			@Override
+			public void handle(TableColumn.CellEditEvent<Chalan, Integer> t) {
+				((Chalan) t.getTableView().getItems().get(t.getTablePosition().getRow())).setReceive(t.getNewValue());
+			}
+		});
+
+		paidcolumn.setCellFactory(cellFactory);
+		paidcolumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Chalan, Integer>>() {
+			@Override
+			public void handle(TableColumn.CellEditEvent<Chalan, Integer> t) {
+				((Chalan) t.getTableView().getItems().get(t.getTablePosition().getRow())).setReceive(t.getNewValue());
+			}
+		});
+
+		receiveitemcolumn.setEditable(true);
+		receiveTable.setEditable(true);
+		receiveTable.getColumns().addAll(receiveitemcolumn, paidcolumn);
 		ObservableList<Chalan> chalanlist = new DChalan().chalanDataLoad();
 		receiveTable.setItems(chalanlist);
-		receiveTable.setEditable(true);
-		 
 	}
 
 	public ObservableList<Chalan> getData() {

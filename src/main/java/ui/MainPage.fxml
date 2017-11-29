@@ -101,7 +101,7 @@
           <TableColumn fx:id="productidcolumn" editable="false" prefWidth="100.0" sortable="false" text="Product Id" />
           <TableColumn fx:id="namecolumn" editable="false" prefWidth="250.0" sortable="false" text="Name ID" />
             <TableColumn fx:id="issueitemcolumn" editable="false" minWidth="0.0" prefWidth="100.0" sortable="false" text="Issue Items" />
-            <TableColumn fx:id="receiveitemcolumn" editable="false" prefWidth="100.0" sortable="false" text="Receive Items" />
+            <TableColumn fx:id="receiveitemcolumn" editable="false" prefWidth="100.0" sortable="false" text="Receive" />
             <TableColumn fx:id="duecolumn" editable="false" prefWidth="100.0" sortable="false" text="Due" />
             <TableColumn fx:id="paidcolumn" prefWidth="75.0" text="Paid" />
         </columns>

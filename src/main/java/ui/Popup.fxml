@@ -9,11 +9,9 @@
    <center>
       <TableView fx:id="receiveTable" editable="true" prefHeight="279.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn fx:id="issueitemcolumn" editable="false" prefWidth="120.0" text="Issue Items" />
-            <TableColumn fx:id="receiveitemcolumn" prefWidth="129.0" text="Receive Items" />
+            <TableColumn fx:id="issueitemcolumn" prefWidth="120.0" text="Issue Items" />
             <TableColumn fx:id="duecolumn" editable="false" prefWidth="100.0" text="Due" />
-            <TableColumn fx:id="paidcolumn" editable="false" minWidth="0.0" prefWidth="107.0" text="Paid" />
-            <TableColumn fx:id="billdatecolumn" editable="false" prefWidth="130.0" text="Bill Date" />
+            <TableColumn fx:id="billdatecolumn" prefWidth="130.0" text="Bill Date" />
          </columns></TableView>
    </center>
    <bottom>

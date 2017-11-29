@@ -2,6 +2,8 @@ package ui;
 
 import java.io.IOException;
 import org.controlsfx.control.textfield.*;
+
+import service.EditingCell;
 import java.sql.SQLException;
 import bean.Assignee;
 import bean.Chalan;
@@ -10,24 +12,27 @@ import dao.DLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import other.Utility;
 import service.MultiScreen;
 import utility.UTable;
 
 public class MainPageController implements MultiScreen {
 
-//	@FXML
-//	private DatePicker billdate;
+	// @FXML
+	// private DatePicker billdate;
 	@FXML
 	private TextField assigneename;
 
@@ -90,25 +95,50 @@ public class MainPageController implements MultiScreen {
 		});
 	}
 
+//	TableColumn<Chalan, Integer> receiveitem = new TableColumn<Chalan, Integer>("Product");
 	ObservableList<Chalan> listFromDb = FXCollections.observableArrayList();
 
 	// why to create instance table column instead of intializing in intialize()
 	// method
 	@FXML
 	public void initialize() throws SQLException, IOException {
+//		receiveitem.setCellValueFactory(new PropertyValueFactory<Chalan,Integer>("receive"));
+//
+//		// callback functions are defined on the basis of the column and its datatype
+//		Callback<TableColumn<Chalan,Integer>, TableCell<Chalan,Integer>> cellFactory
+//		= new Callback<TableColumn<Chalan,Integer>, TableCell<Chalan,Integer>>() {
+//			public TableCell<Chalan,Integer> call(TableColumn<Chalan,Integer> p) {
+//				return new EditingCell();
+//			}
+//		};
+//
+//		receiveitem.setCellFactory(cellFactory);
+//		receiveitem.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Chalan, Integer>>() {
+//			@Override
+//			public void handle(TableColumn.CellEditEvent<Chalan, Integer> t) {
+//				((Chalan) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+//						.setReceive(t.getNewValue());
+//			}
+//		});
+
 		productidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("productid"));
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("receive"));
+
 		duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
 		paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("paid"));
 		// System.out.println("doen");
 		// listFromDb = new DChalan().chalanDataLoad();
 		// newchalantable.setItems(listFromDb);
-	
+		newchalantable.setEditable(true);
+		//newchalantable.getColumns().addAll(receiveitem);
+
+		receiveitemcolumn.setEditable(true);
 //		ObservableList<ObservableList<String>> parentlist = new DLoader().intialLoader();
 //		TextFields.bindAutoCompletion(assigneename, parentlist.get(1));
 //		TextFields.bindAutoCompletion(productidtext, parentlist.get(0));
+	
 	}
 
 	public ObservableList<Chalan> getData() {
@@ -116,6 +146,10 @@ public class MainPageController implements MultiScreen {
 		// list.add(new Chalan("a","b","c","d","e"));
 		// list.add(new Chalan("f","g","h","i","j"));
 		return list;
+	}
+
+	public static <S> Callback<TableColumn<S, String>, TableCell<S, String>> forTableColumn() {
+		return forTableColumn();
 	}
 
 	@FXML
@@ -142,7 +176,7 @@ public class MainPageController implements MultiScreen {
 		// chalan.setName(receivetext.getText());
 		// chalan.setName(duetext.getText());
 		newchalantable.getItems().add(chalan);
-		//assigneename.setText("");
+		// assigneename.setText("");
 		productidtext.setText("");
 		issuetext.setText("");
 		receivetext.setText("");
@@ -166,11 +200,11 @@ public class MainPageController implements MultiScreen {
 		this.screencontroller = screencontroller;
 	}
 
-	 @FXML
-	    void selectDateValue(ActionEvent event) {
-		 
-	    }
-	
+	@FXML
+	void selectDateValue(ActionEvent event) {
+
+	}
+
 	@FXML
 	void assigneeName(ActionEvent event) {
 
@@ -197,14 +231,14 @@ public class MainPageController implements MultiScreen {
 	}
 
 	@FXML
-    private Button newwindow;
-	  	
+	private Button newwindow;
+
 	@FXML
 	void popupWindow(ActionEvent event) throws IOException, SQLException {
 		Utility.setVarone("daddy is home");
-		
+
 		UTable.setChallanlist(new DChalan().chalanDataLoad());
-		
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
@@ -214,5 +248,4 @@ public class MainPageController implements MultiScreen {
 		window.setMinWidth(500);
 		window.show();
 	}
-
 }
