@@ -103,8 +103,8 @@ public class PopupController {
 		paidcolumn.setEditable(true);
 		receiveTable.setEditable(true);
 		receiveTable.getColumns().addAll(receiveitemcolumn, paidcolumn);
-		ObservableList<Chalan> chalanlist = new DChalan().chalanDataLoad();
-		receiveTable.setItems(chalanlist);
+	//	ObservableList<Chalan> chalanlist = new DChalan().chalanDataLoad();
+	//	receiveTable.setItems(chalanlist);
 	}
 
 	public ObservableList<Chalan> getData() {

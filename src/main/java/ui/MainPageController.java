@@ -4,6 +4,8 @@ import java.io.IOException;
 import org.controlsfx.control.textfield.*;
 
 import service.EditingCell;
+import service.MicroService;
+
 import java.sql.SQLException;
 import bean.Assignee;
 import bean.Chalan;
@@ -125,7 +127,6 @@ public class MainPageController implements MultiScreen {
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("receive"));
-
 		duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
 		paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("paid"));
 		// System.out.println("doen");
@@ -135,9 +136,9 @@ public class MainPageController implements MultiScreen {
 		//newchalantable.getColumns().addAll(receiveitem);
 
 		receiveitemcolumn.setEditable(true);
-//		ObservableList<ObservableList<String>> parentlist = new DLoader().intialLoader();
-//		TextFields.bindAutoCompletion(assigneename, parentlist.get(1));
-//		TextFields.bindAutoCompletion(productidtext, parentlist.get(0));
+		ObservableList<ObservableList<String>> parentlist = new DLoader().intialLoader();
+		TextFields.bindAutoCompletion(assigneename, parentlist.get(1));
+		TextFields.bindAutoCompletion(productidtext, parentlist.get(0));
 	
 	}
 
@@ -158,14 +159,7 @@ public class MainPageController implements MultiScreen {
 		ObservableList<Assignee> assigneelist = DLoader.assigneelist;
 		System.out.println("assigneelist details" + assigneelist.size());
 		String name = assigneename.getText();
-		int AssigneeID = 0;
-		for (Assignee al : assigneelist) {
-			if (al.getFirstname().equals(name)) {
-				AssigneeID = al.getAssigneeid();
-				System.out.println(AssigneeID);
-				break;
-			}
-		}
+		int AssigneeID = new MicroService().assigneeIDRetrieve(name);
 		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()),
 				Integer.parseInt(receivetext.getText()), Integer.parseInt(duetext.getText()),
 				Integer.parseInt(paidtext.getText()), AssigneeID);
@@ -236,8 +230,9 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	void popupWindow(ActionEvent event) throws IOException, SQLException {
 		Utility.setVarone("daddy is home");
-
-		UTable.setChallanlist(new DChalan().chalanDataLoad());
+		int assigneeid = new MicroService().assigneeIDRetrieve(assigneename.getText());
+		String productid = productidtext.getText();
+		UTable.setChallanlist(new DChalan().chalanDataLoad(productid,assigneeid));
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();

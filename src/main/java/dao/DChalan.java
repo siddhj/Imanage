@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ import javafx.collections.ObservableList;
 public class DChalan {
 	public static void main(String args[]) throws SQLException, IOException
 	{
-		new DChalan().chalanDataLoad();
+		new DChalan().chalanDataLoad("2032B",2).forEach(c->System.out.println(c.getDue()));
 	}
 	
 	public void chalanDataInsert(ObservableList<Chalan> chalanlist) throws SQLException, IOException{
@@ -86,11 +87,17 @@ public class DChalan {
 //	});
 	}
 	
-	public ObservableList<Chalan> chalanDataLoad() throws SQLException, IOException{
+	public ObservableList<Chalan> chalanDataLoad(String productidtext,int assigneeid) throws SQLException, IOException{
 		ListTables chalandata = new ListTables();
 		Connection connection = chalandata.returnConnection();
-		Statement statement = connection.createStatement();
-		ResultSet resultset = statement.executeQuery("select ProductID,Receive,Issue,Due,Paid,AssigneeID,BillDate from challan");
+		//Statement statement = connection.createStatement();
+		String query="select ProductID,Receive,Issue,Due,Paid,AssigneeID,BillDate from challan where ProductID=?and AssigneeID=?";
+		PreparedStatement stmt = connection.prepareStatement(query);
+		stmt.setString(1, productidtext);
+		stmt.setInt(2, assigneeid);
+
+		ResultSet resultset = stmt.executeQuery();
+				
 		ObservableList<Chalan> list = FXCollections.observableArrayList();
 				
 		while(resultset.next())
