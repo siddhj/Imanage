@@ -32,6 +32,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import other.Utility;
 import service.EditingCell;
+import service.MicroService;
 import service.MultiScreen;
 import utility.UTable;
 
@@ -103,8 +104,8 @@ public class PopupController {
 		paidcolumn.setEditable(true);
 		receiveTable.setEditable(true);
 		receiveTable.getColumns().addAll(receiveitemcolumn, paidcolumn);
-	//	ObservableList<Chalan> chalanlist = new DChalan().chalanDataLoad();
-	//	receiveTable.setItems(chalanlist);
+		ObservableList<Chalan> chalanlist = UTable.getChallanlist();
+		receiveTable.setItems(chalanlist);
 	}
 
 	public ObservableList<Chalan> getData() {
@@ -117,7 +118,22 @@ public class PopupController {
 	@FXML
 	void saveReceiveData(ActionEvent event) {
 		ObservableList<Chalan> chalan = receiveTable.getItems();
-		chalan.forEach(c->{System.out.println(c.getReceive()+"::"+c.getPaid()+"::"+c.getIssue());});
+		UTable.setChallanlist(chalan);
+		MicroService service = new MicroService();
+		int receive  = service.getTotalReceiveFromPopUp(receiveTable.getItems());
+		System.out.println(receive+"amount");
+		TextField receivefield = UTable.getReceiveTextField();
+		receivefield.setText(String.valueOf(receive));
+		Stage stage = (Stage) savedata.getScene().getWindow();
+		stage.close();
 	}
-
+	
+	public void updatetest()
+	{
+		int value = 5;
+		//Synthesize the item = row
+		Item item = new Item(s, value);
+		//Set the i-th item
+		receiveTable.getItems().set(i, item);
+	}
 }

@@ -83,6 +83,8 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private TableColumn<Chalan, String> paidcolumn = new TableColumn<>("Paid");
 
+	
+	
 	@FXML
 	void removeRow(ActionEvent event) {
 		Chalan chalan = newchalantable.getSelectionModel().getSelectedItem();
@@ -229,11 +231,15 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	void popupWindow(ActionEvent event) throws IOException, SQLException {
-		Utility.setVarone("daddy is home");
+		
 		int assigneeid = new MicroService().assigneeIDRetrieve(assigneename.getText());
 		String productid = productidtext.getText();
-		UTable.setChallanlist(new DChalan().chalanDataLoad(productid,assigneeid));
+		System.out.println("insdie popup"+productid+"::"+assigneeid);
+		ObservableList <Chalan> chalanlist = new DChalan().chalanDataLoad(productid,assigneeid);
 
+		chalanlist.forEach(c->{System.out.println(c.getIssue()+c.getDue());});
+		UTable.setChallanlist(chalanlist);
+		UTable.setReceiveTextField(receivetext);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);

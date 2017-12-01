@@ -21,7 +21,6 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 	@Override
 	public void startEdit() {
 		super.startEdit();
-
 		if (textField == null) {
 			createTextField();
 		}
@@ -34,7 +33,6 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 	@Override
 	public void cancelEdit() {
 		super.cancelEdit();
-
 		setText(String.valueOf(getItem()));
 		setContentDisplay(ContentDisplay.TEXT_ONLY);
 	}
@@ -69,6 +67,7 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER) {
 					commitEdit(Integer.parseInt(textField.getText()));
+					System.out.println("doen editing called");
 				} else if (t.getCode() == KeyCode.ESCAPE) {
 					cancelEdit();
 				}

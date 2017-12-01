@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
 public class DChalan {
 	public static void main(String args[]) throws SQLException, IOException
 	{
-		new DChalan().chalanDataLoad("2032B",2).forEach(c->System.out.println(c.getDue()));
+		new DChalan().chalanDataLoad("21D",1).forEach(c->System.out.println(c.getDue()));
 	}
 	
 	public void chalanDataInsert(ObservableList<Chalan> chalanlist) throws SQLException, IOException{
