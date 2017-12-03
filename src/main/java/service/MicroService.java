@@ -37,31 +37,43 @@ public class MicroService {
 				int issue = c.getIssue();
 				int olddue = c.getDue();
 				int due = issue - newreceive;
+				if (newreceive > issue) {
+					Notification.popupWindowInvalidReceiveValueGreaterThenIssue();
+					due = c.getDue();
+					newreceive = c.getReceive();
+				} else if (due < 0) {
+					Notification.popupWindowInvalidValueLessThenZero();
+					due = c.getDue();
+					newreceive = c.getReceive();
+				}
 				c.setDue(due);
 				c.setReceive(newreceive);
 				newchalan.add(c);
-				System.out.println("if"+c.getChallanid()+":"+c.getIssue()+":"+c.getReceive()+":"+c.getDue()+"Older"+olddue);
 			} else {
 				newchalan.add(c);
-				System.out.println("else"+c.getChallanid()+":"+c.getIssue()+":"+c.getReceive()+":"+c.getDue());
-
 			}
 		}
 		return newchalan;
 	}
 
-	public static ObservableList<Chalan> paidUpdatePopUpTableView(ObservableList<Chalan> popuptable, int newpaid,int challanid) {
+	public static ObservableList<Chalan> paidUpdatePopUpTableView(ObservableList<Chalan> popuptable, int newpaid,
+			int challanid) {
 		ObservableList<Chalan> newchalan = FXCollections.observableArrayList();
 		for (Chalan c : popuptable) {
 			if (c.getChallanid() == challanid) {
 				int oldpaid = c.getPaid();
+				if(newpaid>c.getReceive())
+				{
+				newpaid = oldpaid;
+				Notification.popupWindowInvalidPaidValueGreaterThenReceive();
+				}
 				c.setPaid(newpaid);
 				newchalan.add(c);
-				System.out.println("if"+c.getChallanid()+":"+c.getPaid()+"Older"+oldpaid);
 			} else {
 				newchalan.add(c);
-				System.out.println("else"+c.getChallanid()+":"+c.getIssue()+":"+c.getReceive()+":"+c.getDue());
-
+				// System.out.println(
+				// "else" + c.getChallanid() + ":" + c.getIssue() + ":" +
+				// c.getReceive() + ":" + c.getDue());
 			}
 		}
 		return newchalan;

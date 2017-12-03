@@ -1,7 +1,9 @@
 package ui;
 
 import java.io.IOException;
+
 import org.controlsfx.control.textfield.*;
+import org.controlsfx.control.Notifications;
 
 import service.EditingCell;
 import service.MicroService;
@@ -17,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
 import other.Utility;
 import service.MultiScreen;
 import utility.UTable;
@@ -231,10 +235,9 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	void popupWindow(ActionEvent event) throws IOException, SQLException {
-		
+
 		int assigneeid = new MicroService().assigneeIDRetrieve(assigneename.getText());
 		String productid = productidtext.getText();
-		System.out.println("insdie popup"+productid+"::"+assigneeid);
 		ObservableList <Chalan> chalanlist = new DChalan().chalanDataLoad(productid,assigneeid);
 		UTable.setChallanlist(chalanlist);
 		
