@@ -29,6 +29,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import other.Utility;
@@ -243,14 +244,16 @@ public class MainPageController implements MultiScreen {
 		
 		//for loading receive data back
 		UTable.setReceiveTextField(receivetext);
+		UTable.setPaidtextfield(paidtext);
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
 		window.setScene(scene);
-		window.setMinHeight(500);
-		window.setMinWidth(500);
+		window.initStyle(StageStyle.UNDECORATED);
+		window.setMinHeight(600);
+		window.setMinWidth(700);
 		window.show();
 	}
 }

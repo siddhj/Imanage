@@ -28,6 +28,14 @@ public class MicroService {
 		}
 		return totalreceive;
 	}
+	
+	public int getTotalPaidFromPopUp(ObservableList<Chalan> chalanlist) {
+		int totalpaid = 0;
+		for (Chalan c : chalanlist) {
+			totalpaid += c.getPaid();
+		}
+		return totalpaid;
+	}
 
 	public static ObservableList<Chalan> updatePopUpTableView(ObservableList<Chalan> popuptable, int newreceive,
 			int challanid) {

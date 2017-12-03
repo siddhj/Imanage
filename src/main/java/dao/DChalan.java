@@ -109,4 +109,33 @@ public class DChalan {
 		}
 		return list;
 	}
+	public void chalanDataUpdatePopUpWindow(ObservableList<Chalan> chalanlist) throws SQLException, IOException{
+		ListTables chalandata = new ListTables();
+		Connection connection = chalandata.returnConnection();
+		connection.setAutoCommit(false);
+		Statement statement = connection.createStatement();
+		PreparedStatement prepare = connection.prepareStatement("update challan set Receive=?,Due=?,Paid=? where ChallanID=?");
+		Date date = new Date();
+		Object param = new Timestamp(date.getTime());
+		for(Chalan c:chalanlist)
+		{
+			try {
+			prepare.setInt(1, c.getReceive());
+			prepare.setInt(2, c.getDue());
+			prepare.setInt(3, c.getPaid());
+			prepare.setInt(4, c.getChallanid());
+			prepare.addBatch();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		try {
+			prepare.executeBatch();
+			connection.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+			
+		}
+	}
+	
 }

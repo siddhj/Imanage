@@ -36,6 +36,14 @@ public static TextField getReceiveTextField(){
 	return textfield;
 }
 
+public static TextField paidtextfield;
+public static TextField getPaidtextfield() {
+	return paidtextfield;
+}
+public static void setPaidtextfield(TextField paidtextfield) {
+	UTable.paidtextfield = paidtextfield;
+}
+
 public static TableView <Chalan> popuptableview;
 public static TableView<Chalan> getPopuptableview() {
 	return popuptableview;
