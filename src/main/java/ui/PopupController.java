@@ -32,6 +32,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import other.Utility;
 import service.EditingCell;
+import service.EditingPaid;
 import service.MicroService;
 import service.MultiScreen;
 import utility.UTable;
@@ -82,7 +83,7 @@ public class PopupController {
 		};
 		Callback<TableColumn<Chalan, Integer>, TableCell<Chalan, Integer>> paidCellFactory = new Callback<TableColumn<Chalan, Integer>, TableCell<Chalan, Integer>>() {
 			public TableCell<Chalan, Integer> call(TableColumn<Chalan, Integer> p) {
-				return new EditingCell();
+				return new EditingPaid();
 			}
 		};
 

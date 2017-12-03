@@ -13,9 +13,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import utility.UTable;
 
-//public class EditingCell {
-//
-//}
 public class EditingCell extends TableCell<Chalan, Integer> {
 
 	private TextField textField;

@@ -47,21 +47,24 @@ public class MicroService {
 
 			}
 		}
-		
 		return newchalan;
 	}
 
-	// public static ObservableList<Chalan>
-	// paidUpdatePopUpTableView(ObservableList<Chalan> popuptable, int newpaid){
-	// ObservableList<Chalan> newchalan = FXCollections.observableArrayList();
-	// for(Chalan c:popuptable)
-	// {
-	// int issue = c.getIssue();
-	// int due =issue-newreceive;
-	// c.setDue(due);
-	// c.setReceive(newreceive);
-	// newchalan.add(c);
-	// }
-	// return newchalan;
-	// }
+	public static ObservableList<Chalan> paidUpdatePopUpTableView(ObservableList<Chalan> popuptable, int newpaid,int challanid) {
+		ObservableList<Chalan> newchalan = FXCollections.observableArrayList();
+		for (Chalan c : popuptable) {
+			if (c.getChallanid() == challanid) {
+				int oldpaid = c.getPaid();
+				c.setPaid(newpaid);
+				newchalan.add(c);
+				System.out.println("if"+c.getChallanid()+":"+c.getPaid()+"Older"+oldpaid);
+			} else {
+				newchalan.add(c);
+				System.out.println("else"+c.getChallanid()+":"+c.getIssue()+":"+c.getReceive()+":"+c.getDue());
+
+			}
+		}
+		return newchalan;
+	}
+
 }
