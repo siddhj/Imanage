@@ -1,12 +1,17 @@
 package service;
 
 import bean.Chalan;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TableCell;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import utility.UTable;
 
 //public class EditingCell {
 //
@@ -24,7 +29,8 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 		if (textField == null) {
 			createTextField();
 		}
-
+		TableRow row = this.getTableRow();
+		UTable.getPopuptableview().edit(row.getIndex(), UTable.getPaidcolumnpopuptable());
 		setGraphic(textField);
 		setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 		textField.selectAll();
@@ -66,8 +72,15 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 			@Override
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER) {
+					int newreceive = Integer.parseInt(textField.getText());
 					commitEdit(Integer.parseInt(textField.getText()));
-					System.out.println("doen editing called");
+					
+					TableView<Chalan> tableview = UTable.getPopuptableview();
+					ObservableList<Chalan> receivetablelist = tableview.getItems();
+					
+					ObservableList<Chalan> updatereceivetablelist = MicroService.updatePopUpTableView(receivetablelist,newreceive);
+					receivetablelist.removeAll(receivetablelist);
+					updatereceivetablelist.forEach(uc -> {receivetablelist.add(uc);});
 				} else if (t.getCode() == KeyCode.ESCAPE) {
 					cancelEdit();
 				}

@@ -106,6 +106,8 @@ public class PopupController {
 		receiveTable.getColumns().addAll(receiveitemcolumn, paidcolumn);
 		ObservableList<Chalan> chalanlist = UTable.getChallanlist();
 		receiveTable.setItems(chalanlist);
+
+		UTable.setPopuptableview(receiveTable);
 	}
 
 	public ObservableList<Chalan> getData() {
@@ -128,12 +130,5 @@ public class PopupController {
 		stage.close();
 	}
 	
-	public void updatetest()
-	{
-		int value = 5;
-		//Synthesize the item = row
-		Item item = new Item(s, value);
-		//Set the i-th item
-		receiveTable.getItems().set(i, item);
-	}
+	
 }

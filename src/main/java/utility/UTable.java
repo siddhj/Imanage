@@ -4,6 +4,8 @@ import bean.Assignee;
 import bean.Chalan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public final class UTable {
@@ -34,6 +36,23 @@ public static TextField getReceiveTextField(){
 	return textfield;
 }
 
+public static TableView <Chalan> popuptableview;
+public static TableView<Chalan> getPopuptableview() {
+	return popuptableview;
+}
+public static void setPopuptableview(TableView<Chalan> popuptableview) {
+	System.out.println("inside UTable");
+	UTable.popuptableview = popuptableview;
+}
+
+public static TableColumn paidcolumnpopuptable;
+
+public static TableColumn getPaidcolumnpopuptable() {
+	return paidcolumnpopuptable;
+}
+public static void setPaidcolumnpopuptable(TableColumn paidcolumnpopuptable) {
+	UTable.paidcolumnpopuptable = paidcolumnpopuptable;
+}
 
 
 }

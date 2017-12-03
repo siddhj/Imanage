@@ -3,6 +3,7 @@ package service;
 import bean.Assignee;
 import bean.Chalan;
 import dao.DLoader;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utility.UTable;
 
@@ -25,10 +26,22 @@ public class MicroService {
 			int totalreceive=0;
 		for(Chalan c:chalanlist)
 		{
-			System.out.println(c.getReceive());
 			totalreceive+=c.getReceive();
 		}
-		System.out.println("total receive"+totalreceive);
 		return totalreceive;
+	}
+	
+	public static ObservableList<Chalan> updatePopUpTableView(ObservableList<Chalan> popuptable, int newreceive){
+		ObservableList<Chalan> newchalan = FXCollections.observableArrayList();
+		for(Chalan c:popuptable)
+		{	
+			int issue = c.getIssue();
+			int due =issue-newreceive;
+			c.setDue(due);
+			c.setReceive(newreceive);
+			newchalan.add(c);
+		}
+		
+		return newchalan;
 	}
 }
