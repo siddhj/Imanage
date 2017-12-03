@@ -4,7 +4,13 @@ import java.util.Date;
 
 public class Chalan{
 	
-	private int assigneeid,issue,receive,due,paid;
+	private int assigneeid,issue,receive,due,paid,challanid;
+	public int getChallanid() {
+		return challanid;
+	}
+	public void setChallanid(int challanid) {
+		this.challanid = challanid;
+	}
 	private String productid;
 	private Date billdate;
 public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid, Date billdate) {
@@ -17,6 +23,19 @@ public Chalan(String productid, int issue, int receive, int due, int paid, int a
 		this.productid = productid;
 		this.billdate = billdate;
 	}
+
+public Chalan(int challanid,String productid, int issue, int receive, int due, int paid, int assigneeid, Date billdate) {
+	super();
+	this.challanid = challanid;
+	this.assigneeid = assigneeid;
+	this.issue = issue;
+	this.receive = receive;
+	this.due = due;
+	this.paid = paid;
+	this.productid = productid;
+	this.billdate = billdate;
+}
+
 public Date getBilldate() {
 		return billdate;
 	}

@@ -22,7 +22,7 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 
 	public EditingCell() {
 	}
-
+int challanid=0;
 	@Override
 	public void startEdit() {
 		super.startEdit();
@@ -30,7 +30,10 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 			createTextField();
 		}
 		TableRow row = this.getTableRow();
-		UTable.getPopuptableview().edit(row.getIndex(), UTable.getPaidcolumnpopuptable());
+		Chalan chalanfrompopuptable = (Chalan) row.getItem();
+		challanid = chalanfrompopuptable.getChallanid();
+		System.out.println("edit row data challand id & issue "+challanid+"::"+chalanfrompopuptable.getIssue());
+		
 		setGraphic(textField);
 		setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 		textField.selectAll();
@@ -68,17 +71,16 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 		textField = new TextField(getString());
 		textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
 		textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
 			@Override
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER) {
 					int newreceive = Integer.parseInt(textField.getText());
 					commitEdit(Integer.parseInt(textField.getText()));
-					
 					TableView<Chalan> tableview = UTable.getPopuptableview();
 					ObservableList<Chalan> receivetablelist = tableview.getItems();
+
+					ObservableList<Chalan> updatereceivetablelist = MicroService.updatePopUpTableView(receivetablelist,newreceive,challanid);
 					
-					ObservableList<Chalan> updatereceivetablelist = MicroService.updatePopUpTableView(receivetablelist,newreceive);
 					receivetablelist.removeAll(receivetablelist);
 					updatereceivetablelist.forEach(uc -> {receivetablelist.add(uc);});
 				} else if (t.getCode() == KeyCode.ESCAPE) {

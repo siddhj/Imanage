@@ -91,7 +91,7 @@ public class DChalan {
 		ListTables chalandata = new ListTables();
 		Connection connection = chalandata.returnConnection();
 		//Statement statement = connection.createStatement();
-		String query="select ProductID,Receive,Issue,Due,Paid,AssigneeID,BillDate from challan where ProductID=?and AssigneeID=?";
+		String query="select ChallanID,ProductID,Receive,Issue,Due,Paid,AssigneeID,BillDate from challan where ProductID=?and AssigneeID=?";
 		PreparedStatement stmt = connection.prepareStatement(query);
 		stmt.setString(1, productidtext);
 		stmt.setInt(2, assigneeid);
@@ -103,7 +103,7 @@ public class DChalan {
 		while(resultset.next())
 		{//String productid, int issue, int receive, int due, int paid, int assigneeid
 		// to be changed according to new chalan bean
-			list.add(new Chalan(resultset.getString("ProductID"),resultset.getInt("Issue"),resultset.getInt("Receive"),resultset.getInt("Due")
+			list.add(new Chalan(resultset.getInt("ChallanID"),resultset.getString("ProductID"),resultset.getInt("Issue"),resultset.getInt("Receive"),resultset.getInt("Due")
 					,resultset.getInt("Paid"),resultset.getInt("AssigneeID"),resultset.getDate("BillDate")));
 
 		}

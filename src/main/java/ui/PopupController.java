@@ -80,6 +80,11 @@ public class PopupController {
 				return new EditingCell();
 			}
 		};
+		Callback<TableColumn<Chalan, Integer>, TableCell<Chalan, Integer>> paidCellFactory = new Callback<TableColumn<Chalan, Integer>, TableCell<Chalan, Integer>>() {
+			public TableCell<Chalan, Integer> call(TableColumn<Chalan, Integer> p) {
+				return new EditingCell();
+			}
+		};
 
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, Integer>("receive"));
 		paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, Integer>("paid"));
@@ -92,7 +97,7 @@ public class PopupController {
 			}
 		});
 
-		paidcolumn.setCellFactory(cellFactory);
+		paidcolumn.setCellFactory(paidCellFactory);
 		paidcolumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Chalan, Integer>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<Chalan, Integer> t) {
@@ -105,8 +110,8 @@ public class PopupController {
 		receiveTable.setEditable(true);
 		receiveTable.getColumns().addAll(receiveitemcolumn, paidcolumn);
 		ObservableList<Chalan> chalanlist = UTable.getChallanlist();
+		
 		receiveTable.setItems(chalanlist);
-
 		UTable.setPopuptableview(receiveTable);
 	}
 

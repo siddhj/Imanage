@@ -236,10 +236,11 @@ public class MainPageController implements MultiScreen {
 		String productid = productidtext.getText();
 		System.out.println("insdie popup"+productid+"::"+assigneeid);
 		ObservableList <Chalan> chalanlist = new DChalan().chalanDataLoad(productid,assigneeid);
-
-		chalanlist.forEach(c->{System.out.println(c.getIssue()+c.getDue());});
 		UTable.setChallanlist(chalanlist);
+		
+		//for loading receive data back
 		UTable.setReceiveTextField(receivetext);
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
