@@ -19,6 +19,7 @@ public class MultiScreenFramework extends Application {
     public static String homescreenfile = "/other/HomeScreen.fxml";
     public static String mainpage = "MainPage";
     public static String mainpagefile = "MainPage.fxml";
+    public static String updatedmainpagefile = "UI_VER4.fxml";
     
     
     @Override
@@ -35,6 +36,8 @@ public class MultiScreenFramework extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
         Parent root = (Parent)loader.load();
         Scene scene = new Scene(root);
+        primaryStage.setMaximized(true);
+        primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

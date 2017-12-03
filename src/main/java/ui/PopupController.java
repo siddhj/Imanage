@@ -38,23 +38,13 @@ import service.MultiScreen;
 import utility.UTable;
 
 public class PopupController {
-	// @FXML
-	// void sendNukes(ActionEvent event) {
-	// Node source = (Node) event.getSource();
-	// Stage stage = (Stage) source.getScene().getWindow();
-	// stage.close();
-	// Utility.setVartwo("gone");
-	// System.out.println(Utility.getVartwo());
-	//
-	// }
-
-	@FXML
-	private TableView<Chalan> receiveTable = new TableView<>();
-
 
 	private TableColumn<Chalan, Integer> paidcolumn = new TableColumn<>("Paid");
 
 	private TableColumn<Chalan, Integer> receiveitemcolumn = new TableColumn<>("Receive Items");
+
+	@FXML
+	private TableView<Chalan> receiveTable = new TableView<>();
 
 	@FXML
 	private TableColumn<Chalan, Integer> duecolumn = new TableColumn<>("Due");
@@ -111,15 +101,13 @@ public class PopupController {
 		receiveTable.setEditable(true);
 		receiveTable.getColumns().addAll(receiveitemcolumn, paidcolumn);
 		ObservableList<Chalan> chalanlist = UTable.getChallanlist();
-		
+
 		receiveTable.setItems(chalanlist);
 		UTable.setPopuptableview(receiveTable);
 	}
 
 	public ObservableList<Chalan> getData() {
 		ObservableList<Chalan> list = FXCollections.observableArrayList();
-		// list.add(new Chalan("a","b","c","d","e"));
-		// list.add(new Chalan("f","g","h","i","j"));
 		return list;
 	}
 
@@ -128,16 +116,23 @@ public class PopupController {
 		ObservableList<Chalan> chalan = receiveTable.getItems();
 		UTable.setChallanlist(chalan);
 		MicroService service = new MicroService();
-		int receive  = service.getTotalReceiveFromPopUp(receiveTable.getItems());
+
+		// filling the main window controller
+		int receive = service.getTotalReceiveFromPopUp(receiveTable.getItems());
 		int paid = service.getTotalPaidFromPopUp(receiveTable.getItems());
+		int due = service.getTotalDueFromPopUp(receiveTable.getItems());
+
 		TextField paidtext = UTable.getPaidtextfield();
 		TextField receivetext = UTable.getReceiveTextField();
+		TextField duetext = UTable.getDuetext();
+
 		receivetext.setText(String.valueOf(receive));
 		paidtext.setText(String.valueOf(paid));
+		duetext.setText(String.valueOf(due));
+
 		new DChalan().chalanDataUpdatePopUpWindow(chalan);
 		Stage stage = (Stage) savedata.getScene().getWindow();
 		stage.close();
 	}
-	
-	
+
 }

@@ -57,4 +57,21 @@ public class Notification {
 				});
 		note.showError();
 	}
+	
+	public static void dataSuccessfullySaved(){
+		Notifications note = Notifications.create()
+				.title("Operation Successful")
+				.text("Data Successfully Stored.")
+				.graphic(null)
+				.hideAfter(Duration.seconds(5))
+				.position(Pos.CENTER)
+				.onAction(new EventHandler<ActionEvent>(){
+					@Override
+					public void handle(ActionEvent event) {
+				System.out.println("called");		
+					}
+				});
+		note.showInformation();
+	}
+	
 }

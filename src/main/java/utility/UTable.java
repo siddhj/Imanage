@@ -44,6 +44,16 @@ public static void setPaidtextfield(TextField paidtextfield) {
 	UTable.paidtextfield = paidtextfield;
 }
 
+
+public static TextField duetext;
+
+public static TextField getDuetext() {
+	return duetext;
+}
+public static void setDuetext(TextField duetext) {
+	UTable.duetext = duetext;
+}
+
 public static TableView <Chalan> popuptableview;
 public static TableView<Chalan> getPopuptableview() {
 	return popuptableview;

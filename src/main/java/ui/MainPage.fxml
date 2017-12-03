@@ -1,112 +1,406 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainPageController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: linear-gradient(#d6eeff, #ffffff);" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainPageController">
     <stylesheets>
-        <URL value="@mainpage.css" />
+        <URL value="@ui_ver4.css" />
     </stylesheets>
    <children>
-      <ImageView fitHeight="768.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0">
-         <image>
-            <Image url="@../Images/chalan.png" />
-         </image>
-      </ImageView>
-      <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="320.0" text="New Challan" AnchorPane.leftAnchor="0.0" />
-      <Button layoutX="320.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="320.0" text="Product" AnchorPane.leftAnchor="320.0" />
-      <Button layoutX="640.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="320.0" text="Date" AnchorPane.leftAnchor="640.0" />
-      <Button layoutX="960.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="320.0" text="Assignee" AnchorPane.leftAnchor="960.0" />
-      <Button layoutX="1035.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="78.0" text="Print List" AnchorPane.topAnchor="67.0" />
-      <Button layoutX="1145.0" layoutY="67.0" mnemonicParsing="false" text="Export PDF" />
-      <AnchorPane layoutY="48.0" prefHeight="720.0" prefWidth="456.0" style="-fx-border-color: #3c3c3c; -fx-border-width: 0 3 0 0;">
-         <children>
-            <Text layoutX="116.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Challan">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-            <Label layoutX="60.0" layoutY="100.0" text="Name">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="61.0" layoutY="170.0" text="Product Id">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="61.0" layoutY="240.0" text="Date">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="61.0" layoutY="350.0" text="Issue">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="61.0" layoutY="401.0" text="Receive">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="61.0" layoutY="453.0" text="Due">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="61.0" layoutY="506.0" text="Paid">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="assigneename" layoutX="179.0" layoutY="100.0" onAction="#assigneeName" prefHeight="25.0" prefWidth="177.0" />
-            <TextField fx:id="productidtext" layoutX="179.0" layoutY="170.0" onAction="#productId" prefHeight="25.0" prefWidth="179.0" />
-            <DatePicker fx:id="billdate" layoutX="179.0" layoutY="239.0" onAction="#selectDateValue" />
-            <TextField fx:id="issuetext" layoutX="180.0" layoutY="350.0" onAction="#issueText" prefHeight="26.0" prefWidth="180.0" />
-            <TextField fx:id="receivetext" layoutX="180.0" layoutY="401.0" onAction="#receiveText" prefHeight="26.0" prefWidth="180.0" />
-            <TextField fx:id="duetext" layoutX="180.0" layoutY="453.0" onAction="#dueText" prefHeight="26.0" prefWidth="180.0" />
-            <TextField fx:id="paidtext" layoutX="180.0" layoutY="506.0" prefHeight="26.0" prefWidth="180.0" />
-            <Button fx:id="savebutton" layoutX="293.0" layoutY="624.0" mnemonicParsing="false" onAction="#saveChalan" prefHeight="39.0" prefWidth="77.0" text="Save" AnchorPane.bottomAnchor="57.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="newwindow" layoutX="175.0" layoutY="624.0" mnemonicParsing="false" onAction="#popupWindow" prefHeight="39.0" prefWidth="95.0" text="NewWindow" AnchorPane.bottomAnchor="57.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="savechalandata" layoutX="6.0" layoutY="625.0" mnemonicParsing="false" onAction="#saveChalanData" prefHeight="39.0" prefWidth="164.0" text="Save Chalan Data" AnchorPane.bottomAnchor="57.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-      <TableView fx:id="newchalantable" centerShape="false" layoutX="471.0" layoutY="110.0" prefHeight="594.0" prefWidth="824.0" scaleShape="false" style="-fx-background-color: #ededed;" AnchorPane.bottomAnchor="64.0" AnchorPane.topAnchor="110.0">
-        <columns>
-          <TableColumn fx:id="productidcolumn" editable="false" prefWidth="100.0" sortable="false" text="Product Id" />
-          <TableColumn fx:id="namecolumn" editable="false" prefWidth="250.0" sortable="false" text="Name ID" />
-            <TableColumn fx:id="issueitemcolumn" editable="false" minWidth="0.0" prefWidth="100.0" sortable="false" text="Issue Items" />
-            <TableColumn fx:id="receiveitemcolumn" editable="false" prefWidth="100.0" sortable="false" text="Receive" />
-            <TableColumn fx:id="duecolumn" editable="false" prefWidth="100.0" sortable="false" text="Due" />
-            <TableColumn fx:id="paidcolumn" prefWidth="75.0" text="Paid" />
-        </columns>
-      </TableView>
-      <ButtonBar layoutX="1140.0" layoutY="698.0" prefHeight="71.0" prefWidth="119.0" AnchorPane.bottomAnchor="66.0" />
-      <Button fx:id="removebutton" layoutX="901.0" layoutY="71.0" mnemonicParsing="false" onAction="#removeRow" text="Remove" />
+      <BorderPane prefHeight="768.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <VBox prefHeight="95.0" prefWidth="1024.0" style="-fx-border-width: 0 4 4 4; -fx-border-color: #39729b;" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar prefHeight="27.0" style="-fx-background-color: #39729b; textFill=#ba0000; " VBox.vgrow="ALWAYS">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Close" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Delete" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="New Challan" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="60.0" right="31.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="64.0" right="64.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Product ID" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="31.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="69.0" right="69.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Date" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="31.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="89.0" right="89.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Assignee" textFill="WHITE">
+                           <padding>
+                              <Insets left="72.0" right="72.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font></Button>
+                     </children>
+                     <padding>
+                        <Insets top="11.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </top>
+         <left>
+            <VBox prefHeight="593.0" prefWidth="384.0" style="-fx-border-width: 0 4 0 4; -fx-border-color: #39729b;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="New Challan" textFill="#0c3c60">
+                           <HBox.margin>
+                              <Insets bottom="62.0" left="104.0" top="33.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="384.0">
+                     <children>
+                        <Label text="Name" textFill="#0c3c60">
+                           <HBox.margin>
+                              <Insets bottom="38.0" left="50.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="assigneename" onAction="#assigneeName" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                           <HBox.margin>
+                              <Insets left="52.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="384.0">
+                     <children>
+                        <Label text="Product ID" textFill="#0c3c60">
+                           <HBox.margin>
+                              <Insets bottom="38.0" left="50.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="productidtext" onAction="#productId" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="384.0">
+                     <children>
+                        <Button fx:id="newwindow" mnemonicParsing="false" onAction="#popupWindow" prefWidth="84.0" style="-fx-border-width: 1; -fx-border-radius: 5; -fx-border-color: #0078d2; -fx-background-color: nil;" text="Receive" textFill="#0078d2">
+                           <HBox.margin>
+                              <Insets bottom="49.0" left="50.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="receivetext" accessibleRole="TEXT" onAction="#receiveText" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="384.0">
+                     <children>
+                        <Label text="Date" textFill="#0c3c60">
+                           <HBox.margin>
+                              <Insets bottom="29.0" left="50.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <DatePicker prefHeight="25.0" prefWidth="169.0">
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="384.0">
+                     <children>
+                        <Label text="Issue" textFill="#0c3c60">
+                           <HBox.margin>
+                              <Insets bottom="29.0" left="50.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="issuetext" onAction="#issueText" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                           <HBox.margin>
+                              <Insets left="62.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="384.0">
+                     <children>
+                        <Label text="Due" textFill="#0c3c60">
+                           <HBox.margin>
+                              <Insets bottom="29.0" left="50.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="duetext" onAction="#dueText" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                           <HBox.margin>
+                              <Insets left="71.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="384.0">
+                     <children>
+                        <Label text="Paid" textFill="#0c3c60">
+                           <HBox.margin>
+                              <Insets bottom="58.0" left="50.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="paidtext" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                           <HBox.margin>
+                              <Insets left="69.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="384.0">
+                     <children>
+                        <Button fx:id="cl" mnemonicParsing="false" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #0078d2;" text="Clear" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="39.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="savechalandata" mnemonicParsing="false" onAction="#saveChalanData" prefHeight="44.0" prefWidth="122.0" style="-fx-background-color: #0078d2;" text="Save Challan" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="18.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="savebutton" mnemonicParsing="false" onAction="#saveChalan" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #0078d2;" text="Save" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="18.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="673.0" prefWidth="0.0" style="-fx-border-width: 0 4 0 0; -fx-border-color: #39729b;">
+               <children>
+                  <HBox alignment="TOP_CENTER" prefHeight="44.0" prefWidth="200.0">
+                     <children>
+                        <Label graphicTextGap="8.0" opacity="0.7" text="Name:" textFill="#606060" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="10.0" top="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label graphicTextGap="8.0" text="User's Name" textFill="#3c3c3c" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label opacity="0.7" text="Product ID:" textFill="#606060" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="50.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="17a7a8" textFill="#3c3c3c" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ImageView accessibleRole="BUTTON" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                           <image>
+                              <Image url="@../Images/layer-2.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="100.0" top="16.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" style="-fx-background-color: nil;" text="Print" textFill="#0078d2" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="8.0" top="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets top="1.0" />
+                           </padding>
+                        </Button>
+                        <ImageView accessibleRole="BUTTON" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="80.0" top="16.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../Images/ic-picture-as-pdf-black-36-px.png" />
+                           </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" style="-fx-background-color: nil;" text="Export PDF" textFill="#0078d2" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="5.0" top="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets top="1.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="500.0" style="-fx-border-width: 0 0 4 0; -fx-border-color: #39729b;">
+                     <children>
+                        <TableView fx:id="newchalantable" maxWidth="1.7976931348623157E308" prefHeight="520.0" HBox.hgrow="ALWAYS">
+                          <columns>
+                            <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="186.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Issue Items" />
+                            <TableColumn fx:id="receiveitemcolumn" maxWidth="300.0" minWidth="182.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Receive Items" />
+                              <TableColumn fx:id="duecolumn" maxWidth="300.0" minWidth="148.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Due Items" />
+                              <TableColumn fx:id="paidcolumn" maxWidth="300.0" minWidth="150.0" prefWidth="0.0" text="Paid" />
+                          </columns>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TableView>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="52.0" prefWidth="636.0">
+                     <children>
+                        <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets top="18.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../Images/layer-3.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="removebutton" mnemonicParsing="false" onAction="#removeRow" style="-fx-background-color: nil;" text="Delete" textFill="#ba0000">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="8.0" top="1.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets top="15.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

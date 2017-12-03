@@ -3,11 +3,7 @@ package ui;
 import java.io.IOException;
 
 import org.controlsfx.control.textfield.*;
-import org.controlsfx.control.Notifications;
-
-import service.EditingCell;
 import service.MicroService;
-
 import java.sql.SQLException;
 import bean.Assignee;
 import bean.Chalan;
@@ -16,10 +12,8 @@ import dao.DLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,15 +25,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import javafx.util.Duration;
-import other.Utility;
 import service.MultiScreen;
+import service.Notification;
 import utility.UTable;
 
 public class MainPageController implements MultiScreen {
 
-	// @FXML
-	// private DatePicker billdate;
 	@FXML
 	private TextField assigneename;
 
@@ -191,6 +182,16 @@ public class MainPageController implements MultiScreen {
 		ObservableList<Chalan> chalanlist = newchalantable.getItems();
 		DChalan chalan = new DChalan();
 		chalan.chalanDataInsert(chalanlist);
+		chalanlist.removeAll(chalanlist);
+		Notification.dataSuccessfullySaved();
+
+		assigneename.setText("");
+		productidtext.setText("");
+		issuetext.setText("");
+		receivetext.setText("");
+		duetext.setText("");
+		paidtext.setText("");
+
 	}
 
 	MainScreenController screencontroller = new MainScreenController();
@@ -245,6 +246,7 @@ public class MainPageController implements MultiScreen {
 		//for loading receive data back
 		UTable.setReceiveTextField(receivetext);
 		UTable.setPaidtextfield(paidtext);
+		UTable.setDuetext(duetext);
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
