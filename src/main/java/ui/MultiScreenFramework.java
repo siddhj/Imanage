@@ -27,7 +27,7 @@ public class MultiScreenFramework extends Application {
         MainScreenController mainController = new MainScreenController();
         mainController.loadScreen(MultiScreenFramework.loginscreen, MultiScreenFramework.loginscreenfile);
         mainController.loadScreen(MultiScreenFramework.homescreen, MultiScreenFramework.homescreenfile);
-        mainController.loadScreen(MultiScreenFramework.mainpage,MultiScreenFramework.mainpagefile);
+        mainController.loadScreen(MultiScreenFramework.mainpage,MultiScreenFramework.updatedmainpagefile);
         mainController.setScreen(MultiScreenFramework.loginscreen);
         
 //        Group root = new Group();
