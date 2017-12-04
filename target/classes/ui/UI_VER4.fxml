@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: linear-gradient(#d6eeff, #ffffff);" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.UI_VER4Controller">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: linear-gradient(#d6eeff, #ffffff);" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainPageController">
     <stylesheets>
         <URL value="@ui_ver4.css" />
     </stylesheets>
@@ -50,7 +50,7 @@
                   </MenuBar>
                   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button ellipsisString="%key.unspecified" mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="New Challan" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="New Challan" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="60.0" right="31.0" />
                            </HBox.margin>
@@ -60,7 +60,7 @@
                            <font>
                               <Font size="16.0" />
                            </font></Button>
-                        <Button ellipsisString="%key.unspecified" mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Product ID" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Product ID" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="31.0" />
                            </HBox.margin>
@@ -70,7 +70,7 @@
                            <font>
                               <Font size="16.0" />
                            </font></Button>
-                        <Button ellipsisString="%key.unspecified" mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Date" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Date" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="31.0" />
                            </HBox.margin>
@@ -80,7 +80,7 @@
                            <font>
                               <Font size="16.0" />
                            </font></Button>
-                        <Button ellipsisString="%key.unspecified" mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Assignee" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Assignee" textFill="WHITE">
                            <padding>
                               <Insets left="72.0" right="72.0" />
                            </padding>
@@ -123,7 +123,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="assigneename" onAction="#assigneeName" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                        <TextField fx:id="assigneename" onAction="#assigneeName" prefWidth="169.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
                            <HBox.margin>
                               <Insets left="52.0" />
                            </HBox.margin>
@@ -140,7 +140,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="productidtext" onAction="#productId" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                        <TextField fx:id="productidtext" onAction="#productId" prefWidth="169.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -149,7 +149,7 @@
                   </HBox>
                   <HBox prefHeight="53.0" prefWidth="384.0">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="84.0" style="-fx-border-width: 1; -fx-border-radius: 5; -fx-border-color: #0078d2; -fx-background-color: nil;" text="Receive" textFill="#0078d2">
+                        <Button fx:id="newwindow" mnemonicParsing="false" onAction="#popupWindow" prefWidth="84.0" style="-fx-border-width: 1; -fx-border-radius: 5; -fx-border-color: #0078d2;" text="Receive" textFill="#0078d2">
                            <HBox.margin>
                               <Insets bottom="49.0" left="50.0" />
                            </HBox.margin>
@@ -157,7 +157,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <TextField accessibleRole="TEXT" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                        <TextField fx:id="receivetext" accessibleRole="TEXT" editable="false" onAction="#receiveText" prefWidth="169.0" promptText="text" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;" text="text">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -174,7 +174,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="billdate" onAction="#selectDateValue" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                        <DatePicker fx:id="billdate" onAction="#selectDateValue" style=" -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
                            <HBox.margin>
                               <Insets left="66.0" />
                            </HBox.margin>
@@ -191,14 +191,14 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="issuetext" onAction="#issueText" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                        <TextField fx:id="issuetext" onAction="#issueText" prefWidth="169.0" style=" -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
                            <HBox.margin>
                               <Insets left="62.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox prefHeight="53.0" prefWidth="384.0">
+                  <HBox prefHeight="53.0" prefWidth="384.0" visible="false">
                      <children>
                         <Label text="Due" textFill="#0c3c60">
                            <HBox.margin>
@@ -208,7 +208,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="duetext" onAction="#dueText" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                        <TextField fx:id="duetext" onAction="#dueText" prefWidth="169.0" style=" -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
                            <HBox.margin>
                               <Insets left="71.0" />
                            </HBox.margin>
@@ -217,7 +217,7 @@
                   </HBox>
                   <HBox prefHeight="53.0" prefWidth="384.0">
                      <children>
-                        <Label text="Paid" textFill="#0c3c60">
+                        <Label prefHeight="25.0" prefWidth="116.0" text="Advance Paid" textFill="#0c3c60">
                            <HBox.margin>
                               <Insets bottom="58.0" left="50.0" />
                            </HBox.margin>
@@ -225,7 +225,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="paidtext" prefWidth="169.0" style="-fx-background-color: nil; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
+                        <TextField fx:id="paidtext" prefHeight="26.0" prefWidth="115.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;">
                            <HBox.margin>
                               <Insets left="69.0" />
                            </HBox.margin>
@@ -268,7 +268,7 @@
                <children>
                   <HBox alignment="TOP_CENTER" prefHeight="44.0" prefWidth="200.0" style="-fx-border-width: 0 0 4 0; -fx-border-color: #39729b;">
                      <children>
-                        <Label ellipsisString="%key.unspecified" graphicTextGap="8.0" opacity="0.7" text="Name:" textFill="#606060" HBox.hgrow="ALWAYS">
+                        <Label graphicTextGap="8.0" opacity="0.7" text="Name:" textFill="#606060" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="10.0" top="15.0" />
                            </HBox.margin>
@@ -276,7 +276,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label ellipsisString="%key.unspecified" graphicTextGap="8.0" text="User's Name" textFill="#3c3c3c" HBox.hgrow="ALWAYS">
+                        <Label fx:id="assigneenamelabel" graphicTextGap="8.0" textFill="#3c3c3c" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -284,7 +284,7 @@
                               <Insets left="10.0" top="15.0" />
                            </HBox.margin>
                         </Label>
-                        <Label ellipsisString="%key.unspecified" opacity="0.7" text="Product ID:" textFill="#606060" HBox.hgrow="ALWAYS">
+                        <Label opacity="0.7" text="Product ID:" textFill="#606060" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -292,7 +292,7 @@
                               <Insets left="50.0" top="15.0" />
                            </HBox.margin>
                         </Label>
-                        <Label ellipsisString="%key.unspecified" text="17a7a8" textFill="#3c3c3c" HBox.hgrow="ALWAYS">
+                        <Label fx:id="productidlabel" text="17a7a8" textFill="#3c3c3c" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -308,7 +308,7 @@
                               <Insets left="100.0" top="16.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button ellipsisString="%key.unspecified" mnemonicParsing="false" style="-fx-background-color: nil;" text="Print" textFill="#0078d2" HBox.hgrow="ALWAYS">
+                        <Button mnemonicParsing="false" style="" text="Print" textFill="#0078d2" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="8.0" top="15.0" />
                            </HBox.margin>
@@ -327,7 +327,7 @@
                               <Image url="@../Images/ic-picture-as-pdf-black-36-px.png" />
                            </image>
                         </ImageView>
-                        <Button ellipsisString="%key.unspecified" mnemonicParsing="false" style="-fx-background-color: nil;" text="Export PDF" textFill="#0078d2" HBox.hgrow="ALWAYS">
+                        <Button mnemonicParsing="false" style="" text="Export PDF" textFill="#0078d2" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="5.0" top="15.0" />
                            </HBox.margin>
@@ -345,12 +345,12 @@
                   </HBox>
                   <HBox prefHeight="500.0" style="-fx-border-width: 0 0 4 0; -fx-border-color: #39729b;">
                      <children>
-                        <TableView maxWidth="1.7976931348623157E308" prefHeight="520.0" HBox.hgrow="ALWAYS">
+                        <TableView fx:id="newchalantable" maxWidth="1.7976931348623157E308" prefHeight="520.0" HBox.hgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="186.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Issue Items" />
                             <TableColumn fx:id="receiveitemcolumn" maxWidth="300.0" minWidth="182.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Receive Items" />
-                              <TableColumn fx:id="duecolumn" maxWidth="300.0" minWidth="148.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Due Items" />
-                              <TableColumn fx:id="paidcolumn" maxWidth="300.0" minWidth="150.0" prefWidth="0.0" text="Paid" />
+                              <TableColumn fx:id="duecolumn" maxWidth="300.0" minWidth="148.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Due Items" visible="false" />
+                              <TableColumn fx:id="paidcolumn" maxWidth="300.0" minWidth="150.0" prefWidth="0.0" text="Advance Paid" />
                           </columns>
                            <HBox.margin>
                               <Insets />
@@ -370,15 +370,15 @@
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="52.0" prefWidth="636.0">
                      <children>
-                        <ImageView fx:id="removebutton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <!--        <ImageView fx:id="removebutton" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
                               <Insets top="18.0" />
                            </HBox.margin>
                            <image>
                               <Image url="@../Images/layer-3.png" />
                            </image>
-                        </ImageView>
-                        <Button fx:id="removebutton" mnemonicParsing="false" onAction="#removeRow" style="-fx-background-color: nil;" text="Delete" textFill="#ba0000">
+                        </ImageView>-->   
+                        <Button fx:id="removebutton" mnemonicParsing="false" onAction="#removeRow" style="" text="Delete" textFill="#ba0000">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -387,6 +387,11 @@
                            </padding>
                            <HBox.margin>
                               <Insets top="15.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="exlporeselection" mnemonicParsing="false" onAction="#exploreSelectionPopUpWindow" text="explore selection">
+                           <HBox.margin>
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </Button>
                      </children>

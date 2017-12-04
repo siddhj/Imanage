@@ -33,11 +33,10 @@ public class MultiScreenFramework extends Application {
 //        Group root = new Group();
 //        root.getChildren().addAll(mainController);
 //        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
         Parent root = (Parent)loader.load();
         Scene scene = new Scene(root);
         primaryStage.setMaximized(true);
-        primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

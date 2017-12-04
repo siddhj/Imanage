@@ -69,7 +69,7 @@ public class ListTables {
 //		e.printStackTrace();
 //	}
 //}
-public Connection returnConnection() throws SQLException, IOException{
+public static Connection returnConnection() throws SQLException, IOException{
 
 	  GoogleCredential credential = GoogleCredential.getApplicationDefault();
 	  String instanceConnectionName = "imanagement-187210:us-central1:imdata";

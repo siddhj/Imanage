@@ -2,6 +2,7 @@ package utility;
 
 import bean.Assignee;
 import bean.Chalan;
+import bean.PopUpChallan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -9,17 +10,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public final class UTable {
-private static ObservableList<Chalan> challanlist = FXCollections.observableArrayList();
-//private static ObservableList<Product> productlist = FXCollections.observableArrayList();
-private static ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
+private static ObservableList<PopUpChallan> challanlist = FXCollections.observableArrayList();
 
-public static ObservableList<Chalan> getChallanlist() {
+public static ObservableList<PopUpChallan> getChallanlist() {
 	return challanlist;
 }
-public static void setChallanlist(ObservableList<Chalan> challanlist) {
-	challanlist.forEach(c->{System.out.println(c.getIssue()+c.getDue());});
+public static void setChallanlist(ObservableList<PopUpChallan> challanlist) {
 	UTable.challanlist = challanlist;
 }
+
+private static ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
 public static ObservableList<Assignee> getAssigneelist() {
 	return assigneelist;
 }
@@ -54,17 +54,16 @@ public static void setDuetext(TextField duetext) {
 	UTable.duetext = duetext;
 }
 
-public static TableView <Chalan> popuptableview;
-public static TableView<Chalan> getPopuptableview() {
+public static TableView <PopUpChallan> popuptableview;
+public static TableView<PopUpChallan> getPopuptableview() {
 	return popuptableview;
 }
-public static void setPopuptableview(TableView<Chalan> popuptableview) {
-	System.out.println("inside UTable");
+public static void setPopuptableview(TableView<PopUpChallan> popuptableview) {
 	UTable.popuptableview = popuptableview;
 }
 
-public static TableColumn paidcolumnpopuptable;
 
+public static TableColumn paidcolumnpopuptable;
 public static TableColumn getPaidcolumnpopuptable() {
 	return paidcolumnpopuptable;
 }
@@ -72,5 +71,20 @@ public static void setPaidcolumnpopuptable(TableColumn paidcolumnpopuptable) {
 	UTable.paidcolumnpopuptable = paidcolumnpopuptable;
 }
 
+public static ObservableList<PopUpChallan> popupchallantableviewdata = FXCollections.observableArrayList();
+public static ObservableList<PopUpChallan> getPopupchallantableviewdata() {
+	return popupchallantableviewdata;
+}
+public static void setPopupchallantableviewdata(ObservableList<PopUpChallan> popupchallantableviewdata) {
+	UTable.popupchallantableviewdata = popupchallantableviewdata;
+}
 
+public static int totalpaid;
+
+public static int getTotalpaid() {
+	return totalpaid;
+}
+public static void setTotalpaid(int totalpaid) {
+	UTable.totalpaid = totalpaid;
+}
 }

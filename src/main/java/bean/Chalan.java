@@ -2,17 +2,33 @@ package bean;
 
 import java.util.Date;
 
+import javafx.collections.ObservableList;
+
 public class Chalan{
 	
-	private int assigneeid,issue,receive,due,paid,challanid;
+	private int assigneeid,issue,receive,due,paid,challanid,totalpaid;
+	public int getTotalpaid() {
+		return totalpaid;
+	}
+	public void setTotalpaid(int totalpaid) {
+		this.totalpaid = totalpaid;
+	}
+	private String productid;
+	private Date billdate;
+	private ObservableList<PopUpChallan> popupchallantableview;
+	
+	public ObservableList<PopUpChallan> getPopupchallantableview() {
+		return popupchallantableview;
+	}
+	public void setPopupchallantableview(ObservableList<PopUpChallan> popupchallantableview) {
+		this.popupchallantableview = popupchallantableview;
+	}
 	public int getChallanid() {
 		return challanid;
 	}
 	public void setChallanid(int challanid) {
 		this.challanid = challanid;
 	}
-	private String productid;
-	private Date billdate;
 public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid, Date billdate) {
 		super();
 		this.assigneeid = assigneeid;
@@ -78,7 +94,7 @@ public Date getBilldate() {
 		
 	}
 	
-	public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid) {
+	public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid,ObservableList<PopUpChallan> popupchallantableview,int totalpaid) {
 		super();
 		this.productid = productid;
 		this.issue = issue;
@@ -86,6 +102,8 @@ public Date getBilldate() {
 		this.due = due;
 		this.paid = paid;
 		this.assigneeid = assigneeid;
+		this.popupchallantableview = popupchallantableview;
+		this.totalpaid=totalpaid;
 	}
 	@Override
 	public String toString() {

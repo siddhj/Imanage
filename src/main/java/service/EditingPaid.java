@@ -1,6 +1,6 @@
 package service;
 
-import bean.Chalan;
+import bean.PopUpChallan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -13,7 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import utility.UTable;
 
-public class EditingPaid extends TableCell<Chalan, Integer> {
+public class EditingPaid extends TableCell<PopUpChallan, Integer> {
 
 	private TextField textField;
 
@@ -29,7 +29,7 @@ public class EditingPaid extends TableCell<Chalan, Integer> {
 			createTextField();
 		}
 		TableRow row = this.getTableRow();
-		Chalan chalanfrompopuptable = (Chalan) row.getItem();
+		PopUpChallan chalanfrompopuptable = (PopUpChallan) row.getItem();
 		challanid = chalanfrompopuptable.getChallanid();
 		setGraphic(textField);
 		setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
@@ -77,14 +77,6 @@ public class EditingPaid extends TableCell<Chalan, Integer> {
 						Notification.popupWindowInvalidValueLessThenZero();
 						return;
 					}
-					TableView<Chalan> tableview = UTable.getPopuptableview();
-					ObservableList<Chalan> receivetablelist = tableview.getItems();
-					ObservableList<Chalan> updatereceivetablelist = MicroService.paidUpdatePopUpTableView(receivetablelist,
-							newpaid, challanid);
-					receivetablelist.removeAll(receivetablelist);
-					updatereceivetablelist.forEach(uc -> {
-						receivetablelist.add(uc);
-					});
 					commitEdit(Integer.parseInt(textField.getText()));
 				} else if (t.getCode() == KeyCode.ESCAPE) {
 					cancelEdit();

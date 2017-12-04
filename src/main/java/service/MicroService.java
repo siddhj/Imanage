@@ -2,6 +2,7 @@ package service;
 
 import bean.Assignee;
 import bean.Chalan;
+import bean.PopUpChallan;
 import dao.DLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,72 +22,72 @@ public class MicroService {
 		return assigneeid;
 	}
 
-	public int getTotalReceiveFromPopUp(ObservableList<Chalan> chalanlist) {
+	public int getTotalReceiveFromPopUp(ObservableList<PopUpChallan> challanlist) {
 		int totalreceive = 0;
-		for (Chalan c : chalanlist) {
-			totalreceive += c.getReceive();
+		for (PopUpChallan c : challanlist) {
+			totalreceive += c.getCurrentreceive();
 		}
 		return totalreceive;
 	}
 	
-	public int getTotalPaidFromPopUp(ObservableList<Chalan> chalanlist) {
+	public int getTotalPaidFromPopUp(ObservableList<PopUpChallan> challanlist) {
 		int totalpaid = 0;
-		for (Chalan c : chalanlist) {
-			totalpaid += c.getPaid();
+		for (PopUpChallan c : challanlist) {
+			totalpaid += c.getCurrentpaid();
 		}
 		return totalpaid;
 	}
 	
-	public int getTotalDueFromPopUp(ObservableList<Chalan> chalanlist) {
+	public int getTotalDueFromPopUp(ObservableList<PopUpChallan> chalanlist) {
 		int totaldue = 0;
-		for (Chalan c : chalanlist) {
-			totaldue += c.getDue();
+		for (PopUpChallan c : chalanlist) {
+			totaldue += c.getPastdue();
 		}
 		return totaldue;
 	}
 
-	public static ObservableList<Chalan> updatePopUpTableView(ObservableList<Chalan> popuptable, int newreceive,
+	public static ObservableList<PopUpChallan> updatePopUpTableView(ObservableList<PopUpChallan> popuptable, int newreceive,
 			int challanid) {
-		ObservableList<Chalan> newchalan = FXCollections.observableArrayList();
-		for (Chalan c : popuptable) {
+		ObservableList<PopUpChallan> newchalan = FXCollections.observableArrayList();
+		for (PopUpChallan c : popuptable) {
 			if (c.getChallanid() == challanid) {
-				int issue = c.getIssue();
-				int olddue = c.getDue();
-				int due = issue - newreceive;
-				if (newreceive > issue) {
-					Notification.popupWindowInvalidReceiveValueGreaterThenIssue();
-					due = c.getDue();
-					newreceive = c.getReceive();
-				} else if (due < 0) {
-					Notification.popupWindowInvalidValueLessThenZero();
-					due = c.getDue();
-					newreceive = c.getReceive();
-				}
-				c.setDue(due);
-				c.setReceive(newreceive);
-				newchalan.add(c);
+//				int issue = c.getIssue();
+//				int olddue = c.getDue();
+//				int due = issue - newreceive;
+//				if (newreceive > issue) {
+//					Notification.popupWindowInvalidReceiveValueGreaterThenIssue();
+//					due = c.getDue();
+//					newreceive = c.getReceive();
+//				} else if (due < 0) {
+//					Notification.popupWindowInvalidValueLessThenZero();
+//					due = c.getDue();
+//					newreceive = c.getReceive();
+//				}
+//				c.setDue(due);
+//				c.setReceive(newreceive);
+			//	newchalan.add(c);
 			} else {
-				newchalan.add(c);
+			//	newchalan.add(c);
 			}
 		}
 		return newchalan;
 	}
 
-	public static ObservableList<Chalan> paidUpdatePopUpTableView(ObservableList<Chalan> popuptable, int newpaid,
+	public static ObservableList<PopUpChallan> paidUpdatePopUpTableView(ObservableList<PopUpChallan> popuptable, int newpaid,
 			int challanid) {
-		ObservableList<Chalan> newchalan = FXCollections.observableArrayList();
-		for (Chalan c : popuptable) {
+		ObservableList<PopUpChallan> newchalan = FXCollections.observableArrayList();
+		for (PopUpChallan c : popuptable) {
 			if (c.getChallanid() == challanid) {
-				int oldpaid = c.getPaid();
-				if(newpaid>c.getReceive())
-				{
-				newpaid = oldpaid;
-				Notification.popupWindowInvalidPaidValueGreaterThenReceive();
-				}
-				c.setPaid(newpaid);
-				newchalan.add(c);
+//				int oldpaid = c.getPaid();
+//				if(newpaid>c.getReceive())
+//				{
+//				newpaid = oldpaid;
+//				Notification.popupWindowInvalidPaidValueGreaterThenReceive();
+//				}
+//				c.setPaid(newpaid);
+//				newchalan.add(c);
 			} else {
-				newchalan.add(c);
+//				newchalan.add(c);
 				// System.out.println(
 				// "else" + c.getChallanid() + ":" + c.getIssue() + ":" +
 				// c.getReceive() + ":" + c.getDue());

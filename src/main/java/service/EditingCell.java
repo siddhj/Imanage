@@ -1,6 +1,7 @@
 package service;
 
-import bean.Chalan;
+import bean.PopUpChallan;
+import bean.PopUpChallan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -13,14 +14,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import utility.UTable;
 
-public class EditingCell extends TableCell<Chalan, Integer> {
+public class EditingCell extends TableCell<PopUpChallan, Integer> {
 
 	private TextField textField;
+	int challanid = 0;
 
 	public EditingCell() {
 	}
-
-	int challanid = 0;
 
 	@Override
 	public void startEdit() {
@@ -29,7 +29,7 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 			createTextField();
 		}
 		TableRow row = this.getTableRow();
-		Chalan chalanfrompopuptable = (Chalan) row.getItem();
+		PopUpChallan chalanfrompopuptable = (PopUpChallan) row.getItem();
 		challanid = chalanfrompopuptable.getChallanid();
 		setGraphic(textField);
 		setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
@@ -46,7 +46,6 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 	@Override
 	public void updateItem(Integer item, boolean empty) {
 		super.updateItem(item, empty);
-
 		if (empty) {
 			setText(null);
 			setGraphic(null);
@@ -72,21 +71,10 @@ public class EditingCell extends TableCell<Chalan, Integer> {
 			public void handle(KeyEvent t) {
 				if (t.getCode() == KeyCode.ENTER) {
 					int newreceive = Integer.parseInt(textField.getText());
-
-					//**//
 					if(newreceive<0){
 						Notification.popupWindowInvalidValueLessThenZero();
 						return;
 					}
-					
-					TableView<Chalan> tableview = UTable.getPopuptableview();
-					ObservableList<Chalan> receivetablelist = tableview.getItems();
-					ObservableList<Chalan> updatereceivetablelist = MicroService.updatePopUpTableView(receivetablelist,
-							newreceive, challanid);
-					receivetablelist.removeAll(receivetablelist);
-					updatereceivetablelist.forEach(uc -> {
-						receivetablelist.add(uc);
-					});
 					commitEdit(Integer.parseInt(textField.getText()));
 				} else if (t.getCode() == KeyCode.ESCAPE) {
 					cancelEdit();

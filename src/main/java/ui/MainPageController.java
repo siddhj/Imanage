@@ -7,6 +7,7 @@ import service.MicroService;
 import java.sql.SQLException;
 import bean.Assignee;
 import bean.Chalan;
+import bean.PopUpChallan;
 import dao.DChalan;
 import dao.DLoader;
 import javafx.collections.FXCollections;
@@ -17,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,6 +32,15 @@ import service.Notification;
 import utility.UTable;
 
 public class MainPageController implements MultiScreen {
+
+	@FXML
+	private Label assigneenamelabel;
+	
+	   @FXML
+	    private Button exlporeselection;
+
+	@FXML
+	private Label productidlabel;
 
 	@FXML
 	private TextField assigneename;
@@ -63,6 +74,10 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private TableColumn<Chalan, String> receiveitemcolumn = new TableColumn<>("Receive Items");
+	
+
+    @FXML
+    private TableColumn<Chalan, String> totalpaidcolumn= new TableColumn<>("Total Paid");
 
 	@FXML
 	private TableColumn<Chalan, String> duecolumn = new TableColumn<>("Due");
@@ -79,8 +94,6 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private TableColumn<Chalan, String> paidcolumn = new TableColumn<>("Paid");
 
-	
-	
 	@FXML
 	void removeRow(ActionEvent event) {
 		Chalan chalan = newchalantable.getSelectionModel().getSelectedItem();
@@ -95,31 +108,39 @@ public class MainPageController implements MultiScreen {
 		});
 	}
 
-//	TableColumn<Chalan, Integer> receiveitem = new TableColumn<Chalan, Integer>("Product");
+	// TableColumn<Chalan, Integer> receiveitem = new TableColumn<Chalan,
+	// Integer>("Product");
 	ObservableList<Chalan> listFromDb = FXCollections.observableArrayList();
 
 	// why to create instance table column instead of intializing in intialize()
 	// method
 	@FXML
 	public void initialize() throws SQLException, IOException {
-//		receiveitem.setCellValueFactory(new PropertyValueFactory<Chalan,Integer>("receive"));
-//
-//		// callback functions are defined on the basis of the column and its datatype
-//		Callback<TableColumn<Chalan,Integer>, TableCell<Chalan,Integer>> cellFactory
-//		= new Callback<TableColumn<Chalan,Integer>, TableCell<Chalan,Integer>>() {
-//			public TableCell<Chalan,Integer> call(TableColumn<Chalan,Integer> p) {
-//				return new EditingCell();
-//			}
-//		};
-//
-//		receiveitem.setCellFactory(cellFactory);
-//		receiveitem.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Chalan, Integer>>() {
-//			@Override
-//			public void handle(TableColumn.CellEditEvent<Chalan, Integer> t) {
-//				((Chalan) t.getTableView().getItems().get(t.getTablePosition().getRow()))
-//						.setReceive(t.getNewValue());
-//			}
-//		});
+		// receiveitem.setCellValueFactory(new
+		// PropertyValueFactory<Chalan,Integer>("receive"));
+		//
+		// // callback functions are defined on the basis of the column and its
+		// datatype
+		// Callback<TableColumn<Chalan,Integer>, TableCell<Chalan,Integer>>
+		// cellFactory
+		// = new Callback<TableColumn<Chalan,Integer>,
+		// TableCell<Chalan,Integer>>() {
+		// public TableCell<Chalan,Integer> call(TableColumn<Chalan,Integer> p)
+		// {
+		// return new EditingCell();
+		// }
+		// };
+		//
+		// receiveitem.setCellFactory(cellFactory);
+		// receiveitem.setOnEditCommit(new
+		// EventHandler<TableColumn.CellEditEvent<Chalan, Integer>>() {
+		// @Override
+		// public void handle(TableColumn.CellEditEvent<Chalan, Integer> t) {
+		// ((Chalan)
+		// t.getTableView().getItems().get(t.getTablePosition().getRow()))
+		// .setReceive(t.getNewValue());
+		// }
+		// });
 
 		productidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("productid"));
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
@@ -131,13 +152,13 @@ public class MainPageController implements MultiScreen {
 		// listFromDb = new DChalan().chalanDataLoad();
 		// newchalantable.setItems(listFromDb);
 		newchalantable.setEditable(true);
-		//newchalantable.getColumns().addAll(receiveitem);
+		// newchalantable.getColumns().addAll(receiveitem);
 
 		receiveitemcolumn.setEditable(true);
 		ObservableList<ObservableList<String>> parentlist = new DLoader().intialLoader();
 		TextFields.bindAutoCompletion(assigneename, parentlist.get(1));
 		TextFields.bindAutoCompletion(productidtext, parentlist.get(0));
-	
+
 	}
 
 	public ObservableList<Chalan> getData() {
@@ -153,22 +174,16 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	void saveChalan(ActionEvent event) {
-		System.out.println(assigneename.getText() + "::" + issuetext.getText());
-		ObservableList<Assignee> assigneelist = DLoader.assigneelist;
-		System.out.println("assigneelist details" + assigneelist.size());
 		String name = assigneename.getText();
 		int AssigneeID = new MicroService().assigneeIDRetrieve(name);
+		ObservableList<PopUpChallan> challan = UTable.popupchallantableviewdata;
+		challan.forEach(c->{
+			System.out.println(c.getChallanid()+"<<this is challan id"+c.getCurrentreceive()+"::"+c.getCurrentpaid()+"<<this is current receive");
+		});
 		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()),
-				Integer.parseInt(receivetext.getText()), Integer.parseInt(duetext.getText()),
-				Integer.parseInt(paidtext.getText()), AssigneeID);
-		// Chalan chalan = new Chalan();
-		// chalan.setName(assigneename.getText());
-		// chalan.setName(productidtext.getText());
-		// chalan.setName(issuetext.getText());
-		// chalan.setName(receivetext.getText());
-		// chalan.setName(duetext.getText());
+				Integer.parseInt(receivetext.getText()), 0,
+				Integer.parseInt(paidtext.getText()), AssigneeID,UTable.getPopupchallantableviewdata(),UTable.getTotalpaid());
 		newchalantable.getItems().add(chalan);
-		// assigneename.setText("");
 		productidtext.setText("");
 		issuetext.setText("");
 		receivetext.setText("");
@@ -231,31 +246,55 @@ public class MainPageController implements MultiScreen {
 	void receiveText(ActionEvent event) {
 
 	}
+	
+    @FXML
+    void exploreSelectionPopUpWindow(ActionEvent event) throws IOException {
+    	Chalan selectedchalan = newchalantable.getSelectionModel().getSelectedItem();
+    	ObservableList<PopUpChallan> popupchalan = selectedchalan.getPopupchallantableview();
+		// setting chalanlist soon will be deprecated
+		UTable.setChallanlist(popupchalan);
+
+		// for loading receive data back
+		UTable.setReceiveTextField(receivetext);
+		UTable.setPaidtextfield(paidtext);
+		UTable.setDuetext(duetext);
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage window = new Stage();
+		window.setScene(scene);
+		// window.initStyle(StageStyle.UNDECORATED);
+		// window.setMinHeight(800);
+		// window.setMinWidth(1500);
+		window.show();	
+    }
 
 	@FXML
 	private Button newwindow;
 
 	@FXML
 	void popupWindow(ActionEvent event) throws IOException, SQLException {
-
+		System.out.println("this is the receive button");
 		int assigneeid = new MicroService().assigneeIDRetrieve(assigneename.getText());
 		String productid = productidtext.getText();
-		ObservableList <Chalan> chalanlist = new DChalan().chalanDataLoad(productid,assigneeid);
+		ObservableList<PopUpChallan> chalanlist = new DChalan().chalanDataLoad(productid, assigneeid);
+		// setting chalanlist soon will be deprecated
 		UTable.setChallanlist(chalanlist);
-		
-		//for loading receive data back
+
+		// for loading receive data back
 		UTable.setReceiveTextField(receivetext);
 		UTable.setPaidtextfield(paidtext);
 		UTable.setDuetext(duetext);
-		
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
 		window.setScene(scene);
-		window.initStyle(StageStyle.UNDECORATED);
-		window.setMinHeight(600);
-		window.setMinWidth(700);
+		// window.initStyle(StageStyle.UNDECORATED);
+		// window.setMinHeight(800);
+		// window.setMinWidth(1500);
 		window.show();
 	}
 }
