@@ -6,12 +6,18 @@ import javafx.collections.ObservableList;
 
 public class Chalan{
 	
-	private int assigneeid,issue,receive,due,paid,challanid,totalpaid;
+	private int assigneeid,issue,receive,due,paid,challanid,totalpaid,totalreceive;
 	public int getTotalpaid() {
 		return totalpaid;
 	}
 	public void setTotalpaid(int totalpaid) {
 		this.totalpaid = totalpaid;
+	}
+	public int getTotalreceive() {
+		return totalreceive;
+	}
+	public void setTotalreceive(int totalreceive) {
+		this.totalreceive = totalreceive;
 	}
 	private String productid;
 	private Date billdate;
@@ -94,7 +100,7 @@ public Date getBilldate() {
 		
 	}
 	
-	public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid,ObservableList<PopUpChallan> popupchallantableview,int totalpaid) {
+	public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid,ObservableList<PopUpChallan> popupchallantableview,int totalpaid,int totalreceive) {
 		super();
 		this.productid = productid;
 		this.issue = issue;
@@ -104,6 +110,7 @@ public Date getBilldate() {
 		this.assigneeid = assigneeid;
 		this.popupchallantableview = popupchallantableview;
 		this.totalpaid=totalpaid;
+		this.totalreceive=totalreceive;
 	}
 	@Override
 	public String toString() {

@@ -28,7 +28,7 @@ public class DChalan {
 		connection.setAutoCommit(false);
 		Statement statement = connection.createStatement();
 		PreparedStatement prepare = connection.prepareStatement(
-				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,Billdate,Paid) " + "values(?,?,?,?,?,?,?)");
+				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,Billdate,Paid,PastPaid,PastReceive) " + "values(?,?,?,?,?,?,?,?,?)");
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
 
@@ -42,6 +42,8 @@ public class DChalan {
 				// Timestamp is not what we need
 				prepare.setTimestamp(6, new Timestamp(date.getTime()));
 				prepare.setInt(7, c.getPaid());
+				prepare.setInt(8, c.getTotalpaid());
+				prepare.setInt(9, c.getTotalreceive());
 				prepare.addBatch();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

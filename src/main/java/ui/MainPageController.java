@@ -183,8 +183,8 @@ public class MainPageController implements MultiScreen {
 					+ c.getCurrentpaid() + "<<this is current receive"+paidtext.getText());
 		});
 		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()),
-				0, 0, Integer.parseInt(paidtext.getText()), AssigneeID,
-				UTable.getPopupchallantableviewdata(), UTable.getTotalpaid());
+				0, Integer.parseInt(issuetext.getText()), Integer.parseInt(paidtext.getText()), AssigneeID,
+				UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(),Integer.parseInt(receivetext.getText()));
 		newchalantable.getItems().add(chalan);
 		productidtext.setText("");
 		issuetext.setText("");
