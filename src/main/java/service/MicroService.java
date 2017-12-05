@@ -46,6 +46,18 @@ public class MicroService {
 		return totaldue;
 	}
 
+	public static int sumReceiveFromPopUp(int pastreceive,int currentreceive){
+		return pastreceive+currentreceive;
+	}
+	
+	public static int sumPaidFromPopUp(int pastpaid,int currentpaid){
+		return pastpaid+currentpaid;
+	}
+	
+	public static int sumDueFromPopUp(int issue,int totalreceive){
+		return issue-totalreceive;
+	}
+	
 	public static ObservableList<PopUpChallan> updatePopUpTableView(ObservableList<PopUpChallan> popuptable, int newreceive,
 			int challanid) {
 		ObservableList<PopUpChallan> newchalan = FXCollections.observableArrayList();
@@ -95,5 +107,6 @@ public class MicroService {
 		}
 		return newchalan;
 	}
-
+	
+	
 }

@@ -45,16 +45,16 @@ public class PopupController {
 	private TableColumn<PopUpChallan, Integer> currentpaidcolumn = new TableColumn<>("Paid Items");
 
 	@FXML
-	private TableColumn <PopUpChallan, Integer>  past = new TableColumn<>("Past");
+	private TableColumn<PopUpChallan, Integer> past = new TableColumn<>("Past");
 
 	@FXML
-	private TableColumn <PopUpChallan, Integer>  pastreceivecolumn = new TableColumn<>("Receive");
+	private TableColumn<PopUpChallan, Integer> pastreceivecolumn = new TableColumn<>("Receive");
 
 	@FXML
-	private TableColumn <PopUpChallan, Integer>  pastpaidcolumn = new TableColumn<>("Paid");
+	private TableColumn<PopUpChallan, Integer> pastpaidcolumn = new TableColumn<>("Paid");
 
 	@FXML
-	private TableColumn <PopUpChallan, Integer>  pastduecolumn = new TableColumn<>("Due");
+	private TableColumn<PopUpChallan, Integer> pastduecolumn = new TableColumn<>("Due");
 
 	@FXML
 	private TableView<PopUpChallan> receiveTable = new TableView<>();
@@ -95,7 +95,8 @@ public class PopupController {
 		currentreceivecolumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PopUpChallan, Integer>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<PopUpChallan, Integer> t) {
-				((PopUpChallan) t.getTableView().getItems().get(t.getTablePosition().getRow())).setCurrentreceive(t.getNewValue());
+				((PopUpChallan) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+						.setCurrentreceive(t.getNewValue());
 			}
 		});
 
@@ -103,7 +104,8 @@ public class PopupController {
 		currentpaidcolumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PopUpChallan, Integer>>() {
 			@Override
 			public void handle(TableColumn.CellEditEvent<PopUpChallan, Integer> t) {
-				((PopUpChallan) t.getTableView().getItems().get(t.getTablePosition().getRow())).setCurrentpaid(t.getNewValue());
+				((PopUpChallan) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+						.setCurrentpaid(t.getNewValue());
 			}
 		});
 
@@ -111,7 +113,7 @@ public class PopupController {
 		currentpaidcolumn.setEditable(true);
 		receiveTable.setEditable(true);
 		receiveTable.getColumns().addAll(currentreceivecolumn, currentpaidcolumn);
-		
+
 		ObservableList<PopUpChallan> chalanlist = UTable.getChallanlist();
 		receiveTable.setItems(chalanlist);
 		UTable.setPopuptableview(receiveTable);
@@ -125,27 +127,29 @@ public class PopupController {
 	@FXML
 	void saveReceiveData(ActionEvent event) throws SQLException, IOException {
 		ObservableList<PopUpChallan> chalan = receiveTable.getItems();
-		chalan.forEach(c->{System.out.println(c.getCurrentreceive()+"this sis the current reveive");});
+		chalan.forEach(c -> {
+			System.out.println(c.getCurrentreceive() + "this sis the current reveive");
+		});
 		UTable.setChallanlist(chalan);
 		MicroService service = new MicroService();
 
 		// filling the main window controller
 		int receive = service.getTotalReceiveFromPopUp(receiveTable.getItems());
-		System.out.println(receive+"this is the receieve");
+		System.out.println(receive + "this is the receieve");
 		int paid = service.getTotalPaidFromPopUp(receiveTable.getItems());
 		UTable.setTotalpaid(paid);
-	//	int due = service.getTotalDueFromPopUp(receiveTable.getItems());
+		// int due = service.getTotalDueFromPopUp(receiveTable.getItems());
 
-//		TextField paidtext = UTable.getPaidtextfield();
+		// TextField paidtext = UTable.getPaidtextfield();
 		TextField receivetext = UTable.getReceiveTextField();
-//		TextField duetext = UTable.getDuetext();
+		// TextField duetext = UTable.getDuetext();
 		System.out.println(receivetext.getText());
 		receivetext.setText(String.valueOf(receive));
-		//paidtext.setText(String.valueOf(paid));
-		//duetext.setText(String.valueOf(due));
+		// paidtext.setText(String.valueOf(paid));
+		// duetext.setText(String.valueOf(due));
 
-//		saving the data in database
-//		new DChalan().chalanDataUpdatePopUpWindow(chalan);
+		// saving the data in database
+		// new DChalan().chalanDataUpdatePopUpWindow(chalan);
 		UTable.setPopupchallantableviewdata(chalan);
 		Stage stage = (Stage) savedata.getScene().getWindow();
 		stage.close();

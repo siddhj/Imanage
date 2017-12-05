@@ -3,6 +3,8 @@ package ui;
 import java.io.IOException;
 
 import org.controlsfx.control.textfield.*;
+
+import service.DataManipulation;
 import service.MicroService;
 import java.sql.SQLException;
 import bean.Assignee;
@@ -35,9 +37,9 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private Label assigneenamelabel;
-	
-	   @FXML
-	    private Button exlporeselection;
+
+	@FXML
+	private Button exlporeselection;
 
 	@FXML
 	private Label productidlabel;
@@ -74,10 +76,9 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private TableColumn<Chalan, String> receiveitemcolumn = new TableColumn<>("Receive Items");
-	
 
-    @FXML
-    private TableColumn<Chalan, String> totalpaidcolumn= new TableColumn<>("Total Paid");
+	@FXML
+	private TableColumn<Chalan, String> totalpaidcolumn = new TableColumn<>("Total Paid");
 
 	@FXML
 	private TableColumn<Chalan, String> duecolumn = new TableColumn<>("Due");
@@ -177,30 +178,14 @@ public class MainPageController implements MultiScreen {
 		String name = assigneename.getText();
 		int AssigneeID = new MicroService().assigneeIDRetrieve(name);
 		ObservableList<PopUpChallan> challan = UTable.popupchallantableviewdata;
-		challan.forEach(c->{
-			System.out.println(c.getChallanid()+"<<this is challan id"+c.getCurrentreceive()+"::"+c.getCurrentpaid()+"<<this is current receive");
+		challan.forEach(c -> {
+			System.out.println(c.getChallanid() + "<<this is challan id" + c.getCurrentreceive() + "::"
+					+ c.getCurrentpaid() + "<<this is current receive"+paidtext.getText());
 		});
 		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()),
-				Integer.parseInt(receivetext.getText()), 0,
-				Integer.parseInt(paidtext.getText()), AssigneeID,UTable.getPopupchallantableviewdata(),UTable.getTotalpaid());
+				0, 0, Integer.parseInt(paidtext.getText()), AssigneeID,
+				UTable.getPopupchallantableviewdata(), UTable.getTotalpaid());
 		newchalantable.getItems().add(chalan);
-		productidtext.setText("");
-		issuetext.setText("");
-		receivetext.setText("");
-		duetext.setText("");
-		paidtext.setText("");
-
-	}
-
-	@FXML
-	void saveChalanData(ActionEvent event) throws SQLException, IOException {
-		ObservableList<Chalan> chalanlist = newchalantable.getItems();
-		DChalan chalan = new DChalan();
-		chalan.chalanDataInsert(chalanlist);
-		chalanlist.removeAll(chalanlist);
-		Notification.dataSuccessfullySaved();
-
-		assigneename.setText("");
 		productidtext.setText("");
 		issuetext.setText("");
 		receivetext.setText("");
@@ -246,11 +231,11 @@ public class MainPageController implements MultiScreen {
 	void receiveText(ActionEvent event) {
 
 	}
-	
-    @FXML
-    void exploreSelectionPopUpWindow(ActionEvent event) throws IOException {
-    	Chalan selectedchalan = newchalantable.getSelectionModel().getSelectedItem();
-    	ObservableList<PopUpChallan> popupchalan = selectedchalan.getPopupchallantableview();
+
+	@FXML
+	void exploreSelectionPopUpWindow(ActionEvent event) throws IOException {
+		Chalan selectedchalan = newchalantable.getSelectionModel().getSelectedItem();
+		ObservableList<PopUpChallan> popupchalan = selectedchalan.getPopupchallantableview();
 		// setting chalanlist soon will be deprecated
 		UTable.setChallanlist(popupchalan);
 
@@ -267,8 +252,8 @@ public class MainPageController implements MultiScreen {
 		// window.initStyle(StageStyle.UNDECORATED);
 		// window.setMinHeight(800);
 		// window.setMinWidth(1500);
-		window.show();	
-    }
+		window.show();
+	}
 
 	@FXML
 	private Button newwindow;
@@ -296,5 +281,22 @@ public class MainPageController implements MultiScreen {
 		// window.setMinHeight(800);
 		// window.setMinWidth(1500);
 		window.show();
+	}
+
+	@FXML
+	void saveChalanData(ActionEvent event) throws SQLException, IOException {
+		ObservableList<Chalan> chalanlist = newchalantable.getItems();
+		DataManipulation man = new DataManipulation();
+		man.getPopUpWindowData(chalanlist);
+		chalanlist.removeAll(chalanlist);
+		Notification.dataSuccessfullySaved();
+
+		assigneename.setText("");
+		productidtext.setText("");
+		issuetext.setText("");
+		receivetext.setText("");
+		duetext.setText("");
+		paidtext.setText("");
+
 	}
 }

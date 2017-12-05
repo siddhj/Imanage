@@ -16,6 +16,7 @@ import bean.Chalan;
 import bean.PopUpChallan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import service.MicroService;
 
 public class DChalan {
 	public static void main(String args[]) throws SQLException, IOException {
@@ -28,7 +29,6 @@ public class DChalan {
 		Statement statement = connection.createStatement();
 		PreparedStatement prepare = connection.prepareStatement(
 				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,Billdate,Paid) " + "values(?,?,?,?,?,?,?)");
-		// what about throw clause at the top
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
 
@@ -108,25 +108,27 @@ public class DChalan {
 		return list;
 	}
 
-	public void chalanDataUpdatePopUpWindow(ObservableList<PopUpChallan> chalanlist) throws SQLException, IOException {
-		ListTables chalandata = new ListTables();
-		Connection connection = chalandata.returnConnection();
+//	public void chalanDataUpdatePopUpWindow(int totalreceive,int totalpaid,int totaldue,int challanid) throws SQLException, IOException {
+	public void chalanDataUpdatePopUpWindow(ObservableList<PopUpChallan> popupchallanlist) throws SQLException, IOException {
+		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
-		Statement statement = connection.createStatement();
 		PreparedStatement prepare = connection
 				.prepareStatement("update challan set Receive=?,Due=?,Paid=? where ChallanID=?");
-		Date date = new Date();
-		Object param = new Timestamp(date.getTime());
-		for (PopUpChallan c : chalanlist) {
-			try {
-//				prepare.setInt(1, c.getReceive());
-//				prepare.setInt(2, c.getDue());
-//				prepare.setInt(3, c.getPaid());
-				prepare.setInt(4, c.getChallanid());
+		for(PopUpChallan p:popupchallanlist){
+			int totalreceive = MicroService.sumReceiveFromPopUp(p.getPastreceive(), p.getCurrentreceive());
+			int totalpaid = MicroService.sumPaidFromPopUp(p.getPastpaid(), p.getCurrentpaid());
+			int totaldue = MicroService.sumDueFromPopUp(p.getIssue(), totalreceive);
+			int challanid = p.getChallanid();
+			try{
+				prepare.setInt(1, totalreceive);
+				prepare.setInt(2, totaldue);
+				prepare.setInt(3, totalpaid);
+				prepare.setInt(4, challanid);
 				prepare.addBatch();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
 			try {
 				prepare.executeBatch();
 				connection.commit();
@@ -135,6 +137,5 @@ public class DChalan {
 			}
 
 		}
-	}
-
+	
 }
