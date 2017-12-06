@@ -41,7 +41,7 @@ public class MicroService {
 	public int getTotalDueFromPopUp(ObservableList<PopUpChallan> chalanlist) {
 		int totaldue = 0;
 		for (PopUpChallan c : chalanlist) {
-			totaldue += c.getPastdue();
+			totaldue += c.getPastreceivedue();
 		}
 		return totaldue;
 	}

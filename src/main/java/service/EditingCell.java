@@ -46,6 +46,7 @@ public class EditingCell extends TableCell<PopUpChallan, Integer> {
 	@Override
 	public void updateItem(Integer item, boolean empty) {
 		super.updateItem(item, empty);
+		this.setStyle("-fx-border-color:  #000000");
 		if (empty) {
 			setText(null);
 			setGraphic(null);

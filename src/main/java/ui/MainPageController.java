@@ -104,7 +104,7 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	void removeRow(ActionEvent event) {
 		Chalan chalan = newchalantable.getSelectionModel().getSelectedItem();
-
+		System.out.println("inside remove row");
 		listFromDb.forEach(c -> {
 			if (c.getProductid() == chalan.getProductid()) {
 				listFromDb.remove(c);
@@ -155,6 +155,7 @@ public class MainPageController implements MultiScreen {
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("receive"));
 		duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
 		paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("paid"));
+		totalpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalpaid"));
 		// System.out.println("doen");
 		// listFromDb = new DChalan().chalanDataLoad();
 		// newchalantable.setItems(listFromDb);
@@ -188,7 +189,7 @@ public class MainPageController implements MultiScreen {
 			System.out.println(c.getChallanid() + "<<this is challan id" + c.getCurrentreceive() + "::"
 					+ c.getCurrentpaid() + "<<this is current receive" + paidtext.getText());
 		});
-		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
+		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()),0,
 				Integer.parseInt(issuetext.getText()), Integer.parseInt(paidtext.getText()), AssigneeID,
 				UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()));
 		newchalantable.getItems().add(chalan);
@@ -207,37 +208,6 @@ public class MainPageController implements MultiScreen {
 		// TODO Auto-generated method stub
 		this.screencontroller = screencontroller;
 	}
-
-	@FXML
-	void selectDateValue(ActionEvent event) {
-
-	}
-
-	@FXML
-	void assigneeName(ActionEvent event) {
-
-	}
-
-	@FXML
-	void dueText(ActionEvent event) {
-
-	}
-
-	@FXML
-	void issueText(ActionEvent event) {
-
-	}
-
-	@FXML
-	void productId(ActionEvent event) {
-
-	}
-
-	@FXML
-	void receiveText(ActionEvent event) {
-
-	}
-
 	@FXML
 	void exploreSelectionPopUpWindow(ActionEvent event) throws IOException {
 		Chalan selectedchalan = newchalantable.getSelectionModel().getSelectedItem();
@@ -255,9 +225,13 @@ public class MainPageController implements MultiScreen {
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
 		window.setScene(scene);
-		// window.initStyle(StageStyle.UNDECORATED);
-		// window.setMinHeight(800);
-		// window.setMinWidth(1500);
+		Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+        window.setX(bounds.getMinX()+60); 
+        window.setY(bounds.getMinY()+70);
+        window.setWidth((bounds.getWidth()*80)/100);
+        window.setHeight((bounds.getHeight()*60)/100);
+		window.initStyle(StageStyle.UNDECORATED);
 		window.show();
 	}
 
@@ -285,7 +259,7 @@ public class MainPageController implements MultiScreen {
         Rectangle2D bounds = screen.getVisualBounds();
         window.setX(bounds.getMinX()+60); 
         window.setY(bounds.getMinY()+70);
-        window.setWidth((bounds.getWidth()*70)/100);
+        window.setWidth((bounds.getWidth()*80)/100);
         window.setHeight((bounds.getHeight()*60)/100);
 		window.setScene(scene);
 		window.initStyle(StageStyle.UNDECORATED);
@@ -309,6 +283,35 @@ public class MainPageController implements MultiScreen {
 		receivetext.setText("");
 		//duetext.setText("");
 		paidtext.setText("");
+	}
+	
+	@FXML
+	void selectDateValue(ActionEvent event) {
+
+	}
+
+	@FXML
+	void assigneeName(ActionEvent event) {
+
+	}
+
+	@FXML
+	void dueText(ActionEvent event) {
+
+	}
+
+	@FXML
+	void issueText(ActionEvent event) {
+
+	}
+
+	@FXML
+	void productId(ActionEvent event) {
+
+	}
+
+	@FXML
+	void receiveText(ActionEvent event) {
 
 	}
 }

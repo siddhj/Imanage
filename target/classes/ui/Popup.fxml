@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PopupController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PopupController">
    <bottom>
       <Button fx:id="savedata" mnemonicParsing="false" onAction="#saveReceiveData" prefWidth="100.0" style="-fx-background-color: #0078d2;" text="Save" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
@@ -30,13 +30,6 @@
                <columns>
                   <TableColumn fx:id="billdatecolumn" maxWidth="300.0" minWidth="186.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Bill Date" />
                   <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="160.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Issue Items" />
-                  <TableColumn fx:id="past" maxWidth="300.0" minWidth="250.0" prefWidth="-1.0" style="-fx-border-width: 0 1 0 0; -fx-border-color: white;" text="Past">
-                     <columns>
-                        <TableColumn fx:id="pastreceivecolumn" editable="false" minWidth="80.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Receive" />
-                        <TableColumn fx:id="pastpaidcolumn" minWidth="80.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Paid" />
-                        <TableColumn fx:id="pastduecolumn" minWidth="80.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Due" />
-                     </columns>
-                  </TableColumn>
                </columns>
             </TableView>
             <ScrollBar orientation="VERTICAL" />

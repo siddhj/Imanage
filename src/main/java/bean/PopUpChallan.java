@@ -3,7 +3,13 @@ package bean;
 import java.util.Date;
 
 public class PopUpChallan {
-	private int assigneeid,issue,pastreceive,pastdue,pastpaid,challanid,currentreceive,currentpaid;
+	private int assigneeid,issue,pastreceive,pastreceivedue,pastpaid,challanid,currentreceive,currentpaid,pastpaiddue;
+	public int getPastpaiddue() {
+		return pastpaiddue;
+	}
+	public void setPastpaiddue(int pastpaiddue) {
+		this.pastpaiddue = pastpaiddue;
+	}
 	private String productid;
 	private Date billdate;
 	public int getAssigneeid() {
@@ -24,11 +30,12 @@ public class PopUpChallan {
 	public void setPastreceive(int pastreceive) {
 		this.pastreceive = pastreceive;
 	}
-	public int getPastdue() {
-		return pastdue;
+	
+	public int getPastreceivedue() {
+		return pastreceivedue;
 	}
-	public void setPastdue(int pastdue) {
-		this.pastdue = pastdue;
+	public void setPastreceivedue(int pastreceivedue) {
+		this.pastreceivedue = pastreceivedue;
 	}
 	public int getPastpaid() {
 		return pastpaid;
@@ -66,19 +73,20 @@ public class PopUpChallan {
 	public void setBilldate(Date billdate) {
 		this.billdate = billdate;
 	}
-	public PopUpChallan(int assigneeid, int issue, int pastreceive, int pastdue, int pastpaid, int challanid,
-			int currentreceive, int currentpaid, String productid, Date billdate) {
+	public PopUpChallan(int assigneeid, int issue, int pastreceive, int pastreceivedue, int pastpaid, int challanid,
+			int currentreceive, int currentpaid, String productid, Date billdate,int pastpaiddue) {
 		super();
 		this.assigneeid = assigneeid;
 		this.issue = issue;
 		this.pastreceive = pastreceive;
-		this.pastdue = pastdue;
+		this.pastreceivedue = pastreceivedue;
 		this.pastpaid = pastpaid;
 		this.challanid = challanid;
 		this.currentreceive = currentreceive;
 		this.currentpaid = currentpaid;
 		this.productid = productid;
 		this.billdate = billdate;
+		this.pastpaiddue=pastpaiddue;
 	}
 
 }

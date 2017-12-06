@@ -40,22 +40,23 @@ import utility.UTable;
 
 public class PopupController {
 
-	private TableColumn<PopUpChallan, Integer> currentreceivecolumn = new TableColumn<>("Receive Items");
+	private TableColumn<PopUpChallan, Integer> currentpaidcolumn = new TableColumn<>("Current Paid Qty");
+	
+	private TableColumn<PopUpChallan, Integer> pastpaidcolumn = new TableColumn<>("Already Paid Qty");
 
-	private TableColumn<PopUpChallan, Integer> currentpaidcolumn = new TableColumn<>("Paid Items");
+	private TableColumn<PopUpChallan, Integer> paidcolumn = new TableColumn<>("Paid Qty");
 
-	@FXML
-	private TableColumn<PopUpChallan, Integer> past = new TableColumn<>("Past");
+	private TableColumn<PopUpChallan, Integer> pastpaidduecolumn = new TableColumn<>("Paid Qty Due");
 
-	@FXML
-	private TableColumn<PopUpChallan, Integer> pastreceivecolumn = new TableColumn<>("Receive");
+	private TableColumn<PopUpChallan, Integer> pastreceivecolumn = new TableColumn<>("Past Receive Qty");
 
-	@FXML
-	private TableColumn<PopUpChallan, Integer> pastpaidcolumn = new TableColumn<>("Paid");
+	private TableColumn<PopUpChallan, Integer> currentreceivecolumn = new TableColumn<>("Current Receive qty");
 
-	@FXML
-	private TableColumn<PopUpChallan, Integer> pastduecolumn = new TableColumn<>("Due");
+	private TableColumn<PopUpChallan, Integer> receivecolumn = new TableColumn<>("Receive Qty");
 
+	private TableColumn<PopUpChallan, Integer> pastduecolumn = new TableColumn<>("Receive Qty Due");
+
+	
 	@FXML
 	private TableView<PopUpChallan> receiveTable = new TableView<>();
 
@@ -72,10 +73,14 @@ public class PopupController {
 	public void initialize() throws SQLException, IOException {
 
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("issue"));
-		pastduecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastdue"));
+		pastduecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastreceivedue"));
 		billdatecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Date>("billdate"));
-		pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastpaid"));
+//		pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastpaid"));
 		pastreceivecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastreceive"));
+		pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastpaid"));
+		pastpaidduecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastpaiddue"));
+		paidcolumn.getColumns().addAll(pastpaidcolumn,pastpaidduecolumn,currentpaidcolumn);
+		receivecolumn.getColumns().addAll(pastreceivecolumn,pastduecolumn,currentreceivecolumn);
 		// editable column
 		Callback<TableColumn<PopUpChallan, Integer>, TableCell<PopUpChallan, Integer>> cellFactory = new Callback<TableColumn<PopUpChallan, Integer>, TableCell<PopUpChallan, Integer>>() {
 			public TableCell<PopUpChallan, Integer> call(TableColumn<PopUpChallan, Integer> p) {
@@ -112,7 +117,7 @@ public class PopupController {
 		currentreceivecolumn.setEditable(true);
 		currentpaidcolumn.setEditable(true);
 		receiveTable.setEditable(true);
-		receiveTable.getColumns().addAll(currentreceivecolumn, currentpaidcolumn);
+		receiveTable.getColumns().addAll(receivecolumn, paidcolumn);
 
 		ObservableList<PopUpChallan> chalanlist = UTable.getChallanlist();
 		receiveTable.setItems(chalanlist);

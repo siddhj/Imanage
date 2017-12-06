@@ -105,8 +105,9 @@ public class DChalan {
 			// pastpaid, int challanid,
 			// int currentreceive, int currentpaid, String productid, Date
 			// billdate
+
 			list.add(new PopUpChallan( resultset.getInt("AssigneeID"),resultset.getInt("Issue"),resultset.getInt("Receive"), resultset.getInt("Due")
-					,resultset.getInt("Paid"),resultset.getInt("ChallanID"),0,0,resultset.getString("ProductID"),resultset.getDate("BillDate")));
+			,resultset.getInt("Paid"),resultset.getInt("ChallanID"),0,0,resultset.getString("ProductID"),resultset.getDate("BillDate"),resultset.getInt("Issue")-resultset.getInt("Paid")));
 		}
 		UTable.getStage().close();
 		return list;
