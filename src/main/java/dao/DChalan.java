@@ -17,6 +17,7 @@ import bean.PopUpChallan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import service.MicroService;
+import utility.UTable;
 
 public class DChalan {
 	public static void main(String args[]) throws SQLException, IOException {
@@ -107,6 +108,7 @@ public class DChalan {
 			list.add(new PopUpChallan( resultset.getInt("AssigneeID"),resultset.getInt("Issue"),resultset.getInt("Receive"), resultset.getInt("Due")
 					,resultset.getInt("Paid"),resultset.getInt("ChallanID"),0,0,resultset.getString("ProductID"),resultset.getDate("BillDate")));
 		}
+		UTable.getStage().close();
 		return list;
 	}
 

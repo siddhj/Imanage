@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.controlsfx.control.textfield.*;
 
+import com.ProgressDemo;
+
 import service.DataManipulation;
 import service.MicroService;
 import java.sql.SQLException;
@@ -17,6 +19,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,6 +30,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.FlowPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -180,18 +186,18 @@ public class MainPageController implements MultiScreen {
 		ObservableList<PopUpChallan> challan = UTable.popupchallantableviewdata;
 		challan.forEach(c -> {
 			System.out.println(c.getChallanid() + "<<this is challan id" + c.getCurrentreceive() + "::"
-					+ c.getCurrentpaid() + "<<this is current receive"+paidtext.getText());
+					+ c.getCurrentpaid() + "<<this is current receive" + paidtext.getText());
 		});
-		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()),
-				0, Integer.parseInt(issuetext.getText()), Integer.parseInt(paidtext.getText()), AssigneeID,
-				UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(),Integer.parseInt(receivetext.getText()));
+		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
+				Integer.parseInt(issuetext.getText()), Integer.parseInt(paidtext.getText()), AssigneeID,
+				UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()));
 		newchalantable.getItems().add(chalan);
 		productidtext.setText("");
 		issuetext.setText("");
 		receivetext.setText("");
-		duetext.setText("");
+		// duetext.setText("");
 		paidtext.setText("");
-
+		assigneenamelabel.setText(assigneename.getText());
 	}
 
 	MainScreenController screencontroller = new MainScreenController();
@@ -261,41 +267,47 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	void popupWindow(ActionEvent event) throws IOException, SQLException {
 		System.out.println("this is the receive button");
+		new ProgressDemo().start();
 		int assigneeid = new MicroService().assigneeIDRetrieve(assigneename.getText());
 		String productid = productidtext.getText();
 		ObservableList<PopUpChallan> chalanlist = new DChalan().chalanDataLoad(productid, assigneeid);
 		// setting chalanlist soon will be deprecated
 		UTable.setChallanlist(chalanlist);
-
 		// for loading receive data back
 		UTable.setReceiveTextField(receivetext);
 		UTable.setPaidtextfield(paidtext);
 		UTable.setDuetext(duetext);
-
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+        window.setX(bounds.getMinX()+60); 
+        window.setY(bounds.getMinY()+70);
+        window.setWidth((bounds.getWidth()*70)/100);
+        window.setHeight((bounds.getHeight()*60)/100);
 		window.setScene(scene);
-		// window.initStyle(StageStyle.UNDECORATED);
-		// window.setMinHeight(800);
-		// window.setMinWidth(1500);
+		window.initStyle(StageStyle.UNDECORATED);
 		window.show();
+
 	}
 
 	@FXML
 	void saveChalanData(ActionEvent event) throws SQLException, IOException {
+		new ProgressDemo().start();
 		ObservableList<Chalan> chalanlist = newchalantable.getItems();
 		DataManipulation man = new DataManipulation();
 		man.getPopUpWindowData(chalanlist);
 		chalanlist.removeAll(chalanlist);
+		UTable.getStage().close();
 		Notification.dataSuccessfullySaved();
 
 		assigneename.setText("");
 		productidtext.setText("");
 		issuetext.setText("");
 		receivetext.setText("");
-		duetext.setText("");
+		//duetext.setText("");
 		paidtext.setText("");
 
 	}

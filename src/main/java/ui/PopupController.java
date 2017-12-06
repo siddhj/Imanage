@@ -138,18 +138,8 @@ public class PopupController {
 		System.out.println(receive + "this is the receieve");
 		int paid = service.getTotalPaidFromPopUp(receiveTable.getItems());
 		UTable.setTotalpaid(paid);
-		// int due = service.getTotalDueFromPopUp(receiveTable.getItems());
-
-		// TextField paidtext = UTable.getPaidtextfield();
 		TextField receivetext = UTable.getReceiveTextField();
-		// TextField duetext = UTable.getDuetext();
-		System.out.println(receivetext.getText());
 		receivetext.setText(String.valueOf(receive));
-		// paidtext.setText(String.valueOf(paid));
-		// duetext.setText(String.valueOf(due));
-
-		// saving the data in database
-		// new DChalan().chalanDataUpdatePopUpWindow(chalan);
 		UTable.setPopupchallantableviewdata(chalan);
 		Stage stage = (Stage) savedata.getScene().getWindow();
 		stage.close();
