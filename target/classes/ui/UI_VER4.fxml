@@ -310,7 +310,7 @@
                               <Image url="@../Images/ic-picture-as-pdf-black-36-px.png" />
                            </image>
                         </ImageView>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Export PDF" textFill="#0078d2" HBox.hgrow="ALWAYS">
+                        <Button fx:id="exportexcelbutton" mnemonicParsing="false" onAction="#exportExcel" style="-fx-background-color: transparent;" text="Export PDF" textFill="#0078d2" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="5.0" top="15.0" />
                            </HBox.margin>

@@ -1,9 +1,14 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.controlsfx.control.textfield.*;
-
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import com.ProgressDemo;
 
 import service.DataManipulation;
@@ -303,6 +308,37 @@ public class MainPageController implements MultiScreen {
 			e.printStackTrace();
 		}
 	
+    }
+    @FXML
+    private Button exportexcelbutton;
+    @FXML
+    public void exportExcel() throws IOException{
+    	System.out.println("export excel"); 
+    	Workbook workbook = new HSSFWorkbook();
+         Sheet spreadsheet = workbook.createSheet("sample");
+
+         Row row = spreadsheet.createRow(0);
+
+         for (int j = 0; j < newchalantable.getColumns().size(); j++) {
+             row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getText());
+         }
+
+         for (int i = 0; i < newchalantable.getItems().size(); i++) {
+             row = spreadsheet.createRow(i + 1);
+             for (int j = 0; j < newchalantable.getColumns().size(); j++) {
+                 if(newchalantable.getColumns().get(j).getCellData(i) != null) { 
+                     row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getCellData(i).toString()); 
+                 }
+                 else {
+                     row.createCell(j).setCellValue("");
+                 }   
+             }
+         }
+
+         FileOutputStream fileOut = new FileOutputStream("E:\\workbook.xls");
+         workbook.write(fileOut);
+         fileOut.close();
+
     }
 	
 	@FXML
