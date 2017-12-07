@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SortAndFilterController">
+   <top>
+      <HBox prefHeight="53.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="assigneenametextbox" promptText="Name">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </TextField>
+            <TextField fx:id="productidtextbox" promptText="Product ID">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Label text="Date From: ">
+               <HBox.margin>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+            <DatePicker fx:id="datefrom">
+               <HBox.margin>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </DatePicker>
+            <Label text="To:">
+               <HBox.margin>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+            <DatePicker fx:id="dateto">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+            </DatePicker>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <TableView fx:id="filterandsorttable" prefHeight="347.0" prefWidth="697.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="challanidcolumn" prefWidth="75.0" text="ChallanID" />
+          <TableColumn fx:id="billdatecolumn" prefWidth="75.0" text="BillDate" />
+            <TableColumn fx:id="namecolumn" prefWidth="94.0" text="Assignee Name" />
+            <TableColumn fx:id="productidcolumn" prefWidth="72.0" text="Product ID" />
+            <TableColumn fx:id="issuecolumn" prefWidth="59.0" text="Issue Qty" />
+            <TableColumn fx:id="receivecolumn" prefWidth="75.0" text="Receive Qty" />
+            <TableColumn fx:id="receiveduecolumn" prefWidth="75.0" text="Receive Due" />
+            <TableColumn fx:id="paidcolumn" prefWidth="75.0" text=" Paid Qty" />
+            <TableColumn fx:id="paidduecolumn" prefWidth="75.0" text="Paid Due" />
+        </columns>
+      </TableView>
+   </left>
+</BorderPane>

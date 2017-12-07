@@ -88,7 +88,7 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private TableColumn<Chalan, String> duecolumn = new TableColumn<>("Due");
-
+	
 	@FXML
 	private Button removebutton;
 
@@ -104,10 +104,12 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	void removeRow(ActionEvent event) {
 		Chalan chalan = newchalantable.getSelectionModel().getSelectedItem();
+		ObservableList<Chalan> allchalanfromtableview = newchalantable.getItems();
 		System.out.println("inside remove row");
-		listFromDb.forEach(c -> {
+		allchalanfromtableview.forEach(c -> {
+			System.out.println(c.getTotalpaid()+""+c.getTotalreceive()+"::"+chalan.getProductid());
 			if (c.getProductid() == chalan.getProductid()) {
-				listFromDb.remove(c);
+				allchalanfromtableview.remove(c);
 			} else {
 				System.out.println("there is no element selected");
 			}
@@ -117,7 +119,7 @@ public class MainPageController implements MultiScreen {
 
 	// TableColumn<Chalan, Integer> receiveitem = new TableColumn<Chalan,
 	// Integer>("Product");
-	ObservableList<Chalan> listFromDb = FXCollections.observableArrayList();
+	//ObservableList<Chalan> listFromDb = FXCollections.observableArrayList();
 
 	// why to create instance table column instead of intializing in intialize()
 	// method
@@ -152,7 +154,7 @@ public class MainPageController implements MultiScreen {
 		productidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("productid"));
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
-		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("receive"));
+		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalreceive"));
 		duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
 		paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("paid"));
 		totalpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalpaid"));
@@ -185,10 +187,8 @@ public class MainPageController implements MultiScreen {
 		String name = assigneename.getText();
 		int AssigneeID = new MicroService().assigneeIDRetrieve(name);
 		ObservableList<PopUpChallan> challan = UTable.popupchallantableviewdata;
-		challan.forEach(c -> {
-			System.out.println(c.getChallanid() + "<<this is challan id" + c.getCurrentreceive() + "::"
-					+ c.getCurrentpaid() + "<<this is current receive" + paidtext.getText());
-		});
+		
+		System.out.println(productidtext.getText()+"this is product id");
 		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()),0,
 				Integer.parseInt(issuetext.getText()), Integer.parseInt(paidtext.getText()), AssigneeID,
 				UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()));

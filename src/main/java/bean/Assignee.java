@@ -2,16 +2,14 @@ package bean;
 
 public class Assignee {
 	private String firstname, lastname, description;
+	private int assigneeid, phonenumber, aadharnumber;
+
 	public Assignee(String firstname, String lastname, int assigneeid) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.assigneeid = assigneeid;
 	}
-
-
-	private int assigneeid, phonenumber, aadharnumber;
-
 	public Assignee() {
 
 	}

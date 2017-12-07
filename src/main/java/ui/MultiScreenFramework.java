@@ -26,21 +26,25 @@ public class MultiScreenFramework extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        MainScreenController mainController = new MainScreenController();
+        Group root = new Group();
+        
+    	MainScreenController mainController = new MainScreenController();
         mainController.loadScreen(MultiScreenFramework.loginscreen, MultiScreenFramework.loginscreenfile);
         mainController.loadScreen(MultiScreenFramework.homescreen, MultiScreenFramework.homescreenfile);
         mainController.loadScreen(MultiScreenFramework.mainpage,MultiScreenFramework.updatedmainpagefile);
         mainController.setScreen(MultiScreenFramework.loginscreen);
         
-//        Group root = new Group();
-//        root.getChildren().addAll(mainController);
+
+        root.getChildren().addAll(mainController);
 //        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
-        Parent root = (Parent)loader.load();
-        Scene scene = new Scene(root);
-        primaryStage.setMaximized(true);
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
+//        Parent root = (Parent)loader.load();
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
+        
+        Scene scene = new Scene(root);
+        primaryStage.setMaximized(true);
+        
         primaryStage.setX(bounds.getMinX());
         primaryStage.setY(bounds.getMinY());
         primaryStage.setWidth(bounds.getWidth());

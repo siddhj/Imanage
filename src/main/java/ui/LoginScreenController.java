@@ -37,6 +37,7 @@ public class LoginScreenController implements Initializable,MultiScreen {
    @FXML
    void loginUser(ActionEvent event) {
 //            if(new DataUtility().getLicense(license.getText())){
+	   System.out.println("inside login button");
            mainscreen.setScreen(MultiScreenFramework.mainpage);
 //            }
 //            System.out.println("Invalid License");
