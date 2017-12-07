@@ -12,6 +12,16 @@ import javafx.stage.Stage;
 
 public final class UTable {
 	private static ObservableList<PopUpChallan> challanlist = FXCollections.observableArrayList();
+	
+	public static Stage primarystage;
+	
+	public static Stage getPrimarystage() {
+		return primarystage;
+	}
+
+	public static void setPrimarystage(Stage primarystage) {
+		UTable.primarystage = primarystage;
+	}
 
 	public static ObservableList<PopUpChallan> getChallanlist() {
 		return challanlist;

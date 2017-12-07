@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import utility.UTable;
 
 public class MultiScreenFramework extends Application {
 
@@ -26,7 +27,6 @@ public class MultiScreenFramework extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Group root = new Group();
         
     	MainScreenController mainController = new MainScreenController();
         mainController.loadScreen(MultiScreenFramework.loginscreen, MultiScreenFramework.loginscreenfile);
@@ -34,17 +34,17 @@ public class MultiScreenFramework extends Application {
         mainController.loadScreen(MultiScreenFramework.mainpage,MultiScreenFramework.updatedmainpagefile);
         mainController.setScreen(MultiScreenFramework.loginscreen);
         
-
-        root.getChildren().addAll(mainController);
+//        Group root = new Group();
+//        root.getChildren().addAll(mainController);
 //        
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
-//        Parent root = (Parent)loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
+        Parent root = (Parent)loader.load();
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
         
         Scene scene = new Scene(root);
         primaryStage.setMaximized(true);
-        
+        UTable.setPrimarystage(primaryStage);
         primaryStage.setX(bounds.getMinX());
         primaryStage.setY(bounds.getMinY());
         primaryStage.setWidth(bounds.getWidth());

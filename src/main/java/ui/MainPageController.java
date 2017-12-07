@@ -46,6 +46,9 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private Button exlporeselection;
+	
+    @FXML
+    private Button tabproductidbutton;
 
 	@FXML
 	private Label productidlabel;
@@ -284,6 +287,23 @@ public class MainPageController implements MultiScreen {
 		//duetext.setText("");
 		paidtext.setText("");
 	}
+	
+
+    @FXML
+    void tabProductIDButton(ActionEvent event) {
+    	System.out.println("inside product id select button");
+		 FXMLLoader myLoader = new FXMLLoader(getClass().getResource("SortAndFilter.fxml"));
+         try {
+			Parent loadScreen = (Parent) myLoader.load();
+			Stage primarystage = UTable.getPrimarystage();
+			Scene scene = new Scene(loadScreen);
+			primarystage.setScene(scene);
+         } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+    }
 	
 	@FXML
 	void selectDateValue(ActionEvent event) {

@@ -60,7 +60,7 @@
                            <font>
                               <Font size="16.0" />
                            </font></Button>
-                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Product ID" textFill="WHITE">
+                        <Button fx:id="tabproductidbutton" mnemonicParsing="false" onAction="#tabProductIDButton" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Product ID" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="31.0" />
                            </HBox.margin>
