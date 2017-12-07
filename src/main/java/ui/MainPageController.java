@@ -154,7 +154,7 @@ public class MainPageController implements MultiScreen {
 		productidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("productid"));
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
-		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("receive"));
+		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalreceive"));
 		duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
 		paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("paid"));
 		totalpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalpaid"));
