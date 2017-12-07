@@ -1,19 +1,22 @@
 package ui;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.controlsfx.control.textfield.*;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+
 import com.ProgressDemo;
 
 import service.DataManipulation;
 import service.MicroService;
 import java.sql.SQLException;
+import java.util.Date;
+
 import bean.Assignee;
 import bean.Chalan;
 import bean.PopUpChallan;
@@ -24,7 +27,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,7 +37,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.FlowPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -316,8 +317,25 @@ public class MainPageController implements MultiScreen {
     	System.out.println("export excel"); 
     	Workbook workbook = new HSSFWorkbook();
          Sheet spreadsheet = workbook.createSheet("sample");
-
+                                             
+          // Create cell style 
+//         CellStyle style=workbook.createCellStyle();;
+       //  style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+//         style.setAlignment(CellStyle.ALIGN_CENTER);
+//         style.setFillBackgroundColor(new HSSFColor.RED().getIndex());
+         // Setting font to style
+        
+         
          Row row = spreadsheet.createRow(0);
+         
+         row.createCell(0).setCellValue("Name:");
+//         row.getCell(0).setCellStyle(style);
+         row.createCell(1).setCellValue(assigneenamelabel.getText());
+     
+         row.createCell(3).setCellValue("Bill Date:");
+         row.createCell(4).setCellValue(new java.sql.Date(new Date().getTime()));
+         
+         row = spreadsheet.createRow(1);
 
          for (int j = 0; j < newchalantable.getColumns().size(); j++) {
              row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getText());

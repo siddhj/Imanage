@@ -21,7 +21,7 @@ public class EditingPaid extends TableCell<PopUpChallan, Integer> {
 	}
 
 	int challanid = 0;
-
+	int paiddue;
 	@Override
 	public void startEdit() {
 		super.startEdit();
@@ -31,6 +31,7 @@ public class EditingPaid extends TableCell<PopUpChallan, Integer> {
 		TableRow row = this.getTableRow();
 		PopUpChallan chalanfrompopuptable = (PopUpChallan) row.getItem();
 		challanid = chalanfrompopuptable.getChallanid();
+		paiddue = chalanfrompopuptable.getPastpaiddue();
 		setGraphic(textField);
 		setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 		textField.selectAll();
@@ -75,6 +76,10 @@ public class EditingPaid extends TableCell<PopUpChallan, Integer> {
 					//**//
 					if(newpaid<0){
 						Notification.popupWindowInvalidValueLessThenZero();
+						return;
+					}else if(newpaid>paiddue)
+					{
+						Notification.popupWindowInvalidReceiveValueGreaterThenIssue();
 						return;
 					}
 					commitEdit(Integer.parseInt(textField.getText()));

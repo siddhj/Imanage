@@ -23,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.MicroService;
+import service.Validation;
 
 public class SortAndFilterController {
     @FXML
@@ -107,10 +108,10 @@ public class SortAndFilterController {
     	String assigneename = assigneenamecombobox.getValue();
     	String productid = productidcombobox.getValue();
     	
-    	String sqlstringassigneename = MicroService.nullVarifierStringForDao(assigneename);
-    	String sqlstringproductid = MicroService.nullVarifierStringForDao(productid);
-    	String sqlstringfromdate = MicroService.nullVarifierFromDateForDao(fromdate);
-    	String sqlstringtodate = MicroService.nullVarifierToDateForDao(todate);
+    	String sqlstringassigneename = Validation.nullVarifierStringForDao(assigneename);
+    	String sqlstringproductid = Validation.nullVarifierStringForDao(productid);
+    	String sqlstringfromdate = Validation.nullVarifierFromDateForDao(fromdate);
+    	String sqlstringtodate = Validation.nullVarifierToDateForDao(todate);
     	
     	System.out.println(sqlstringassigneename+"::"+sqlstringproductid+"::"+sqlstringfromdate+"::"+sqlstringtodate+"::");
     DSort sort = new DSort();

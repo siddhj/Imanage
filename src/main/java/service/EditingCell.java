@@ -22,6 +22,7 @@ public class EditingCell extends TableCell<PopUpChallan, Integer> {
 	public EditingCell() {
 	}
 
+	int receivedue=0;
 	@Override
 	public void startEdit() {
 		super.startEdit();
@@ -31,6 +32,7 @@ public class EditingCell extends TableCell<PopUpChallan, Integer> {
 		TableRow row = this.getTableRow();
 		PopUpChallan chalanfrompopuptable = (PopUpChallan) row.getItem();
 		challanid = chalanfrompopuptable.getChallanid();
+		receivedue = chalanfrompopuptable.getPastreceivedue();
 		setGraphic(textField);
 		setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 		textField.selectAll();
@@ -47,7 +49,7 @@ public class EditingCell extends TableCell<PopUpChallan, Integer> {
 	public void updateItem(Integer item, boolean empty) {
 		super.updateItem(item, empty);
 		this.setStyle("-fx-border-color:  #000000");
-		if (empty) {
+	if (empty) {
 			setText(null);
 			setGraphic(null);
 		} else {
@@ -67,6 +69,7 @@ public class EditingCell extends TableCell<PopUpChallan, Integer> {
 	private void createTextField() {
 		textField = new TextField(getString());
 		textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
+		
 		textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent t) {
@@ -74,6 +77,10 @@ public class EditingCell extends TableCell<PopUpChallan, Integer> {
 					int newreceive = Integer.parseInt(textField.getText());
 					if(newreceive<0){
 						Notification.popupWindowInvalidValueLessThenZero();
+						return;
+					}
+					if(newreceive>receivedue){
+						Notification.popupWindowInvalidReceiveValueGreaterThenIssue();
 						return;
 					}
 					commitEdit(Integer.parseInt(textField.getText()));
