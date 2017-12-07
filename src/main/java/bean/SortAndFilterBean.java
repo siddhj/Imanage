@@ -3,9 +3,17 @@ package bean;
 import java.sql.Date;
 
 public class SortAndFilterBean {
-public String filtername,filterproductid,assigneename;
+@Override
+	public String toString() {
+		return "SortAndFilterBean [filtername=" + filtername + ", filterproductid=" + filterproductid
+				+ ", assigneename=" + assigneename + ", productid=" + productid + ", fromdate=" + fromdate + ", todate="
+				+ todate + ", billdate=" + billdate + ", challanid=" + challanid + ", issueitem=" + issueitem
+				+ ", receiveitem=" + receiveitem + ", receivedueitem=" + receivedueitem + ", paiditem=" + paiditem
+				+ ", paiditemdue=" + paiditemdue + "]";
+	}
+public String filtername,filterproductid,assigneename,productid;
 public Date fromdate,todate,billdate;
-public int challanid,productid,issueitem,receiveitem,receivedueitem,paiditem,paiditemdue;
+public int challanid,issueitem,receiveitem,receivedueitem,paiditem,paiditemdue;
 public String getFiltername() {
 	return filtername;
 }
@@ -30,6 +38,19 @@ public Date getFromdate() {
 public void setFromdate(Date fromdate) {
 	this.fromdate = fromdate;
 }
+public SortAndFilterBean(String assigneename, Date billdate, int challanid, String productid, int issueitem,
+		int receiveitem, int receivedueitem, int paiditem, int paiditemdue) {
+	super();
+	this.assigneename = assigneename;
+	this.billdate = billdate;
+	this.challanid = challanid;
+	this.productid = productid;
+	this.issueitem = issueitem;
+	this.receiveitem = receiveitem;
+	this.receivedueitem = receivedueitem;
+	this.paiditem = paiditem;
+	this.paiditemdue = paiditemdue;
+}
 public Date getTodate() {
 	return todate;
 }
@@ -48,10 +69,10 @@ public int getChallanid() {
 public void setChallanid(int challanid) {
 	this.challanid = challanid;
 }
-public int getProductid() {
+public String getProductid() {
 	return productid;
 }
-public void setProductid(int productid) {
+public void setProductid(String productid) {
 	this.productid = productid;
 }
 public int getIssueitem() {
