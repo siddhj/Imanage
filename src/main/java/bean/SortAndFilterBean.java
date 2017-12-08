@@ -38,8 +38,22 @@ public Date getFromdate() {
 public void setFromdate(Date fromdate) {
 	this.fromdate = fromdate;
 }
+public int pastreceive,pastpaid;
+
+public int getPastreceive() {
+	return pastreceive;
+}
+public void setPastreceive(int pastreceive) {
+	this.pastreceive = pastreceive;
+}
+public int getPastpaid() {
+	return pastpaid;
+}
+public void setPastpaid(int pastpaid) {
+	this.pastpaid = pastpaid;
+}
 public SortAndFilterBean(String assigneename, Date billdate, int challanid, String productid, int issueitem,
-		int receiveitem, int receivedueitem, int paiditem, int paiditemdue) {
+		int receiveitem, int receivedueitem, int paiditem, int paiditemdue,int pastreceive,int pastpaid) {
 	super();
 	this.assigneename = assigneename;
 	this.billdate = billdate;
@@ -50,6 +64,8 @@ public SortAndFilterBean(String assigneename, Date billdate, int challanid, Stri
 	this.receivedueitem = receivedueitem;
 	this.paiditem = paiditem;
 	this.paiditemdue = paiditemdue;
+	this.pastreceive=pastreceive;
+	this.pastpaid=pastpaid;
 }
 public Date getTodate() {
 	return todate;

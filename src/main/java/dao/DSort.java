@@ -42,7 +42,7 @@ public class DSort {
 		System.out.println(resultset.getInt("c.ChallanID"));
 		filterlist.add(new SortAndFilterBean(resultset.getString("a.First_Name"),resultset.getDate("c.BillDateType"),resultset.getInt("c.ChallanID"),
 				resultset.getString("ProductID"),resultset.getInt("c.Issue"),resultset.getInt("c.Receive"),resultset.getInt("c.Due"),resultset.getInt("c.Paid"),
-				resultset.getInt("c.Issue")-resultset.getInt("c.Paid")));
+				resultset.getInt("c.Issue")-resultset.getInt("c.Paid"),resultset.getInt("PastReceive"),resultset.getInt("PastPaid")));
 
 	}
 	filterlist.forEach(c->{System.out.println(c);});

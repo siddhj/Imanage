@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane prefHeight="467.0" prefWidth="758.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="ui.ChallanDetailController">
+   <children>
+      <BorderPane layoutX="-8.0" prefHeight="467.0" prefWidth="767.0">
+         <center>
+            <ScrollPane prefHeight="467.0" prefWidth="767.0" BorderPane.alignment="CENTER">
+               <content>
+                  <TableView fx:id="challandetailtableview" prefHeight="467.0" prefWidth="767.0">
+                    <columns>
+                      <TableColumn fx:id="referchallanidcolumn" prefWidth="90.0" text="ReferChallanID" />
+                      <TableColumn fx:id="challanidcolumn" prefWidth="60.0" text="ChallanID" />
+                        <TableColumn fx:id="assigneenamecolumn" prefWidth="112.0" text="Assignee Name" />
+                        <TableColumn fx:id="productidcolumn" prefWidth="74.0" text="Product ID" />
+                        <TableColumn fx:id="issuecolumn" prefWidth="60.0" text="Issue" />
+                        <TableColumn fx:id="receivecolumn" prefWidth="93.0" text="Receive" />
+                        <TableColumn fx:id="paidcolumn" prefWidth="60.0" text="Paid" />
+                        <TableColumn fx:id="billdatecolumn" prefWidth="104.0" text="Bill Date" />
+                    </columns>
+                  </TableView>
+               </content>
+            </ScrollPane>
+         </center>
+         <bottom>
+            <Button fx:id="closebutton" mnemonicParsing="false" onAction="#closeScreen" text="Close" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: linear-gradient(#d6eeff, #ffffff);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SortAndFilterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: linear-gradient(#d6eeff, #ffffff);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SortAndFilterController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -173,6 +173,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
+                  <Button fx:id="exploreselectchallan" mnemonicParsing="false" onAction="#getChallanDetail" text="Button" />
                </children>
             </HBox>
          </bottom>
@@ -190,6 +191,8 @@
                         <TableColumn fx:id="receiveduecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Receive Due" />
                         <TableColumn fx:id="paidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text=" Paid Qty" />
                         <TableColumn fx:id="paidduecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Paid Due" />
+                        <TableColumn fx:id="pastreceivecolumn" prefWidth="75.0" text="Past Receive" />
+                        <TableColumn fx:id="pastpaidcolumn" prefWidth="75.0" text="Past Paid" />
                      </columns>
                   </TableView>
                   <ScrollBar orientation="VERTICAL" />

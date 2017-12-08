@@ -2,7 +2,9 @@ package utility;
 
 import bean.Assignee;
 import bean.Chalan;
+import bean.ChallanDetailBean;
 import bean.PopUpChallan;
+import dao.DChalan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -115,8 +117,19 @@ public final class UTable {
 	public static Stage getStage() {
 		return stage;
 	}
+
+
 	public static void setStage(Stage stage) {
 		UTable.stage = stage;
+	}
+	
+	public static ObservableList<ChallanDetailBean> challandetaillist = FXCollections.observableArrayList();
+	public static ObservableList<ChallanDetailBean> getChallandetaillist() {
+		return challandetaillist;
+	}
+
+	public static void setChallandetaillist(ObservableList<ChallanDetailBean> challandetaillist) {
+		UTable.challandetaillist = challandetaillist;
 	}
 
 }

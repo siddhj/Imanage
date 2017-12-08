@@ -13,6 +13,7 @@ import java.util.Date;
 import com.ListTables;
 
 import bean.Chalan;
+import bean.ChallanDetailBean;
 import bean.PopUpChallan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -195,4 +196,29 @@ public class DChalan {
 			}
 		}
 	}
+
+	public ObservableList<ChallanDetailBean> logChallanDataLoad(int challanid) throws SQLException, IOException
+	{
+		ListTables chalandata = new ListTables();
+		Connection connection = chalandata.returnConnection();
+		String query = "Select l.ReferChallanID,l.ChallanID,l.AssigneeID,l.ProductID,l.Issue,l.Receive,l.Paid,l.BillDate,l.BillTimeStamp,"
+				+ "a.First_Name from challanlog as l join assignee as a on l.AssigneeID = a.AssigneeID where l.ReferChallanID = ?";
+		PreparedStatement stmt = connection.prepareStatement(query);
+		stmt.setInt(1,challanid);
+
+		ResultSet resultset = stmt.executeQuery();
+
+		ObservableList<ChallanDetailBean> list = FXCollections.observableArrayList();
+//		String assigneename, String productid, Date billdate, int referchallanid, int challanid,
+//		int issueitem, int receiveitem, int paiditem
+		
+		while (resultset.next()) {
+			list.add(new ChallanDetailBean(resultset.getString("a.First_Name"),resultset.getString("l.ProductID")
+					,resultset.getDate("l.BillDate"),resultset.getInt("l.ReferChallanID"),resultset.getInt("l.ChallanID")
+					,resultset.getInt("Issue"),resultset.getInt("Receive"),resultset.getInt("Paid")));
+		}
+		return list;
+	}
+
 }
+
