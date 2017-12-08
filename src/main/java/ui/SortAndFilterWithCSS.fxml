@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: linear-gradient(#d6eeff, #ffffff);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SortAndFilterController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <VBox alignment="TOP_CENTER" style="-fx-border-width: 0 4 2 4; -fx-border-color: #39729b;" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar prefHeight="27.0" style="-fx-background-color: #39729b;" VBox.vgrow="ALWAYS">
+                     <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Close" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Delete" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="About" />
+                           </items>
+                        </Menu>
+                     </menus>
+                  </MenuBar>
+                  <HBox alignment="TOP_CENTER" style="-fx-border-width: 0 0 4 0; -fx-border-color: #39729b;" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="New Challan" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="60.0" right="31.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="64.0" right="64.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Product ID" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="31.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="69.0" right="69.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Date" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="31.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="89.0" right="89.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Assignee" textFill="WHITE">
+                           <padding>
+                              <Insets left="72.0" right="72.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                  </HBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="90.0" prefWidth="1016.0">
+                     <children>
+                        <Label text="Sort &amp; Filter" textFill="#0c3c60">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Name" textFill="#0c3c60">
+                                 <HBox.margin>
+                                    <Insets right="16.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="assigneenamecombobox" prefWidth="150.0" />
+                              <Label  text="Product ID" textFill="#0c3c60">
+                                 <HBox.margin>
+                                    <Insets left="32.0" right="16.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="productidcombobox" prefWidth="150.0" />
+                              <Label  text="Date From: " textFill="#0c3c60">
+                                 <HBox.margin>
+                                    <Insets left="32.0" right="16.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="datefrom" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;" />
+                              <Label  text="To:" textFill="#0c3c60">
+                                 <HBox.margin>
+                                    <Insets left="32.0" right="16.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="dateto" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="20.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </top>
+         <bottom>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="filterdata" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getFilterDataParameter" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #0078d2;" text="search" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="clearbutton" mnemonicParsing="false" onAction="#clearFilterField" text="clear">
+                     <HBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <HBox alignment="CENTER" BorderPane.alignment="TOP_CENTER">
+               <children>
+                  <TableView fx:id="filterandsorttable" HBox.hgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="challanidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="ChallanID" />
+                        <TableColumn fx:id="billdatecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="BillDate" />
+                        <TableColumn fx:id="namecolumn" maxWidth="-1.0" minWidth="200.0" prefWidth="-1.0" text="Assignee Name" />
+                        <TableColumn fx:id="productidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Product ID" />
+                        <TableColumn fx:id="issuecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Issue Qty" />
+                        <TableColumn fx:id="receivecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Receive Qty" />
+                        <TableColumn fx:id="receiveduecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Receive Due" />
+                        <TableColumn fx:id="paidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text=" Paid Qty" />
+                        <TableColumn fx:id="paidduecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Paid Due" />
+                     </columns>
+                  </TableView>
+                  <ScrollBar orientation="VERTICAL" />
+               </children>
+            </HBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
