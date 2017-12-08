@@ -74,4 +74,52 @@ public class Notification {
 		note.showInformation();
 	}
 	
+	public static void invalidInput(){
+		Notifications note = Notifications.create()
+				.title("Invalid Input")
+				.text("Value Entered is Invalid")
+				.graphic(null)
+				.hideAfter(Duration.seconds(5))
+				.position(Pos.CENTER)
+				.onAction(new EventHandler<ActionEvent>(){
+					@Override
+					public void handle(ActionEvent event) {
+				System.out.println("called");		
+					}
+				});
+		note.showInformation();
+	}
+	
+	public static void invalidInputName(){
+		Notifications note = Notifications.create()
+				.title("Invalid Input")
+				.text("Invalid Assignee Name Entered")
+				.graphic(null)
+				.hideAfter(Duration.seconds(5))
+				.position(Pos.CENTER)
+				.onAction(new EventHandler<ActionEvent>(){
+					@Override
+					public void handle(ActionEvent event) {
+				System.out.println("called");		
+					}
+				});
+		note.showInformation();
+	}
+	
+	public static void invalidInputProductID(){
+		Notifications note = Notifications.create()
+				.title("Invalid Input")
+				.text("Invalid ProductID value entered")
+				.graphic(null)
+				.hideAfter(Duration.seconds(5))
+				.position(Pos.CENTER)
+				.onAction(new EventHandler<ActionEvent>(){
+					@Override
+					public void handle(ActionEvent event) {
+				System.out.println("called");		
+					}
+				});
+		note.showInformation();
+	}
+	
 }

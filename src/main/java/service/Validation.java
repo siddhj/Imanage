@@ -2,6 +2,8 @@ package service;
 
 import java.time.LocalDate;
 
+import javafx.collections.ObservableList;
+
 public class Validation {
 	public static String nullVarifierStringForDao(String valuetocheck) {
 		String defaultvalue = "";
@@ -27,6 +29,26 @@ public class Validation {
 			defaultvalue="3099-12-12";
 		}
 		return defaultvalue;
+	}
+	
+	public static boolean parentListNameValidation(ObservableList<String> namelist,String assigneename)
+	{
+		if(namelist.contains(assigneename))
+		{
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public static boolean parentListProductIDValidation(ObservableList<String> productlist,String productid)
+	{
+		if(productlist.contains(productid))
+		{
+			return true;
+		}
+		return false;
+		
 	}
 
 	

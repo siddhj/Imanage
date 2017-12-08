@@ -22,9 +22,11 @@ import bean.Chalan;
 import bean.PopUpChallan;
 import dao.DChalan;
 import dao.DLoader;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -37,12 +39,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import service.MultiScreen;
 import service.Notification;
+import service.Validation;
 import utility.UTable;
 
 public class MainPageController implements MultiScreen {
@@ -125,7 +129,7 @@ public class MainPageController implements MultiScreen {
 
 		});
 	}
-
+	ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
 	// TableColumn<Chalan, Integer> receiveitem = new TableColumn<Chalan,
 	// Integer>("Product");
 	//ObservableList<Chalan> listFromDb = FXCollections.observableArrayList();
@@ -174,10 +178,25 @@ public class MainPageController implements MultiScreen {
 		// newchalantable.getColumns().addAll(receiveitem);
 
 		receiveitemcolumn.setEditable(true);
-		ObservableList<ObservableList<String>> parentlist = new DLoader().intialLoader();
+		 parentlist = new DLoader().intialLoader();
 		TextFields.bindAutoCompletion(assigneename, parentlist.get(1));
 		TextFields.bindAutoCompletion(productidtext, parentlist.get(0));
 
+		
+		issuetext.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+			  @Override public void handle(KeyEvent keyEvent) {
+			    if (!"0123456789".contains(keyEvent.getCharacter())) {
+			      keyEvent.consume();
+			    }
+			  }
+			});
+		paidtext.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+			  @Override public void handle(KeyEvent keyEvent) {
+			    if (!"0123456789".contains(keyEvent.getCharacter())) {
+			      keyEvent.consume();
+			    }
+			  }
+			});
 	}
 
 	public ObservableList<Chalan> getData() {
@@ -195,13 +214,27 @@ public class MainPageController implements MultiScreen {
 	void saveChalan(ActionEvent event) {
 		String name = assigneename.getText();
 		int AssigneeID = new MicroService().assigneeIDRetrieve(name);
-		ObservableList<PopUpChallan> challan = UTable.popupchallantableviewdata;
-		
-		System.out.println(productidtext.getText()+"this is product id");
+	
+		if(!Validation.parentListNameValidation(parentlist.get(1), assigneename.getText()))
+		{
+			Notification.invalidInputName();
+			return;
+		}
+		if(!Validation.parentListProductIDValidation(parentlist.get(0),productidtext.getText()))
+		{
+			Notification.invalidInputProductID();
+			return;
+		}
+		try{
 		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()),0,
 				Integer.parseInt(issuetext.getText()), Integer.parseInt(paidtext.getText()), AssigneeID,
 				UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()));
+		
 		newchalantable.getItems().add(chalan);
+		}
+		catch(NumberFormatException E){
+		Notification.invalidInput();	
+		}
 		productidtext.setText("");
 		issuetext.setText("");
 		receivetext.setText("");
@@ -376,7 +409,7 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	void issueText(ActionEvent event) {
-
+System.out.println("hello");
 	}
 
 	@FXML
