@@ -27,7 +27,6 @@ public class DChalan {
 	public void chalanDataInsert(ObservableList<Chalan> chalanlist) throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
-		Statement statement = connection.createStatement();
 		PreparedStatement prepare = connection.prepareStatement(
 				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate) " + "values(?,?,?,?,?,?,?,?,?,?)");
 		Date date = new Date();

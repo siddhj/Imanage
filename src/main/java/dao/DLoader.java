@@ -4,6 +4,7 @@ import com.ListTables;
 import bean.Assignee;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -52,9 +53,24 @@ public static 	ObservableList<Assignee> assigneelist;
 		assigneelist.add(assign);
 		namelist.add(firstname);
 		}
+		
 		ObservableList<ObservableList<?>> parentlist = FXCollections.observableArrayList();
 		parentlist.add(namelist);
 		parentlist.add(assigneelist);
 		return parentlist;
+	}
+	
+	public boolean licenseVerfication(String macaddress) throws SQLException, IOException{
+		Connection connection = ListTables.returnConnection();
+		String query = "SELECT * FROM license where LicenseKey = ?";
+		PreparedStatement stmt = connection.prepareStatement(query);
+		stmt.setString(1, macaddress);
+		ResultSet resultset = stmt.executeQuery();
+		resultset.beforeFirst();
+		while(resultset.next())
+		{
+			return true;
+		}
+		return false;
 	}
 }

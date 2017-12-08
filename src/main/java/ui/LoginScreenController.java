@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 //import dao.DataUtility;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +14,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import service.LicenseAuthentication;
 import service.MultiScreen;
+import service.Notification;
 import utility.UTable;
 
 /**
@@ -31,7 +34,7 @@ public class LoginScreenController implements Initializable, MultiScreen {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO
+		
 	}
 
 	@FXML
@@ -41,10 +44,12 @@ public class LoginScreenController implements Initializable, MultiScreen {
 	private TextField license;
 
 	@FXML
-	void loginUser(ActionEvent event) {
+	void loginUser(ActionEvent event) throws SQLException, IOException {
 		// System.out.println("inside login button");
 		// mainscreen.setScreen(MultiScreenFramework.mainpage);
-
+		LicenseAuthentication auth = new LicenseAuthentication();
+		boolean licensevalid = auth.macAddressAuthentication();
+		if(licensevalid==true){
 		 FXMLLoader myLoader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
          try {
 			Parent loadScreen = (Parent) myLoader.load();
@@ -54,6 +59,8 @@ public class LoginScreenController implements Initializable, MultiScreen {
          } catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}}else{
+			Notification.licenseValidation();
 		}
 	}
 

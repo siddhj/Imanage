@@ -122,4 +122,19 @@ public class Notification {
 		note.showInformation();
 	}
 	
+	public static void licenseValidation(){
+		Notifications note = Notifications.create()
+				.title("Invalid License")
+				.text("Your do not have valid license. Contact System Admin")
+				.graphic(null)
+				.hideAfter(Duration.seconds(5))
+				.position(Pos.CENTER)
+				.onAction(new EventHandler<ActionEvent>(){
+					@Override
+					public void handle(ActionEvent event) {
+				System.out.println("called");		
+					}
+				});
+		note.showInformation();
+	}
 }

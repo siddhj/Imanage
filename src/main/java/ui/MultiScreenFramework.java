@@ -37,7 +37,7 @@ public class MultiScreenFramework extends Application {
 //        Group root = new Group();
 //        root.getChildren().addAll(mainController);
 //        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SortAndFilterWithCSS.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
         Parent root = (Parent)loader.load();
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
