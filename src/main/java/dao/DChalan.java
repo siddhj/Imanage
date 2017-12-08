@@ -21,14 +21,16 @@ import utility.UTable;
 
 public class DChalan {
 	public static void main(String args[]) throws SQLException, IOException {
-//		new DChalan().chalanDataLoad("21D", 1).forEach(c -> System.out.println(c.getDue()));
+		// new DChalan().chalanDataLoad("21D", 1).forEach(c ->
+		// System.out.println(c.getDue()));
 	}
 
 	public void chalanDataInsert(ObservableList<Chalan> chalanlist) throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
 		PreparedStatement prepare = connection.prepareStatement(
-				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate) " + "values(?,?,?,?,?,?,?,?,?,?)");
+				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate) "
+						+ "values(?,?,?,?,?,?,?,?,?,?)");
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
 
@@ -102,25 +104,29 @@ public class DChalan {
 			// int currentreceive, int currentpaid, String productid, Date
 			// billdate
 
-			list.add(new PopUpChallan( resultset.getInt("AssigneeID"),resultset.getInt("Issue"),resultset.getInt("Receive"), resultset.getInt("Due")
-			,resultset.getInt("Paid"),resultset.getInt("ChallanID"),0,0,resultset.getString("ProductID"),resultset.getDate("BillDate"),resultset.getInt("Issue")-resultset.getInt("Paid")));
+			list.add(new PopUpChallan(resultset.getInt("AssigneeID"), resultset.getInt("Issue"),
+					resultset.getInt("Receive"), resultset.getInt("Due"), resultset.getInt("Paid"),
+					resultset.getInt("ChallanID"), 0, 0, resultset.getString("ProductID"),
+					resultset.getDate("BillDate"), resultset.getInt("Issue") - resultset.getInt("Paid")));
 		}
 		UTable.getStage().close();
 		return list;
 	}
 
-//	public void chalanDataUpdatePopUpWindow(int totalreceive,int totalpaid,int totaldue,int challanid) throws SQLException, IOException {
-	public void chalanDataUpdatePopUpWindow(ObservableList<PopUpChallan> popupchallanlist) throws SQLException, IOException {
+	// public void chalanDataUpdatePopUpWindow(int totalreceive,int
+	// totalpaid,int totaldue,int challanid) throws SQLException, IOException {
+	public void chalanDataUpdatePopUpWindow(ObservableList<PopUpChallan> popupchallanlist)
+			throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
 		PreparedStatement prepare = connection
 				.prepareStatement("update challan set Receive=?,Due=?,Paid=? where ChallanID=?");
-		for(PopUpChallan p:popupchallanlist){
+		for (PopUpChallan p : popupchallanlist) {
 			int totalreceive = MicroService.sumReceiveFromPopUp(p.getPastreceive(), p.getCurrentreceive());
 			int totalpaid = MicroService.sumPaidFromPopUp(p.getPastpaid(), p.getCurrentpaid());
 			int totaldue = MicroService.sumDueFromPopUp(p.getIssue(), totalreceive);
 			int challanid = p.getChallanid();
-			try{
+			try {
 				prepare.setInt(1, totalreceive);
 				prepare.setInt(2, totaldue);
 				prepare.setInt(3, totalpaid);
@@ -130,13 +136,63 @@ public class DChalan {
 				e.printStackTrace();
 			}
 		}
-			try {
-				prepare.executeBatch();
-				connection.commit();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
+		try {
+			prepare.executeBatch();
+			connection.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	
+
+	}
+
+	public int getLastChallanID() throws SQLException, IOException {
+		ListTables chalandata = new ListTables();
+		Connection connection = chalandata.returnConnection();
+		String query = "select ChallanID from challan order by ChallanID desc limit 1";
+		PreparedStatement stmt = connection.prepareStatement(query);
+		int challanid = 0;
+		ResultSet resultset = stmt.executeQuery();
+		while (resultset.next()) {
+			challanid = resultset.getInt("ChallanID");
+		}
+		return challanid;
+	}
+
+	public void chalanLogDataInsert(ObservableList<PopUpChallan> chalanlist, int referchallanid)
+			throws SQLException, IOException {
+		Connection connection = ListTables.returnConnection();
+		connection.setAutoCommit(false);
+		PreparedStatement prepare = connection.prepareStatement(
+				"insert into challanlog(BillDate,ChallanID,ReferChallanID,AssigneeID,ProductID,Issue,Receive,Paid,BillTimeStamp) "
+						+ "values(?,?,?,?,?,?,?,?,?)");
+		Date date = new Date();
+		Object param = new Timestamp(date.getTime());
+
+		for (PopUpChallan c : chalanlist) {
+			if (!(c.getCurrentreceive() == 0 && c.getCurrentpaid() == 0)) {
+				try {
+					prepare.setDate(1, new java.sql.Date(date.getTime()));
+					prepare.setInt(2, c.getChallanid());
+					prepare.setInt(3, referchallanid);
+					prepare.setInt(4, c.getAssigneeid());
+					prepare.setString(5, c.getProductid());
+					prepare.setInt(6, c.getIssue());
+					prepare.setInt(7, c.getCurrentreceive());
+					prepare.setInt(8, c.getCurrentpaid());
+					prepare.setTimestamp(9, new Timestamp(date.getTime()));
+					prepare.addBatch();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				try {
+					prepare.executeBatch();
+					connection.commit();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("no update");
+			}
+		}
+	}
 }

@@ -231,16 +231,17 @@ public class MainPageController implements MultiScreen {
 				UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()));
 		
 		newchalantable.getItems().add(chalan);
-		}
-		catch(NumberFormatException E){
-		Notification.invalidInput();	
-		}
 		productidtext.setText("");
 		issuetext.setText("");
 		receivetext.setText("");
 		// duetext.setText("");
 		paidtext.setText("");
 		assigneenamelabel.setText(assigneename.getText());
+		}
+		catch(NumberFormatException E){
+		Notification.invalidInput();	
+		}
+		
 	}
 
 	MainScreenController screencontroller = new MainScreenController();
