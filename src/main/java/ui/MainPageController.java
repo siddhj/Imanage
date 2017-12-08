@@ -197,6 +197,7 @@ public class MainPageController implements MultiScreen {
 			    }
 			  }
 			});
+		
 	}
 
 	public ObservableList<Chalan> getData() {
@@ -332,7 +333,8 @@ public class MainPageController implements MultiScreen {
     @FXML
     void tabProductIDButton(ActionEvent event) {
     	System.out.println("inside product id select button");
-		 FXMLLoader myLoader = new FXMLLoader(getClass().getResource("SortAndFilter.fxml"));
+    	new ProgressDemo().start();
+    	FXMLLoader myLoader = new FXMLLoader(getClass().getResource("SortAndFilter.fxml"));
          try {
 			Parent loadScreen = (Parent) myLoader.load();
 			Stage primarystage = UTable.getPrimarystage();

@@ -11,11 +11,11 @@ import utility.UTable;
 public class ProgressDemo {
 	public void start() {
 		Stage stage = new Stage();
-		Label label = new Label("Loading....");
+		//Label label = new Label("Loading....");
 		FlowPane root = new FlowPane();
 		root.setPadding(new Insets(10));
 		root.setHgap(10);
-		root.getChildren().addAll(label);
+		//root.getChildren().addAll(label);
 		Scene scene = new Scene(root);
 		stage.setTitle("Data is Loading");
 		stage.setScene(scene);

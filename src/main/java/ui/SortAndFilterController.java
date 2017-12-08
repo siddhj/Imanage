@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Date;
 
+import com.ProgressDemo;
+
 import bean.Chalan;
 import bean.ChallanDetailBean;
 import bean.PopUpChallan;
@@ -43,6 +45,9 @@ public class SortAndFilterController {
     @FXML
     private Button clearbutton;
 
+
+    @FXML
+    private Button tabchallanbutton;
 
     @FXML
     private ComboBox<String> assigneenamecombobox = new ComboBox<>();
@@ -116,7 +121,7 @@ public class SortAndFilterController {
 	
 	assigneenamecombobox.getItems().addAll(parentlist.get(1));
 	productidcombobox.getItems().addAll(parentlist.get(0));
-	
+	UTable.getStage().close();
 	}
 	
     @FXML
@@ -126,6 +131,7 @@ public class SortAndFilterController {
     
     @FXML
     void getFilterDataParameter(ActionEvent event) throws SQLException, IOException {
+    	new ProgressDemo().start();
     	LocalDate fromdate = datefrom.getValue();
     	LocalDate todate = dateto.getValue();
     	String assigneename = assigneenamecombobox.getValue();
@@ -140,6 +146,7 @@ public class SortAndFilterController {
     DSort sort = new DSort();
     ObservableList<SortAndFilterBean> filterlist = sort.getFilterData(sqlstringassigneename.trim(), sqlstringproductid.trim(), sqlstringfromdate, sqlstringtodate);
     filterandsorttable.setItems(filterlist);
+    UTable.getStage().close();
     }
     
     @FXML
@@ -169,5 +176,22 @@ public class SortAndFilterController {
         window.setHeight((bounds.getHeight()*90)/100);
 		window.initStyle(StageStyle.UNDECORATED);
 		window.show();
+    }
+    
+    @FXML
+    void tabChallanButton(ActionEvent event) {
+    	System.out.println("inside product id select button");
+    	new ProgressDemo().start();
+		 FXMLLoader myLoader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
+        try {
+			Parent loadScreen = (Parent) myLoader.load();
+			Stage primarystage = UTable.getPrimarystage();
+			Scene scene = new Scene(loadScreen);
+			primarystage.setScene(scene);
+			UTable.getStage().close();
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

@@ -44,7 +44,7 @@
                   </MenuBar>
                   <HBox alignment="TOP_CENTER" style="-fx-border-width: 0 0 4 0; -fx-border-color: #39729b;" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="New Challan" textFill="WHITE">
+                        <Button fx:id="tabchallanbutton" mnemonicParsing="false" onAction="#tabChallanButton" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="New Challan" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="60.0" right="31.0" />
                            </HBox.margin>
