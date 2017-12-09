@@ -71,31 +71,31 @@ public class SortAndFilterController {
     private TableColumn<SortAndFilterBean, SimpleStringProperty> productidcolumn = new TableColumn<>("Product ID");
     
     @FXML
-    private TableColumn<SortAndFilterBean,LocalDate> billdatecolumn = new TableColumn<>("BillDate");
+    private TableColumn<SortAndFilterBean,LocalDate> billdatecolumn = new TableColumn<>("Bill Date");
 
     @FXML
     private TableColumn<SortAndFilterBean, SimpleStringProperty> namecolumn = new TableColumn<>("Assignee Name");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> issuecolumn = new TableColumn<>("Issue Qty");
+    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> issuecolumn = new TableColumn<>("Qty Issued");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> receivecolumn  = new TableColumn<>("Receive Qty");
+    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> receivecolumn  = new TableColumn<>("Qty Received");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> receiveduecolumn = new TableColumn<>("Receive Due");
+    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> receiveduecolumn = new TableColumn<>("Receive Due Qty");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> paidcolumn  = new TableColumn<>("Paid Qty");
+    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> paidcolumn  = new TableColumn<>("Qty Paid");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> paidduecolumn  = new TableColumn<>("Paid Due");
+    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> paidduecolumn  = new TableColumn<>("Paid Due Qty");
     
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> pastreceivecolumn  = new TableColumn<>("Past Receive");
+    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> pastreceivecolumn  = new TableColumn<>("Already Receive Qty");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> pastpaidcolumn  = new TableColumn<>("Past Paid");
+    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> pastpaidcolumn  = new TableColumn<>("Already Paid Qty");
 //    public String filtername,filterproductid,assigneename;
 //    public Date fromdate,todate,billdate;
 //    public int challanid,productid,issueitem,receiveitem,receivedueitem,paiditem,paiditemdue;
@@ -121,7 +121,7 @@ public class SortAndFilterController {
 	
 	assigneenamecombobox.getItems().addAll(parentlist.get(1));
 	productidcombobox.getItems().addAll(parentlist.get(0));
-	UTable.getStage().close();
+	//UTable.getStage().close();
 	}
 	
     @FXML
@@ -172,9 +172,10 @@ public class SortAndFilterController {
         Rectangle2D bounds = screen.getVisualBounds();
         window.setX(bounds.getMinX()+60); 
         window.setY(bounds.getMinY()+70);
-        window.setWidth((bounds.getWidth()*70)/100);
-        window.setHeight((bounds.getHeight()*90)/100);
-		window.initStyle(StageStyle.UNDECORATED);
+        window.setWidth((bounds.getWidth()*72)/100);
+        window.setHeight((bounds.getHeight()*65)/100);
+        window.setAlwaysOnTop(true);
+        window.initStyle(StageStyle.UNDECORATED);
 		window.show();
     }
     

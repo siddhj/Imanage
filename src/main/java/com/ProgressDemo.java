@@ -17,7 +17,7 @@ public class ProgressDemo {
 		root.setHgap(10);
 		//root.getChildren().addAll(label);
 		Scene scene = new Scene(root);
-		stage.setTitle("Data is Loading");
+		stage.setTitle("Please Wait While Processing");
 		stage.setScene(scene);
 		stage.show();	
 		UTable.setStage(stage);

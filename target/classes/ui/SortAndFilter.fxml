@@ -182,17 +182,17 @@
                <children>
                   <TableView fx:id="filterandsorttable" HBox.hgrow="ALWAYS">
                      <columns>
-                        <TableColumn fx:id="challanidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="ChallanID" />
-                        <TableColumn fx:id="billdatecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="BillDate" />
+                        <TableColumn fx:id="challanidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Challan ID" />
+                        <TableColumn fx:id="billdatecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Bill Date" />
                         <TableColumn fx:id="namecolumn" maxWidth="-1.0" minWidth="200.0" prefWidth="-1.0" text="Assignee Name" />
                         <TableColumn fx:id="productidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Product ID" />
-                        <TableColumn fx:id="issuecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Issue Qty" />
-                        <TableColumn fx:id="receivecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Receive Qty" />
-                        <TableColumn fx:id="receiveduecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Receive Due" />
-                        <TableColumn fx:id="paidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text=" Paid Qty" />
-                        <TableColumn fx:id="paidduecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Paid Due" />
-                        <TableColumn fx:id="pastreceivecolumn" prefWidth="75.0" text="Past Receive" />
-                        <TableColumn fx:id="pastpaidcolumn" prefWidth="75.0" text="Past Paid" />
+                        <TableColumn fx:id="issuecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Qty Issued" />
+                        <TableColumn fx:id="receivecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Qty Received" />
+                        <TableColumn fx:id="receiveduecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Receive Due Qty" />
+                        <TableColumn fx:id="paidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Qty Paid" />
+                        <TableColumn fx:id="paidduecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Paid Due Qty" />
+                        <TableColumn fx:id="pastreceivecolumn" prefWidth="75.0" text="Already Received Qty" />
+                        <TableColumn fx:id="pastpaidcolumn" prefWidth="75.0" text="Already Paid Qty" />
                      </columns>
                   </TableView>
                   <ScrollBar orientation="VERTICAL" />

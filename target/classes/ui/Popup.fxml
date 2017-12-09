@@ -29,7 +29,7 @@
             <TableView fx:id="receiveTable" editable="true" prefHeight="279.0" prefWidth="600.0" style="-fx-border-width: 2 0 2 0; -fx-border-color: #39729b;" HBox.hgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="billdatecolumn" maxWidth="300.0" minWidth="186.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Bill Date" />
-                  <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="160.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Issue Items" />
+                  <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="160.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Qty Issued" />
                </columns>
             </TableView>
             <ScrollBar orientation="VERTICAL" />

@@ -22,10 +22,10 @@ public class ChallanDetailController {
 	    private TableView<ChallanDetailBean> challandetailtableview = new TableView<>();
 
 	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> referchallanidcolumn = new TableColumn<>("ReferChallanID");
+	    private TableColumn<ChallanDetailBean, Integer> referchallanidcolumn = new TableColumn<>("Parent Challan ID");
 
 	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> challanidcolumn = new TableColumn<>("ChallanID");
+	    private TableColumn<ChallanDetailBean, Integer> challanidcolumn = new TableColumn<>("Challan ID");
 
 	    @FXML
 	    private TableColumn<ChallanDetailBean,String> assigneenamecolumn = new TableColumn<>("Assignee Name");
@@ -34,13 +34,13 @@ public class ChallanDetailController {
 	    private TableColumn<ChallanDetailBean,String> productidcolumn = new TableColumn<>("Product ID");
 
 	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> issuecolumn = new TableColumn<>("Issue");
+	    private TableColumn<ChallanDetailBean, Integer> issuecolumn = new TableColumn<>("Qty Issue");
 
 	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> receivecolumn = new TableColumn<>("Receive");
+	    private TableColumn<ChallanDetailBean, Integer> receivecolumn = new TableColumn<>("Qty Receive");
 
 	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> paidcolumn = new TableColumn<>("Paid");
+	    private TableColumn<ChallanDetailBean, Integer> paidcolumn = new TableColumn<>("Qty Paid");
 
 	    @FXML
 	    private TableColumn<ChallanDetailBean, Date> billdatecolumn = new TableColumn<>("Bill Date");

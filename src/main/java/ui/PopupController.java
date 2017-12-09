@@ -33,28 +33,22 @@ import utility.UTable;
 
 public class PopupController {
 
+	private TableColumn<PopUpChallan, Integer> paidcolumn = new TableColumn<>("Qty Paid");
 	private TableColumn<PopUpChallan, Integer> currentpaidcolumn = new TableColumn<>("Current Paid Qty");
-	
 	private TableColumn<PopUpChallan, Integer> pastpaidcolumn = new TableColumn<>("Already Paid Qty");
-
-	private TableColumn<PopUpChallan, Integer> paidcolumn = new TableColumn<>("Paid Qty");
-
 	private TableColumn<PopUpChallan, Integer> pastpaidduecolumn = new TableColumn<>("Paid Qty Due");
 
-	private TableColumn<PopUpChallan, Integer> pastreceivecolumn = new TableColumn<>("Past Receive Qty");
-
+	private TableColumn<PopUpChallan, Integer> receivecolumn = new TableColumn<>("Qty Receive");
+	private TableColumn<PopUpChallan, Integer> pastreceivecolumn = new TableColumn<>("Already Receive Qty");
 	private TableColumn<PopUpChallan, Integer> currentreceivecolumn = new TableColumn<>("Current Receive qty");
-
-	private TableColumn<PopUpChallan, Integer> receivecolumn = new TableColumn<>("Receive Qty");
-
-	private TableColumn<PopUpChallan, Integer> pastduecolumn = new TableColumn<>("Receive Qty Due");
+	private TableColumn<PopUpChallan, Integer> pastduecolumn = new TableColumn<>("Qty Due");
 
 	
 	@FXML
 	private TableView<PopUpChallan> receiveTable = new TableView<>();
 
 	@FXML
-	private TableColumn<PopUpChallan, Integer> issueitemcolumn = new TableColumn<>("Issue Items");
+	private TableColumn<PopUpChallan, Integer> issueitemcolumn = new TableColumn<>("Qty Issued");
 
 	@FXML
 	private TableColumn<PopUpChallan, Date> billdatecolumn = new TableColumn<>("Bill Date");

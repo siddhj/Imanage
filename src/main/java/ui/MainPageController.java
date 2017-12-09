@@ -91,16 +91,16 @@ public class MainPageController implements MultiScreen {
 	private TableColumn<Chalan, String> namecolumn = new TableColumn<>("Name");
 
 	@FXML
-	private TableColumn<Chalan, String> issueitemcolumn = new TableColumn<>("Issue Items");
+	private TableColumn<Chalan, String> issueitemcolumn = new TableColumn<>("Qty Issued");
 
 	@FXML
-	private TableColumn<Chalan, String> receiveitemcolumn = new TableColumn<>("Receive Items");
+	private TableColumn<Chalan, String> receiveitemcolumn = new TableColumn<>("Total Qty Received");
 
 	@FXML
-	private TableColumn<Chalan, String> totalpaidcolumn = new TableColumn<>("Total Paid");
+	private TableColumn<Chalan, String> totalpaidcolumn = new TableColumn<>("Total Qty Paid");
 
 	@FXML
-	private TableColumn<Chalan, String> duecolumn = new TableColumn<>("Due");
+	private TableColumn<Chalan, String> duecolumn = new TableColumn<>("Qty Advance Paid");
 	
 	@FXML
 	private Button removebutton;
@@ -197,6 +197,11 @@ public class MainPageController implements MultiScreen {
 			    }
 			  }
 			});
+		productidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
+		issueitemcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
+		receiveitemcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
+		totalpaidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
+		paidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		
 	}
 

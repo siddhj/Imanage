@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="467.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ChallanDetailController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ChallanDetailController">
    <children>
-      <BorderPane layoutX="-8.0" prefHeight="467.0" prefWidth="767.0">
+      <BorderPane layoutX="-8.0">
          <center>
-            <ScrollPane prefHeight="467.0" prefWidth="767.0" BorderPane.alignment="CENTER">
-               <content>
-                  <TableView fx:id="challandetailtableview" prefHeight="467.0" prefWidth="767.0">
+            <HBox alignment="TOP_CENTER" prefHeight="400.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="challandetailtableview" HBox.hgrow="ALWAYS">
                     <columns>
-                      <TableColumn fx:id="referchallanidcolumn" prefWidth="90.0" text="ReferChallanID" />
-                      <TableColumn fx:id="challanidcolumn" prefWidth="60.0" text="ChallanID" />
-                        <TableColumn fx:id="assigneenamecolumn" prefWidth="112.0" text="Assignee Name" />
-                        <TableColumn fx:id="productidcolumn" prefWidth="74.0" text="Product ID" />
-                        <TableColumn fx:id="issuecolumn" prefWidth="60.0" text="Issue" />
-                        <TableColumn fx:id="receivecolumn" prefWidth="93.0" text="Receive" />
-                        <TableColumn fx:id="paidcolumn" prefWidth="60.0" text="Paid" />
-                        <TableColumn fx:id="billdatecolumn" prefWidth="104.0" text="Bill Date" />
+                      <TableColumn fx:id="referchallanidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="ReferChallanID" />
+                      <TableColumn fx:id="challanidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="ChallanID" />
+                        <TableColumn fx:id="assigneenamecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Assignee Name" />
+                        <TableColumn fx:id="productidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Product ID" />
+                        <TableColumn fx:id="issuecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Issue" />
+                        <TableColumn fx:id="receivecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Receive" />
+                        <TableColumn fx:id="paidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Paid" />
+                        <TableColumn fx:id="billdatecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Bill Date" />
                     </columns>
                   </TableView>
-               </content>
-            </ScrollPane>
+               </children>
+            </HBox>
          </center>
          <bottom>
-            <Button fx:id="closebutton" mnemonicParsing="false" onAction="#closeScreen" text="Close" BorderPane.alignment="CENTER" />
+            <HBox alignment="TOP_CENTER" prefHeight="50.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="closebutton" mnemonicParsing="false" onAction="#closeScreen" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #0078d2;" text="Close" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets top="20.0" />
+               </BorderPane.margin>
+            </HBox>
          </bottom>
       </BorderPane>
    </children>

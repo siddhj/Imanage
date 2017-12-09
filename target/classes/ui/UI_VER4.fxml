@@ -330,12 +330,12 @@
                      <children>
                         <TableView fx:id="newchalantable" maxWidth="1.7976931348623157E308" prefHeight="520.0" HBox.hgrow="ALWAYS">
                           <columns>
-                              <TableColumn fx:id="productidcolumn" prefWidth="122.0" text="Product ID" />
-                            <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="88.0" prefWidth="102.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Issue Items" />
-                            <TableColumn fx:id="receiveitemcolumn" maxWidth="300.0" minWidth="140.0" prefWidth="140.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Total Receive Items" />
+                              <TableColumn fx:id="productidcolumn" maxWidth="150.0" prefWidth="150.0" text="Product ID" />
+                            <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="88.0" prefWidth="102.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Qty Issued" />
+                            <TableColumn fx:id="receiveitemcolumn" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Total Qty Received" />
                               <TableColumn fx:id="duecolumn" maxWidth="300.0" minWidth="148.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Due Items" visible="false" />
-                              <TableColumn fx:id="totalpaidcolumn" prefWidth="153.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Total Paid" />
-                              <TableColumn fx:id="paidcolumn" maxWidth="300.0" minWidth="116.0" prefWidth="116.0" text="Advance Paid" />
+                              <TableColumn fx:id="totalpaidcolumn" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Total Qty Paid" />
+                              <TableColumn fx:id="paidcolumn" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" text="Qty Advance Paid" />
                           </columns>
                            <HBox.margin>
                               <Insets />

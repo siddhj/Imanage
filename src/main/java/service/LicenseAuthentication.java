@@ -28,6 +28,7 @@ public class LicenseAuthentication {
 			for (int i = 0; i < mac.length; i++) {
 				sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
 			}
+			System.out.println(sb.toString());
 			return new DLoader().licenseVerfication(sb.toString());
 		} catch (UnknownHostException e) {
 
