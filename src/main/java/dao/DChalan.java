@@ -25,6 +25,10 @@ public class DChalan {
 		// new DChalan().chalanDataLoad("21D", 1).forEach(c ->
 		// System.out.println(c.getDue()));
 	}
+	
+//	private DChalan(){
+//		
+//	}
 
 	public void chalanDataInsert(ObservableList<Chalan> chalanlist) throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();
