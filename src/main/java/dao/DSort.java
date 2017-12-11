@@ -30,7 +30,7 @@ public class DSort {
 	stmt.setString(1, "%"+assigneename);
 	stmt.setString(2, "%"+productid);
 	stmt.setString(3, fromdate);
-	stmt.setString(4, todate);
+	stmt.setString(4, "3099-12-12");
 
 	ResultSet resultset = stmt.executeQuery();
 

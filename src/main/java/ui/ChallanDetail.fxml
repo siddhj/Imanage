@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,19 +11,19 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ChallanDetailController">
    <children>
-      <BorderPane layoutX="-8.0">
+      <BorderPane layoutX="0.0">
          <center>
             <HBox alignment="TOP_CENTER" prefHeight="400.0" BorderPane.alignment="CENTER">
                <children>
                   <TableView fx:id="challandetailtableview" prefHeight="400.0" prefWidth="975.0" HBox.hgrow="ALWAYS">
                     <columns>
-                      <TableColumn fx:id="referchallanidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="ReferChallanID" />
-                      <TableColumn fx:id="challanidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="ChallanID" />
+                      <TableColumn fx:id="referchallanidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Refer Challan ID" />
+                      <TableColumn fx:id="challanidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Challan ID" />
                         <TableColumn fx:id="assigneenamecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Assignee Name" />
                         <TableColumn fx:id="productidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Product ID" />
-                        <TableColumn fx:id="issuecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Issue" />
-                        <TableColumn fx:id="receivecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Receive" />
-                        <TableColumn fx:id="paidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Paid" />
+                        <TableColumn fx:id="issuecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text=" Qty Issued" />
+                        <TableColumn fx:id="receivecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Qty Received" />
+                        <TableColumn fx:id="paidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Qty Paid" />
                         <TableColumn fx:id="billdatecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Bill Date" />
                     </columns>
                   </TableView>
@@ -48,12 +47,6 @@
                </BorderPane.margin>
             </HBox>
          </bottom>
-         <left>
-            <Separator orientation="VERTICAL" prefHeight="400.0" prefWidth="53.0" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <Separator orientation="VERTICAL" prefHeight="400.0" prefWidth="12.0" BorderPane.alignment="CENTER" />
-         </right>
       </BorderPane>
    </children>
 </AnchorPane>
