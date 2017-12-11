@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 public class DataManipulation {
 	public void getPopUpWindowData(ObservableList<Chalan> mainpagechallanlist) throws SQLException, IOException {
 
-		DChalan chalan = new DChalan();
+		DChalan chalan = DChalan.getSingeletonInstance();
 		chalan.chalanDataInsert(mainpagechallanlist);
 		int challanid = chalan.getLastChallanID();
 		for (Chalan c : mainpagechallanlist) {

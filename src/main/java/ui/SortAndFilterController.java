@@ -160,7 +160,7 @@ public class SortAndFilterController {
     void getChallanDetail(ActionEvent event) throws SQLException, IOException {
     	SortAndFilterBean selectedchallan = filterandsorttable.getSelectionModel().getSelectedItem();
     	int challanid = selectedchallan.getChallanid();
-    	ObservableList<ChallanDetailBean> challandetaillist = new DChalan().logChallanDataLoad(challanid);
+    	ObservableList<ChallanDetailBean> challandetaillist = DChalan.getSingeletonInstance().logChallanDataLoad(challanid);
     	UTable.setChallandetaillist(challandetaillist);
     	
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("ChallanDetail.fxml"));

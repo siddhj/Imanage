@@ -26,9 +26,15 @@ public class DChalan {
 		// System.out.println(c.getDue()));
 	}
 	
-//	private DChalan(){
-//		
-//	}
+	private static final DChalan singletonchalan = new DChalan();
+
+	private DChalan(){
+	}
+
+	public static DChalan getSingeletonInstance(){
+	return singletonchalan;
+	}
+
 
 	public void chalanDataInsert(ObservableList<Chalan> chalanlist) throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();

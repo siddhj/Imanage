@@ -293,7 +293,7 @@ public class MainPageController implements MultiScreen {
 		new ProgressDemo().start();
 		int assigneeid = new MicroService().assigneeIDRetrieve(assigneename.getText());
 		String productid = productidtext.getText();
-		ObservableList<PopUpChallan> chalanlist = new DChalan().chalanDataLoad(productid, assigneeid);
+		ObservableList<PopUpChallan> chalanlist = DChalan.getSingeletonInstance().chalanDataLoad(productid, assigneeid);
 		// setting chalanlist soon will be deprecated
 		UTable.setChallanlist(chalanlist);
 		// for loading receive data back
