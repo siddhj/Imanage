@@ -202,7 +202,6 @@ public class MainPageController implements MultiScreen {
 		receiveitemcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		totalpaidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		paidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
-		
 	}
 
 	public ObservableList<Chalan> getData() {

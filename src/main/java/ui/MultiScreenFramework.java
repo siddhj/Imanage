@@ -41,7 +41,6 @@ public class MultiScreenFramework extends Application {
         Parent root = (Parent)loader.load();
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
-        
         Scene scene = new Scene(root);
         primaryStage.setMaximized(true);
         UTable.setPrimarystage(primaryStage);

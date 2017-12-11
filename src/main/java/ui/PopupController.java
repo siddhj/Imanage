@@ -121,7 +121,7 @@ public class PopupController {
 	void saveReceiveData(ActionEvent event) throws SQLException, IOException {
 		ObservableList<PopUpChallan> chalan = receiveTable.getItems();
 		chalan.forEach(c -> {
-			System.out.println(c.getCurrentreceive() + "this sis the current reveive");
+			System.out.println(c.getCurrentreceive()+"::"+c.getCurrentpaid() + "this sis the current reveive");
 		});
 		UTable.setChallanlist(chalan);
 		MicroService service = new MicroService();
