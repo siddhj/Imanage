@@ -13,7 +13,19 @@ import javafx.collections.ObservableList;
 
 public class DLoader {
 public static 	ObservableList<Assignee> assigneelist;
-	public ObservableList<ObservableList<String>> intialLoader() throws SQLException, IOException{
+
+private static final DLoader singletonloader = new DLoader();
+
+private DLoader(){
+}
+
+public static DLoader getSingeletonInstanceOfLoader(){
+return singletonloader;
+}
+
+
+
+public ObservableList<ObservableList<String>> intialLoader() throws SQLException, IOException{
 		Connection connection = ListTables.returnConnection();
 		ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
 		ObservableList<ObservableList<?>>	assigneeloaderlist = assigneeLoader(connection);

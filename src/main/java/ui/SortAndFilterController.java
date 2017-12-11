@@ -117,7 +117,7 @@ public class SortAndFilterController {
 	namecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleStringProperty>("assigneename"));
 	pastreceivecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastreceive"));
 	pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastpaid"));
-	ObservableList<ObservableList<String>> parentlist = new DLoader().intialLoader();
+	ObservableList<ObservableList<String>> parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
 	
 	assigneenamecombobox.getItems().addAll(parentlist.get(1));
 	productidcombobox.getItems().addAll(parentlist.get(0));

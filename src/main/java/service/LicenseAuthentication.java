@@ -29,7 +29,7 @@ public class LicenseAuthentication {
 				sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
 			}
 			System.out.println(sb.toString());
-			return new DLoader().licenseVerfication(sb.toString());
+			return DLoader.getSingeletonInstanceOfLoader().licenseVerfication(sb.toString());
 		} catch (UnknownHostException e) {
 
 			e.printStackTrace();

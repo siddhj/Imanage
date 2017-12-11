@@ -178,7 +178,7 @@ public class MainPageController implements MultiScreen {
 		// newchalantable.getColumns().addAll(receiveitem);
 
 		receiveitemcolumn.setEditable(true);
-		 parentlist = new DLoader().intialLoader();
+		 parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
 		TextFields.bindAutoCompletion(assigneename, parentlist.get(1));
 		TextFields.bindAutoCompletion(productidtext, parentlist.get(0));
 
