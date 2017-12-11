@@ -1,4 +1,5 @@
-update F_PLANT_ARV_WITH_BUDGET_NEW
-set Repair_Maintenance_Budget = S.Repair_Maintenance_Budget
-from F_PLANT_ARV_WITH_BUDGET_NEW join (select * from F_PLANT_ARV_WITH_BUDGET_NEW_STAGING) S
-on F_PLANT_ARV_WITH_BUDGET_NEW.Plant_Machinary_Business_Unit_Id = S.Plant_Machinary_Business_Unit_Id
+Manifest-Version: 1.0
+Built-By: siddhartha.jain
+Build-Jdk: 1.8.0_131
+Created-By: Maven Integration for Eclipse
+
