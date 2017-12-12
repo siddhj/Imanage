@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PopUpWindowForEditController">
+   <bottom>
+      <Button fx:id="savedata" mnemonicParsing="false" onAction="#saveReceiveData" prefWidth="100.0" style="-fx-background-color: #0078d2;" text="Save" textFill="WHITE" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="15.0" top="15.0" />
+         </BorderPane.margin></Button>
+   </bottom>
+   <center>
+      <HBox alignment="TOP_CENTER" prefHeight="600.0" BorderPane.alignment="TOP_LEFT">
+         <children>
+            <TableView fx:id="receiveTable" editable="true" prefHeight="279.0" prefWidth="600.0" style="-fx-border-width: 2 0 2 0; -fx-border-color: #39729b;" HBox.hgrow="ALWAYS">
+               <columns>
+                  <TableColumn fx:id="billdatecolumn" maxWidth="300.0" minWidth="186.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Bill Date" />
+                  <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="160.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Qty Issued" />
+               </columns>
+            </TableView>
+            <ScrollBar orientation="VERTICAL" />
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </HBox>
+   </center>
+   <top>
+      <HBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="146.0">
+               <children>
+                  <Label prefHeight="47.0" prefWidth="49.0" text="Issue" />
+                  <TextField fx:id="issuetext" prefHeight="25.0" prefWidth="91.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="47.0" prefWidth="124.0" text="Advanced Paid" />
+                  <TextField fx:id="advancedpaidtext" prefHeight="25.0" prefWidth="83.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="145.0">
+               <children>
+                  <Label prefHeight="47.0" prefWidth="124.0" text="Total Receive" />
+                  <TextField fx:id="receivetext" prefHeight="25.0" prefWidth="108.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="147.0">
+               <children>
+                  <Label prefHeight="44.0" prefWidth="59.0" text="Product ID" />
+                  <TextField fx:id="productidtext" prefHeight="25.0" prefWidth="80.0" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

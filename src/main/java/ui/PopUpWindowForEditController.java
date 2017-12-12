@@ -4,35 +4,26 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
 
-import bean.ChallanDetailBean;
+import bean.Chalan;
 import bean.PopUpChallan;
-import dao.DChalan;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import service.EditingCell;
 import service.EditingPaid;
 import service.MicroService;
 import utility.UTable;
 
-public class PopupController {
-
+public class PopUpWindowForEditController {
 	private TableColumn<PopUpChallan, Integer> paidcolumn = new TableColumn<>("Qty Paid");
 	private TableColumn<PopUpChallan, Integer> currentpaidcolumn = new TableColumn<>("Current Paid Qty");
 	private TableColumn<PopUpChallan, Integer> pastpaidcolumn = new TableColumn<>("Already Paid Qty");
@@ -54,6 +45,18 @@ public class PopupController {
 
 	@FXML
 	private Button savedata;
+
+	@FXML
+	private TextField issuetext;
+
+	@FXML
+	private TextField advancedpaidtext;
+
+	@FXML
+	private TextField receivetext;
+
+	@FXML
+	private TextField productidtext;
 
 	@FXML
 	public void initialize() throws SQLException, IOException {
@@ -106,30 +109,59 @@ public class PopupController {
 		receiveTable.setEditable(true);
 		receiveTable.getColumns().addAll(receivecolumn, paidcolumn);
 
-		ObservableList<PopUpChallan> chalanlist = UTable.getChallanlist();
+		chalanlist = UTable.getChallanlist();
+		selectedchallanfrommainpage = UTable.getSelectedchallanfrommainpage();
+		mainpagechalanlist = UTable.getMainpagechalanlist();
+		indexofselectedrow = UTable.getIndexofselectedrow();
+		
 		receiveTable.setItems(chalanlist);
+		issuetext.setText(String.valueOf(selectedchallanfrommainpage.getIssue()));
+		advancedpaidtext.setText(String.valueOf(selectedchallanfrommainpage.getPaid()));
+		receivetext.setText(String.valueOf(selectedchallanfrommainpage.getTotalreceive()));
+		productidtext.setText(selectedchallanfrommainpage.getProductid());
+
 		UTable.setPopuptableview(receiveTable);
 	}
 
+	ObservableList<PopUpChallan> chalanlist;
+	Chalan selectedchallanfrommainpage;
+	ObservableList<Chalan> mainpagechalanlist;
+	int indexofselectedrow;
+
+	
 	@FXML
 	void saveReceiveData(ActionEvent event) throws SQLException, IOException {
 		ObservableList<PopUpChallan> chalan = receiveTable.getItems();
 		chalan.forEach(c -> {
 			System.out.println(c.getCurrentreceive() + "::" + c.getCurrentpaid() + "this sis the current reveive");
 		});
+	
 		UTable.setChallanlist(chalan);
 		MicroService service = new MicroService();
 
 		// filling the main window controller
 		int receive = service.getTotalReceiveFromPopUp(receiveTable.getItems());
-		System.out.println(receive + "this is the receieve");
 		int paid = service.getTotalPaidFromPopUp(receiveTable.getItems());
-		UTable.setTotalpaid(paid);
-		TextField receivetext = UTable.getReceiveTextField();
-		receivetext.setText(String.valueOf(receive));
-		UTable.setPopupchallantableviewdata(chalan);
+
+		System.out.println(receive+"::"+paid+"**"+selectedchallanfrommainpage);
+		
+		selectedchallanfrommainpage.setIssue(Integer.parseInt(issuetext.getText()));
+		selectedchallanfrommainpage.setPaid(Integer.parseInt(advancedpaidtext.getText()));
+		selectedchallanfrommainpage.setTotalreceive(receive);
+		selectedchallanfrommainpage.setTotalpaid(paid);
+		selectedchallanfrommainpage.setPopupchallantableview(receiveTable.getItems());
+		
+		UTable.getMainpagetableview().getColumns().get(1).setVisible(false);
+		UTable.getMainpagetableview().getColumns().get(1).setVisible(true);
+		UTable.getMainpagetableview().getColumns().get(2).setVisible(false);
+		UTable.getMainpagetableview().getColumns().get(2).setVisible(true);
+		UTable.getMainpagetableview().getColumns().get(3).setVisible(false);
+		UTable.getMainpagetableview().getColumns().get(3).setVisible(true);
+		UTable.getMainpagetableview().getColumns().get(4).setVisible(false);
+		UTable.getMainpagetableview().getColumns().get(4).setVisible(true);
+
 		Stage stage = (Stage) savedata.getScene().getWindow();
 		stage.close();
 	}
-
+	
 }

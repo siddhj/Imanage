@@ -56,9 +56,9 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private Button exlporeselection;
-	
-    @FXML
-    private Button tabproductidbutton;
+
+	@FXML
+	private Button tabproductidbutton;
 
 	@FXML
 	private Label productidlabel;
@@ -79,7 +79,7 @@ public class MainPageController implements MultiScreen {
 	private TextField duetext;
 
 	@FXML
-	private TextField paidtext;
+	private TextField advancedpaidtext;
 
 	@FXML
 	private TableView<Chalan> newchalantable = new TableView<>();
@@ -101,7 +101,7 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private TableColumn<Chalan, String> duecolumn = new TableColumn<>("Qty Advance Paid");
-	
+
 	@FXML
 	private Button removebutton;
 
@@ -120,7 +120,7 @@ public class MainPageController implements MultiScreen {
 		ObservableList<Chalan> allchalanfromtableview = newchalantable.getItems();
 		System.out.println("inside remove row");
 		allchalanfromtableview.forEach(c -> {
-			System.out.println(c.getTotalpaid()+""+c.getTotalreceive()+"::"+chalan.getProductid());
+			System.out.println(c.getTotalpaid() + "" + c.getTotalreceive() + "::" + chalan.getProductid());
 			if (c.getProductid() == chalan.getProductid()) {
 				allchalanfromtableview.remove(c);
 			} else {
@@ -129,40 +129,12 @@ public class MainPageController implements MultiScreen {
 
 		});
 	}
-	ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
-	// TableColumn<Chalan, Integer> receiveitem = new TableColumn<Chalan,
-	// Integer>("Product");
-	//ObservableList<Chalan> listFromDb = FXCollections.observableArrayList();
 
+	ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
 	// why to create instance table column instead of intializing in intialize()
 	// method
 	@FXML
 	public void initialize() throws SQLException, IOException {
-		// receiveitem.setCellValueFactory(new
-		// PropertyValueFactory<Chalan,Integer>("receive"));
-		//
-		// // callback functions are defined on the basis of the column and its
-		// datatype
-		// Callback<TableColumn<Chalan,Integer>, TableCell<Chalan,Integer>>
-		// cellFactory
-		// = new Callback<TableColumn<Chalan,Integer>,
-		// TableCell<Chalan,Integer>>() {
-		// public TableCell<Chalan,Integer> call(TableColumn<Chalan,Integer> p)
-		// {
-		// return new EditingCell();
-		// }
-		// };
-		//
-		// receiveitem.setCellFactory(cellFactory);
-		// receiveitem.setOnEditCommit(new
-		// EventHandler<TableColumn.CellEditEvent<Chalan, Integer>>() {
-		// @Override
-		// public void handle(TableColumn.CellEditEvent<Chalan, Integer> t) {
-		// ((Chalan)
-		// t.getTableView().getItems().get(t.getTablePosition().getRow()))
-		// .setReceive(t.getNewValue());
-		// }
-		// });
 
 		productidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("productid"));
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
@@ -178,36 +150,64 @@ public class MainPageController implements MultiScreen {
 		// newchalantable.getColumns().addAll(receiveitem);
 
 		receiveitemcolumn.setEditable(true);
-		 parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
+		parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
 		TextFields.bindAutoCompletion(assigneename, parentlist.get(1));
 		TextFields.bindAutoCompletion(productidtext, parentlist.get(0));
 
+	
+		/*Text Field Operations*****/
+		issuetext.setDisable(true);
+		advancedpaidtext.setDisable(true);
+		
+		productidtext.setOnKeyReleased(new EventHandler<KeyEvent>(){
+			@Override
+			public void handle(KeyEvent arg0) {
+				System.out.println("this is the value"+productidtext.getText());
+				ObservableList <Chalan> mainpagechalanlist = newchalantable.getItems();
+				for(Chalan C: mainpagechalanlist)
+				{
+					if(C.getProductid().equals(productidtext.getText()))
+					{
+						Notification.mainWindowProductIDAlreadyExist();
+						return;
+					}else{
+						issuetext.setDisable(false);
+						advancedpaidtext.setDisable(false);
+					}
+				}
+			}
+		});
 		
 		issuetext.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
-			  @Override public void handle(KeyEvent keyEvent) {
-			    if (!"0123456789".contains(keyEvent.getCharacter())) {
-			      keyEvent.consume();
-			    }
-			  }
-			});
-		paidtext.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
-			  @Override public void handle(KeyEvent keyEvent) {
-			    if (!"0123456789".contains(keyEvent.getCharacter())) {
-			      keyEvent.consume();
-			    }
-			  }
-			});
+			@Override
+			public void handle(KeyEvent keyEvent) {
+				if (!"0123456789".contains(keyEvent.getCharacter())) {
+					keyEvent.consume();
+				}
+			}
+		});
+		advancedpaidtext.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent keyEvent) {
+				if (!"0123456789".contains(keyEvent.getCharacter())) {
+					keyEvent.consume();
+				}
+			}
+		});
+
+		/*Setting column size in the table*/
 		productidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		issueitemcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		receiveitemcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		totalpaidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		paidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
+
+		newchalantable.getItems().add(new Chalan("a", 1, 0, 1, 1, 1, UTable.getPopupchallantableviewdata(), 2, 1));
+		UTable.setMainpagetableview(newchalantable);
 	}
 
 	public ObservableList<Chalan> getData() {
 		ObservableList<Chalan> list = FXCollections.observableArrayList();
-		// list.add(new Chalan("a","b","c","d","e"));
-		// list.add(new Chalan("f","g","h","i","j"));
 		return list;
 	}
 
@@ -219,34 +219,34 @@ public class MainPageController implements MultiScreen {
 	void saveChalan(ActionEvent event) {
 		String name = assigneename.getText();
 		int AssigneeID = new MicroService().assigneeIDRetrieve(name);
-	
-		if(!Validation.parentListNameValidation(parentlist.get(1), assigneename.getText()))
-		{
+
+		if (!Validation.parentListNameValidation(parentlist.get(1), assigneename.getText())) {
 			Notification.invalidInputName();
 			return;
 		}
-		if(!Validation.parentListProductIDValidation(parentlist.get(0),productidtext.getText()))
-		{
+		if (!Validation.parentListProductIDValidation(parentlist.get(0), productidtext.getText())) {
 			Notification.invalidInputProductID();
 			return;
 		}
-		try{
-		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()),0,
-				Integer.parseInt(issuetext.getText()), Integer.parseInt(paidtext.getText()), AssigneeID,
-				UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()));
-		
-		newchalantable.getItems().add(chalan);
-		productidtext.setText("");
-		issuetext.setText("");
-		receivetext.setText("");
-		// duetext.setText("");
-		paidtext.setText("");
-		assigneenamelabel.setText(assigneename.getText());
+		try {
+			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
+					Integer.parseInt(issuetext.getText()), Integer.parseInt(advancedpaidtext.getText()), AssigneeID,
+					UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(),
+					Integer.parseInt(receivetext.getText()));
+
+			newchalantable.getItems().add(chalan);
+			productidtext.setText("");
+			issuetext.setText("");
+			receivetext.setText("");
+			// duetext.setText("");
+			advancedpaidtext.setText("");
+			assigneenamelabel.setText(assigneename.getText());
+			issuetext.setDisable(true);
+			advancedpaidtext.setDisable(true);
+		} catch (NumberFormatException E) {
+			Notification.invalidInput();
 		}
-		catch(NumberFormatException E){
-		Notification.invalidInput();	
-		}
-		
+
 	}
 
 	MainScreenController screencontroller = new MainScreenController();
@@ -256,29 +256,37 @@ public class MainPageController implements MultiScreen {
 		// TODO Auto-generated method stub
 		this.screencontroller = screencontroller;
 	}
+
 	@FXML
 	void exploreSelectionPopUpWindow(ActionEvent event) throws IOException {
 		Chalan selectedchalan = newchalantable.getSelectionModel().getSelectedItem();
+		int indexofselectedrow = newchalantable.getSelectionModel().getSelectedIndex();
+
+		ObservableList<Chalan> mainpagechalanlist = FXCollections.observableArrayList();
+		mainpagechalanlist.add(selectedchalan);
+
 		ObservableList<PopUpChallan> popupchalan = selectedchalan.getPopupchallantableview();
-		// setting chalanlist soon will be deprecated
+		
 		UTable.setChallanlist(popupchalan);
-
+		UTable.setSelectedchallanfrommainpage(selectedchalan);
+		UTable.setIndexofselectedrow(indexofselectedrow);
+		UTable.setMainpagechalanlist(newchalantable.getItems());
 		// for loading receive data back
-		UTable.setReceiveTextField(receivetext);
-		UTable.setPaidtextfield(paidtext);
-		UTable.setDuetext(duetext);
+		// UTable.setReceiveTextField(receivetext);
+		// UTable.setPaidtextfield(paidtext);
+		// UTable.setDuetext(duetext);
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
 		window.setScene(scene);
 		Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-        window.setX(bounds.getMinX()+60); 
-        window.setY(bounds.getMinY()+70);
-        window.setWidth((bounds.getWidth()*80)/100);
-        window.setHeight((bounds.getHeight()*60)/100);
+		Rectangle2D bounds = screen.getVisualBounds();
+		window.setX(bounds.getMinX() + 60);
+		window.setY(bounds.getMinY() + 70);
+		window.setWidth((bounds.getWidth() * 80) / 100);
+		window.setHeight((bounds.getHeight() * 60) / 100);
 		window.initStyle(StageStyle.UNDECORATED);
 		window.show();
 	}
@@ -297,18 +305,18 @@ public class MainPageController implements MultiScreen {
 		UTable.setChallanlist(chalanlist);
 		// for loading receive data back
 		UTable.setReceiveTextField(receivetext);
-		UTable.setPaidtextfield(paidtext);
+		UTable.setPaidtextfield(advancedpaidtext);
 		UTable.setDuetext(duetext);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-        window.setX(bounds.getMinX()+60); 
-        window.setY(bounds.getMinY()+70);
-        window.setWidth((bounds.getWidth()*80)/100);
-        window.setHeight((bounds.getHeight()*60)/100);
+		Screen screen = Screen.getPrimary();
+		Rectangle2D bounds = screen.getVisualBounds();
+		window.setX(bounds.getMinX() + 60);
+		window.setY(bounds.getMinY() + 70);
+		window.setWidth((bounds.getWidth() * 80) / 100);
+		window.setHeight((bounds.getHeight() * 60) / 100);
 		window.setScene(scene);
 		window.initStyle(StageStyle.UNDECORATED);
 		window.show();
@@ -329,76 +337,75 @@ public class MainPageController implements MultiScreen {
 		productidtext.setText("");
 		issuetext.setText("");
 		receivetext.setText("");
-		//duetext.setText("");
-		paidtext.setText("");
+		// duetext.setText("");
+		advancedpaidtext.setText("");
 	}
-	
 
-    @FXML
-    void tabProductIDButton(ActionEvent event) {
-    	System.out.println("inside product id select button");
-    	new ProgressDemo().start();
-    	FXMLLoader myLoader = new FXMLLoader(getClass().getResource("SortAndFilter.fxml"));
-         try {
+	@FXML
+	void tabProductIDButton(ActionEvent event) {
+		System.out.println("inside product id select button");
+		new ProgressDemo().start();
+		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("SortAndFilter.fxml"));
+		try {
 			Parent loadScreen = (Parent) myLoader.load();
 			Stage primarystage = UTable.getPrimarystage();
 			Scene scene = new Scene(loadScreen);
 			primarystage.setScene(scene);
-         } catch (IOException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-    }
-    @FXML
-    private Button exportexcelbutton;
-    @FXML
-    public void exportExcel() throws IOException{
-    	System.out.println("export excel"); 
-    	Workbook workbook = new HSSFWorkbook();
-         Sheet spreadsheet = workbook.createSheet("sample");
-                                             
-          // Create cell style 
-//         CellStyle style=workbook.createCellStyle();;
-       //  style.setFillPattern(CellStyle.SOLID_FOREGROUND);
-//         style.setAlignment(CellStyle.ALIGN_CENTER);
-//         style.setFillBackgroundColor(new HSSFColor.RED().getIndex());
-         // Setting font to style
-        
-         
-         Row row = spreadsheet.createRow(0);
-         
-         row.createCell(0).setCellValue("Name:");
-//         row.getCell(0).setCellStyle(style);
-         row.createCell(1).setCellValue(assigneenamelabel.getText());
-     
-         row.createCell(3).setCellValue("Bill Date:");
-         row.createCell(4).setCellValue(new java.sql.Date(new Date().getTime()));
-         
-         row = spreadsheet.createRow(1);
 
-         for (int j = 0; j < newchalantable.getColumns().size(); j++) {
-             row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getText());
-         }
+	}
 
-         for (int i = 0; i < newchalantable.getItems().size(); i++) {
-             row = spreadsheet.createRow(i + 1);
-             for (int j = 0; j < newchalantable.getColumns().size(); j++) {
-                 if(newchalantable.getColumns().get(j).getCellData(i) != null) { 
-                     row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getCellData(i).toString()); 
-                 }
-                 else {
-                     row.createCell(j).setCellValue("");
-                 }   
-             }
-         }
+	@FXML
+	private Button exportexcelbutton;
 
-         FileOutputStream fileOut = new FileOutputStream("E:\\workbook.xls");
-         workbook.write(fileOut);
-         fileOut.close();
+	@FXML
+	public void exportExcel() throws IOException {
+		System.out.println("export excel");
+		Workbook workbook = new HSSFWorkbook();
+		Sheet spreadsheet = workbook.createSheet("sample");
 
-    }
-	
+		// Create cell style
+		// CellStyle style=workbook.createCellStyle();;
+		// style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		// style.setAlignment(CellStyle.ALIGN_CENTER);
+		// style.setFillBackgroundColor(new HSSFColor.RED().getIndex());
+		// Setting font to style
+
+		Row row = spreadsheet.createRow(0);
+
+		row.createCell(0).setCellValue("Name:");
+		// row.getCell(0).setCellStyle(style);
+		row.createCell(1).setCellValue(assigneenamelabel.getText());
+
+		row.createCell(3).setCellValue("Bill Date:");
+		row.createCell(4).setCellValue(new java.sql.Date(new Date().getTime()));
+
+		row = spreadsheet.createRow(1);
+
+		for (int j = 0; j < newchalantable.getColumns().size(); j++) {
+			row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getText());
+		}
+
+		for (int i = 0; i < newchalantable.getItems().size(); i++) {
+			row = spreadsheet.createRow(i + 1);
+			for (int j = 0; j < newchalantable.getColumns().size(); j++) {
+				if (newchalantable.getColumns().get(j).getCellData(i) != null) {
+					row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getCellData(i).toString());
+				} else {
+					row.createCell(j).setCellValue("");
+				}
+			}
+		}
+
+		FileOutputStream fileOut = new FileOutputStream("E:\\workbook.xls");
+		workbook.write(fileOut);
+		fileOut.close();
+
+	}
+
 	@FXML
 	void selectDateValue(ActionEvent event) {
 
@@ -416,12 +423,13 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	void issueText(ActionEvent event) {
-System.out.println("hello");
+		System.out.println("hello");
+	
 	}
 
 	@FXML
-	void productId(ActionEvent event) {
-
+	void productIdOnActionMethod(ActionEvent event) {
+		System.out.println("this is the value"+productidtext.getText());
 	}
 
 	@FXML

@@ -137,4 +137,21 @@ public class Notification {
 				});
 		note.showInformation();
 	}
+	
+	public static void mainWindowProductIDAlreadyExist(){
+		Notifications note = Notifications.create()
+				.title("Product ID alread Present")
+				.text("Product ID is already added. Click on Edit Selection Button for Changes")
+				.graphic(null)
+				.hideAfter(Duration.seconds(5))
+				.position(Pos.BOTTOM_RIGHT)
+				.onAction(new EventHandler<ActionEvent>(){
+
+					@Override
+					public void handle(ActionEvent event) {
+				System.out.println("called");		
+					}
+				});
+		note.showError();
+	}
 }

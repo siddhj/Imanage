@@ -13,10 +13,63 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public final class UTable {
-	private static ObservableList<PopUpChallan> challanlist = FXCollections.observableArrayList();
 	
+	public static Stage stage;
 	public static Stage primarystage;
 	
+	private static ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
+	public static ObservableList<PopUpChallan> popupchallantableviewdata = FXCollections.observableArrayList();
+	public static ObservableList<ChallanDetailBean> challandetaillist = FXCollections.observableArrayList();
+	public static ObservableList<Chalan> mainpagechalanlist = FXCollections.observableArrayList();
+	private static ObservableList<PopUpChallan> challanlist = FXCollections.observableArrayList();
+
+	public static TableView<PopUpChallan> popuptableview;
+	public static TableView<Chalan> mainpagetableview;
+
+	public static Chalan selectedchallanfrommainpage;
+
+	public static TextField duetext;
+	public static TextField paidtextfield;
+	public static TextField textfield;
+	
+	public static TableColumn paidcolumnpopuptable;
+
+	public static int indexofselectedrow;
+	public static int totalpaid;
+
+	
+	public static TableView<Chalan> getMainpagetableview() {
+		return mainpagetableview;
+	}
+
+	public static void setMainpagetableview(TableView<Chalan> mainpagetableview) {
+		UTable.mainpagetableview = mainpagetableview;
+	}
+	
+	public static Chalan getSelectedchallanfrommainpage() {
+		return selectedchallanfrommainpage;
+	}
+
+	public static void setSelectedchallanfrommainpage(Chalan selectedchallanfrommainpage) {
+		UTable.selectedchallanfrommainpage = selectedchallanfrommainpage;
+	}
+
+	public static int getIndexofselectedrow() {
+		return indexofselectedrow;
+	}
+
+	public static void setIndexofselectedrow(int indexofselectedrow) {
+		UTable.indexofselectedrow = indexofselectedrow;
+	}
+
+	public static ObservableList<Chalan> getMainpagechalanlist() {
+		return mainpagechalanlist;
+	}
+
+	public static void setMainpagechalanlist(ObservableList<Chalan> mainpagechalanlist) {
+		UTable.mainpagechalanlist = mainpagechalanlist;
+	}
+
 	public static Stage getPrimarystage() {
 		return primarystage;
 	}
@@ -33,7 +86,6 @@ public final class UTable {
 		UTable.challanlist = challanlist;
 	}
 
-	private static ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
 
 	public static ObservableList<Assignee> getAssigneelist() {
 		return assigneelist;
@@ -43,8 +95,6 @@ public final class UTable {
 		UTable.assigneelist = assigneelist;
 	}
 
-	public static TextField textfield;
-
 	public static void setReceiveTextField(TextField textfield) {
 		UTable.textfield = textfield;
 	}
@@ -53,7 +103,6 @@ public final class UTable {
 		return textfield;
 	}
 
-	public static TextField paidtextfield;
 
 	public static TextField getPaidtextfield() {
 		return paidtextfield;
@@ -63,7 +112,6 @@ public final class UTable {
 		UTable.paidtextfield = paidtextfield;
 	}
 
-	public static TextField duetext;
 
 	public static TextField getDuetext() {
 		return duetext;
@@ -73,7 +121,6 @@ public final class UTable {
 		UTable.duetext = duetext;
 	}
 
-	public static TableView<PopUpChallan> popuptableview;
 
 	public static TableView<PopUpChallan> getPopuptableview() {
 		return popuptableview;
@@ -83,7 +130,6 @@ public final class UTable {
 		UTable.popuptableview = popuptableview;
 	}
 
-	public static TableColumn paidcolumnpopuptable;
 
 	public static TableColumn getPaidcolumnpopuptable() {
 		return paidcolumnpopuptable;
@@ -93,7 +139,6 @@ public final class UTable {
 		UTable.paidcolumnpopuptable = paidcolumnpopuptable;
 	}
 
-	public static ObservableList<PopUpChallan> popupchallantableviewdata = FXCollections.observableArrayList();
 
 	public static ObservableList<PopUpChallan> getPopupchallantableviewdata() {
 		return popupchallantableviewdata;
@@ -103,7 +148,6 @@ public final class UTable {
 		UTable.popupchallantableviewdata = popupchallantableviewdata;
 	}
 
-	public static int totalpaid;
 
 	public static int getTotalpaid() {
 		return totalpaid;
@@ -113,7 +157,6 @@ public final class UTable {
 		UTable.totalpaid = totalpaid;
 	}
 
-	public static Stage stage;
 	public static Stage getStage() {
 		return stage;
 	}
@@ -123,7 +166,8 @@ public final class UTable {
 		UTable.stage = stage;
 	}
 	
-	public static ObservableList<ChallanDetailBean> challandetaillist = FXCollections.observableArrayList();
+
+	
 	public static ObservableList<ChallanDetailBean> getChallandetaillist() {
 		return challandetaillist;
 	}
