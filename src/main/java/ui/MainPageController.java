@@ -227,7 +227,7 @@ public class MainPageController implements MultiScreen {
 		try {
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
 					Integer.parseInt(issuetext.getText()), Integer.parseInt(advancedpaidtext.getText()), AssigneeID,
-					UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(),
+					UTable.getPopupchallantablelist(), UTable.getTotalpaid(),
 					Integer.parseInt(receivetext.getText()),dateofbill);
 
 			newchalantable.getItems().add(chalan);
@@ -239,6 +239,7 @@ public class MainPageController implements MultiScreen {
 			assigneenamelabel.setText(assigneename.getText());
 			issuetext.setDisable(true);
 			advancedpaidtext.setDisable(true);
+			billdate.setValue(null);
 		} catch (NumberFormatException E) {
 			Notification.invalidInput();
 		}
@@ -261,9 +262,9 @@ public class MainPageController implements MultiScreen {
 		ObservableList<Chalan> mainpagechalanlist = FXCollections.observableArrayList();
 		mainpagechalanlist.add(selectedchalan);
 
-		ObservableList<PopUpChallan> popupchalan = selectedchalan.getPopupchallantableview();
+		ObservableList<PopUpChallan> popupchallantablelist = selectedchalan.getPopupchallantableview();
 		
-		UTable.setChallanlist(popupchalan);
+		UTable.setPopupchallantablelist(popupchallantablelist);
 		UTable.setSelectedchallanfrommainpage(selectedchalan);
 		UTable.setIndexofselectedrow(indexofselectedrow);
 		UTable.setMainpagechalanlist(newchalantable.getItems());
@@ -304,7 +305,29 @@ public class MainPageController implements MultiScreen {
 				Notification.mainWindowProductIDAlreadyExist();
 				issuetext.setDisable(true);
 				advancedpaidtext.setDisable(true);
-				
+				//newchalantable
+				UTable.setSelectedchallanfrommainpage(C);
+				UTable.setMainpagechalanlist(mainpagechalanlist);
+				UTable.setPopupchallantablelist(C.getPopupchallantableview());
+
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
+				Parent root = loader.load();
+				Scene scene = new Scene(root);
+				Stage window = new Stage();
+				window.setScene(scene);
+				Screen screen = Screen.getPrimary();
+				Rectangle2D bounds = screen.getVisualBounds();
+				window.setX(bounds.getMinX() + 60);
+				window.setY(bounds.getMinY() + 70);
+				window.setWidth((bounds.getWidth() * 80) / 100);
+				window.setHeight((bounds.getHeight() * 60) / 100);
+				window.initStyle(StageStyle.UNDECORATED);
+				window.show();
+				productidtext.setText("");
+				issuetext.setText("");
+				receivetext.setText("");
+				advancedpaidtext.setText("");
+				billdate.setValue(null);
 				return;
 			}
 		}
@@ -313,7 +336,7 @@ public class MainPageController implements MultiScreen {
 		String productid = productidtext.getText();
 		ObservableList<PopUpChallan> chalanlist = DChalan.getSingeletonInstance().chalanDataLoad(productid, assigneeid);
 		// setting chalanlist soon will be deprecated
-		UTable.setChallanlist(chalanlist);
+		UTable.setPopupchallantablelist(chalanlist);
 		// for loading receive data back
 		UTable.setReceiveTextField(receivetext);
 		UTable.setPaidtextfield(advancedpaidtext);
@@ -350,6 +373,7 @@ public class MainPageController implements MultiScreen {
 		receivetext.setText("");
 		// duetext.setText("");
 		advancedpaidtext.setText("");
+		billdate.setValue(null);
 	}
 
 	@FXML

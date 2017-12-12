@@ -18,10 +18,10 @@ public final class UTable {
 	public static Stage primarystage;
 	
 	private static ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
-	public static ObservableList<PopUpChallan> popupchallantableviewdata = FXCollections.observableArrayList();
+	public static ObservableList<PopUpChallan> popupchallantablelist = FXCollections.observableArrayList();
 	public static ObservableList<ChallanDetailBean> challandetaillist = FXCollections.observableArrayList();
 	public static ObservableList<Chalan> mainpagechalanlist = FXCollections.observableArrayList();
-	private static ObservableList<PopUpChallan> challanlist = FXCollections.observableArrayList();
+//	private static ObservableList<PopUpChallan> challanlist = FXCollections.observableArrayList();
 
 	public static TableView<PopUpChallan> popuptableview;
 	public static TableView<Chalan> mainpagetableview;
@@ -78,13 +78,13 @@ public final class UTable {
 		UTable.primarystage = primarystage;
 	}
 
-	public static ObservableList<PopUpChallan> getChallanlist() {
-		return challanlist;
-	}
-
-	public static void setChallanlist(ObservableList<PopUpChallan> challanlist) {
-		UTable.challanlist = challanlist;
-	}
+//	public static ObservableList<PopUpChallan> getChallanlist() {
+//		return challanlist;
+//	}
+//
+//	public static void setChallanlist(ObservableList<PopUpChallan> challanlist) {
+//		UTable.challanlist = challanlist;
+//	}
 
 
 	public static ObservableList<Assignee> getAssigneelist() {
@@ -139,15 +139,13 @@ public final class UTable {
 		UTable.paidcolumnpopuptable = paidcolumnpopuptable;
 	}
 
-
-	public static ObservableList<PopUpChallan> getPopupchallantableviewdata() {
-		return popupchallantableviewdata;
+	public static ObservableList<PopUpChallan> getPopupchallantablelist() {
+		return popupchallantablelist;
 	}
 
-	public static void setPopupchallantableviewdata(ObservableList<PopUpChallan> popupchallantableviewdata) {
-		UTable.popupchallantableviewdata = popupchallantableviewdata;
+	public static void setPopupchallantablelist(ObservableList<PopUpChallan> popupchallantablelist) {
+		UTable.popupchallantablelist = popupchallantablelist;
 	}
-
 
 	public static int getTotalpaid() {
 		return totalpaid;

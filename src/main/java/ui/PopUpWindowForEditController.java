@@ -109,34 +109,33 @@ public class PopUpWindowForEditController {
 		receiveTable.setEditable(true);
 		receiveTable.getColumns().addAll(receivecolumn, paidcolumn);
 
-		chalanlist = UTable.getChallanlist();
+		chalanlist = UTable.getPopupchallantablelist();
 		selectedchallanfrommainpage = UTable.getSelectedchallanfrommainpage();
 		mainpagechalanlist = UTable.getMainpagechalanlist();
-		indexofselectedrow = UTable.getIndexofselectedrow();
+		//indexofselectedrow = UTable.getIndexofselectedrow();
 		
 		receiveTable.setItems(chalanlist);
 		issuetext.setText(String.valueOf(selectedchallanfrommainpage.getIssue()));
 		advancedpaidtext.setText(String.valueOf(selectedchallanfrommainpage.getPaid()));
 		receivetext.setText(String.valueOf(selectedchallanfrommainpage.getTotalreceive()));
 		productidtext.setText(selectedchallanfrommainpage.getProductid());
-
 		UTable.setPopuptableview(receiveTable);
 	}
 
 	ObservableList<PopUpChallan> chalanlist;
 	Chalan selectedchallanfrommainpage;
 	ObservableList<Chalan> mainpagechalanlist;
-	int indexofselectedrow;
+//	int indexofselectedrow;
 
 	
 	@FXML
 	void saveReceiveData(ActionEvent event) throws SQLException, IOException {
-		ObservableList<PopUpChallan> chalan = receiveTable.getItems();
-		chalan.forEach(c -> {
+		ObservableList<PopUpChallan> popupchallantablelist = receiveTable.getItems();
+		popupchallantablelist.forEach(c -> {
 			System.out.println(c.getCurrentreceive() + "::" + c.getCurrentpaid() + "this sis the current reveive");
 		});
 	
-		UTable.setChallanlist(chalan);
+		UTable.setPopupchallantablelist(popupchallantablelist);
 		MicroService service = new MicroService();
 
 		// filling the main window controller

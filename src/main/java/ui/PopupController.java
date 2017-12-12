@@ -106,7 +106,7 @@ public class PopupController {
 		receiveTable.setEditable(true);
 		receiveTable.getColumns().addAll(receivecolumn, paidcolumn);
 
-		ObservableList<PopUpChallan> chalanlist = UTable.getChallanlist();
+		ObservableList<PopUpChallan> chalanlist = UTable.getPopupchallantablelist();
 		receiveTable.setItems(chalanlist);
 		UTable.setPopuptableview(receiveTable);
 	}
@@ -117,7 +117,7 @@ public class PopupController {
 		chalan.forEach(c -> {
 			System.out.println(c.getCurrentreceive() + "::" + c.getCurrentpaid() + "this sis the current reveive");
 		});
-		UTable.setChallanlist(chalan);
+		UTable.setPopupchallantablelist(chalan);
 		MicroService service = new MicroService();
 
 		// filling the main window controller
@@ -127,7 +127,7 @@ public class PopupController {
 		UTable.setTotalpaid(paid);
 		TextField receivetext = UTable.getReceiveTextField();
 		receivetext.setText(String.valueOf(receive));
-		UTable.setPopupchallantableviewdata(chalan);
+		UTable.setPopupchallantablelist(chalan);
 		Stage stage = (Stage) savedata.getScene().getWindow();
 		stage.close();
 	}

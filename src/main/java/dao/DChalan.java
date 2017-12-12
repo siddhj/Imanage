@@ -57,7 +57,7 @@ public class DChalan {
 				prepare.setInt(7, c.getPaid());
 				prepare.setInt(8, c.getTotalpaid());
 				prepare.setInt(9, c.getTotalreceive());
-				prepare.setTimestamp(10, new Timestamp(c.getBilldate().getTime()));
+				prepare.setTimestamp(10, new Timestamp(date.getTime()));
 				prepare.addBatch();
 			} catch (SQLException e) {
 				e.printStackTrace();
