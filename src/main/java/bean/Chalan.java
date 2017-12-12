@@ -7,6 +7,10 @@ import javafx.collections.ObservableList;
 public class Chalan{
 	
 	private int assigneeid,issue,receive,due,paid,challanid,totalpaid,totalreceive;
+	private String productid;
+	private Date billdate;
+	private ObservableList<PopUpChallan> popupchallantableview;
+	
 	public int getTotalpaid() {
 		return totalpaid;
 	}
@@ -19,10 +23,7 @@ public class Chalan{
 	public void setTotalreceive(int totalreceive) {
 		this.totalreceive = totalreceive;
 	}
-	private String productid;
-	private Date billdate;
-	private ObservableList<PopUpChallan> popupchallantableview;
-	
+
 	public ObservableList<PopUpChallan> getPopupchallantableview() {
 		return popupchallantableview;
 	}
@@ -35,36 +36,36 @@ public class Chalan{
 	public void setChallanid(int challanid) {
 		this.challanid = challanid;
 	}
-public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid, Date billdate) {
-		super();
-		this.assigneeid = assigneeid;
-		this.issue = issue;
-		this.receive = receive;
-		this.due = due;
-		this.paid = paid;
-		this.productid = productid;
-		this.billdate = billdate;
-	}
-
-public Chalan(int challanid,String productid, int issue, int receive, int due, int paid, int assigneeid, Date billdate) {
-	super();
-	this.challanid = challanid;
-	this.assigneeid = assigneeid;
-	this.issue = issue;
-	this.receive = receive;
-	this.due = due;
-	this.paid = paid;
-	this.productid = productid;
-	this.billdate = billdate;
-}
-
-public Date getBilldate() {
+//public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid, Date billdate) {
+//		super();
+//		this.assigneeid = assigneeid;
+//		this.issue = issue;
+//		this.receive = receive;
+//		this.due = due;
+//		this.paid = paid;
+//		this.productid = productid;
+//		this.billdate = billdate;
+//	}
+//
+//	public Chalan(int challanid,String productid, int issue, int receive, int due, int paid, int assigneeid, Date billdate) {
+//		super();
+//		this.challanid = challanid;
+//		this.assigneeid = assigneeid;
+//		this.issue = issue;
+//		this.receive = receive;
+//		this.due = due;
+//		this.paid = paid;
+//		this.productid = productid;
+//		this.billdate = billdate;
+//	}
+	
+	public Date getBilldate() {
 		return billdate;
 	}
 	public void setBilldate(Date billdate) {
 		this.billdate = billdate;
 	}
-	//	private Date
+	//private Date
 	public String getProductid() {
 		return productid;
 	}
@@ -100,18 +101,6 @@ public Date getBilldate() {
 		
 	}
 	
-	public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid,ObservableList<PopUpChallan> popupchallantableview,int totalpaid,int totalreceive) {
-		super();
-		this.productid = productid;
-		this.issue = issue;
-		this.receive = receive;
-		this.due = due;
-		this.paid = paid;
-		this.assigneeid = assigneeid;
-		this.popupchallantableview = popupchallantableview;
-		this.totalpaid=totalpaid;
-		this.totalreceive=totalreceive;
-	}
 	@Override
 	public String toString() {
 		return "Chalan [productid=" + productid + ", issue=" + issue + ", receive=" + receive + ", due=" + due
@@ -123,5 +112,20 @@ public Date getBilldate() {
 	public void setAssigneeid(int assigneeid) {
 		this.assigneeid = assigneeid;
 	}
+	
+	public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid,ObservableList<PopUpChallan> popupchallantableview,int totalpaid,int totalreceive,Date billdate) {
+		super();
+		this.productid = productid;
+		this.issue = issue;
+		this.receive = receive;
+		this.due = due;
+		this.paid = paid;
+		this.assigneeid = assigneeid;
+		this.popupchallantableview = popupchallantableview;
+		this.totalpaid=totalpaid;
+		this.totalreceive=totalreceive;
+		this.billdate=billdate;
+	}
+	
 	
   }

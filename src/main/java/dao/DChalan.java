@@ -43,6 +43,7 @@ public class DChalan {
 				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate) "
 						+ "values(?,?,?,?,?,?,?,?,?,?)");
 		Date date = new Date();
+		
 		Object param = new Timestamp(date.getTime());
 
 		for (Chalan c : chalanlist) {
@@ -52,11 +53,11 @@ public class DChalan {
 				prepare.setInt(3, c.getIssue());
 				prepare.setInt(4, c.getReceive());
 				prepare.setInt(5, c.getDue());
-				prepare.setDate(6, new java.sql.Date(date.getTime()));
+				prepare.setDate(6, new java.sql.Date(c.getBilldate().getTime()));
 				prepare.setInt(7, c.getPaid());
 				prepare.setInt(8, c.getTotalpaid());
 				prepare.setInt(9, c.getTotalreceive());
-				prepare.setTimestamp(10, new Timestamp(date.getTime()));
+				prepare.setTimestamp(10, new Timestamp(c.getBilldate().getTime()));
 				prepare.addBatch();
 			} catch (SQLException e) {
 				e.printStackTrace();

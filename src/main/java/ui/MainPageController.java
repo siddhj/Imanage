@@ -15,6 +15,7 @@ import com.ProgressDemo;
 import service.DataManipulation;
 import service.MicroService;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
 
 import bean.Assignee;
@@ -33,6 +34,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -114,6 +116,9 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private TableColumn<Chalan, String> paidcolumn = new TableColumn<>("Paid");
 
+    @FXML
+    private DatePicker billdate;
+	
 	@FXML
 	void removeRow(ActionEvent event) {
 		Chalan chalan = newchalantable.getSelectionModel().getSelectedItem();
@@ -162,23 +167,9 @@ public class MainPageController implements MultiScreen {
 		productidtext.setOnKeyReleased(new EventHandler<KeyEvent>(){
 			@Override
 			public void handle(KeyEvent arg0) {
-//				System.out.println("this is the value"+productidtext.getText());
-//				ObservableList <Chalan> mainpagechalanlist = newchalantable.getItems();
-//				if(mainpagechalanlist.size()==0){
 					issuetext.setDisable(false);
 					advancedpaidtext.setDisable(false);
-//				}
-//				for(Chalan C: mainpagechalanlist)
-//				{
-//					if(C.getProductid().equals(productidtext.getText()))
-//					{
-//						Notification.mainWindowProductIDAlreadyExist();
-//						return;
-//					}else{
-//						issuetext.setDisable(false);
-//						advancedpaidtext.setDisable(false);
-//					}
-//				}
+
 			}
 		});
 		
@@ -222,6 +213,7 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	void saveChalan(ActionEvent event) {
 		String name = assigneename.getText();
+		java.util.Date dateofbill = java.sql.Date.valueOf(billdate.getValue());
 		int AssigneeID = new MicroService().assigneeIDRetrieve(name);
 
 		if (!Validation.parentListNameValidation(parentlist.get(1), assigneename.getText())) {
@@ -236,7 +228,7 @@ public class MainPageController implements MultiScreen {
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
 					Integer.parseInt(issuetext.getText()), Integer.parseInt(advancedpaidtext.getText()), AssigneeID,
 					UTable.getPopupchallantableviewdata(), UTable.getTotalpaid(),
-					Integer.parseInt(receivetext.getText()));
+					Integer.parseInt(receivetext.getText()),dateofbill);
 
 			newchalantable.getItems().add(chalan);
 			productidtext.setText("");
@@ -298,6 +290,7 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private Button newwindow;
 
+	/*This is the action event for receive button*/
 	@FXML
 	void popupWindow(ActionEvent event) throws IOException, SQLException {
 		System.out.println("this is the receive button");
@@ -311,6 +304,7 @@ public class MainPageController implements MultiScreen {
 				Notification.mainWindowProductIDAlreadyExist();
 				issuetext.setDisable(true);
 				advancedpaidtext.setDisable(true);
+				
 				return;
 			}
 		}
