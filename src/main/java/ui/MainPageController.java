@@ -162,19 +162,23 @@ public class MainPageController implements MultiScreen {
 		productidtext.setOnKeyReleased(new EventHandler<KeyEvent>(){
 			@Override
 			public void handle(KeyEvent arg0) {
-				System.out.println("this is the value"+productidtext.getText());
-				ObservableList <Chalan> mainpagechalanlist = newchalantable.getItems();
-				for(Chalan C: mainpagechalanlist)
-				{
-					if(C.getProductid().equals(productidtext.getText()))
-					{
-						Notification.mainWindowProductIDAlreadyExist();
-						return;
-					}else{
-						issuetext.setDisable(false);
-						advancedpaidtext.setDisable(false);
-					}
-				}
+//				System.out.println("this is the value"+productidtext.getText());
+//				ObservableList <Chalan> mainpagechalanlist = newchalantable.getItems();
+//				if(mainpagechalanlist.size()==0){
+					issuetext.setDisable(false);
+					advancedpaidtext.setDisable(false);
+//				}
+//				for(Chalan C: mainpagechalanlist)
+//				{
+//					if(C.getProductid().equals(productidtext.getText()))
+//					{
+//						Notification.mainWindowProductIDAlreadyExist();
+//						return;
+//					}else{
+//						issuetext.setDisable(false);
+//						advancedpaidtext.setDisable(false);
+//					}
+//				}
 			}
 		});
 		
@@ -202,7 +206,7 @@ public class MainPageController implements MultiScreen {
 		totalpaidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		paidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 
-		newchalantable.getItems().add(new Chalan("a", 1, 0, 1, 1, 1, UTable.getPopupchallantableviewdata(), 2, 1));
+	
 		UTable.setMainpagetableview(newchalantable);
 	}
 
@@ -297,6 +301,19 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	void popupWindow(ActionEvent event) throws IOException, SQLException {
 		System.out.println("this is the receive button");
+		
+		ObservableList <Chalan> mainpagechalanlist = newchalantable.getItems();
+		
+		for(Chalan C: mainpagechalanlist)
+		{
+			if(C.getProductid().equals(productidtext.getText()))
+			{
+				Notification.mainWindowProductIDAlreadyExist();
+				issuetext.setDisable(true);
+				advancedpaidtext.setDisable(true);
+				return;
+			}
+		}
 		new ProgressDemo().start();
 		int assigneeid = new MicroService().assigneeIDRetrieve(assigneename.getText());
 		String productid = productidtext.getText();
