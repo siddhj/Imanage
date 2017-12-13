@@ -328,16 +328,8 @@
 -fx-background-color: #dddddd;
 }
 
-/*
-.tableview:hover
-{
- -fx-font-family: "Roboto";
--fx-background-color: #c5db5a;
-}
-*/
 .table-view:row-selection .table-row-cell:filled:hover {
     -fx-background-color: #c5db5a;
-/*     -fx-background-insets: 0, 0 0 1 0;*/
     -fx-text-fill: white;
 	-fx-border-color: #000000;
 	-fx-table-cell-border-color:#000000;
@@ -360,3 +352,12 @@
 .table-row-cell:selected{
     -fx-background-color: #5fa8e8;
 }
+
+
+/*
+.tableview:hover
+{
+ -fx-font-family: "Roboto";
+-fx-background-color: #c5db5a;
+}
+*/

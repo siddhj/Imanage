@@ -1,9 +1,7 @@
 package ui;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.controlsfx.control.textfield.*;
@@ -18,15 +16,12 @@ import com.ProgressDemo;
 import service.DataManipulation;
 import service.MicroService;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Date;
 
-import bean.Assignee;
 import bean.Chalan;
 import bean.PopUpChallan;
 import dao.DChalan;
 import dao.DLoader;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,6 +41,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -116,6 +112,9 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private Button savechalandata;
+	
+	@FXML
+    private Button clearbutton;
 
 	@FXML
 	private TableColumn<Chalan, String> paidcolumn = new TableColumn<>("Paid");
@@ -228,6 +227,10 @@ public class MainPageController implements MultiScreen {
 			Notification.invalidInputProductID();
 			return;
 		}
+		if(dateofbill==null){
+			Notification.mainWindowInvalidBillDate();
+			return; 
+		}
 		try {
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
 					Integer.parseInt(issuetext.getText()), Integer.parseInt(advancedpaidtext.getText()), AssigneeID,
@@ -243,11 +246,12 @@ public class MainPageController implements MultiScreen {
 			assigneenamelabel.setText(assigneename.getText());
 			issuetext.setDisable(true);
 			advancedpaidtext.setDisable(true);
-			billdate.setValue(null);
+			//billdate.setValue(null);
 		} catch (NumberFormatException E) {
 			Notification.invalidInput();
 		}
-
+		assigneename.setDisable(true);
+		billdate.setDisable(true);
 	}
 
 	MainScreenController screencontroller = new MainScreenController();
@@ -289,6 +293,9 @@ public class MainPageController implements MultiScreen {
 		window.setWidth((bounds.getWidth() * 80) / 100);
 		window.setHeight((bounds.getHeight() * 60) / 100);
 		window.initStyle(StageStyle.UNDECORATED);
+
+		window.initOwner(UTable.getPrimarystage());
+		window.initModality(Modality.WINDOW_MODAL);
 		window.show();
 	}
 
@@ -326,6 +333,9 @@ public class MainPageController implements MultiScreen {
 				window.setWidth((bounds.getWidth() * 80) / 100);
 				window.setHeight((bounds.getHeight() * 60) / 100);
 				window.initStyle(StageStyle.UNDECORATED);
+				window.initOwner(UTable.getPrimarystage());
+				window.initModality(Modality.WINDOW_MODAL);
+				window.setAlwaysOnTop(true);
 				window.show();
 				productidtext.setText("");
 				issuetext.setText("");
@@ -357,6 +367,8 @@ public class MainPageController implements MultiScreen {
 		window.setHeight((bounds.getHeight() * 60) / 100);
 		window.setScene(scene);
 		window.initStyle(StageStyle.UNDECORATED);
+		window.initOwner(UTable.getPrimarystage());
+		window.initModality(Modality.WINDOW_MODAL);
 		window.show();
 
 	}
@@ -370,7 +382,7 @@ public class MainPageController implements MultiScreen {
 		chalanlist.removeAll(chalanlist);
 		UTable.getStage().close();
 		Notification.dataSuccessfullySaved();
-
+		
 		assigneename.setText("");
 		productidtext.setText("");
 		issuetext.setText("");
@@ -378,6 +390,9 @@ public class MainPageController implements MultiScreen {
 		// duetext.setText("");
 		advancedpaidtext.setText("");
 		billdate.setValue(null);
+    	assigneename.setDisable(false);
+    	billdate.setDisable(false);
+    	assigneenamelabel.setText("");
 	}
 
 	@FXML
@@ -404,13 +419,6 @@ public class MainPageController implements MultiScreen {
 	{
 		Workbook workbook = new HSSFWorkbook();
 		Sheet spreadsheet = workbook.createSheet("sample");
-
-		// Create cell style
-		// CellStyle style=workbook.createCellStyle();;
-		// style.setFillPattern(CellStyle.SOLID_FOREGROUND);
-		// style.setAlignment(CellStyle.ALIGN_CENTER);
-		// style.setFillBackgroundColor(new HSSFColor.RED().getIndex());
-		// Setting font to style
 
 		Row row = spreadsheet.createRow(0);
 
@@ -461,6 +469,21 @@ public class MainPageController implements MultiScreen {
       }
 		
 
+    @FXML
+    void clearMainPageDataButton(ActionEvent event) {
+    	assigneename.setDisable(false);
+    	billdate.setDisable(false);
+    	ObservableList<Chalan> chalanlist = newchalantable.getItems();
+    	chalanlist.removeAll(chalanlist);
+		assigneename.setText("");
+		productidtext.setText("");
+		issuetext.setText("");
+		receivetext.setText("");
+		// duetext.setText("");
+		advancedpaidtext.setText("");
+		billdate.setValue(null);
+    	
+    }
 	
 
 	@FXML

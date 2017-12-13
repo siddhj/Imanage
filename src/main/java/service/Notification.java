@@ -162,4 +162,22 @@ public class Notification {
 		note.darkStyle();
 		note.showError();
 	}
+	
+	public static void mainWindowInvalidBillDate(){
+		Notifications note = Notifications.create()
+				.title("Select Date")
+				.text("Bill Date Selected Is not Valid")
+				.graphic(null)
+				.hideAfter(Duration.seconds(5))
+				.position(Pos.BOTTOM_RIGHT)
+				.onAction(new EventHandler<ActionEvent>(){
+
+					@Override
+					public void handle(ActionEvent event) {
+				System.out.println("called");		
+					}
+				});
+		note.darkStyle();
+		note.showError();
+	}
 }
