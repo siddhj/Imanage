@@ -36,3 +36,22 @@
 .table-row-cell:selected{
     -fx-background-color: #5fa8e8;
 }
+.button_left_blackBG
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #c5db5a;
+ -fx-border-width: 1px;
+ -fx-text-fill: #000000;
+  -fx-font-size: 15px;
+}
+.button_left_blackBG:hover
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #3c3c3c;
+ -fx-border-width: 1px;
+-fx-border-radius: 2px;
+-fx-border-color: #ffffff;
+ -fx-text-fill: #ffffff;
+  -fx-font-size: 15px;
+
+}

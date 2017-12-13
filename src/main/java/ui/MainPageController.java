@@ -273,7 +273,7 @@ public class MainPageController implements MultiScreen {
 		// UTable.setPaidtextfield(paidtext);
 		// UTable.setDuetext(duetext);
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEditCSS.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
@@ -310,7 +310,7 @@ public class MainPageController implements MultiScreen {
 				UTable.setMainpagechalanlist(mainpagechalanlist);
 				UTable.setPopupchallantablelist(C.getPopupchallantableview());
 
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEditCSS.fxml"));
 				Parent root = loader.load();
 				Scene scene = new Scene(root);
 				Stage window = new Stage();
@@ -341,7 +341,7 @@ public class MainPageController implements MultiScreen {
 		UTable.setReceiveTextField(receivetext);
 		UTable.setPaidtextfield(advancedpaidtext);
 		UTable.setDuetext(duetext);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("PopupCSS.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage window = new Stage();

@@ -148,6 +148,179 @@
   -fx-font-size: 15px;
 
 }
+.login-title{
+    -fx-font-family: "Roboto";
+	-fx-font-size: 40px;
+}
+
+.text-field
+{
+-fx-font-family: "Roboto";
+-fx-font-size: 20px;
+-fx-width: 200px;
+-fx-height: 200px;
+}
+
+.button{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #000000;
+ -fx-text-fill: #ffffff;
+  -fx-font-size: 15px;
+}
+
+.button:hover{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #ff4545;
+  -fx-font-size: 15px;
+  transition: color 1s;
+}
+
+.button:visited{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #3c3c3c;
+  -fx-font-size: 15px;
+}
+ 
+.background
+{
+-fx-background-color: #f0f0f0;
+}
+
+.menu
+{
+-fx-background-color: #000000;
+-fx-text-fill:#ffffff;
+
+}
+
+.top_main
+{
+-fx-font-family: "Roboto";
+ -fx-background-color: #D8D8D8;
+ -fx-text-fill: #000000;
+  -fx-font-size: 24px;
+-fx-text-shadow: 5px;
+}
+
+.top_main:hover{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #D8D8D8;
+-fx-text-fill: #777777;
+  -fx-font-size: 24px;
+  transition: color 1s;
+}
+.top_main:pressed{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #D8D8D8;
+-fx-text-fill: #FF4545;
+  -fx-font-size: 24px;
+  transition: color 1s;
+}
+
+
+.text_field_main
+{
+-fx-font-family: "Roboto";
+-fx-font-size: 14px;
+-fx-background-color: #eeeeee;
+}
+
+.main_title{
+    -fx-font-family: "Roboto";
+	-fx-font-size: 22px;
+	-fx-text-fill: #FFFFFF;
+}
+
+.main_textfield_title{
+    -fx-font-family: "Roboto";
+	-fx-font-size: 18px;
+	-fx-text-fill: #ffffff;
+}
+
+.main_textfield_small_title{
+    -fx-font-family: "Roboto";
+	-fx-font-size: 16px;
+	-fx-text-fill: #ffffff;
+}
+
+
+
+.secondary_button_main
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #c5db5a;
+ -fx-border-width: 1px;
+ -fx-text-fill: #000000;
+  -fx-font-size: 15px;
+}
+.secondary_button_main:hover
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #3c3c3c;
+
+ -fx-text-fill: #ffffff;
+  -fx-font-size: 15px;
+}
+.secondary_button_main:pressed
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #000000;
+
+ -fx-text-fill: #ffffff;
+  -fx-font-size: 15px;
+}
+
+
+
+
+.button_left_blackBG
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #c5db5a;
+ -fx-border-width: 1px;
+ -fx-text-fill: #000000;
+  -fx-font-size: 15px;
+}
+
+.button_bottom
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #c5db5a;
+ -fx-border-width: 1px;
+ -fx-text-fill: #000000;
+  -fx-font-size: 15px;
+}
+.button_bottom:hover
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #ff4545;
+ -fx-border-width: 1px;
+ -fx-text-fill: #ffffff;
+  -fx-font-size: 15px;
+}
+
+.button_left_blackBG:hover
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #3c3c3c;
+ -fx-border-width: 1px;
+-fx-border-radius: 2px;
+-fx-border-color: #ffffff;
+ -fx-text-fill: #ffffff;
+  -fx-font-size: 15px;
+
+}
+.button_left_blackBG:pressed
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #000000;
+ -fx-border-width: 1px;
+-fx-border-radius: 2px;
+-fx-border-color: #ffffff;
+ -fx-text-fill: #ffffff;
+  -fx-font-size: 15px;
+
+}
 
 .tableview
 {

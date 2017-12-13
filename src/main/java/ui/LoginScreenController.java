@@ -45,7 +45,7 @@ public class LoginScreenController implements Initializable, MultiScreen {
 
 	@FXML
 	void loginUser(ActionEvent event) throws SQLException, IOException {
-		// System.out.println("inside login button");
+		 System.out.println("inside login button");
 		// mainscreen.setScreen(MultiScreenFramework.mainpage);
 		LicenseAuthentication auth = new LicenseAuthentication();
 		boolean licensevalid = auth.macAddressAuthentication();
