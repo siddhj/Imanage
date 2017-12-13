@@ -121,7 +121,7 @@ public class DChalan {
 					resultset.getInt("ChallanID"), 0, 0, resultset.getString("ProductID"),
 					resultset.getDate("BillDate"), resultset.getInt("Issue") - resultset.getInt("Paid")));
 		}
-		UTable.getStage().close();
+		UTable.getLoaderstage().close();
 		return list;
 	}
 

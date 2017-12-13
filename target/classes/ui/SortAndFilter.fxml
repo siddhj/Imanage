@@ -17,13 +17,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: linear-gradient(#d6eeff, #ffffff);" stylesheets="@popupcss.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SortAndFilterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #ffffff;" stylesheets="@ninza.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SortAndFilterController">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <VBox alignment="TOP_CENTER" style="-fx-border-width: 0 4 2 4; -fx-border-color: #39729b;" BorderPane.alignment="CENTER">
                <children>
-                  <MenuBar prefHeight="27.0" style="-fx-background-color: #39729b;" VBox.vgrow="ALWAYS">
+                  <MenuBar prefHeight="27.0" styleClass="menu" stylesheets="@ninza.css" VBox.vgrow="ALWAYS">
                      <menus>
                         <Menu mnemonicParsing="false" text="File">
                            <items>
@@ -42,112 +42,90 @@
                         </Menu>
                      </menus>
                   </MenuBar>
-                  <HBox alignment="TOP_CENTER" style="-fx-border-width: 0 0 4 0; -fx-border-color: #39729b;" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" style="-fx-background-color: #c5db5a;" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="tabchallanbutton" mnemonicParsing="false" onAction="#tabChallanButton" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="New Challan" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="60.0" right="31.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="64.0" right="64.0" />
-                           </padding>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Product ID" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets right="31.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="69.0" right="69.0" />
-                           </padding>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Date" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets right="31.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="89.0" right="89.0" />
-                           </padding>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="48.0" style="-fx-background-color: #0078d2;" text="Assignee" textFill="WHITE">
-                           <padding>
-                              <Insets left="72.0" right="72.0" />
-                           </padding>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
+                        <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="512.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Sort &amp; Filter">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="73.0" prefWidth="511.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="tabchallanbutton" mnemonicParsing="false" onAction="#tabChallanButton" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Back to 'Main Challan'" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets right="40.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets />
                      </VBox.margin>
-                     <padding>
-                        <Insets bottom="20.0" />
-                     </padding>
                   </HBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="90.0" prefWidth="1016.0">
+                  <VBox alignment="CENTER" prefHeight="68.0" prefWidth="1016.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="Sort &amp; Filter" textFill="#0c3c60">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="20.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER" prefHeight="95.0" prefWidth="1016.0" style="-fx-background-color: #222222;" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label text="Name" textFill="#0c3c60">
+                              <Label styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Name" textFill="#0c3c60">
                                  <HBox.margin>
-                                    <Insets right="16.0" />
+                                    <Insets right="20.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="assigneenamecombobox" prefWidth="150.0" />
-                              <Label text="Product ID" textFill="#0c3c60">
+                              <ComboBox fx:id="assigneenamecombobox" prefWidth="200.0" styleClass="text_field_main" stylesheets="@ninza.css">
                                  <HBox.margin>
-                                    <Insets left="32.0" right="16.0" />
+                                    <Insets right="20.0" />
+                                 </HBox.margin></ComboBox>
+                              <Label styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Product ID" textFill="#0c3c60">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="productidcombobox" prefWidth="150.0" />
-                              <Label text="Date From: " textFill="#0c3c60">
+                              <ComboBox fx:id="productidcombobox" prefWidth="200.0" styleClass="text_field_main" stylesheets="@ninza.css">
                                  <HBox.margin>
-                                    <Insets left="32.0" right="16.0" />
+                                    <Insets right="20.0" />
+                                 </HBox.margin></ComboBox>
+                              <Label styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Date From: " textFill="#0c3c60">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <DatePicker fx:id="datefrom" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;" />
-                              <Label text="To:" textFill="#0c3c60">
+                              <DatePicker fx:id="datefrom" minHeight="28.0" minWidth="200.0" prefHeight="28.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
-                                    <Insets left="32.0" right="16.0" />
+                                    <Insets right="20.0" />
+                                 </HBox.margin></DatePicker>
+                              <Label styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="To:" textFill="#0c3c60">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <DatePicker fx:id="dateto" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: #0c3c60;" />
+                              <DatePicker fx:id="dateto" minHeight="28.0" minWidth="200.0" prefHeight="28.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1; -fx-border-color: #bbbbbb;" HBox.hgrow="ALWAYS" />
                            </children>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
-                           <padding>
-                              <Insets bottom="20.0" />
-                           </padding>
                         </HBox>
                      </children>
                   </VBox>
@@ -155,44 +133,47 @@
             </VBox>
          </top>
          <bottom>
-            <HBox alignment="TOP_CENTER" minHeight="140.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="93.0" prefWidth="1024.0" style="-fx-background-color: #222222;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="filterdata" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getFilterDataParameter" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #0078d2;" text="Search" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="filterdata" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getFilterDataParameter" prefHeight="29.0" prefWidth="128.0" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Search" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets right="10.0" />
                      </HBox.margin>
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="clearbutton" mnemonicParsing="false" onAction="#clearFilterField" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #0078d2;" text="Clear" textFill="WHITE">
+                  <Button fx:id="clearbutton" mnemonicParsing="false" onAction="#clearFilterField" prefHeight="29.0" prefWidth="128.0" styleClass="button_bottom" stylesheets="@ninza.css" text="Clear" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="20.0" top="20.0" />
+                        <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="exploreselectchallan" mnemonicParsing="false" onAction="#getChallanDetail" text="Button" />
+                  <Button fx:id="exploreselectchallan" mnemonicParsing="false" onAction="#getChallanDetail" prefHeight="29.0" prefWidth="128.0" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Edit Selection">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
          </bottom>
          <center>
-            <HBox alignment="CENTER" minHeight="350.0" BorderPane.alignment="TOP_CENTER">
+            <HBox alignment="CENTER" BorderPane.alignment="TOP_CENTER">
                <children>
                   <TableView fx:id="filterandsorttable" HBox.hgrow="ALWAYS">
                      <columns>
-                        <TableColumn fx:id="challanidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Challan ID" />
-                        <TableColumn fx:id="billdatecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Bill Date" />
-                        <TableColumn fx:id="namecolumn" maxWidth="-1.0" minWidth="200.0" prefWidth="-1.0" text="Assignee Name" />
-                        <TableColumn fx:id="productidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Product ID" />
-                        <TableColumn fx:id="issuecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Qty Issued" />
-                        <TableColumn fx:id="receivecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Qty Received" />
-                        <TableColumn fx:id="receiveduecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Receive Due Qty" />
-                        <TableColumn fx:id="paidcolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Qty Paid" />
-                        <TableColumn fx:id="paidduecolumn" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="Paid Due Qty" />
-                        <TableColumn fx:id="pastreceivecolumn" prefWidth="75.0" text="Already Received Qty" />
-                        <TableColumn fx:id="pastpaidcolumn" prefWidth="75.0" text="Already Paid Qty" />
+                        <TableColumn fx:id="challanidcolumn" maxWidth="150.0" minWidth="120.0" prefWidth="-1.0" text="Challan ID" />
+                        <TableColumn fx:id="billdatecolumn" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Bill Date" />
+                        <TableColumn fx:id="namecolumn" maxWidth="220.0" minWidth="200.0" prefWidth="-1.0" text="Assignee Name" />
+                        <TableColumn fx:id="productidcolumn" maxWidth="120.0" minWidth="100.0" prefWidth="-1.0" text="Product ID" />
+                        <TableColumn fx:id="issuecolumn" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Qty Issued" />
+                        <TableColumn fx:id="receivecolumn" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Qty Received" />
+                        <TableColumn fx:id="receiveduecolumn" maxWidth="100.0" minWidth="120.0" prefWidth="-1.0" text="Receive Due Qty" />
+                        <TableColumn fx:id="paidcolumn" maxWidth="120.0" minWidth="100.0" prefWidth="-1.0" text="Qty Paid" />
+                        <TableColumn fx:id="paidduecolumn" maxWidth="120.0" minWidth="100.0" prefWidth="-1.0" text="Paid Due Qty" />
+                        <TableColumn fx:id="pastreceivecolumn" maxWidth="200.0" minWidth="150.0" prefWidth="-1.0" text="Already Received Qty" />
+                        <TableColumn fx:id="pastpaidcolumn" maxWidth="200.0" minWidth="150.0" prefWidth="-1.0" text="Already Paid Qty" />
                      </columns>
                   </TableView>
                   <ScrollBar orientation="VERTICAL" />

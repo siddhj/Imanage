@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public final class UTable {
 	
-	public static Stage stage;
+	public static Stage loaderstage;
 	public static Stage primarystage;
 	
 	private static ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
@@ -154,18 +154,15 @@ public final class UTable {
 	public static void setTotalpaid(int totalpaid) {
 		UTable.totalpaid = totalpaid;
 	}
-
-	public static Stage getStage() {
-		return stage;
+	
+	public static Stage getLoaderstage() {
+		return loaderstage;
 	}
 
-
-	public static void setStage(Stage stage) {
-		UTable.stage = stage;
+	public static void setLoaderstage(Stage loaderstage) {
+		UTable.loaderstage = loaderstage;
 	}
-	
 
-	
 	public static ObservableList<ChallanDetailBean> getChallandetaillist() {
 		return challandetaillist;
 	}

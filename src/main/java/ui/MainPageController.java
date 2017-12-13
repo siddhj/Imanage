@@ -281,7 +281,7 @@ public class MainPageController implements MultiScreen {
 		// UTable.setPaidtextfield(paidtext);
 		// UTable.setDuetext(duetext);
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEditCSS.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
@@ -321,7 +321,7 @@ public class MainPageController implements MultiScreen {
 				UTable.setMainpagechalanlist(mainpagechalanlist);
 				UTable.setPopupchallantablelist(C.getPopupchallantableview());
 
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEditCSS.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
 				Parent root = loader.load();
 				Scene scene = new Scene(root);
 				Stage window = new Stage();
@@ -355,7 +355,7 @@ public class MainPageController implements MultiScreen {
 		UTable.setReceiveTextField(receivetext);
 		UTable.setPaidtextfield(advancedpaidtext);
 		UTable.setDuetext(duetext);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("PopupCSS.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
@@ -380,7 +380,7 @@ public class MainPageController implements MultiScreen {
 		DataManipulation man = new DataManipulation();
 		man.getPopUpWindowData(chalanlist);
 		chalanlist.removeAll(chalanlist);
-		UTable.getStage().close();
+		UTable.getLoaderstage().close();
 		Notification.dataSuccessfullySaved();
 		
 		assigneename.setText("");
@@ -405,6 +405,7 @@ public class MainPageController implements MultiScreen {
 			Stage primarystage = UTable.getPrimarystage();
 			Scene scene = new Scene(loadScreen);
 			primarystage.setScene(scene);
+		UTable.getLoaderstage().close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

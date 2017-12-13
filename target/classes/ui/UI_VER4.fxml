@@ -104,6 +104,23 @@
                   </HBox>
                   <HBox prefHeight="53.0" prefWidth="384.0">
                      <children>
+                        <Label styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Date" textFill="#0c3c60">
+                           <HBox.margin>
+                              <Insets bottom="29.0" left="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="billdate" onAction="#selectDateValue" prefHeight="28.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1; -fx-border-color: #bbbbbb;">
+                           <HBox.margin>
+                              <Insets left="68.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="384.0">
+                     <children>
                         <Label styleClass="main_textfield_title" stylesheets="@ninza.css" text="Name" textFill="#0c3c60">
                            <HBox.margin>
                               <Insets bottom="38.0" left="40.0" />
@@ -151,23 +168,6 @@
                               <Insets left="15.0" />
                            </HBox.margin>
                         </TextField>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="53.0" prefWidth="384.0">
-                     <children>
-                        <Label styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Date" textFill="#0c3c60">
-                           <HBox.margin>
-                              <Insets bottom="29.0" left="40.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <DatePicker fx:id="billdate" onAction="#selectDateValue" prefHeight="28.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1; -fx-border-color: #bbbbbb;">
-                           <HBox.margin>
-                              <Insets left="68.0" />
-                           </HBox.margin>
-                        </DatePicker>
                      </children>
                   </HBox>
                   <HBox prefHeight="53.0" prefWidth="384.0">

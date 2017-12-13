@@ -8,76 +8,122 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@popupcss.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PopUpWindowForEditController">
-   <bottom>
-      <Button fx:id="savedata" mnemonicParsing="false" onAction="#saveReceiveData" prefWidth="100.0" style="-fx-background-color: #0078d2;" text="Save" textFill="WHITE" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <BorderPane.margin>
-            <Insets bottom="15.0" top="15.0" />
-         </BorderPane.margin></Button>
-   </bottom>
-   <center>
-      <HBox alignment="TOP_CENTER" prefHeight="600.0" BorderPane.alignment="TOP_LEFT">
-         <children>
-            <TableView fx:id="receiveTable" editable="true" prefHeight="279.0" prefWidth="600.0" style="-fx-border-width: 2 0 2 0; -fx-border-color: #39729b;" HBox.hgrow="ALWAYS">
-               <columns>
-                  <TableColumn fx:id="billdatecolumn" maxWidth="300.0" minWidth="186.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Bill Date" />
-                  <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="160.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Qty Issued" />
-               </columns>
-            </TableView>
-            <ScrollBar orientation="VERTICAL" />
-         </children>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </HBox>
-   </center>
-   <top>
-      <HBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox prefHeight="50.0" prefWidth="146.0">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PopUpWindowForEditController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="680.0" stylesheets="@popupcss.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <HBox alignment="TOP_CENTER" prefHeight="600.0" BorderPane.alignment="TOP_LEFT">
                <children>
-                  <Label prefHeight="47.0" prefWidth="49.0" text="Issue" />
-                  <TextField fx:id="issuetext" prefHeight="25.0" prefWidth="91.0">
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin></TextField>
+                  <TableView fx:id="receiveTable" editable="true" prefHeight="279.0" prefWidth="600.0" style="-fx-border-width: 2 0 2 0; -fx-border-color: #39729b;" HBox.hgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="billdatecolumn" maxWidth="300.0" minWidth="186.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Bill Date" />
+                        <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="160.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Qty Issued" />
+                     </columns>
+                  </TableView>
+                  <ScrollBar orientation="VERTICAL" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </HBox>
+         </center>
+         <top>
+            <HBox prefHeight="60.0" prefWidth="680.0" style="-fx-background-color: #222222;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="140.0">
+                     <children>
+                        <Label text="Issue" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="8.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="issuetext" prefWidth="60.0">
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefWidth="170.0">
+                     <children>
+                        <Label text="Advanced Paid" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="8.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="advancedpaidtext" prefWidth="60.0">
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="183.0">
+                     <children>
+                        <Label text="Total Receive" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="16.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="receivetext" prefWidth="60.0">
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="170.0">
+                     <children>
+                        <Label text="Product ID" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="8.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="productidtext" prefWidth="60.0">
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+         </top>
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="680.0" style="-fx-background-color: #222222;" BorderPane.alignment="CENTER_RIGHT">
                <children>
-                  <Label prefHeight="47.0" prefWidth="93.0" text="Advanced Paid" />
-                  <TextField fx:id="advancedpaidtext" prefHeight="25.0" prefWidth="83.0">
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin></TextField>
+                  <Button fx:id="savedata" mnemonicParsing="false" onAction="#saveReceiveData" prefWidth="100.0" styleClass="button_left_blackBG" stylesheets="@popupcss.css" text="Save" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
-            <HBox prefHeight="50.0" prefWidth="145.0">
-               <children>
-                  <Label prefHeight="47.0" prefWidth="124.0" text="Total Receive" />
-                  <TextField fx:id="receivetext" prefHeight="25.0" prefWidth="108.0">
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin></TextField>
-               </children>
-            </HBox>
-            <HBox prefHeight="50.0" prefWidth="147.0">
-               <children>
-                  <Label prefHeight="44.0" prefWidth="59.0" text="Product ID" />
-                  <TextField fx:id="productidtext" prefHeight="25.0" prefWidth="80.0">
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin></TextField>
-               </children>
-            </HBox>
-         </children>
-      </HBox>
-   </top>
-</BorderPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

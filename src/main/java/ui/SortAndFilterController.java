@@ -45,7 +45,6 @@ public class SortAndFilterController {
     @FXML
     private Button clearbutton;
 
-
     @FXML
     private Button tabchallanbutton;
 
@@ -146,7 +145,7 @@ public class SortAndFilterController {
     DSort sort = new DSort();
     ObservableList<SortAndFilterBean> filterlist = sort.getFilterData(sqlstringassigneename.trim(), sqlstringproductid.trim(), sqlstringfromdate, sqlstringtodate);
     filterandsorttable.setItems(filterlist);
-    UTable.getStage().close();
+    UTable.getLoaderstage().close();
     }
     
     @FXML
@@ -189,7 +188,7 @@ public class SortAndFilterController {
 			Stage primarystage = UTable.getPrimarystage();
 			Scene scene = new Scene(loadScreen);
 			primarystage.setScene(scene);
-			UTable.getStage().close();
+			UTable.getLoaderstage().close();
         } catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

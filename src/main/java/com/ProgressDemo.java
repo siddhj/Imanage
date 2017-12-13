@@ -17,7 +17,7 @@ import utility.UTable;
 public class ProgressDemo //implements Runnable 
 {
 	public void start() {
-		Stage stage = new Stage();
+		Stage loaderstage = new Stage();
 		BackgroundImage myBI= new BackgroundImage(new Image("file:///C:/Users/siddhartha.jain/workspace/byte/src/main/java/Images/chalan.png",32,32,false,true),
 		        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 		          BackgroundSize.DEFAULT);
@@ -29,10 +29,10 @@ public class ProgressDemo //implements Runnable
 		root.setHgap(10);
 		//root.getChildren().addAll(label);
 		Scene scene = new Scene(root);
-		stage.setTitle("Please Wait While Processing");
-		stage.setScene(scene);
-		stage.show();	
-		UTable.setStage(stage);
+		loaderstage.setTitle("Please Wait While Processing");
+		loaderstage.setScene(scene);
+		loaderstage.show();	
+		UTable.setLoaderstage(loaderstage);
 	}
 
 //	@Override
