@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ChallanDetailController">
+<AnchorPane stylesheets="@ninza.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ChallanDetailController">
    <children>
-      <BorderPane layoutX="0.0">
+      <BorderPane layoutX="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <HBox alignment="TOP_CENTER" prefHeight="400.0" BorderPane.alignment="CENTER">
                <children>
@@ -31,9 +31,9 @@
             </HBox>
          </center>
          <bottom>
-            <HBox alignment="TOP_CENTER" prefHeight="50.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="50.0" style="-fx-background-color: #222222;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="closebutton" mnemonicParsing="false" onAction="#closeScreen" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #0078d2;" text="Close" textFill="WHITE">
+                  <Button fx:id="closebutton" alignment="CENTER" mnemonicParsing="false" onAction="#closeScreen" prefHeight="24.0" prefWidth="64.0" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Close" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

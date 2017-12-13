@@ -12,6 +12,14 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import com.ProgressDemo;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 
 import service.DataManipulation;
 import service.MicroService;
@@ -112,16 +120,16 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private Button savechalandata;
-	
+
 	@FXML
-    private Button clearbutton;
+	private Button clearbutton;
 
 	@FXML
 	private TableColumn<Chalan, String> paidcolumn = new TableColumn<>("Paid");
 
-    @FXML
-    private DatePicker billdate;
-	
+	@FXML
+	private DatePicker billdate;
+
 	@FXML
 	void removeRow(ActionEvent event) {
 		Chalan chalan = newchalantable.getSelectionModel().getSelectedItem();
@@ -139,6 +147,7 @@ public class MainPageController implements MultiScreen {
 	}
 
 	ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
+
 	// why to create instance table column instead of intializing in intialize()
 	// method
 	@FXML
@@ -162,20 +171,19 @@ public class MainPageController implements MultiScreen {
 		TextFields.bindAutoCompletion(assigneename, parentlist.get(1));
 		TextFields.bindAutoCompletion(productidtext, parentlist.get(0));
 
-	
-		/*Text Field Operations*****/
+		/* Text Field Operations *****/
 		issuetext.setDisable(true);
 		advancedpaidtext.setDisable(true);
-		
-		productidtext.setOnKeyReleased(new EventHandler<KeyEvent>(){
+
+		productidtext.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent arg0) {
-					issuetext.setDisable(false);
-					advancedpaidtext.setDisable(false);
+				issuetext.setDisable(false);
+				advancedpaidtext.setDisable(false);
 
 			}
 		});
-		
+
 		issuetext.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent keyEvent) {
@@ -193,14 +201,13 @@ public class MainPageController implements MultiScreen {
 			}
 		});
 
-		/*Setting column size in the table*/
+		/* Setting column size in the table */
 		productidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		issueitemcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		receiveitemcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		totalpaidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 		paidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
 
-	
 		UTable.setMainpagetableview(newchalantable);
 	}
 
@@ -227,15 +234,15 @@ public class MainPageController implements MultiScreen {
 			Notification.invalidInputProductID();
 			return;
 		}
-		if(dateofbill==null){
+		if (dateofbill == null) {
 			Notification.mainWindowInvalidBillDate();
-			return; 
+			return;
 		}
 		try {
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
 					Integer.parseInt(issuetext.getText()), Integer.parseInt(advancedpaidtext.getText()), AssigneeID,
-					UTable.getPopupchallantablelist(), UTable.getTotalpaid(),
-					Integer.parseInt(receivetext.getText()),dateofbill);
+					UTable.getPopupchallantablelist(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()),
+					dateofbill);
 
 			newchalantable.getItems().add(chalan);
 			productidtext.setText("");
@@ -246,7 +253,7 @@ public class MainPageController implements MultiScreen {
 			assigneenamelabel.setText(assigneename.getText());
 			issuetext.setDisable(true);
 			advancedpaidtext.setDisable(true);
-			//billdate.setValue(null);
+			// billdate.setValue(null);
 		} catch (NumberFormatException E) {
 			Notification.invalidInput();
 		}
@@ -271,7 +278,7 @@ public class MainPageController implements MultiScreen {
 		mainpagechalanlist.add(selectedchalan);
 
 		ObservableList<PopUpChallan> popupchallantablelist = selectedchalan.getPopupchallantableview();
-		
+
 		UTable.setPopupchallantablelist(popupchallantablelist);
 		UTable.setSelectedchallanfrommainpage(selectedchalan);
 		UTable.setIndexofselectedrow(indexofselectedrow);
@@ -302,21 +309,19 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private Button newwindow;
 
-	/*This is the action event for receive button*/
+	/* This is the action event for receive button */
 	@FXML
 	void popupWindow(ActionEvent event) throws IOException, SQLException {
 		System.out.println("this is the receive button");
-		
-		ObservableList <Chalan> mainpagechalanlist = newchalantable.getItems();
-		
-		for(Chalan C: mainpagechalanlist)
-		{
-			if(C.getProductid().equals(productidtext.getText()))
-			{
+
+		ObservableList<Chalan> mainpagechalanlist = newchalantable.getItems();
+
+		for (Chalan C : mainpagechalanlist) {
+			if (C.getProductid().equals(productidtext.getText())) {
 				Notification.mainWindowProductIDAlreadyExist();
 				issuetext.setDisable(true);
 				advancedpaidtext.setDisable(true);
-				//newchalantable
+				// newchalantable
 				UTable.setSelectedchallanfrommainpage(C);
 				UTable.setMainpagechalanlist(mainpagechalanlist);
 				UTable.setPopupchallantablelist(C.getPopupchallantableview());
@@ -382,7 +387,7 @@ public class MainPageController implements MultiScreen {
 		chalanlist.removeAll(chalanlist);
 		UTable.getLoaderstage().close();
 		Notification.dataSuccessfullySaved();
-		
+
 		assigneename.setText("");
 		productidtext.setText("");
 		issuetext.setText("");
@@ -390,9 +395,9 @@ public class MainPageController implements MultiScreen {
 		// duetext.setText("");
 		advancedpaidtext.setText("");
 		billdate.setValue(null);
-    	assigneename.setDisable(false);
-    	billdate.setDisable(false);
-    	assigneenamelabel.setText("");
+		assigneename.setDisable(false);
+		billdate.setDisable(false);
+		assigneenamelabel.setText("");
 	}
 
 	@FXML
@@ -405,7 +410,7 @@ public class MainPageController implements MultiScreen {
 			Stage primarystage = UTable.getPrimarystage();
 			Scene scene = new Scene(loadScreen);
 			primarystage.setScene(scene);
-		UTable.getLoaderstage().close();
+			UTable.getLoaderstage().close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -416,8 +421,7 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private Button exportexcelbutton;
 
-	public void saveExcelFile(File file) throws IOException
-	{
+	public void saveExcelFile(File file) throws IOException {
 		Workbook workbook = new HSSFWorkbook();
 		Sheet spreadsheet = workbook.createSheet("sample");
 
@@ -435,7 +439,7 @@ public class MainPageController implements MultiScreen {
 			row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getText());
 		}
 
-		for (int i = 3; i < newchalantable.getItems().size()+3; i++) {
+		for (int i = 3; i < newchalantable.getItems().size() + 3; i++) {
 			row = spreadsheet.createRow(i + 1);
 			for (int j = 0; j < newchalantable.getColumns().size(); j++) {
 				if (newchalantable.getColumns().get(j).getCellData(i) != null) {
@@ -452,30 +456,72 @@ public class MainPageController implements MultiScreen {
 
 	}
 	
-	@FXML
-	public void exportExcel() throws IOException {
-		
-		  FileChooser fileChooser = new FileChooser();
-		  
-          //Set extension filter
-          FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xls)", "*.xls");
-          fileChooser.getExtensionFilters().add(extFilter);
-          
-          //Show save file dialog
-          File file = fileChooser.showSaveDialog(UTable.getPrimarystage());
-          
-          if(file != null){
-              saveExcelFile(file);
-          }
-      }
-		
+	public void createPdfss(File dest) throws IOException, DocumentException {
+	    float left = 30;
+	    float right = 30;
+	    float top = 60;
+	    float bottom = 0;
+	    Document document = new Document(PageSize.A4, left, right, top, bottom);
+	    PdfWriter.getInstance(document, new FileOutputStream(dest));
+	    document.open();
+	    document.setMargins(left, right, 0, bottom);
+	    Paragraph paragraph1 = new Paragraph("IManage");
+        Paragraph paragraph2 = new Paragraph("Challan Generation");
+        paragraph2.setSpacingAfter(20f);	
+        document.add(paragraph1);
+        document.add(paragraph2);
+        Paragraph p = new Paragraph("Name: "+assigneenamelabel.getText());
+        DottedLineSeparator dottedline = new DottedLineSeparator();
+        dottedline.setOffset(-2);
+        dottedline.setGap(2f);
+        p.add(dottedline);
+        p.setSpacingAfter(20f);
+        document.add(p);
+	    PdfPTable table = new PdfPTable(6);
+	    
+//	    for(int aw = 0; aw < 16; aw++){
+//	        table.addCell("hi");
+//	    }
+	    for (int j = 0; j < newchalantable.getColumns().size(); j++) {
+	    		table.addCell(newchalantable.getColumns().get(j).getText());
+		}
 
-    @FXML
-    void clearMainPageDataButton(ActionEvent event) {
-    	assigneename.setDisable(false);
-    	billdate.setDisable(false);
-    	ObservableList<Chalan> chalanlist = newchalantable.getItems();
-    	chalanlist.removeAll(chalanlist);
+		for (int i = 0; i < newchalantable.getItems().size(); i++) {
+			for (int j = 0; j < newchalantable.getColumns().size(); j++) {
+				if (newchalantable.getColumns().get(j).getCellData(i) != null) {
+					table.addCell(newchalantable.getColumns().get(j).getCellData(i).toString());
+				} else {
+					table.addCell("");
+				}
+			}
+		}
+
+		document.add(table);
+	    document.close();
+	}
+	@FXML
+	public void exportExcel() throws IOException, DocumentException {
+
+		FileChooser fileChooser = new FileChooser();
+
+		// Set extension filter
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pdf (*.pdf)", "*.pdf");
+		fileChooser.getExtensionFilters().add(extFilter);
+
+		// Show save file dialog
+		File file = fileChooser.showSaveDialog(UTable.getPrimarystage());
+
+		if (file != null) {
+			createPdfss(file);
+		}
+	}
+
+	@FXML
+	void clearMainPageDataButton(ActionEvent event) {
+		assigneename.setDisable(false);
+		billdate.setDisable(false);
+		ObservableList<Chalan> chalanlist = newchalantable.getItems();
+		chalanlist.removeAll(chalanlist);
 		assigneename.setText("");
 		productidtext.setText("");
 		issuetext.setText("");
@@ -483,9 +529,8 @@ public class MainPageController implements MultiScreen {
 		// duetext.setText("");
 		advancedpaidtext.setText("");
 		billdate.setValue(null);
-    	
-    }
-	
+
+	}
 
 	@FXML
 	void selectDateValue(ActionEvent event) {
@@ -505,12 +550,12 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	void issueText(ActionEvent event) {
 		System.out.println("hello");
-	
+
 	}
 
 	@FXML
 	void productIdOnActionMethod(ActionEvent event) {
-		System.out.println("this is the value"+productidtext.getText());
+		System.out.println("this is the value" + productidtext.getText());
 	}
 
 	@FXML

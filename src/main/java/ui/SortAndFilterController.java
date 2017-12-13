@@ -31,6 +31,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -175,6 +176,8 @@ public class SortAndFilterController {
         window.setHeight((bounds.getHeight()*65)/100);
         window.setAlwaysOnTop(true);
         window.initStyle(StageStyle.UNDECORATED);
+		window.initOwner(UTable.getPrimarystage());
+		window.initModality(Modality.WINDOW_MODAL);
 		window.show();
     }
     
