@@ -23,6 +23,7 @@ public class Notification {
 				System.out.println("called");		
 					}
 				});
+		note.darkStyle();
 		note.showError();
 	}
 	
@@ -39,6 +40,7 @@ public class Notification {
 				System.out.println("called");		
 					}
 				});
+		note.darkStyle();
 		note.showError();
 	}
 	
@@ -71,6 +73,7 @@ public class Notification {
 				System.out.println("called");		
 					}
 				});
+		note.darkStyle();
 		note.showInformation();
 	}
 	
@@ -87,6 +90,7 @@ public class Notification {
 				System.out.println("called");		
 					}
 				});
+		note.darkStyle();
 		note.showInformation();
 	}
 	
@@ -103,6 +107,7 @@ public class Notification {
 				System.out.println("called");		
 					}
 				});
+		note.darkStyle();
 		note.showInformation();
 	}
 	
@@ -119,6 +124,7 @@ public class Notification {
 				System.out.println("called");		
 					}
 				});
+		note.darkStyle();
 		note.showInformation();
 	}
 	
@@ -135,6 +141,7 @@ public class Notification {
 				System.out.println("called");		
 					}
 				});
+		note.darkStyle();
 		note.showInformation();
 	}
 	
@@ -152,6 +159,7 @@ public class Notification {
 				System.out.println("called");		
 					}
 				});
+		note.darkStyle();
 		note.showError();
 	}
 }

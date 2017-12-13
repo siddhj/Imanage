@@ -1,6 +1,9 @@
 package ui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import org.controlsfx.control.textfield.*;
@@ -42,6 +45,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -396,9 +400,8 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private Button exportexcelbutton;
 
-	@FXML
-	public void exportExcel() throws IOException {
-		System.out.println("export excel");
+	public void saveExcelFile(File file) throws IOException
+	{
 		Workbook workbook = new HSSFWorkbook();
 		Sheet spreadsheet = workbook.createSheet("sample");
 
@@ -412,19 +415,18 @@ public class MainPageController implements MultiScreen {
 		Row row = spreadsheet.createRow(0);
 
 		row.createCell(0).setCellValue("Name:");
-		// row.getCell(0).setCellStyle(style);
 		row.createCell(1).setCellValue(assigneenamelabel.getText());
 
 		row.createCell(3).setCellValue("Bill Date:");
 		row.createCell(4).setCellValue(new java.sql.Date(new Date().getTime()));
 
-		row = spreadsheet.createRow(1);
+		row = spreadsheet.createRow(2);
 
 		for (int j = 0; j < newchalantable.getColumns().size(); j++) {
 			row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getText());
 		}
 
-		for (int i = 0; i < newchalantable.getItems().size(); i++) {
+		for (int i = 3; i < newchalantable.getItems().size()+3; i++) {
 			row = spreadsheet.createRow(i + 1);
 			for (int j = 0; j < newchalantable.getColumns().size(); j++) {
 				if (newchalantable.getColumns().get(j).getCellData(i) != null) {
@@ -435,11 +437,31 @@ public class MainPageController implements MultiScreen {
 			}
 		}
 
-		FileOutputStream fileOut = new FileOutputStream("E:\\workbook.xls");
+		FileOutputStream fileOut = new FileOutputStream(file);
 		workbook.write(fileOut);
 		fileOut.close();
 
 	}
+	
+	@FXML
+	public void exportExcel() throws IOException {
+		
+		  FileChooser fileChooser = new FileChooser();
+		  
+          //Set extension filter
+          FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xls)", "*.xls");
+          fileChooser.getExtensionFilters().add(extFilter);
+          
+          //Show save file dialog
+          File file = fileChooser.showSaveDialog(UTable.getPrimarystage());
+          
+          if(file != null){
+              saveExcelFile(file);
+          }
+      }
+		
+
+	
 
 	@FXML
 	void selectDateValue(ActionEvent event) {
