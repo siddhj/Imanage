@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -36,6 +37,9 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
+import service.EditingCell;
+import service.HighLightCell;
 import service.MicroService;
 import service.Validation;
 import utility.UTable;
@@ -79,19 +83,19 @@ public class SortAndFilterController {
     private TableColumn<SortAndFilterBean, SimpleStringProperty> namecolumn = new TableColumn<>("Assignee Name");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> issuecolumn = new TableColumn<>("Qty Issued");
+    private TableColumn<SortAndFilterBean, Integer> issuecolumn = new TableColumn<>("Qty Issued");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> receivecolumn  = new TableColumn<>("Qty Received");
+    private TableColumn<SortAndFilterBean, Integer> receivecolumn  = new TableColumn<>("Qty Received");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> receiveduecolumn = new TableColumn<>("Receive Due Qty");
+    private TableColumn<SortAndFilterBean, Integer> receiveduecolumn = new TableColumn<>("Receive Due Qty");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> paidcolumn  = new TableColumn<>("Qty Paid");
+    private TableColumn<SortAndFilterBean, Integer> paidcolumn  = new TableColumn<>("Qty Paid");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> paidduecolumn  = new TableColumn<>("Paid Due Qty");
+    private TableColumn<SortAndFilterBean, Integer> paidduecolumn  = new TableColumn<>("Paid Due Qty");
     
     @FXML
     private TableColumn<SortAndFilterBean, SimpleIntegerProperty> pastreceivecolumn  = new TableColumn<>("Already Receive Qty");
@@ -110,15 +114,27 @@ public class SortAndFilterController {
 	public void initialize() throws SQLException, IOException {
 	productidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleStringProperty>("productid"));
 	challanidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("challanid"));
-	issuecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("issueitem"));
-	receivecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("receiveitem"));
-	receiveduecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("receivedueitem"));
-	paidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("paiditem"));	
-	paidduecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("paiditemdue"));
+	issuecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("issueitem"));
+	receivecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("receiveitem"));
+	receiveduecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("receivedueitem"));
+	paidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean,Integer>("paiditem"));	
+	paidduecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("paiditemdue"));
 	billdatecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, LocalDate>("billdate"));
 	namecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleStringProperty>("assigneename"));
 	pastreceivecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastreceive"));
 	pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastpaid"));
+	
+//	Callback<TableColumn<SortAndFilterBean, Integer>, TableCell<SortAndFilterBean, Integer>> cellSortAndFilter = new Callback<TableColumn<SortAndFilterBean, Integer>, TableCell<SortAndFilterBean, Integer>>() {
+//		public TableCell<SortAndFilterBean, Integer> call(TableColumn<SortAndFilterBean, Integer> p) {
+//			return new HighLightCell();
+//		}
+//	};
+//	
+//	issuecolumn.setCellFactory(cellSortAndFilter);
+//	receivecolumn.setCellFactory(cellSortAndFilter);
+//	receiveduecolumn.setCellFactory(cellSortAndFilter);
+//	paidcolumn.setCellFactory(cellSortAndFilter);
+//	paidduecolumn.setCellFactory(cellSortAndFilter);
 	
 	ObservableList<ObservableList<String>> parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
 	//1. Product and 2. Name

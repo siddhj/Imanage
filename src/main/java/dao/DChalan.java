@@ -40,8 +40,8 @@ public class DChalan {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
 		PreparedStatement prepare = connection.prepareStatement(
-				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate) "
-						+ "values(?,?,?,?,?,?,?,?,?,?)");
+				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate,Paid_Due) "
+						+ "values(?,?,?,?,?,?,?,?,?,?,?)");
 		Date date = new Date();
 		
 		Object param = new Timestamp(date.getTime());
@@ -58,6 +58,7 @@ public class DChalan {
 				prepare.setInt(8, c.getTotalpaid());
 				prepare.setInt(9, c.getTotalreceive());
 				prepare.setTimestamp(10, new Timestamp(date.getTime()));
+				prepare.setInt(11, 0);
 				prepare.addBatch();
 			} catch (SQLException e) {
 				e.printStackTrace();

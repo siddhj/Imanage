@@ -3,6 +3,26 @@
 	-fx-font-size: 40px;
 }
 
+
+.header-button
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #c5db5a;
+ 
+ -fx-text-fill: #000000;
+  -fx-font-size: 15px;
+}
+.header-button:hover
+{
+    -fx-font-family: "Roboto";
+ -fx-background-color: #a3b938;
+ -fx-text-fill: #000000;
+
+  -fx-font-size: 15px;
+
+}
+
+
 .text-field
 {
 -fx-font-family: "Roboto";
@@ -11,25 +31,7 @@
 -fx-height: 200px;
 }
 
-.button{
-    -fx-font-family: "Roboto";
- -fx-background-color: #000000;
- -fx-text-fill: #ffffff;
-  -fx-font-size: 15px;
-}
 
-.button:hover{
-    -fx-font-family: "Roboto";
- -fx-background-color: #ff4545;
-  -fx-font-size: 15px;
-  transition: color 1s;
-}
-
-.button:visited{
-    -fx-font-family: "Roboto";
- -fx-background-color: #3c3c3c;
-  -fx-font-size: 15px;
-}
  
 .background
 {
@@ -117,6 +119,8 @@
   -fx-font-size: 15px;
 }
 
+
+
 .button_left_blackBG
 {
     -fx-font-family: "Roboto";
@@ -161,26 +165,23 @@
 -fx-height: 200px;
 }
 
-.button{
+.login_button
+{
     -fx-font-family: "Roboto";
- -fx-background-color: #000000;
+ -fx-background-color: #343488;
  -fx-text-fill: #ffffff;
-  -fx-font-size: 15px;
+  -fx-font-size: 18px;
+}
+.login_button:hover{
+
+    -fx-font-family: "Roboto";
+ -fx-background-color: #111144;
+ -fx-text-fill: #ffffff;
+  -fx-font-size: 18px;
 }
 
-.button:hover{
-    -fx-font-family: "Roboto";
- -fx-background-color: #ff4545;
-  -fx-font-size: 15px;
-  transition: color 1s;
-}
 
-.button:visited{
-    -fx-font-family: "Roboto";
- -fx-background-color: #3c3c3c;
-  -fx-font-size: 15px;
-}
- 
+
 .background
 {
 -fx-background-color: #f0f0f0;

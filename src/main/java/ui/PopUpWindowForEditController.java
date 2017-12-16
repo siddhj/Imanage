@@ -176,7 +176,7 @@ public class PopUpWindowForEditController {
 		selectedchallanfrommainpage.setTotalreceive(receive);
 		selectedchallanfrommainpage.setTotalpaid(paid);
 		selectedchallanfrommainpage.setPopupchallantableview(receiveTable.getItems());
-		selectedchallanfrommainpage.setDue(Integer.parseInt(issuetext.getText()));
+	//	selectedchallanfrommainpage.setDue(Integer.parseInt(issuetext.getText()));
 		UTable.getMainpagetableview().getColumns().get(1).setVisible(false);
 		UTable.getMainpagetableview().getColumns().get(1).setVisible(true);
 		UTable.getMainpagetableview().getColumns().get(2).setVisible(false);

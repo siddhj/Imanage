@@ -15,6 +15,7 @@ public class Assignee {
 	public Assignee(String fullname, int assigneeid) {
 		super();
 		this.assigneeid = assigneeid;
+		this.fullname=fullname;
 	}
 	public Assignee() {
 

@@ -1,5 +1,7 @@
 package service;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import bean.Assignee;
@@ -16,7 +18,21 @@ public class MicroService {
 		ObservableList<Assignee> assigneelist = DLoader.assigneelist;
 		int assigneeid = 0;
 		for (Assignee al : assigneelist) {
-			if (al.getFirstname().equals(name)) {
+			System.out.println(al.getFullname());
+			if (al.getFullname().equals(name)) {
+				assigneeid = al.getAssigneeid();
+				break;
+			}
+		}
+		return assigneeid;
+	}
+	
+	public int assigneeIDRetrieveFullName(String name) throws SQLException, IOException {
+		ObservableList<Assignee> assigneelist = DLoader.getSingeletonInstanceOfLoader().getAssigneeList();
+		int assigneeid = 0;
+		for (Assignee al : assigneelist) {
+			System.out.println(al.getFullname());
+			if (al.getFullname().equals(name)) {
 				assigneeid = al.getAssigneeid();
 				break;
 			}

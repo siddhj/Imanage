@@ -31,6 +31,7 @@ import bean.Chalan;
 import bean.PopUpChallan;
 import dao.DChalan;
 import dao.DLoader;
+import javafx.animation.FillTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,12 +50,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import javafx.util.Duration;
 import service.MultiScreen;
 import service.Notification;
 import service.Validation;
@@ -153,7 +156,7 @@ public class MainPageController implements MultiScreen {
 	// method
 	@FXML
 	public void initialize() throws SQLException, IOException {
-
+		
 		productidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("productid"));
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
@@ -236,11 +239,10 @@ public class MainPageController implements MultiScreen {
 	}
 
 	@FXML
-	void saveChalan(ActionEvent event) {
+	void saveChalan(ActionEvent event) throws SQLException, IOException {
 		String name = assigneename.getText();
 		java.util.Date dateofbill = java.sql.Date.valueOf(billdate.getValue());
-		int AssigneeID = new MicroService().assigneeIDRetrieve(name);
-
+	
 		if (!Validation.parentListNameValidation(parentlist.get(1), assigneename.getText())) {
 			Notification.invalidInputName();
 			return;
@@ -254,6 +256,7 @@ public class MainPageController implements MultiScreen {
 			return;
 		}
 		try {
+			int AssigneeID = new MicroService().assigneeIDRetrieveFullName(name);
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
 					Integer.parseInt(issuetext.getText()), Integer.parseInt(advancedpaidtext.getText()), AssigneeID,
 					UTable.getPopupchallantablelist(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()),
@@ -368,7 +371,7 @@ public class MainPageController implements MultiScreen {
 			}
 		}
 		new ProgressDemo().start();
-		int assigneeid = new MicroService().assigneeIDRetrieve(assigneename.getText());
+		int assigneeid = new MicroService().assigneeIDRetrieveFullName(assigneename.getText());
 		String productid = productidtext.getText();
 		ObservableList<PopUpChallan> chalanlist = DChalan.getSingeletonInstance().chalanDataLoad(productid, assigneeid);
 		// setting chalanlist soon will be deprecated

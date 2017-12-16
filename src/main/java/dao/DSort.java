@@ -14,6 +14,7 @@ import bean.SortAndFilterBean;
 import bean.SummaryBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import utility.UTable;
 
 public class DSort {
 
@@ -52,6 +53,12 @@ public class DSort {
 	totalpaiditemdue+=(resultset.getInt("c.Issue")-resultset.getInt("c.Paid"));
 	
 	}
+	UTable.setSortandfiltertotalissue(totalissueitem);
+	UTable.setSortandfiltertotalreceive(totalreceiveitem);
+	UTable.setSortandfiltertotalpaid(totalpaiditem);
+	UTable.setSortandfiltertotalreceivedue(totalreceivedueitem);
+	UTable.setSortandfilterpaiddue(totalpaiditemdue);
+
 	filterlist.add(new SortAndFilterBean("***TOTAL*** => ",null,0,"********",totalissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue,0000,0000));
 	
 //	SummaryBean summary = new SummaryBean(totalissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue);

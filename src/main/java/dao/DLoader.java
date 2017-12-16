@@ -12,7 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class DLoader {
-public static 	ObservableList<Assignee> assigneelist;
+public static ObservableList<Assignee> assigneelist;
 
 private static final DLoader singletonloader = new DLoader();
 
@@ -23,6 +23,17 @@ public static DLoader getSingeletonInstanceOfLoader(){
 return singletonloader;
 }
 
+public ObservableList<Assignee> getAssigneeList() throws SQLException, IOException{
+	Connection connection = ListTables.returnConnection();
+	Statement stmt = connection.createStatement();
+	ResultSet result = stmt.executeQuery("SELECT AssigneeID,Full_Name FROM assignee");
+	ObservableList<Assignee> assigneelist  = FXCollections.observableArrayList();
+	while(result.next())
+	{
+		assigneelist.add(new Assignee(result.getString("Full_Name"),result.getInt("AssigneeID")));
+	}
+	return assigneelist;
+}
 
 
 public ObservableList<ObservableList<String>> intialLoader() throws SQLException, IOException{

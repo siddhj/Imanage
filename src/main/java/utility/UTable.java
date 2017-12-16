@@ -48,10 +48,51 @@ public final class UTable {
 	
 	public static TableColumn paidcolumnpopuptable;
 
-	public static int indexofselectedrow;
-	public static int totalpaid;
+	public static int indexofselectedrow,totalpaid;
+//	totallissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue
+	public static int sortandfiltertotalissue,sortandfiltertotalpaid,sortandfiltertotalreceive,sortandfiltertotalreceivedue,sortandfilterpaiddue;
 
 	
+	public static int getSortandfiltertotalpaid() {
+		return sortandfiltertotalpaid;
+	}
+
+	public static void setSortandfiltertotalpaid(int sortandfiltertotalpaid) {
+		UTable.sortandfiltertotalpaid = sortandfiltertotalpaid;
+	}
+
+	public static int getSortandfiltertotalreceive() {
+		return sortandfiltertotalreceive;
+	}
+
+	public static void setSortandfiltertotalreceive(int sortandfiltertotalreceive) {
+		UTable.sortandfiltertotalreceive = sortandfiltertotalreceive;
+	}
+
+	public static int getSortandfiltertotalreceivedue() {
+		return sortandfiltertotalreceivedue;
+	}
+
+	public static void setSortandfiltertotalreceivedue(int sortandfiltertotalreceivedue) {
+		UTable.sortandfiltertotalreceivedue = sortandfiltertotalreceivedue;
+	}
+
+	public static int getSortandfilterpaiddue() {
+		return sortandfilterpaiddue;
+	}
+
+	public static void setSortandfilterpaiddue(int sortandfilterpaiddue) {
+		UTable.sortandfilterpaiddue = sortandfilterpaiddue;
+	}
+
+	public static int getSortandfiltertotalissue() {
+		return sortandfiltertotalissue;
+	}
+
+	public static void setSortandfiltertotalissue(int sortandfiltertotalissue) {
+		UTable.sortandfiltertotalissue = sortandfiltertotalissue;
+	}
+
 	public static TableView<Chalan> getMainpagetableview() {
 		return mainpagetableview;
 	}

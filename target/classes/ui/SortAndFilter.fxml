@@ -135,11 +135,6 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="93.0" prefWidth="1024.0" style="-fx-background-color: #222222;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="summarybutton" mnemonicParsing="false" onAction="#getSummaryOfFilter" text="Summary">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
                   <Button fx:id="filterdata" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getFilterDataParameter" prefHeight="31.0" prefWidth="136.0" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Search and Filter" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="10.0" />
