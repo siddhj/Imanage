@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 public class Validation {
 	public static String nullVarifierStringForDao(String valuetocheck) {
 		String defaultvalue = "";
-		if (valuetocheck != null) {
+		if (valuetocheck != null&&!valuetocheck.equals("None")) {
 			defaultvalue = defaultvalue + valuetocheck;
 		}
 		return defaultvalue;

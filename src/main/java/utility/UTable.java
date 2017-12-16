@@ -1,9 +1,13 @@
 package utility;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import bean.Assignee;
 import bean.Chalan;
 import bean.ChallanDetailBean;
 import bean.PopUpChallan;
+import bean.SortAndFilterBean;
 import dao.DChalan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,12 +20,13 @@ public final class UTable {
 	
 	public static Stage loaderstage;
 	public static Stage primarystage;
-	
+	public static Stage popupstage;
+
 	private static ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
 	public static ObservableList<PopUpChallan> popupchallantablelist = FXCollections.observableArrayList();
 	public static ObservableList<ChallanDetailBean> challandetaillist = FXCollections.observableArrayList();
 	public static ObservableList<Chalan> mainpagechalanlist = FXCollections.observableArrayList();
-//	private static ObservableList<PopUpChallan> challanlist = FXCollections.observableArrayList();
+	public static ObservableList<SortAndFilterBean> sortandfilterwindowlist = FXCollections.observableArrayList();
 
 	public static TableView<PopUpChallan> popuptableview;
 	public static TableView<Chalan> mainpagetableview;
@@ -31,6 +36,15 @@ public final class UTable {
 	public static TextField duetext;
 	public static TextField paidtextfield;
 	public static TextField textfield;
+
+//	public static TextField sortandfilterassigneename;
+//	public static TextField sortandfilterproductid;
+//	public static Date sortandfilterdatefrom;
+//	public static Date sortandfilterdateto;
+//	
+	public static String sortandfilterassigneename;
+	public static String sortandfilterproductid;
+	public static String sortandfilterfromdate;
 	
 	public static TableColumn paidcolumnpopuptable;
 
@@ -170,5 +184,46 @@ public final class UTable {
 	public static void setChallandetaillist(ObservableList<ChallanDetailBean> challandetaillist) {
 		UTable.challandetaillist = challandetaillist;
 	}
+	
+	public static Stage getPopupstage() {
+		return popupstage;
+	}
+
+	public static void setPopupstage(Stage popupstage) {
+		UTable.popupstage = popupstage;
+	}
+
+	public static String getSortandfilterassigneename() {
+		return sortandfilterassigneename;
+	}
+
+	public static void setSortandfilterassigneename(String sortandfilterassigneename) {
+		UTable.sortandfilterassigneename = sortandfilterassigneename;
+	}
+
+	public static String getSortandfilterproductid() {
+		return sortandfilterproductid;
+	}
+
+	public static void setSortandfilterproductid(String sortandfilterproductid) {
+		UTable.sortandfilterproductid = sortandfilterproductid;
+	}
+
+	public static String getSortandfilterfromdate() {
+		return sortandfilterfromdate;
+	}
+
+	public static void setSortandfilterfromdate(String sortandfilterfromdate) {
+		UTable.sortandfilterfromdate = sortandfilterfromdate;
+	}
+
+	public static ObservableList<SortAndFilterBean> getSortandfilterwindowlist() {
+		return sortandfilterwindowlist;
+	}
+
+	public static void setSortandfilterwindowlist(ObservableList<SortAndFilterBean> sortandfilterwindowlist) {
+		UTable.sortandfilterwindowlist = sortandfilterwindowlist;
+	}
+
 
 }

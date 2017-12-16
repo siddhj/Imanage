@@ -24,6 +24,7 @@ import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import service.DataManipulation;
 import service.MicroService;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
 
 import bean.Chalan;
@@ -157,8 +158,10 @@ public class MainPageController implements MultiScreen {
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalreceive"));
-		duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
-		paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("paid"));
+
+//**	duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
+		
+		paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("advancepaid"));
 		totalpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalpaid"));
 		// System.out.println("doen");
 		// listFromDb = new DChalan().chalanDataLoad();
@@ -200,14 +203,26 @@ public class MainPageController implements MultiScreen {
 				}
 			}
 		});
-
+		//scene.widthProperty().divide(3).subtract(2.1/3)
 		/* Setting column size in the table */
-		productidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
-		issueitemcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
-		receiveitemcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
-		totalpaidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
-		paidcolumn.prefWidthProperty().bind(newchalantable.widthProperty().multiply(0.2));
-
+		productidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+		issueitemcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+		receiveitemcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+		totalpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+		paidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+		
+		productidcolumn.maxWidthProperty().bind(productidcolumn.prefWidthProperty());
+		issueitemcolumn.maxWidthProperty().bind(issueitemcolumn.prefWidthProperty());
+		receiveitemcolumn.maxWidthProperty().bind(receiveitemcolumn.prefWidthProperty());
+		totalpaidcolumn.maxWidthProperty().bind(totalpaidcolumn.prefWidthProperty());
+		paidcolumn.maxWidthProperty().bind(paidcolumn.prefWidthProperty());
+		
+		productidcolumn.setResizable(false);
+		issueitemcolumn.setResizable(false);
+		receiveitemcolumn.setResizable(false);
+		totalpaidcolumn.setResizable(false);
+		paidcolumn.setResizable(false);
+		billdate.setValue(LocalDate.now());
 		UTable.setMainpagetableview(newchalantable);
 	}
 
@@ -242,12 +257,12 @@ public class MainPageController implements MultiScreen {
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
 					Integer.parseInt(issuetext.getText()), Integer.parseInt(advancedpaidtext.getText()), AssigneeID,
 					UTable.getPopupchallantablelist(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()),
-					dateofbill);
+					dateofbill,null);
 
 			newchalantable.getItems().add(chalan);
 			productidtext.setText("");
 			issuetext.setText("");
-			receivetext.setText("");
+			receivetext.setText("0");
 			// duetext.setText("");
 			advancedpaidtext.setText("");
 			assigneenamelabel.setText(assigneename.getText());
@@ -259,6 +274,7 @@ public class MainPageController implements MultiScreen {
 		}
 		assigneename.setDisable(true);
 		billdate.setDisable(true);
+		billdate.setValue(LocalDate.now());
 	}
 
 	MainScreenController screencontroller = new MainScreenController();
@@ -325,7 +341,6 @@ public class MainPageController implements MultiScreen {
 				UTable.setSelectedchallanfrommainpage(C);
 				UTable.setMainpagechalanlist(mainpagechalanlist);
 				UTable.setPopupchallantablelist(C.getPopupchallantableview());
-
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
 				Parent root = loader.load();
 				Scene scene = new Scene(root);
@@ -342,6 +357,8 @@ public class MainPageController implements MultiScreen {
 				window.initModality(Modality.WINDOW_MODAL);
 				window.setAlwaysOnTop(true);
 				window.show();
+				
+				
 				productidtext.setText("");
 				issuetext.setText("");
 				receivetext.setText("");
@@ -360,20 +377,26 @@ public class MainPageController implements MultiScreen {
 		UTable.setReceiveTextField(receivetext);
 		UTable.setPaidtextfield(advancedpaidtext);
 		UTable.setDuetext(duetext);
+		System.out.println("Stage is about to set");
+		Stage window = new Stage();
+		UTable.setPopupstage(window);
+		//When we call fxml loader then the intialize method is being called 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
-		Stage window = new Stage();
+
 		Screen screen = Screen.getPrimary();
 		Rectangle2D bounds = screen.getVisualBounds();
-		window.setX(bounds.getMinX() + 60);
-		window.setY(bounds.getMinY() + 70);
-		window.setWidth((bounds.getWidth() * 80) / 100);
-		window.setHeight((bounds.getHeight() * 60) / 100);
+		window.setX(bounds.getMinX() + 100);
+		window.setY(bounds.getMinY() + 90);
+		window.setWidth((bounds.getWidth() * 90) / 100);
+		window.setHeight((bounds.getHeight() * 70) / 100);
 		window.setScene(scene);
+		System.out.println("Utable set");
 		window.initStyle(StageStyle.UNDECORATED);
 		window.initOwner(UTable.getPrimarystage());
 		window.initModality(Modality.WINDOW_MODAL);
+//		UTable.setPopupstage(window);
 		window.show();
 
 	}
@@ -398,6 +421,7 @@ public class MainPageController implements MultiScreen {
 		assigneename.setDisable(false);
 		billdate.setDisable(false);
 		assigneenamelabel.setText("");
+		billdate.setValue(LocalDate.now());
 	}
 
 	@FXML

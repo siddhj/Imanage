@@ -54,7 +54,7 @@ public class DChalan {
 				prepare.setInt(4, c.getReceive());
 				prepare.setInt(5, c.getDue());
 				prepare.setDate(6, new java.sql.Date(c.getBilldate().getTime()));
-				prepare.setInt(7, c.getPaid());
+				prepare.setInt(7, c.getAdvancepaid());
 				prepare.setInt(8, c.getTotalpaid());
 				prepare.setInt(9, c.getTotalreceive());
 				prepare.setTimestamp(10, new Timestamp(date.getTime()));

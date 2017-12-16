@@ -12,6 +12,7 @@ import bean.Chalan;
 import bean.ChallanDetailBean;
 import bean.PopUpChallan;
 import bean.SortAndFilterBean;
+import bean.SummaryBean;
 import dao.DChalan;
 import dao.DLoader;
 import dao.DSort;
@@ -49,6 +50,7 @@ public class SortAndFilterController {
     @FXML
     private Button tabchallanbutton;
 
+    
     @FXML
     private ComboBox<String> assigneenamecombobox = new ComboBox<>();
 
@@ -117,8 +119,10 @@ public class SortAndFilterController {
 	namecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleStringProperty>("assigneename"));
 	pastreceivecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastreceive"));
 	pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastpaid"));
-	ObservableList<ObservableList<String>> parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
 	
+	ObservableList<ObservableList<String>> parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
+	//1. Product and 2. Name
+	parentlist.get(1).add("None");parentlist.get(0).add("None");
 	assigneenamecombobox.getItems().addAll(parentlist.get(1));
 	productidcombobox.getItems().addAll(parentlist.get(0));
 	//UTable.getStage().close();
@@ -143,11 +147,47 @@ public class SortAndFilterController {
     	String sqlstringtodate = Validation.nullVarifierToDateForDao(todate);
     	
     	System.out.println(sqlstringassigneename+"::"+sqlstringproductid+"::"+sqlstringfromdate+"::"+sqlstringtodate+"::");
-    DSort sort = new DSort();
-    ObservableList<SortAndFilterBean> filterlist = sort.getFilterData(sqlstringassigneename.trim(), sqlstringproductid.trim(), sqlstringfromdate, sqlstringtodate);
-    filterandsorttable.setItems(filterlist);
-    UTable.getLoaderstage().close();
+	    DSort sort = new DSort();
+	    ObservableList<SortAndFilterBean> filterlist = sort.getFilterData(sqlstringassigneename.trim(), sqlstringproductid.trim(), sqlstringfromdate, sqlstringtodate);
+	    
+	    filterandsorttable.setItems(filterlist);
+	    
+	    UTable.getLoaderstage().close();
     }
+    
+//    @FXML
+//    void getSummaryOfFilter(ActionEvent event) throws IOException {
+//    	LocalDate fromdate = datefrom.getValue();
+//    	LocalDate todate = dateto.getValue();
+//    	String assigneename = assigneenamecombobox.getValue();
+//    	String productid = productidcombobox.getValue();
+//
+//    	String sqlstringassigneename = Validation.nullVarifierStringForDao(assigneename);
+//    	String sqlstringproductid = Validation.nullVarifierStringForDao(productid);
+//    	String sqlstringfromdate = Validation.nullVarifierFromDateForDao(fromdate);
+//  //  	String sqlstringtodate = Validation.nullVarifierToDateForDao(todate);
+//    	UTable.setSortandfilterassigneename(sqlstringassigneename);
+//    	UTable.setSortandfilterproductid(sqlstringproductid);
+//    	UTable.setSortandfilterfromdate(sqlstringfromdate);
+//    	UTable.setSortandfilterwindowlist(filterandsorttable.getItems());
+//
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource("SummaryWindow.fxml"));
+//		Parent root = loader.load();
+//		Scene scene = new Scene(root);
+//		Stage window = new Stage();
+//		window.setScene(scene);
+//		Screen screen = Screen.getPrimary();
+//		Rectangle2D bounds = screen.getVisualBounds();
+//		window.setX(bounds.getMinX() + 60);
+//		window.setY(bounds.getMinY() + 70);
+//		window.setWidth((bounds.getWidth() * 80) / 100);
+//		window.setHeight((bounds.getHeight() * 60) / 100);
+////		window.initStyle(StageStyle.UNDECORATED);
+////		window.initOwner(UTable.getPrimarystage());
+////		window.initModality(Modality.WINDOW_MODAL);
+//		window.setAlwaysOnTop(true);
+//		window.show();
+//    }
     
     @FXML
     void clearFilterField(ActionEvent event) {
@@ -193,8 +233,9 @@ public class SortAndFilterController {
 			primarystage.setScene(scene);
 			UTable.getLoaderstage().close();
         } catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
+    
+    
 }

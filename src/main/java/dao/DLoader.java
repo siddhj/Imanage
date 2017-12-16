@@ -30,7 +30,7 @@ public ObservableList<ObservableList<String>> intialLoader() throws SQLException
 		ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
 		ObservableList<ObservableList<?>>	assigneeloaderlist = assigneeLoader(connection);
 		ObservableList<String> namelist = (ObservableList<String>) assigneeloaderlist.get(0);
-		assigneelist = (ObservableList<Assignee>) assigneeloaderlist.get(1);
+		//assigneelist = (ObservableList<Assignee>) assigneeloaderlist.get(1);
 		ObservableList<String> productlist = productIDLoader(connection);	
 		parentlist.add(productlist);parentlist.add(namelist);
 		connection.close();
@@ -50,7 +50,7 @@ public ObservableList<ObservableList<String>> intialLoader() throws SQLException
 	
 	public ObservableList<ObservableList<?>> assigneeLoader(Connection connection) throws SQLException, IOException{
 		Statement stmt = connection.createStatement();
-		ResultSet result = stmt.executeQuery("SELECT AssigneeID,First_Name,Last_Name FROM assignee");
+		ResultSet result = stmt.executeQuery("SELECT AssigneeID,Full_Name FROM assignee");
 		ObservableList <String> namelist = FXCollections.observableArrayList();  
 		ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
 		
@@ -58,12 +58,11 @@ public ObservableList<ObservableList<String>> intialLoader() throws SQLException
 		{
 
 		int assigneeid = result.getInt("AssigneeID");	
-		String firstname = result.getString("First_Name");	
-		String lastname = result.getString("Last_Name");
-		System.out.println(firstname);
-		Assignee assign = new Assignee(firstname,lastname,assigneeid);
+		String fullname = result.getString("Full_Name");
+
+		Assignee assign = new Assignee(fullname,assigneeid);
 		assigneelist.add(assign);
-		namelist.add(firstname);
+		namelist.add(fullname);
 		}
 		
 		ObservableList<ObservableList<?>> parentlist = FXCollections.observableArrayList();

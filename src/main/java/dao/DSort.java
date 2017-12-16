@@ -11,6 +11,7 @@ import com.ListTables;
 
 import bean.PopUpChallan;
 import bean.SortAndFilterBean;
+import bean.SummaryBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -19,10 +20,14 @@ public class DSort {
 	
 	public ObservableList<SortAndFilterBean> getFilterData(String assigneename,String productid,String fromdate,String todate) throws SQLException, IOException
 	{
+//	ObservableList<ObservableList<?>> filter = FXCollections.observableArrayList();
 	ObservableList<SortAndFilterBean> filterlist = FXCollections.observableArrayList();
+//	ObservableList<SummaryBean> summarylist = FXCollections.observableArrayList();	
+	
+	int totalissueitem=0,totalreceiveitem=0,totalreceivedueitem=0,totalpaiditem=0,totalpaiditemdue=0;
 	
 	String query = "select * from challan as c join assignee as a on c.AssigneeID = a.AssigneeID "
-			+ "where a.First_Name like ? and c.ProductID like ? and c.BillDateType Between ? and ?";
+			+ "where a.Full_Name like ? and c.ProductID like ? and c.BillDateType Between ? and ?";
 	
 	ListTables chalandata = new ListTables();
 	Connection connection = chalandata.returnConnection();
@@ -34,18 +39,26 @@ public class DSort {
 
 	ResultSet resultset = stmt.executeQuery();
 
-
+//FullName is assigned in FirstName as of now will be updated in later stage 
 	while (resultset.next()) {
-
-//		String assigneename, LocalDate billdate, int challanid, String productid, int issueitem,
-//		int receiveitem, int receivedueitem, int paiditem, int paiditemdue
-		System.out.println(resultset.getInt("c.ChallanID"));
-		filterlist.add(new SortAndFilterBean(resultset.getString("a.First_Name"),resultset.getDate("c.BillDateType"),resultset.getInt("c.ChallanID"),
+		filterlist.add(new SortAndFilterBean(resultset.getString("a.Full_Name"),resultset.getDate("c.BillDateType"),resultset.getInt("c.ChallanID"),
 				resultset.getString("ProductID"),resultset.getInt("c.Issue"),resultset.getInt("c.Receive"),resultset.getInt("c.Due"),resultset.getInt("c.Paid"),
 				resultset.getInt("c.Issue")-resultset.getInt("c.Paid"),resultset.getInt("PastReceive"),resultset.getInt("PastPaid")));
 
+	totalissueitem +=resultset.getInt("c.Issue");
+	totalreceiveitem+= resultset.getInt("c.Receive");
+	totalreceivedueitem+=resultset.getInt("c.Due");
+	totalpaiditem+=resultset.getInt("c.Paid");
+	totalpaiditemdue+=(resultset.getInt("c.Issue")-resultset.getInt("c.Paid"));
+	
 	}
-	filterlist.forEach(c->{System.out.println(c);});
+	filterlist.add(new SortAndFilterBean("***TOTAL*** => ",null,0,"********",totalissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue,0000,0000));
+	
+//	SummaryBean summary = new SummaryBean(totalissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue);
+//	summarylist.add(summary);
+//	filter.add(filterlist);
+//	filter.add(summarylist);
+	
 	return filterlist;
 	}
 	

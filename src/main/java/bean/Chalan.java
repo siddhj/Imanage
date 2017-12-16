@@ -6,8 +6,15 @@ import javafx.collections.ObservableList;
 
 public class Chalan{
 	
-	private int assigneeid,issue,receive,due,paid,challanid,totalpaid,totalreceive;
-	private String productid;
+	private int assigneeid,issue,receive,due,advancepaid,challanid,totalpaid,totalreceive;
+	private String productid,comment;
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 	private Date billdate;
 	private ObservableList<PopUpChallan> popupchallantableview;
 	
@@ -36,28 +43,6 @@ public class Chalan{
 	public void setChallanid(int challanid) {
 		this.challanid = challanid;
 	}
-//public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid, Date billdate) {
-//		super();
-//		this.assigneeid = assigneeid;
-//		this.issue = issue;
-//		this.receive = receive;
-//		this.due = due;
-//		this.paid = paid;
-//		this.productid = productid;
-//		this.billdate = billdate;
-//	}
-//
-//	public Chalan(int challanid,String productid, int issue, int receive, int due, int paid, int assigneeid, Date billdate) {
-//		super();
-//		this.challanid = challanid;
-//		this.assigneeid = assigneeid;
-//		this.issue = issue;
-//		this.receive = receive;
-//		this.due = due;
-//		this.paid = paid;
-//		this.productid = productid;
-//		this.billdate = billdate;
-//	}
 	
 	public Date getBilldate() {
 		return billdate;
@@ -65,7 +50,7 @@ public class Chalan{
 	public void setBilldate(Date billdate) {
 		this.billdate = billdate;
 	}
-	//private Date
+
 	public String getProductid() {
 		return productid;
 	}
@@ -90,13 +75,14 @@ public class Chalan{
 	public void setDue(int due) {
 		this.due = due;
 	}
-	public int getPaid() {
-		return paid;
-	}
-	public void setPaid(int paid) {
-		this.paid = paid;
-	}
 	
+	
+	public int getAdvancepaid() {
+		return advancepaid;
+	}
+	public void setAdvancepaid(int advancepaid) {
+		this.advancepaid = advancepaid;
+	}
 	public Chalan(){
 		
 	}
@@ -104,7 +90,7 @@ public class Chalan{
 	@Override
 	public String toString() {
 		return "Chalan [productid=" + productid + ", issue=" + issue + ", receive=" + receive + ", due=" + due
-				+ ", paid=" + paid + ", name=" + assigneeid + "]";
+				+ ", paid=" + advancepaid + ", name=" + assigneeid + "]";
 	}
 	public int getAssigneeid() {
 		return assigneeid;
@@ -113,18 +99,19 @@ public class Chalan{
 		this.assigneeid = assigneeid;
 	}
 	
-	public Chalan(String productid, int issue, int receive, int due, int paid, int assigneeid,ObservableList<PopUpChallan> popupchallantableview,int totalpaid,int totalreceive,Date billdate) {
+	public Chalan(String productid, int issue, int receive, int due, int advancepaid, int assigneeid,ObservableList<PopUpChallan> popupchallantableview,int totalpaid,int totalreceive,Date billdate,String comment) {
 		super();
 		this.productid = productid;
 		this.issue = issue;
 		this.receive = receive;
 		this.due = due;
-		this.paid = paid;
+		this.advancepaid = advancepaid;
 		this.assigneeid = assigneeid;
 		this.popupchallantableview = popupchallantableview;
 		this.totalpaid=totalpaid;
 		this.totalreceive=totalreceive;
 		this.billdate=billdate;
+		this.comment = comment;
 	}
 	
 	

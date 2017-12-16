@@ -57,12 +57,9 @@ public class PopupController {
 
 	@FXML
 	public void initialize() throws SQLException, IOException {
-
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("issue"));
 		pastduecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastreceivedue"));
 		billdatecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Date>("billdate"));
-		// pastpaidcolumn.setCellValueFactory(new
-		// PropertyValueFactory<PopUpChallan, Integer>("pastpaid"));
 		pastreceivecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastreceive"));
 		pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastpaid"));
 		pastpaidduecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastpaiddue"));
@@ -106,6 +103,37 @@ public class PopupController {
 		receiveTable.setEditable(true);
 		receiveTable.getColumns().addAll(receivecolumn, paidcolumn);
 
+//		System.out.println(UTable.getPopupstage()+"stage");
+//		System.out.println(UTable.getPopupstage().getScene()+"scene");
+		
+//		UTable.getPopupstage().getScene().widthProperty().divide(8).subtract(2.1/3);
+		issueitemcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		currentpaidcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		pastpaidcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		pastpaidduecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		billdatecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		pastreceivecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		currentreceivecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		pastduecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		
+		issueitemcolumn.maxWidthProperty().bind(issueitemcolumn.prefWidthProperty());
+		currentpaidcolumn.maxWidthProperty().bind(currentpaidcolumn.prefWidthProperty());
+		pastpaidcolumn.maxWidthProperty().bind(pastpaidcolumn.prefWidthProperty());
+		pastpaidduecolumn.maxWidthProperty().bind(pastpaidduecolumn.prefWidthProperty());
+		billdatecolumn.maxWidthProperty().bind(billdatecolumn.prefWidthProperty());
+		pastreceivecolumn.maxWidthProperty().bind(pastreceivecolumn.prefWidthProperty());
+		currentreceivecolumn.maxWidthProperty().bind(currentreceivecolumn.prefWidthProperty());
+		pastduecolumn.maxWidthProperty().bind(pastduecolumn.prefWidthProperty());
+		
+		issueitemcolumn.setResizable(false);
+		currentpaidcolumn.setResizable(false);
+		pastpaidcolumn.setResizable(false);
+		pastpaidduecolumn.setResizable(false);
+		billdatecolumn.setResizable(false);
+		pastreceivecolumn.setResizable(false);
+		currentreceivecolumn.setResizable(false);
+		pastduecolumn.setResizable(false);
+		
 		ObservableList<PopUpChallan> chalanlist = UTable.getPopupchallantablelist();
 		receiveTable.setItems(chalanlist);
 		UTable.setPopuptableview(receiveTable);
@@ -131,5 +159,4 @@ public class PopupController {
 		Stage stage = (Stage) savedata.getScene().getWindow();
 		stage.close();
 	}
-
 }

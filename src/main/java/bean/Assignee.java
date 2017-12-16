@@ -1,26 +1,33 @@
 package bean;
 
 public class Assignee {
-	private String firstname, lastname, description;
+	private String firstname, lastname, description,fullname;
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+
 	private int assigneeid, phonenumber, aadharnumber;
 
-	public Assignee(String firstname, String lastname, int assigneeid) {
+	public Assignee(String fullname, int assigneeid) {
 		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
 		this.assigneeid = assigneeid;
 	}
 	public Assignee() {
 
 	}
 
-	public Assignee(int phonenumber, int aadharnumber, String firstname, String lastname, String description) {
+	public Assignee(int phonenumber, int aadharnumber, String firstname, String lastname,String fullname,String description) {
 		super();
 		this.phonenumber = phonenumber;
 		this.aadharnumber = aadharnumber;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.description = description;
+		this.fullname=fullname;
 	}
 
 	public int getAssigneeid() {

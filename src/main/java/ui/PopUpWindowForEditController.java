@@ -113,10 +113,37 @@ public class PopUpWindowForEditController {
 		selectedchallanfrommainpage = UTable.getSelectedchallanfrommainpage();
 		mainpagechalanlist = UTable.getMainpagechalanlist();
 		//indexofselectedrow = UTable.getIndexofselectedrow();
+
+		issueitemcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		currentpaidcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		pastpaidcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		pastpaidduecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		billdatecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		pastreceivecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		currentreceivecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+		pastduecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
 		
+		issueitemcolumn.maxWidthProperty().bind(issueitemcolumn.prefWidthProperty());
+		currentpaidcolumn.maxWidthProperty().bind(currentpaidcolumn.prefWidthProperty());
+		pastpaidcolumn.maxWidthProperty().bind(pastpaidcolumn.prefWidthProperty());
+		pastpaidduecolumn.maxWidthProperty().bind(pastpaidduecolumn.prefWidthProperty());
+		billdatecolumn.maxWidthProperty().bind(billdatecolumn.prefWidthProperty());
+		pastreceivecolumn.maxWidthProperty().bind(pastreceivecolumn.prefWidthProperty());
+		currentreceivecolumn.maxWidthProperty().bind(currentreceivecolumn.prefWidthProperty());
+		pastduecolumn.maxWidthProperty().bind(pastduecolumn.prefWidthProperty());
+		
+		issueitemcolumn.setResizable(false);
+		currentpaidcolumn.setResizable(false);
+		pastpaidcolumn.setResizable(false);
+		pastpaidduecolumn.setResizable(false);
+		billdatecolumn.setResizable(false);
+		pastreceivecolumn.setResizable(false);
+		currentreceivecolumn.setResizable(false);
+		pastduecolumn.setResizable(false);
+
 		receiveTable.setItems(chalanlist);
 		issuetext.setText(String.valueOf(selectedchallanfrommainpage.getIssue()));
-		advancedpaidtext.setText(String.valueOf(selectedchallanfrommainpage.getPaid()));
+		advancedpaidtext.setText(String.valueOf(selectedchallanfrommainpage.getAdvancepaid()));
 		receivetext.setText(String.valueOf(selectedchallanfrommainpage.getTotalreceive()));
 		productidtext.setText(selectedchallanfrommainpage.getProductid());
 		UTable.setPopuptableview(receiveTable);
@@ -145,11 +172,11 @@ public class PopUpWindowForEditController {
 		System.out.println(receive+"::"+paid+"**"+selectedchallanfrommainpage);
 		
 		selectedchallanfrommainpage.setIssue(Integer.parseInt(issuetext.getText()));
-		selectedchallanfrommainpage.setPaid(Integer.parseInt(advancedpaidtext.getText()));
+		selectedchallanfrommainpage.setAdvancepaid(Integer.parseInt(advancedpaidtext.getText()));
 		selectedchallanfrommainpage.setTotalreceive(receive);
 		selectedchallanfrommainpage.setTotalpaid(paid);
 		selectedchallanfrommainpage.setPopupchallantableview(receiveTable.getItems());
-		
+		selectedchallanfrommainpage.setDue(Integer.parseInt(issuetext.getText()));
 		UTable.getMainpagetableview().getColumns().get(1).setVisible(false);
 		UTable.getMainpagetableview().getColumns().get(1).setVisible(true);
 		UTable.getMainpagetableview().getColumns().get(2).setVisible(false);

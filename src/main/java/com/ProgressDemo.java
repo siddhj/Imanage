@@ -3,6 +3,7 @@ package com;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -18,16 +19,13 @@ public class ProgressDemo //implements Runnable
 {
 	public void start() {
 		Stage loaderstage = new Stage();
-		BackgroundImage myBI= new BackgroundImage(new Image("file:///C:/Users/siddhartha.jain/workspace/byte/src/main/java/Images/chalan.png",32,32,false,true),
-		        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-		          BackgroundSize.DEFAULT);
+		
 		
 	//	Label label = new Label("Loading....");
 		FlowPane root = new FlowPane();
-		root.setBackground(new Background(myBI));
-		root.setPadding(new Insets(10));
-		root.setHgap(10);
-		//root.getChildren().addAll(label);
+		 ProgressIndicator p1 = new ProgressIndicator();
+		root.getChildren().addAll(p1);
+		
 		Scene scene = new Scene(root);
 		loaderstage.setTitle("Please Wait While Processing");
 		loaderstage.setScene(scene);
