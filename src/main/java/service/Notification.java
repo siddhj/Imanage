@@ -198,6 +198,24 @@ public class Notification {
 		note.darkStyle();
 		note.showError();
 	}
+
+	public static void nothingIsSelectedNotification(){
+		Notifications note = Notifications.create()
+				.title("No Row is Selected")
+				.text("Please Select a Row before deleteing and editing anything")
+				.graphic(null)
+				.hideAfter(Duration.seconds(5))
+				.position(Pos.BOTTOM_RIGHT)
+				.onAction(new EventHandler<ActionEvent>(){
+
+					@Override
+					public void handle(ActionEvent event) {
+				System.out.println("called");		
+					}
+				});
+		note.darkStyle();
+		note.showError();
+	}
 	
 	public static void errorOccuredNotification(){
 		Notifications note = Notifications.create()

@@ -143,15 +143,10 @@ public class MainPageController implements MultiScreen {
 	void removeRow(ActionEvent event) {
 		Chalan chalan = newchalantable.getSelectionModel().getSelectedItem();
 		ObservableList<Chalan> allchalanfromtableview = newchalantable.getItems();
-		System.out.println("inside remove row");
 		allchalanfromtableview.forEach(c -> {
-			System.out.println(c.getTotalpaid() + "" + c.getTotalreceive() + "::" + chalan.getProductid());
 			if (c.getProductid() == chalan.getProductid()) {
 				allchalanfromtableview.remove(c);
-			} else {
-				System.out.println("there is no element selected");
 			}
-
 		});
 	}
 
@@ -314,9 +309,13 @@ System.out.println(savechallandescription.getText()+"this is the challan text");
 
 		ObservableList<Chalan> mainpagechalanlist = FXCollections.observableArrayList();
 		mainpagechalanlist.add(selectedchalan);
-
-		ObservableList<PopUpChallan> popupchallantablelist = selectedchalan.getPopupchallantableview();
-
+		ObservableList<PopUpChallan> popupchallantablelist =null;
+		try{
+		popupchallantablelist = selectedchalan.getPopupchallantableview();
+		}catch(NullPointerException exception)
+		{
+		Notification.nothingIsSelectedNotification();	
+		}
 		UTable.setPopupchallantablelist(popupchallantablelist);
 		UTable.setSelectedchallanfrommainpage(selectedchalan);
 		UTable.setIndexofselectedrow(indexofselectedrow);
