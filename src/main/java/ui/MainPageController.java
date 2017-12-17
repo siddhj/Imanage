@@ -66,6 +66,10 @@ import utility.UTable;
 
 public class MainPageController implements MultiScreen {
 
+
+    @FXML
+    private Button Imanagebutton;
+	
 	@FXML
 	private Label assigneenamelabel;
 
@@ -576,6 +580,21 @@ System.out.println(savechallandescription.getText()+"this is the challan text");
 		billdate.setValue(null);
 
 	}
+	
+    @FXML
+    void openDashboardWindow(ActionEvent event) {
+    	new ProgressDemo().start();
+		 FXMLLoader myLoader = new FXMLLoader(getClass().getResource("DashboardWindow.fxml"));
+       try {
+			Parent loadScreen = (Parent) myLoader.load();
+			Stage primarystage = UTable.getPrimarystage();
+			Scene scene = new Scene(loadScreen);
+			primarystage.setScene(scene);
+			UTable.getLoaderstage().close();
+       } catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
 
 	@FXML
 	void selectDateValue(ActionEvent event) {

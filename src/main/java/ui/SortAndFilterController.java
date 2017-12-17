@@ -54,7 +54,9 @@ public class SortAndFilterController {
     @FXML
     private Button tabchallanbutton;
 
-    
+    @FXML
+    private Button Imanagebutton;
+	
     @FXML
     private ComboBox<String> assigneenamecombobox = new ComboBox<>();
 
@@ -253,5 +255,19 @@ public class SortAndFilterController {
 		}
     }
     
+    @FXML
+    void openDashboardWindow(ActionEvent event) {
+    	new ProgressDemo().start();
+		 FXMLLoader myLoader = new FXMLLoader(getClass().getResource("DashboardWindow.fxml"));
+       try {
+			Parent loadScreen = (Parent) myLoader.load();
+			Stage primarystage = UTable.getPrimarystage();
+			Scene scene = new Scene(loadScreen);
+			primarystage.setScene(scene);
+			UTable.getLoaderstage().close();
+       } catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
     
 }

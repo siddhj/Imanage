@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #ffffff;" stylesheets="@ninza.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SortAndFilterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #ffffff;" stylesheets="@ninza.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SortAndFilterController">
    <children>
       <BorderPane prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -46,6 +46,14 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="512.0" HBox.hgrow="ALWAYS">
                            <children>
+                              <Button fx:id="Imanagebutton" mnemonicParsing="false" onAction="#openDashboardWindow" styleClass="header-button" stylesheets="@ninza.css" text="IManage">
+                                 <font>
+                                    <Font name="System Bold" size="32.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
                               <Label text="Sort &amp; Filter">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
