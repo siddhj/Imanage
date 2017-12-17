@@ -217,7 +217,7 @@ public class DChalan {
 		ListTables chalandata = new ListTables();
 		Connection connection = chalandata.returnConnection();
 		String query = "Select l.ReferChallanID,l.ChallanID,l.AssigneeID,l.ProductID,l.Issue,l.Receive,l.Paid,l.BillDate,l.BillTimeStamp,"
-				+ "a.First_Name from challanlog as l join assignee as a on l.AssigneeID = a.AssigneeID where l.ReferChallanID = ?";
+				+ "a.Full_Name from challanlog as l join assignee as a on l.AssigneeID = a.AssigneeID where l.ReferChallanID = ?";
 		PreparedStatement stmt = connection.prepareStatement(query);
 		stmt.setInt(1,challanid);
 
@@ -228,7 +228,7 @@ public class DChalan {
 //		int issueitem, int receiveitem, int paiditem
 		
 		while (resultset.next()) {
-			list.add(new ChallanDetailBean(resultset.getString("a.First_Name"),resultset.getString("l.ProductID")
+			list.add(new ChallanDetailBean(resultset.getString("a.Full_Name"),resultset.getString("l.ProductID")
 					,resultset.getDate("l.BillDate"),resultset.getInt("l.ReferChallanID"),resultset.getInt("l.ChallanID")
 					,resultset.getInt("Issue"),resultset.getInt("Receive"),resultset.getInt("Paid")));
 		}
