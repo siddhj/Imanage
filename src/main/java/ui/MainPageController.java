@@ -47,6 +47,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
@@ -114,8 +115,8 @@ public class MainPageController implements MultiScreen {
 	private TableColumn<Chalan, String> totalpaidcolumn = new TableColumn<>("Total Qty Paid");
 
 	@FXML
-	private TableColumn<Chalan, String> duecolumn = new TableColumn<>("Qty Advance Paid");
-
+	private TableColumn<Chalan, String> advancedpaidcolumn = new TableColumn<>("Qty Advance Paid");
+	
 	@FXML
 	private Button removebutton;
 
@@ -128,8 +129,8 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private Button clearbutton;
 
-	@FXML
-	private TableColumn<Chalan, String> paidcolumn = new TableColumn<>("Paid");
+    @FXML
+    private TextArea savechallandescription;
 
 	@FXML
 	private DatePicker billdate;
@@ -164,7 +165,7 @@ public class MainPageController implements MultiScreen {
 
 //**	duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
 		
-		paidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("advancepaid"));
+		advancedpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("advancepaid"));
 		totalpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalpaid"));
 		// System.out.println("doen");
 		// listFromDb = new DChalan().chalanDataLoad();
@@ -212,19 +213,19 @@ public class MainPageController implements MultiScreen {
 		issueitemcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		receiveitemcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		totalpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-		paidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+		advancedpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		
 		productidcolumn.maxWidthProperty().bind(productidcolumn.prefWidthProperty());
 		issueitemcolumn.maxWidthProperty().bind(issueitemcolumn.prefWidthProperty());
 		receiveitemcolumn.maxWidthProperty().bind(receiveitemcolumn.prefWidthProperty());
 		totalpaidcolumn.maxWidthProperty().bind(totalpaidcolumn.prefWidthProperty());
-		paidcolumn.maxWidthProperty().bind(paidcolumn.prefWidthProperty());
+		advancedpaidcolumn.maxWidthProperty().bind(advancedpaidcolumn.prefWidthProperty());
 		
 		productidcolumn.setResizable(false);
 		issueitemcolumn.setResizable(false);
 		receiveitemcolumn.setResizable(false);
 		totalpaidcolumn.setResizable(false);
-		paidcolumn.setResizable(false);
+		advancedpaidcolumn.setResizable(false);
 		billdate.setValue(LocalDate.now());
 		UTable.setMainpagetableview(newchalantable);
 	}
@@ -255,17 +256,19 @@ public class MainPageController implements MultiScreen {
 			Notification.mainWindowInvalidBillDate();
 			return;
 		}
+System.out.println(savechallandescription.getText()+"this is the challan text");
 		try {
 			int AssigneeID = new MicroService().assigneeIDRetrieveFullName(name);
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
 					Integer.parseInt(issuetext.getText()), Integer.parseInt(advancedpaidtext.getText()), AssigneeID,
 					UTable.getPopupchallantablelist(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()),
-					dateofbill,null);
+					dateofbill,savechallandescription.getText());
 
 			newchalantable.getItems().add(chalan);
 			productidtext.setText("");
 			issuetext.setText("");
 			receivetext.setText("0");
+			savechallandescription.setText("");
 			// duetext.setText("");
 			advancedpaidtext.setText("");
 			assigneenamelabel.setText(assigneename.getText());
@@ -361,7 +364,7 @@ public class MainPageController implements MultiScreen {
 				window.setAlwaysOnTop(true);
 				window.show();
 				
-				
+				savechallandescription.setText("");
 				productidtext.setText("");
 				issuetext.setText("");
 				receivetext.setText("");
@@ -418,7 +421,7 @@ public class MainPageController implements MultiScreen {
 		productidtext.setText("");
 		issuetext.setText("");
 		receivetext.setText("");
-		// duetext.setText("");
+		savechallandescription.setText("");
 		advancedpaidtext.setText("");
 		billdate.setValue(null);
 		assigneename.setDisable(false);
@@ -440,6 +443,8 @@ public class MainPageController implements MultiScreen {
 			UTable.getLoaderstage().close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			UTable.getLoaderstage().close();
+			Notification.errorOccuredNotification();
 			e.printStackTrace();
 		}
 
@@ -555,6 +560,7 @@ public class MainPageController implements MultiScreen {
 		receivetext.setText("");
 		// duetext.setText("");
 		advancedpaidtext.setText("");
+		savechallandescription.setText("");
 		billdate.setValue(null);
 
 	}

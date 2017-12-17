@@ -10,6 +10,7 @@
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" stylesheets="@ninza.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainPageController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" stylesheets="@ninza.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainPageController">
    <children>
       <BorderPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -98,7 +99,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="53.0" prefWidth="384.0">
+                  <HBox prefHeight="53.0" prefWidth="384.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Date" textFill="#0c3c60">
                            <HBox.margin>
@@ -115,7 +116,7 @@
                         </DatePicker>
                      </children>
                   </HBox>
-                  <HBox prefHeight="53.0" prefWidth="384.0">
+                  <HBox prefHeight="53.0" prefWidth="384.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label styleClass="main_textfield_title" stylesheets="@ninza.css" text="Name" textFill="#0c3c60">
                            <HBox.margin>
@@ -132,9 +133,9 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox prefHeight="53.0" prefWidth="384.0">
+                  <HBox prefHeight="53.0" prefWidth="384.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label styleClass="main_textfield_title" stylesheets="@ninza.css" text="Product ID" textFill="#0c3c60">
+                        <Label styleClass="main_textfield_title" stylesheets="@ninza.css" text="Product ID" textFill="#0c3c60" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets bottom="38.0" left="40.0" />
                            </HBox.margin>
@@ -149,7 +150,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox prefHeight="53.0" prefWidth="318.0">
+                  <HBox prefHeight="53.0" prefWidth="318.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Button fx:id="newwindow" mnemonicParsing="false" onAction="#popupWindow" prefWidth="84.0" styleClass="secondary_button_main" stylesheets="@ninza.css" text="Receive" textFill="#444444">
                            <HBox.margin>
@@ -166,7 +167,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox prefHeight="53.0" prefWidth="384.0">
+                  <HBox prefHeight="53.0" prefWidth="384.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Issue" textFill="#0c3c60">
                            <HBox.margin>
@@ -183,7 +184,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox prefHeight="53.0" prefWidth="384.0">
+                  <HBox prefHeight="53.0" prefWidth="384.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label prefHeight="25.0" prefWidth="116.0" styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Advance Paid" textFill="#0c3c60" textOverrun="WORD_ELLIPSIS">
                            <HBox.margin>
@@ -195,7 +196,7 @@
                         </Label>
                         <TextField fx:id="advancedpaidtext" prefWidth="200.0" styleClass="text_field_main" stylesheets="@ninza.css">
                            <HBox.margin>
-                              <Insets left="-15.0" />
+                              <Insets left="-16.0" />
                            </HBox.margin>
                            <opaqueInsets>
                               <Insets />
@@ -204,6 +205,23 @@
                      </children>
                   </HBox>
                   <HBox prefHeight="53.0" prefWidth="384.0">
+                     <children>
+                        <Label prefHeight="25.0" prefWidth="116.0" styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Description" textFill="#0c3c60" textOverrun="WORD_ELLIPSIS">
+                           <HBox.margin>
+                              <Insets bottom="58.0" left="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="savechallandescription" maxHeight="52.0" prefHeight="100.0" prefWidth="200.0">
+                           <HBox.margin>
+                              <Insets left="-15.0" />
+                           </HBox.margin>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="384.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Button fx:id="clearbutton" mnemonicParsing="false" onAction="#clearMainPageDataButton" prefHeight="24.0" prefWidth="64.0" styleClass="button_bottom" stylesheets="@ninza.css" text="Clear" textFill="WHITE">
                            <HBox.margin>
@@ -240,24 +258,24 @@
          <center>
             <VBox prefHeight="641.0" prefWidth="654.0">
                <children>
-                  <HBox prefHeight="55.0" prefWidth="650.0" style="-fx-background-color: #222222;">
+                  <HBox maxHeight="80.0" prefWidth="650.0" style="-fx-background-color: #222222;" VBox.vgrow="ALWAYS">
                      <children>
-                        <HBox prefHeight="55.0" prefWidth="377.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="377.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label alignment="TOP_LEFT" graphicTextGap="8.0" opacity="0.7" text="Name:" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <Label graphicTextGap="8.0" opacity="0.7" prefHeight="25.0" prefWidth="98.0" text="Name:" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
-                                    <Insets left="10.0" top="15.0" />
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="assigneenamelabel" alignment="TOP_LEFT" graphicTextGap="8.0" prefHeight="25.0" prefWidth="45.0" text="Ajay" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <Label fx:id="assigneenamelabel" graphicTextGap="8.0" prefHeight="25.0" prefWidth="201.0" text="Ajay" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="10.0" top="15.0" />
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
                               <Label opacity="0.7" text="Product ID:" textFill="#606060" visible="false" HBox.hgrow="ALWAYS">
@@ -319,16 +337,16 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="504.0" prefWidth="654.0">
+                  <HBox prefHeight="504.0" prefWidth="654.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <TableView fx:id="newchalantable" maxWidth="1.7976931348623157E308" prefHeight="501.0" prefWidth="640.0" styleClass="tableview" stylesheets="@ninza.css" HBox.hgrow="ALWAYS">
+                        <TableView fx:id="newchalantable" prefHeight="501.0" prefWidth="640.0" styleClass="tableview" stylesheets="@ninza.css" HBox.hgrow="ALWAYS">
                           <columns>
                               <TableColumn fx:id="productidcolumn" maxWidth="300.0" minWidth="80.0" prefWidth="150.0" text="Product ID" />
                             <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="80.0" prefWidth="102.0" style="-fx-border-width: 0 2 0 2; -fx-border-color: #ffffff;" text="Qty Issued" />
                             <TableColumn fx:id="receiveitemcolumn" maxWidth="300.0" minWidth="120.0" prefWidth="140.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Total Qty Received" />
                               <TableColumn fx:id="duecolumn" maxWidth="300.0" minWidth="148.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Due Items" visible="false" />
                               <TableColumn fx:id="totalpaidcolumn" maxWidth="300.0" minWidth="100.0" prefWidth="140.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Total Qty Paid" />
-                              <TableColumn fx:id="paidcolumn" maxWidth="300.0" minWidth="120.0" prefWidth="160.0" text="Qty Advance Paid" />
+                              <TableColumn fx:id="advancedpaidcolumn" maxWidth="300.0" minWidth="120.0" prefWidth="160.0" text="Qty Advance Paid" />
                           </columns>
                            <HBox.margin>
                               <Insets />
@@ -346,7 +364,7 @@
                         <Insets />
                      </opaqueInsets>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="73.0" prefWidth="654.0" style="-fx-border-width: 5 0 0 0; -fx-bORDER-color: #3C3C3C; -fx-background-color: #222222;" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER" maxHeight="80.0" prefWidth="654.0" style="-fx-border-width: 5 0 0 0; -fx-bORDER-color: #3C3C3C; -fx-background-color: #222222;" VBox.vgrow="ALWAYS">
                      <children>
                         <ImageView fitHeight="22.0" fitWidth="22.0" onDragDetected="#removeRow" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>

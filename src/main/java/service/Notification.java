@@ -180,4 +180,22 @@ public class Notification {
 		note.darkStyle();
 		note.showError();
 	}
+	
+	public static void errorOccuredNotification(){
+		Notifications note = Notifications.create()
+				.title("Some Error Occured")
+				.text("Please Check Your Internet Connection. If error still exsist contact system admin")
+				.graphic(null)
+				.hideAfter(Duration.seconds(5))
+				.position(Pos.BOTTOM_RIGHT)
+				.onAction(new EventHandler<ActionEvent>(){
+
+					@Override
+					public void handle(ActionEvent event) {
+				System.out.println("called");		
+					}
+				});
+		note.darkStyle();
+		note.showError();
+	}
 }

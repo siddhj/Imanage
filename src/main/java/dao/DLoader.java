@@ -82,11 +82,13 @@ public ObservableList<ObservableList<String>> intialLoader() throws SQLException
 		return parentlist;
 	}
 	
-	public boolean licenseVerfication(String macaddress) throws SQLException, IOException{
+	public boolean licenseVerfication(String macaddress,String username,String password) throws SQLException, IOException{
 		Connection connection = ListTables.returnConnection();
-		String query = "SELECT * FROM license where LicenseKey = ?";
+		String query = "SELECT * FROM license where LicenseKey = ? and username = ? and password = ?";
 		PreparedStatement stmt = connection.prepareStatement(query);
 		stmt.setString(1, macaddress);
+		stmt.setString(2, username);
+		stmt.setString(3, password);
 		ResultSet resultset = stmt.executeQuery();
 		resultset.beforeFirst();
 		while(resultset.next())

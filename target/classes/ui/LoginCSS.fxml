@@ -19,7 +19,7 @@
    <children>
       <HBox alignment="CENTER" layoutX="2.0" layoutY="129.0" prefHeight="540.0" prefWidth="1024.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="10.0" fill="WHITE" height="550.0" stroke="#d8d8d8" strokeType="INSIDE" strokeWidth="1.5" style="-fx-fill: #c5db5a;" width="489.0" HBox.hgrow="ALWAYS" />
+            <Rectangle arcHeight="5.0" arcWidth="10.0" fill="WHITE" height="550.0" stroke="#d8d8d8" strokeType="INSIDE" strokeWidth="1.5" style="-fx-fill: #c5db5a;" width="494.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <BorderPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -54,59 +54,57 @@
          <center>
             <VBox BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="176.0" prefWidth="1024.0" style="-fx-background-color: #000000;">
+                  <HBox alignment="TOP_CENTER" prefHeight="176.0" prefWidth="1024.0" style="-fx-background-color: #000000;">
                      <children>
-                        <HBox prefHeight="176.0" prefWidth="270.0" style="-fx-background-color: #000000;" />
-                        <HBox prefHeight="176.0" prefWidth="494.0" style="-fx-background-color: #c5db5a;">
+                        <HBox alignment="CENTER" prefHeight="176.0" prefWidth="494.0" style="-fx-background-color: #c5db5a;">
                            <children>
-                              <Label graphicTextGap="6.0" prefHeight="170.0" prefWidth="488.0" styleClass="login-title" stylesheets="@../Desktop/ninza.css" text="   Inventory Management">
+                              <Label graphicTextGap="6.0" prefHeight="170.0" prefWidth="488.0" styleClass="login-title" stylesheets="@../Desktop/ninza.css" text="   Inventory Management" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="50.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets top="60.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox prefHeight="176.0" prefWidth="270.0" style="-fx-background-color: #000000;" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="107.0" prefWidth="1024.0">
                      <children>
-                        <TextField prefHeight="48.0" prefWidth="249.0" promptText="User Name" styleClass="text-field" stylesheets="@../Desktop/ninza.css">
+                        <TextField fx:id="usernametextfield" prefHeight="48.0" prefWidth="249.0" promptText="User Name" styleClass="text-field" stylesheets="@../Desktop/ninza.css">
                            <font>
                               <Font size="16.0" />
                            </font>
                            <HBox.margin>
-                              <Insets />
+                              <Insets top="40.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="1024.0">
                      <children>
-                        <PasswordField promptText="Password" styleClass="text-field" stylesheets="@../Desktop/ninza.css">
+                        <PasswordField fx:id="passwordtextfield" promptText="Password" styleClass="text-field" stylesheets="@../Desktop/ninza.css">
                            <font>
                               <Font size="16.0" />
                            </font>
                            <HBox.margin>
-                              <Insets />
+                              <Insets top="40.0" />
                            </HBox.margin>
                         </PasswordField>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="118.0" prefWidth="1024.0">
                      <children>
-                        <Button fx:id="login" minHeight="34.0" minWidth="245.0" mnemonicParsing="false" onAction="#loginUser" stylesheets="@ninza.css" text="Login" textAlignment="CENTER">
+                        <Button fx:id="login" minHeight="34.0" minWidth="245.0" mnemonicParsing="false" onAction="#loginUser" styleClass="login_button" stylesheets="@ninza.css" text="Login" textAlignment="CENTER">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>

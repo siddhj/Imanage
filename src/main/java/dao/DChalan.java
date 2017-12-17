@@ -18,6 +18,7 @@ import bean.PopUpChallan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import service.MicroService;
+import service.Notification;
 import utility.UTable;
 
 public class DChalan {
@@ -36,17 +37,17 @@ public class DChalan {
 	}
 
 
-	public void chalanDataInsert(ObservableList<Chalan> chalanlist) throws SQLException, IOException {
+	public void chalanDataInsert(Chalan c) throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
 		PreparedStatement prepare = connection.prepareStatement(
-				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate,Paid_Due) "
-						+ "values(?,?,?,?,?,?,?,?,?,?,?)");
+				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate,Paid_Due,Description) "
+						+ "values(?,?,?,?,?,?,?,?,?,?,?,?)");
 		Date date = new Date();
 		
 		Object param = new Timestamp(date.getTime());
 
-		for (Chalan c : chalanlist) {
+//		for (Chalan c : chalanlist) {
 			try {
 				prepare.setString(1, c.getProductid());
 				prepare.setInt(2, c.getAssigneeid());
@@ -59,18 +60,20 @@ public class DChalan {
 				prepare.setInt(9, c.getTotalreceive());
 				prepare.setTimestamp(10, new Timestamp(date.getTime()));
 				prepare.setInt(11, 0);
+				prepare.setString(12, c.getComment());
 				prepare.addBatch();
 			} catch (SQLException e) {
 				e.printStackTrace();
+				Notification.errorOccuredNotification();
 			}
 			try {
 				prepare.executeBatch();
 				connection.commit();
 			} catch (SQLException e) {
 				e.printStackTrace();
+				Notification.errorOccuredNotification();
 			}
-
-		}
+//		}
 		// not working why
 		// chalanlist.forEach(c ->{
 		// try {
