@@ -49,7 +49,7 @@ public class LoginScreenController implements Initializable, MultiScreen {
 		LicenseAuthentication auth = new LicenseAuthentication();
 		boolean licensevalid = auth.macAddressAuthentication(usernametextfield.getText(), passwordtextfield.getText());
 		if (licensevalid == true) {
-			FXMLLoader myLoader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
+			FXMLLoader myLoader = new FXMLLoader(getClass().getResource("DashboardWindow.fxml"));
 			try {
 				Parent loadScreen = (Parent) myLoader.load();
 				Stage primarystage = UTable.getPrimarystage();

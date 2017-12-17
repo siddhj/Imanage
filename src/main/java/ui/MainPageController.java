@@ -242,8 +242,14 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	void saveChalan(ActionEvent event) throws SQLException, IOException {
 		String name = assigneename.getText();
+		
+		if(billdate.getValue()==null)
+		{
+			Notification.invalidDateFromUser();
+			return;
+		}
 		java.util.Date dateofbill = java.sql.Date.valueOf(billdate.getValue());
-	
+		
 		if (!Validation.parentListNameValidation(parentlist.get(1), assigneename.getText())) {
 			Notification.invalidInputName();
 			return;
@@ -252,6 +258,12 @@ public class MainPageController implements MultiScreen {
 			Notification.invalidInputProductID();
 			return;
 		}
+		if(!Validation.checkProductIDAlreadyPresentInTable(productidtext.getText(),newchalantable.getItems()))
+		{
+			Notification.invalidInputProductID();
+			return;
+		}
+		
 		if (dateofbill == null) {
 			Notification.mainWindowInvalidBillDate();
 			return;

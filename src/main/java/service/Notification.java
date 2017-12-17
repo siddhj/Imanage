@@ -180,6 +180,24 @@ public class Notification {
 		note.darkStyle();
 		note.showError();
 	}
+
+	public static void invalidDateFromUser(){
+		Notifications note = Notifications.create()
+				.title("Invalid Date")
+				.text("Please Input the correct date in right format")
+				.graphic(null)
+				.hideAfter(Duration.seconds(5))
+				.position(Pos.BOTTOM_RIGHT)
+				.onAction(new EventHandler<ActionEvent>(){
+
+					@Override
+					public void handle(ActionEvent event) {
+				System.out.println("called");		
+					}
+				});
+		note.darkStyle();
+		note.showError();
+	}
 	
 	public static void errorOccuredNotification(){
 		Notifications note = Notifications.create()

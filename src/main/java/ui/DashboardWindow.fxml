@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #222222;" stylesheets="@ninza.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.DashboardWindowController">
+   <children>
+      <BorderPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #222222;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <VBox alignment="CENTER" maxHeight="150.0" prefHeight="100.0" prefWidth="1024.0" style="-fx-border-width: 0 0 2 0; -fx-border-color: #777777;" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar styleClass="menu" stylesheets="@ninza.css" VBox.vgrow="ALWAYS">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Close" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Delete" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <HBox style="-fx-background-color: #c5db5a;" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="73.0" prefWidth="1024.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Dashboard">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER" minHeight="334.0" prefWidth="512.0">
+                           <children>
+                              <Button fx:id="challanwindowbutton" minHeight="150.0" minWidth="300.0" mnemonicParsing="false" onAction="#openChallanWindow" styleClass="Dashboard" stylesheets="@ninza.css" text="Challan Window">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" minHeight="334.0" prefWidth="512.0">
+                           <children>
+                              <Button fx:id="sortandfilterbutton" minHeight="150.0" minWidth="300.0" mnemonicParsing="false" onAction="#openSortAndFilterWindow" styleClass="Dashboard" stylesheets="@ninza.css" text="Sort &amp; Filter">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER" minHeight="334.0" prefWidth="512.0">
+                           <children>
+                              <Button minHeight="150.0" minWidth="300.0" mnemonicParsing="false" styleClass="Dashboard" stylesheets="@ninza.css" text="New Assignee">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" minHeight="334.0" prefWidth="512.0">
+                           <children>
+                              <Button minHeight="150.0" minWidth="300.0" mnemonicParsing="false" styleClass="Dashboard" stylesheets="@ninza.css" text="New Product">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

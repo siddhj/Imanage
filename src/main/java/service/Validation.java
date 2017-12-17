@@ -2,6 +2,7 @@ package service;
 
 import java.time.LocalDate;
 
+import bean.Chalan;
 import javafx.collections.ObservableList;
 
 public class Validation {
@@ -51,5 +52,16 @@ public class Validation {
 		
 	}
 
+	public static boolean checkProductIDAlreadyPresentInTable(String ProductID,ObservableList<Chalan> chalan) {
+		String defaultvalue = "";
+		for(Chalan c:chalan)
+		{
+			if(c.getProductid().equals(ProductID))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 	
 }
