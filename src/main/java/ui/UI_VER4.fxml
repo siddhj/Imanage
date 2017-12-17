@@ -270,7 +270,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="assigneenamelabel" graphicTextGap="8.0" prefHeight="25.0" prefWidth="201.0" text="Ajay" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <Label fx:id="assigneenamelabel" graphicTextGap="8.0" prefHeight="25.0" prefWidth="201.0" text="Assignee Name" textFill="WHITE" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
