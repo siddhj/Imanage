@@ -1,4 +1,8 @@
-Prerequirsite:
+PreRequisite:
     1. Need Java version 1.8 (greater then 8u131)
 
-
+1. Need Google Credential File Installed
+    Variable Name : GOOGLE_APPLICATION_CREDENTIALS
+    Variable Value : /*Path of JSON Private File*/
+    
+2. Need To Update MAC Address in database.
