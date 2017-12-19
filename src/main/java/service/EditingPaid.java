@@ -75,11 +75,14 @@ public class EditingPaid extends TableCell<PopUpChallan, Integer> {
 					int newpaid = Integer.parseInt(textField.getText());
 					//**//
 					if(newpaid<0){
-						Notification.popupWindowInvalidValueLessThenZero();
+						Notification.popupWindowInvalidValueLessThenZero("Value Cannot be Less then 0",
+								"Value entered in paid column is less then zero. Please Enter a value greater"
+								+ "then zero");
 						return;
 					}else if(newpaid>paiddue)
 					{
-						Notification.popupWindowInvalidReceiveValueGreaterThenIssue();
+						Notification.popupWindowInvalidGreaterValue("Value entered in paid column is invalid",
+								"Paid value cannot be greater then Paid due value. Please enter the correct value");
 						return;
 					}
 					commitEdit(Integer.parseInt(textField.getText()));

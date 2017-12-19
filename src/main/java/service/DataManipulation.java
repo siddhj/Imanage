@@ -19,6 +19,5 @@ public class DataManipulation {
 			chalan.chalanDataUpdatePopUpWindow(popupwindowchallanlist);
 			chalan.chalanLogDataInsert(popupwindowchallanlist, challanid);
 		}
-	
 	}
 }

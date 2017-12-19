@@ -250,16 +250,23 @@ public class MainPageController implements MultiScreen {
 		java.util.Date dateofbill = java.sql.Date.valueOf(billdate.getValue());
 		
 		if (!Validation.parentListNameValidation(parentlist.get(1), assigneename.getText())) {
-			Notification.invalidInputName();
+			Notification.invalidInput("Invalid Name of Assignee","Assignee Name Entered is invalid. Please check the assignee name again");
 			return;
 		}
 		if (!Validation.parentListProductIDValidation(parentlist.get(0), productidtext.getText())) {
-			Notification.invalidInputProductID();
+			Notification.invalidInput("Invalid Product ID","Product ID entered is invalid. Please check the product id again");			
 			return;
 		}
 		if(!Validation.checkProductIDAlreadyPresentInTable(productidtext.getText(),newchalantable.getItems()))
 		{
-			Notification.invalidInputProductID();
+			Notification.invalidInput("Product ID is already present in table",
+					"Product ID you have entered is already present in the table. Edit the current exsiting entry for this product id from table");
+			return;
+		}
+		if(!Validation.checkIfAdvancePaidTextBoxIsEmpty(advancedpaidtext.getText()))
+		{
+			Notification.invalidInput("Advance Paid Text Box is Empty",
+					"Enter Some Value in Advance Paid Text Box");
 			return;
 		}
 		
@@ -287,7 +294,7 @@ System.out.println(savechallandescription.getText()+"this is the challan text");
 			advancedpaidtext.setDisable(true);
 			// billdate.setValue(null);
 		} catch (NumberFormatException E) {
-			Notification.invalidInput();
+			Notification.invalidInput("Something is not right","Please check your input values");
 		}
 		assigneename.setDisable(true);
 		billdate.setDisable(true);

@@ -26,7 +26,7 @@ public class LicenseAuthentication {
 				sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
 			}
 			System.out.println(sb.toString());
-			return DLoader.getSingeletonInstanceOfLoader().licenseVerfication(sb.toString(),username,password);
+			return DLoader.getSingeletonInstanceOfLoader().usernamepasswordVerfication(sb.toString(),username,password);
 		} catch (UnknownHostException e) {
 
 			e.printStackTrace();

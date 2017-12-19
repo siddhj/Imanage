@@ -9,10 +9,10 @@ import javafx.util.Duration;
 
 public class Notification {
 
-	public static void popupWindowInvalidValueLessThenZero(){
+	public static void popupWindowInvalidValueLessThenZero(String title,String message){
 		Notifications note = Notifications.create()
-				.title("Invalid Input")
-				.text("Value Entered In Column Is Less Then 0")
+				.title(title)
+				.text(message)
 				.graphic(null)
 				.hideAfter(Duration.seconds(5))
 				.position(Pos.BOTTOM_RIGHT)
@@ -27,7 +27,7 @@ public class Notification {
 		note.showError();
 	}
 	
-	public static void popupWindowInvalidReceiveValueGreaterThenIssue(){
+	public static void popupWindowInvalidGreaterValue(String title,String message){
 		Notifications note = Notifications.create()
 				.title("Invalid Input")
 				.text("Receive Value Cannot Be Greater Then Issue Value")
@@ -44,21 +44,21 @@ public class Notification {
 		note.showError();
 	}
 	
-	public static void popupWindowInvalidPaidValueGreaterThenReceive(){
-		Notifications note = Notifications.create()
-				.title("Invalid Input")
-				.text("Paid Value Cannot Be Greater Then Receive Value")
-				.graphic(null)
-				.hideAfter(Duration.seconds(5))
-				.position(Pos.BOTTOM_RIGHT)
-				.onAction(new EventHandler<ActionEvent>(){
-					@Override
-					public void handle(ActionEvent event) {
-				System.out.println("called");		
-					}
-				});
-		note.showError();
-	}
+//	public static void popupWindowInvalidPaidValueGreaterThenReceive(){
+//		Notifications note = Notifications.create()
+//				.title("Invalid Input")
+//				.text("Paid Value Cannot Be Greater Then Receive Value")
+//				.graphic(null)
+//				.hideAfter(Duration.seconds(5))
+//				.position(Pos.BOTTOM_RIGHT)
+//				.onAction(new EventHandler<ActionEvent>(){
+//					@Override
+//					public void handle(ActionEvent event) {
+//				System.out.println("called");		
+//					}
+//				});
+//		note.showError();
+//	}
 	
 	public static void dataSuccessfullySaved(){
 		Notifications note = Notifications.create()
@@ -77,7 +77,7 @@ public class Notification {
 		note.showInformation();
 	}
 	
-	public static void invalidInput(){
+	public static void invalidInput(String title,String message){
 		Notifications note = Notifications.create()
 				.title("Invalid Input")
 				.text("Value Entered is Invalid")
@@ -94,44 +94,44 @@ public class Notification {
 		note.showInformation();
 	}
 	
-	public static void invalidInputName(){
-		Notifications note = Notifications.create()
-				.title("Invalid Input")
-				.text("Invalid Assignee Name Entered")
-				.graphic(null)
-				.hideAfter(Duration.seconds(5))
-				.position(Pos.CENTER)
-				.onAction(new EventHandler<ActionEvent>(){
-					@Override
-					public void handle(ActionEvent event) {
-				System.out.println("called");		
-					}
-				});
-		note.darkStyle();
-		note.showInformation();
-	}
+//	public static void invalidInputName(){
+//		Notifications note = Notifications.create()
+//				.title("Invalid Input")
+//				.text("Invalid Assignee Name Entered")
+//				.graphic(null)
+//				.hideAfter(Duration.seconds(5))
+//				.position(Pos.CENTER)
+//				.onAction(new EventHandler<ActionEvent>(){
+//					@Override
+//					public void handle(ActionEvent event) {
+//				System.out.println("called");		
+//					}
+//				});
+//		note.darkStyle();
+//		note.showInformation();
+//	}
+//	
+//	public static void invalidInputProductID(){
+//		Notifications note = Notifications.create()
+//				.title("Invalid Input")
+//				.text("Invalid ProductID value entered")
+//				.graphic(null)
+//				.hideAfter(Duration.seconds(5))
+//				.position(Pos.CENTER)
+//				.onAction(new EventHandler<ActionEvent>(){
+//					@Override
+//					public void handle(ActionEvent event) {
+//				System.out.println("called");		
+//					}
+//				});
+//		note.darkStyle();
+//		note.showInformation();
+//	}
 	
-	public static void invalidInputProductID(){
+	public static void authenticationValidation(String title,String message){
 		Notifications note = Notifications.create()
-				.title("Invalid Input")
-				.text("Invalid ProductID value entered")
-				.graphic(null)
-				.hideAfter(Duration.seconds(5))
-				.position(Pos.CENTER)
-				.onAction(new EventHandler<ActionEvent>(){
-					@Override
-					public void handle(ActionEvent event) {
-				System.out.println("called");		
-					}
-				});
-		note.darkStyle();
-		note.showInformation();
-	}
-	
-	public static void licenseValidation(){
-		Notifications note = Notifications.create()
-				.title("Invalid License")
-				.text("Your do not have valid license. Contact System Admin")
+				.title(title)
+				.text(message)
 				.graphic(null)
 				.hideAfter(Duration.seconds(5))
 				.position(Pos.CENTER)

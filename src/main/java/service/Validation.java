@@ -64,4 +64,14 @@ public class Validation {
 		return true;
 	}
 	
+	public static boolean checkIfAdvancePaidTextBoxIsEmpty(String advancepaid)
+	{
+		
+		if(advancepaid==null&&Integer.parseInt(advancepaid)<0)
+		{
+			return false;
+		}
+		return true;
+	}
+	
 }

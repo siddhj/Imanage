@@ -63,7 +63,7 @@ public class LoginScreenController implements Initializable, MultiScreen {
 		} else {
 
 			UTable.getLoaderstage().close();
-			Notification.licenseValidation();
+			Notification.authenticationValidation("License ID or username/password is invalid", "Please make sure you enter correct username/password. If still unable to login contact system admin. Your license may be invalid");
 		}
 	}
 

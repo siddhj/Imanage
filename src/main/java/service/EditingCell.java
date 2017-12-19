@@ -76,11 +76,14 @@ public class EditingCell extends TableCell<PopUpChallan, Integer> {
 				if (t.getCode() == KeyCode.ENTER) {
 					int newreceive = Integer.parseInt(textField.getText());
 					if(newreceive<0){
-						Notification.popupWindowInvalidValueLessThenZero();
+						Notification.popupWindowInvalidValueLessThenZero("Value Cannot be Less then 0",
+								"Value entered in receive column is less then zero. Please Enter a value greater"
+								+ "then zero");
 						return;
 					}
 					if(newreceive>receivedue){
-						Notification.popupWindowInvalidReceiveValueGreaterThenIssue();
+						Notification.popupWindowInvalidGreaterValue("Value entered in receive column is invalid",
+								"Receive value cannot be greater then Receive due value. Please enter the correct value");
 						return;
 					}
 					commitEdit(Integer.parseInt(textField.getText()));
