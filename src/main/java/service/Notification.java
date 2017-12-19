@@ -79,8 +79,8 @@ public class Notification {
 	
 	public static void invalidInput(String title,String message){
 		Notifications note = Notifications.create()
-				.title("Invalid Input")
-				.text("Value Entered is Invalid")
+				.title(title)
+				.text(message)
 				.graphic(null)
 				.hideAfter(Duration.seconds(5))
 				.position(Pos.CENTER)
