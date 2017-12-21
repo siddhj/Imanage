@@ -1,5 +1,6 @@
 package bean;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javafx.collections.ObservableList;
@@ -15,7 +16,7 @@ public class Chalan{
 		this.comment = comment;
 	}
 
-	private Date billdate;
+	private LocalDate billdate;
 	private ObservableList<PopUpChallan> popupchallantableview;
 	
 	public int getTotalpaid() {
@@ -44,10 +45,10 @@ public class Chalan{
 		this.challanid = challanid;
 	}
 	
-	public Date getBilldate() {
+	public LocalDate getBilldate() {
 		return billdate;
 	}
-	public void setBilldate(Date billdate) {
+	public void setBilldate(LocalDate billdate) {
 		this.billdate = billdate;
 	}
 
@@ -99,7 +100,7 @@ public class Chalan{
 		this.assigneeid = assigneeid;
 	}
 	
-	public Chalan(String productid, int issue, int receive, int due, int advancepaid, int assigneeid,ObservableList<PopUpChallan> popupchallantableview,int totalpaid,int totalreceive,Date billdate,String comment) {
+	public Chalan(String productid, int issue, int receive, int due, int advancepaid, int assigneeid,ObservableList<PopUpChallan> popupchallantableview,int totalpaid,int totalreceive,LocalDate billdate,String comment) {
 		super();
 		this.productid = productid;
 		this.issue = issue;

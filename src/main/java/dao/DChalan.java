@@ -8,6 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 import com.ListTables;
@@ -54,7 +58,7 @@ public class DChalan {
 				prepare.setInt(3, c.getIssue());
 				prepare.setInt(4, c.getReceive());
 				prepare.setInt(5, c.getDue());
-				prepare.setDate(6, new java.sql.Date(c.getBilldate().getTime()));
+				prepare.setDate(6, java.sql.Date.valueOf(c.getBilldate()));
 				prepare.setInt(7, c.getAdvancepaid());
 				prepare.setInt(8, c.getTotalpaid());
 				prepare.setInt(9, c.getTotalreceive());
@@ -119,11 +123,13 @@ public class DChalan {
 			// pastpaid, int challanid,
 			// int currentreceive, int currentpaid, String productid, Date
 			// billdate
-
+			Instant instant = Instant.ofEpochMilli(resultset.getDate("BillDate").getTime());
+			LocalDate dateofbill = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+			
 			list.add(new PopUpChallan(resultset.getInt("AssigneeID"), resultset.getInt("Issue"),
 					resultset.getInt("Receive"), resultset.getInt("Due"), resultset.getInt("Paid"),
 					resultset.getInt("ChallanID"), 0, 0, resultset.getString("ProductID"),
-					resultset.getDate("BillDate"), resultset.getInt("Issue") - resultset.getInt("Paid")));
+					dateofbill, resultset.getInt("Issue") - resultset.getInt("Paid")));
 		}
 		UTable.getLoaderstage().close();
 		return list;
@@ -187,7 +193,7 @@ public class DChalan {
 		for (PopUpChallan c : chalanlist) {
 			if (!(c.getCurrentreceive() == 0 && c.getCurrentpaid() == 0)) {
 				try {
-					prepare.setDate(1, new java.sql.Date(date.getTime()));
+					prepare.setDate(1,java.sql.Date.valueOf(c.getBilldate()));
 					prepare.setInt(2, c.getChallanid());
 					prepare.setInt(3, referchallanid);
 					prepare.setInt(4, c.getAssigneeid());

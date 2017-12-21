@@ -1,5 +1,6 @@
 package bean;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class PopUpChallan {
@@ -11,7 +12,7 @@ public class PopUpChallan {
 		this.pastpaiddue = pastpaiddue;
 	}
 	private String productid;
-	private Date billdate;
+	private LocalDate billdate;
 	public int getAssigneeid() {
 		return assigneeid;
 	}
@@ -67,14 +68,14 @@ public class PopUpChallan {
 	public void setProductid(String productid) {
 		this.productid = productid;
 	}
-	public Date getBilldate() {
+	public LocalDate getBilldate() {
 		return billdate;
 	}
-	public void setBilldate(Date billdate) {
+	public void setBilldate(LocalDate billdate) {
 		this.billdate = billdate;
 	}
 	public PopUpChallan(int assigneeid, int issue, int pastreceive, int pastreceivedue, int pastpaid, int challanid,
-			int currentreceive, int currentpaid, String productid, Date billdate,int pastpaiddue) {
+			int currentreceive, int currentpaid, String productid, LocalDate billdate,int pastpaiddue) {
 		super();
 		this.assigneeid = assigneeid;
 		this.issue = issue;

@@ -247,7 +247,7 @@ public class MainPageController implements MultiScreen {
 			Notification.invalidDateFromUser();
 			return;
 		}
-		java.util.Date dateofbill = java.sql.Date.valueOf(billdate.getValue());
+		LocalDate dateofbill = billdate.getValue();
 		
 		if (!Validation.parentListNameValidation(parentlist.get(1), assigneename.getText())) {
 			Notification.invalidInput("Invalid Name of Assignee","Assignee Name Entered is invalid. Please check the assignee name again");

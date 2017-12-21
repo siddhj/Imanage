@@ -214,6 +214,7 @@ public class SortAndFilterController {
     	assigneenamecombobox.setValue(null);
     	productidcombobox.setValue(null);
     }
+    //Explore Selection Button
     @FXML
     void getChallanDetail(ActionEvent event) throws SQLException, IOException {
     	SortAndFilterBean selectedchallan = filterandsorttable.getSelectionModel().getSelectedItem();
