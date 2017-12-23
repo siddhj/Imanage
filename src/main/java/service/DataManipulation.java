@@ -14,7 +14,6 @@ import utility.UTable;
 
 public class DataManipulation {
 	public void getPopUpWindowData(ObservableList<Chalan> mainpagechallanlist) throws SQLException, IOException, DocumentException {
-		System.out.println("this is inside data manipulatiopn");
 		long aggregatechallanid = new Date().getTime();
 		UTable.setAggregatechallanid(aggregatechallanid);
 		DChalan chalan = DChalan.getSingeletonInstance();
