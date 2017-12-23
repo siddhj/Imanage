@@ -1,5 +1,13 @@
+/****************** v0.9 **************************/
+Objective : 
+1. To add Amount Paid
+2. To remove paid related quantity
+3. To add Productid add on the go feature
+4. To optimize the code.
+5. To improve the speed
+
 Document for --> "V0.9"
-1. Amount Paid is included and all the qty related to payemnt has been removed from code and relevent field
+1. Amount Paid is incuded and all the qty related to payemnt has been removed from code and relevent field
 has been made null in database.
 2. PDF Generation has been improved :
 3. New Process of adding product had been included.
@@ -15,3 +23,9 @@ in case of paidqty.
 					/*not required anymore as payment will be of that day*/ UTable.getTotalpaid(), 
 					Integer.parseInt(receivetext.getText()),dateofbill,savechallandescription.getText());
 2. AdvancePaid textfield could act as total payment that is being done on that day
+
+/****************** v0.9.1 *************************/
+Objective : Add window for adding productid on the go
+
+/****************** v0.9.2 ************************/
+Objective : Improve the Performace
