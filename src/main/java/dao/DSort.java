@@ -59,7 +59,7 @@ public class DSort {
 	UTable.setSortandfiltertotalreceivedue(totalreceivedueitem);
 //	UTable.setSortandfilterpaiddue(totalpaiditemdue);
 
-	filterlist.add(new SortAndFilterBean("***TOTAL*** => ",null,0,"********",totalissueitem,totalreceiveitem,totalreceivedueitem,0000,totalamountpaid));
+	filterlist.add(new SortAndFilterBean("***TOTAL*** => ",null,0,"********",totalissueitem,totalreceiveitem,totalreceivedueitem,totalamountpaid,0000));
 	
 //	SummaryBean summary = new SummaryBean(totalissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue);
 //	summarylist.add(summary);
