@@ -197,7 +197,7 @@
                   </HBox>
                   <HBox prefHeight="53.0" prefWidth="384.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="116.0" styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Advance Paid" textFill="#0c3c60" textOverrun="WORD_ELLIPSIS">
+                        <Label prefHeight="25.0" prefWidth="116.0" styleClass="main_textfield_small_title" stylesheets="@ninza.css" text="Amount Paid" textFill="#0c3c60" textOverrun="WORD_ELLIPSIS">
                            <HBox.margin>
                               <Insets bottom="58.0" left="40.0" />
                            </HBox.margin>
@@ -356,8 +356,7 @@
                             <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="80.0" prefWidth="102.0" style="-fx-border-width: 0 2 0 2; -fx-border-color: #ffffff;" text="Qty Issued" />
                             <TableColumn fx:id="receiveitemcolumn" maxWidth="300.0" minWidth="120.0" prefWidth="140.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Total Qty Received" />
                               <TableColumn fx:id="duecolumn" maxWidth="300.0" minWidth="148.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Due Items" visible="false" />
-                              <TableColumn fx:id="totalpaidcolumn" maxWidth="300.0" minWidth="100.0" prefWidth="140.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Total Qty Paid" />
-                              <TableColumn fx:id="advancedpaidcolumn" maxWidth="300.0" minWidth="120.0" prefWidth="160.0" text="Qty Advance Paid" />
+                              <TableColumn fx:id="amountpaidcolumn" maxWidth="300.0" minWidth="100.0" prefWidth="140.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: white;" text="Amount Paid" />
                           </columns>
                            <HBox.margin>
                               <Insets />

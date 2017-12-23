@@ -44,11 +44,14 @@ public class DChalan {
 	public void chalanDataInsert(Chalan c) throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
-		PreparedStatement prepare = connection.prepareStatement(
-				"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate,Paid_Due,Description) "
-						+ "values(?,?,?,?,?,?,?,?,?,?,?,?)");
+//	String query=	"insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate,Paid_Due,Description) "
+//			+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+//aftre amount paid update
+		String query="insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,PastReceive,BillDate,Description,AmountPaid) "
+				+ "values(?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement prepare = connection.prepareStatement(query);
 		Date date = new Date();
-		
+
 		Object param = new Timestamp(date.getTime());
 
 //		for (Chalan c : chalanlist) {
@@ -59,12 +62,10 @@ public class DChalan {
 				prepare.setInt(4, c.getReceive());
 				prepare.setInt(5, c.getDue());
 				prepare.setDate(6, java.sql.Date.valueOf(c.getBilldate()));
-				prepare.setInt(7, c.getAdvancepaid());
-				prepare.setInt(8, c.getTotalpaid());
-				prepare.setInt(9, c.getTotalreceive());
-				prepare.setTimestamp(10, new Timestamp(date.getTime()));
-				prepare.setInt(11, 0);
-				prepare.setString(12, c.getComment());
+				prepare.setInt(7, c.getTotalreceive());
+				prepare.setTimestamp(8, new Timestamp(date.getTime()));
+				prepare.setString(9, c.getComment());
+				prepare.setInt(10, c.getAmountpaid());
 				prepare.addBatch();
 			} catch (SQLException e) {
 				e.printStackTrace();

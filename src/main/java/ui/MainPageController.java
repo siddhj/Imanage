@@ -114,12 +114,16 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private TableColumn<Chalan, String> receiveitemcolumn = new TableColumn<>("Total Qty Received");
+	
+    @FXML
+    private TableColumn<Chalan, String> amountpaidcolumn = new TableColumn<>("Amount Paid");
 
-	@FXML
-	private TableColumn<Chalan, String> totalpaidcolumn = new TableColumn<>("Total Qty Paid");
-
-	@FXML
-	private TableColumn<Chalan, String> advancedpaidcolumn = new TableColumn<>("Qty Advance Paid");
+	//not required in v0.9
+//	@FXML
+//	private TableColumn<Chalan, String> totalpaidcolumn = new TableColumn<>("Total Qty Paid");
+//
+//	@FXML
+//	private TableColumn<Chalan, String> advancedpaidcolumn = new TableColumn<>("Qty Advance Paid");
 	
 	@FXML
 	private Button removebutton;
@@ -161,11 +165,14 @@ public class MainPageController implements MultiScreen {
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalreceive"));
+		amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("amountpaid"));
 
 //**	duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
 		
-		advancedpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("advancepaid"));
-		totalpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalpaid"));
+		//not required in v0.9
+//		advancedpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("advancepaid"));
+//		totalpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalpaid"));
+		
 		// System.out.println("doen");
 		// listFromDb = new DChalan().chalanDataLoad();
 		// newchalantable.setItems(listFromDb);
@@ -211,20 +218,23 @@ public class MainPageController implements MultiScreen {
 		productidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		issueitemcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		receiveitemcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-		totalpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-		advancedpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+		amountpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+//		totalpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+//		advancedpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		
 		productidcolumn.maxWidthProperty().bind(productidcolumn.prefWidthProperty());
 		issueitemcolumn.maxWidthProperty().bind(issueitemcolumn.prefWidthProperty());
 		receiveitemcolumn.maxWidthProperty().bind(receiveitemcolumn.prefWidthProperty());
-		totalpaidcolumn.maxWidthProperty().bind(totalpaidcolumn.prefWidthProperty());
-		advancedpaidcolumn.maxWidthProperty().bind(advancedpaidcolumn.prefWidthProperty());
+		amountpaidcolumn.maxWidthProperty().bind(amountpaidcolumn.prefWidthProperty());
+//		totalpaidcolumn.maxWidthProperty().bind(totalpaidcolumn.prefWidthProperty());
+//		advancedpaidcolumn.maxWidthProperty().bind(advancedpaidcolumn.prefWidthProperty());
 		
 		productidcolumn.setResizable(false);
 		issueitemcolumn.setResizable(false);
 		receiveitemcolumn.setResizable(false);
-		totalpaidcolumn.setResizable(false);
-		advancedpaidcolumn.setResizable(false);
+		amountpaidcolumn.setResizable(false);
+//		totalpaidcolumn.setResizable(false);
+//		advancedpaidcolumn.setResizable(false);
 		billdate.setValue(LocalDate.now());
 		UTable.setMainpagetableview(newchalantable);
 	}
@@ -274,13 +284,13 @@ public class MainPageController implements MultiScreen {
 			Notification.mainWindowInvalidBillDate();
 			return;
 		}
-System.out.println(savechallandescription.getText()+"this is the challan text");
 		try {
 			int AssigneeID = new MicroService().assigneeIDRetrieveFullName(name);
+
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
-					Integer.parseInt(issuetext.getText()), Integer.parseInt(advancedpaidtext.getText()), AssigneeID,
-					UTable.getPopupchallantablelist(), UTable.getTotalpaid(), Integer.parseInt(receivetext.getText()),
-					dateofbill,savechallandescription.getText());
+					Integer.parseInt(issuetext.getText()), AssigneeID,
+					UTable.getPopupchallantablelist(), Integer.parseInt(receivetext.getText()),
+					dateofbill,savechallandescription.getText(),Integer.parseInt(advancedpaidtext.getText()));
 
 			newchalantable.getItems().add(chalan);
 			productidtext.setText("");

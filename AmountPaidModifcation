@@ -1,0 +1,17 @@
+Document for --> "V0.9"
+1. Amount Paid is included and all the qty related to payemnt has been removed from code and relevent field
+has been made null in database.
+2. PDF Generation has been improved :
+3. New Process of adding product had been included.
+
+											MainPageController
+
+1. On MainPageController in Challan constructor we do need sum from popupwindow anyomore as it was required in
+in case of paidqty.
+	Example : 	
+		Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
+					Integer.parseInt(issuetext.getText()), Integer.parseInt(advancedpaidtext.getText()), AssigneeID,
+					UTable.getPopupchallantablelist(),
+					/*not required anymore as payment will be of that day*/ UTable.getTotalpaid(), 
+					Integer.parseInt(receivetext.getText()),dateofbill,savechallandescription.getText());
+2. AdvancePaid textfield could act as total payment that is being done on that day

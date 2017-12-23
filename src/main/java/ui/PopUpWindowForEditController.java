@@ -24,15 +24,17 @@ import service.MicroService;
 import utility.UTable;
 
 public class PopUpWindowForEditController {
-	private TableColumn<PopUpChallan, Integer> paidcolumn = new TableColumn<>("Qty Paid");
-	private TableColumn<PopUpChallan, Integer> currentpaidcolumn = new TableColumn<>("Current Paid Qty");
-	private TableColumn<PopUpChallan, Integer> pastpaidcolumn = new TableColumn<>("Already Paid Qty");
-	private TableColumn<PopUpChallan, Integer> pastpaidduecolumn = new TableColumn<>("Paid Qty Due");
+//	private TableColumn<PopUpChallan, Integer> paidcolumn = new TableColumn<>("Qty Paid");
+//	private TableColumn<PopUpChallan, Integer> currentpaidcolumn = new TableColumn<>("Current Paid Qty");
+//	private TableColumn<PopUpChallan, Integer> pastpaidcolumn = new TableColumn<>("Already Paid Qty");
+//	private TableColumn<PopUpChallan, Integer> pastpaidduecolumn = new TableColumn<>("Paid Qty Due");
 
 	private TableColumn<PopUpChallan, Integer> receivecolumn = new TableColumn<>("Qty Receive");
 	private TableColumn<PopUpChallan, Integer> pastreceivecolumn = new TableColumn<>("Already Receive Qty");
 	private TableColumn<PopUpChallan, Integer> currentreceivecolumn = new TableColumn<>("Current Receive qty");
 	private TableColumn<PopUpChallan, Integer> pastduecolumn = new TableColumn<>("Qty Due");
+	
+	private TableColumn<PopUpChallan, Integer> amountpaidcolumn = new TableColumn<>("Amount Paid");
 
 	@FXML
 	private TableView<PopUpChallan> receiveTable = new TableView<>();
@@ -67,9 +69,10 @@ public class PopUpWindowForEditController {
 		// pastpaidcolumn.setCellValueFactory(new
 		// PropertyValueFactory<PopUpChallan, Integer>("pastpaid"));
 		pastreceivecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastreceive"));
-		pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastpaid"));
-		pastpaidduecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastpaiddue"));
-		paidcolumn.getColumns().addAll(pastpaidcolumn, pastpaidduecolumn, currentpaidcolumn);
+		amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("amountpaid"));
+//		pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastpaid"));
+//		pastpaidduecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("pastpaiddue"));
+//		paidcolumn.getColumns().addAll(pastpaidcolumn, pastpaidduecolumn, currentpaidcolumn);
 		receivecolumn.getColumns().addAll(pastreceivecolumn, pastduecolumn, currentreceivecolumn);
 		// editable column
 		Callback<TableColumn<PopUpChallan, Integer>, TableCell<PopUpChallan, Integer>> cellFactory = new Callback<TableColumn<PopUpChallan, Integer>, TableCell<PopUpChallan, Integer>>() {
@@ -84,7 +87,7 @@ public class PopUpWindowForEditController {
 		};
 
 		currentreceivecolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("currentreceive"));
-		currentpaidcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("currentpaid"));
+//		currentpaidcolumn.setCellValueFactory(new PropertyValueFactory<PopUpChallan, Integer>("currentpaid"));
 
 		currentreceivecolumn.setCellFactory(cellFactory);
 		currentreceivecolumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PopUpChallan, Integer>>() {
@@ -95,19 +98,19 @@ public class PopUpWindowForEditController {
 			}
 		});
 
-		currentpaidcolumn.setCellFactory(paidCellFactory);
-		currentpaidcolumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PopUpChallan, Integer>>() {
-			@Override
-			public void handle(TableColumn.CellEditEvent<PopUpChallan, Integer> t) {
-				((PopUpChallan) t.getTableView().getItems().get(t.getTablePosition().getRow()))
-						.setCurrentpaid(t.getNewValue());
-			}
-		});
+//		currentpaidcolumn.setCellFactory(paidCellFactory);
+//		currentpaidcolumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PopUpChallan, Integer>>() {
+//			@Override
+//			public void handle(TableColumn.CellEditEvent<PopUpChallan, Integer> t) {
+//				((PopUpChallan) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+//						.setCurrentpaid(t.getNewValue());
+//			}
+//		});
 
 		currentreceivecolumn.setEditable(true);
-		currentpaidcolumn.setEditable(true);
+//		currentpaidcolumn.setEditable(true);
 		receiveTable.setEditable(true);
-		receiveTable.getColumns().addAll(receivecolumn, paidcolumn);
+		receiveTable.getColumns().addAll(receivecolumn, amountpaidcolumn);
 
 		chalanlist = UTable.getPopupchallantablelist();
 		selectedchallanfrommainpage = UTable.getSelectedchallanfrommainpage();
@@ -115,27 +118,27 @@ public class PopUpWindowForEditController {
 		//indexofselectedrow = UTable.getIndexofselectedrow();
 
 		issueitemcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
-		currentpaidcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
-		pastpaidcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
-		pastpaidduecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+//		currentpaidcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+//		pastpaidcolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
+//		pastpaidduecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
 		billdatecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
 		pastreceivecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
 		currentreceivecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
 		pastduecolumn.prefWidthProperty().bind(receiveTable.widthProperty().divide(9).subtract(2.1/1));
 		
 		issueitemcolumn.maxWidthProperty().bind(issueitemcolumn.prefWidthProperty());
-		currentpaidcolumn.maxWidthProperty().bind(currentpaidcolumn.prefWidthProperty());
-		pastpaidcolumn.maxWidthProperty().bind(pastpaidcolumn.prefWidthProperty());
-		pastpaidduecolumn.maxWidthProperty().bind(pastpaidduecolumn.prefWidthProperty());
+//		currentpaidcolumn.maxWidthProperty().bind(currentpaidcolumn.prefWidthProperty());
+//		pastpaidcolumn.maxWidthProperty().bind(pastpaidcolumn.prefWidthProperty());
+//		pastpaidduecolumn.maxWidthProperty().bind(pastpaidduecolumn.prefWidthProperty());
 		billdatecolumn.maxWidthProperty().bind(billdatecolumn.prefWidthProperty());
 		pastreceivecolumn.maxWidthProperty().bind(pastreceivecolumn.prefWidthProperty());
 		currentreceivecolumn.maxWidthProperty().bind(currentreceivecolumn.prefWidthProperty());
 		pastduecolumn.maxWidthProperty().bind(pastduecolumn.prefWidthProperty());
 		
 		issueitemcolumn.setResizable(false);
-		currentpaidcolumn.setResizable(false);
-		pastpaidcolumn.setResizable(false);
-		pastpaidduecolumn.setResizable(false);
+//		currentpaidcolumn.setResizable(false);
+//		pastpaidcolumn.setResizable(false);
+//		pastpaidduecolumn.setResizable(false);
 		billdatecolumn.setResizable(false);
 		pastreceivecolumn.setResizable(false);
 		currentreceivecolumn.setResizable(false);
@@ -143,7 +146,7 @@ public class PopUpWindowForEditController {
 
 		receiveTable.setItems(chalanlist);
 		issuetext.setText(String.valueOf(selectedchallanfrommainpage.getIssue()));
-		advancedpaidtext.setText(String.valueOf(selectedchallanfrommainpage.getAdvancepaid()));
+	//	advancedpaidtext.setText(String.valueOf(selectedchallanfrommainpage.getAdvancepaid()));
 		receivetext.setText(String.valueOf(selectedchallanfrommainpage.getTotalreceive()));
 		productidtext.setText(selectedchallanfrommainpage.getProductid());
 		UTable.setPopuptableview(receiveTable);
@@ -172,16 +175,16 @@ public class PopUpWindowForEditController {
 		System.out.println(receive+"::"+paid+"**"+selectedchallanfrommainpage);
 		
 		selectedchallanfrommainpage.setIssue(Integer.parseInt(issuetext.getText()));
-		selectedchallanfrommainpage.setAdvancepaid(Integer.parseInt(advancedpaidtext.getText()));
+//		selectedchallanfrommainpage.setAdvancepaid(Integer.parseInt(advancedpaidtext.getText()));
 		selectedchallanfrommainpage.setTotalreceive(receive);
-		selectedchallanfrommainpage.setTotalpaid(paid);
+//		selectedchallanfrommainpage.setTotalpaid(paid);
 		selectedchallanfrommainpage.setPopupchallantableview(receiveTable.getItems());
 		UTable.getMainpagetableview().getColumns().get(1).setVisible(false);
 		UTable.getMainpagetableview().getColumns().get(1).setVisible(true);
 		UTable.getMainpagetableview().getColumns().get(2).setVisible(false);
 		UTable.getMainpagetableview().getColumns().get(2).setVisible(true);
-		UTable.getMainpagetableview().getColumns().get(5).setVisible(false);
-		UTable.getMainpagetableview().getColumns().get(5).setVisible(true);
+//		UTable.getMainpagetableview().getColumns().get(5).setVisible(false);
+//		UTable.getMainpagetableview().getColumns().get(5).setVisible(true);
 		UTable.getMainpagetableview().getColumns().get(4).setVisible(false);
 		UTable.getMainpagetableview().getColumns().get(4).setVisible(true);
 

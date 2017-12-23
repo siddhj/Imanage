@@ -48,7 +48,8 @@ public final class UTable {
 	
 	public static TableColumn paidcolumnpopuptable;
 
-	public static int indexofselectedrow,totalpaid;
+	public static int indexofselectedrow;
+//	public static inttotalpaid;
 //	totallissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue
 	public static int sortandfiltertotalissue,sortandfiltertotalpaid,sortandfiltertotalreceive,sortandfiltertotalreceivedue,sortandfilterpaiddue;
 
@@ -202,13 +203,14 @@ public final class UTable {
 		UTable.popupchallantablelist = popupchallantablelist;
 	}
 
-	public static int getTotalpaid() {
-		return totalpaid;
-	}
-
-	public static void setTotalpaid(int totalpaid) {
-		UTable.totalpaid = totalpaid;
-	}
+	//this is not required for v0.9
+//	public static int getTotalpaid() {
+//		return totalpaid;
+//	}
+//
+//	public static void setTotalpaid(int totalpaid) {
+//		UTable.totalpaid = totalpaid;
+//	}
 	
 	public static Stage getLoaderstage() {
 		return loaderstage;
