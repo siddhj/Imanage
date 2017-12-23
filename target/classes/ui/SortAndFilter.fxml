@@ -178,10 +178,8 @@
                         <TableColumn fx:id="issuecolumn" maxWidth="100.0" minWidth="80.0" prefWidth="100.0" text="Qty Issued" />
                         <TableColumn fx:id="receivecolumn" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Qty Received" />
                         <TableColumn fx:id="receiveduecolumn" maxWidth="100.0" minWidth="120.0" prefWidth="-1.0" text="Receive Due Qty" />
-                        <TableColumn fx:id="paidcolumn" maxWidth="120.0" minWidth="100.0" prefWidth="-1.0" text="Qty Paid" />
-                        <TableColumn fx:id="paidduecolumn" maxWidth="120.0" minWidth="100.0" prefWidth="-1.0" text="Paid Due Qty" />
                         <TableColumn fx:id="pastreceivecolumn" maxWidth="200.0" minWidth="120.0" prefWidth="-1.0" text="Pre Received Qty" />
-                        <TableColumn fx:id="pastpaidcolumn" maxWidth="200.0" minWidth="150.0" prefWidth="-1.0" text="Pre Paid Qty" />
+                        <TableColumn fx:id="amountpaidcolumn" maxWidth="200.0" minWidth="150.0" prefWidth="-1.0" text="Amount Paid" />
                      </columns>
                   </TableView>
                   <ScrollBar orientation="VERTICAL" />

@@ -148,16 +148,14 @@ public class PopupController {
 	@FXML
 	void saveReceiveData(ActionEvent event) throws SQLException, IOException {
 		ObservableList<PopUpChallan> chalan = receiveTable.getItems();
-		chalan.forEach(c -> {
-			System.out.println(c.getCurrentreceive() + "::" + c.getCurrentpaid() + "this sis the current reveive");
-		});
+		
 		UTable.setPopupchallantablelist(chalan);
 		MicroService service = new MicroService();
 
 		// filling the main window controller
 		int receive = service.getTotalReceiveFromPopUp(receiveTable.getItems());
 		System.out.println(receive + "this is the receieve");
-		int paid = service.getTotalPaidFromPopUp(receiveTable.getItems());
+//		int paid = service.getTotalPaidFromPopUp(receiveTable.getItems());
 		//UTable.setTotalpaid(paid);
 		TextField receivetext = UTable.getReceiveTextField();
 		receivetext.setText(String.valueOf(receive));

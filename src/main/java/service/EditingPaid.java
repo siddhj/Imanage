@@ -31,7 +31,7 @@ public class EditingPaid extends TableCell<PopUpChallan, Integer> {
 		TableRow row = this.getTableRow();
 		PopUpChallan chalanfrompopuptable = (PopUpChallan) row.getItem();
 		challanid = chalanfrompopuptable.getChallanid();
-		paiddue = chalanfrompopuptable.getPastpaiddue();
+//		paiddue = chalanfrompopuptable.getPastpaiddue();
 		setGraphic(textField);
 		setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 		textField.selectAll();

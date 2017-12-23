@@ -5,9 +5,10 @@ import java.sql.Date;
 public class ChallanDetailBean {
 	public String assigneename,productid;
 	public Date billdate;
-	public int referchallanid,challanid,issueitem,receiveitem,paiditem;
+	public int referchallanid,challanid,issueitem,receiveitem,amountpaid;
+
 	public ChallanDetailBean(String assigneename, String productid, Date billdate, int referchallanid, int challanid,
-			int issueitem, int receiveitem, int paiditem) {
+			int issueitem, int receiveitem, int amountpaid /*int paiditem*/ ) {
 		super();
 		this.assigneename = assigneename;
 		this.productid = productid;
@@ -16,7 +17,8 @@ public class ChallanDetailBean {
 		this.challanid = challanid;
 		this.issueitem = issueitem;
 		this.receiveitem = receiveitem;
-		this.paiditem = paiditem;
+//		this.paiditem = paiditem;
+		this.amountpaid = amountpaid;
 	}
 	public String getAssigneename() {
 		return assigneename;
@@ -60,10 +62,11 @@ public class ChallanDetailBean {
 	public void setReceiveitem(int receiveitem) {
 		this.receiveitem = receiveitem;
 	}
-	public int getPaiditem() {
-		return paiditem;
+	public int getAmountpaid() {
+		return amountpaid;
 	}
-	public void setPaiditem(int paiditem) {
-		this.paiditem = paiditem;
+	public void setAmountpaid(int amountpaid) {
+		this.amountpaid = amountpaid;
 	}
+	
 }

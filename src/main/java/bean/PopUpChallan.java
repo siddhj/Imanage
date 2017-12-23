@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class PopUpChallan {
-	private int assigneeid,issue,pastreceive,pastreceivedue,pastpaid,challanid,currentreceive,currentpaid,pastpaiddue;
-	public int getPastpaiddue() {
-		return pastpaiddue;
-	}
-	public void setPastpaiddue(int pastpaiddue) {
-		this.pastpaiddue = pastpaiddue;
-	}
+	private int assigneeid,issue,pastreceive,pastreceivedue,challanid,currentreceive,amountpaid;
+//	public int getPastpaiddue() {
+//		return pastpaiddue;
+//	}
+//	public void setPastpaiddue(int pastpaiddue) {
+//		this.pastpaiddue = pastpaiddue;
+//	}
 	private String productid;
 	private LocalDate billdate;
 	public int getAssigneeid() {
@@ -38,12 +38,12 @@ public class PopUpChallan {
 	public void setPastreceivedue(int pastreceivedue) {
 		this.pastreceivedue = pastreceivedue;
 	}
-	public int getPastpaid() {
-		return pastpaid;
-	}
-	public void setPastpaid(int pastpaid) {
-		this.pastpaid = pastpaid;
-	}
+//	public int getPastpaid() {
+//		return pastpaid;
+//	}
+//	public void setPastpaid(int pastpaid) {
+//		this.pastpaid = pastpaid;
+//	}
 	public int getChallanid() {
 		return challanid;
 	}
@@ -56,12 +56,12 @@ public class PopUpChallan {
 	public void setCurrentreceive(int currentreceive) {
 		this.currentreceive = currentreceive;
 	}
-	public int getCurrentpaid() {
-		return currentpaid;
-	}
-	public void setCurrentpaid(int currentpaid) {
-		this.currentpaid = currentpaid;
-	}
+//	public int getCurrentpaid() {
+//		return currentpaid;
+//	}
+//	public void setCurrentpaid(int currentpaid) {
+//		this.currentpaid = currentpaid;
+//	}
 	public String getProductid() {
 		return productid;
 	}
@@ -74,20 +74,34 @@ public class PopUpChallan {
 	public void setBilldate(LocalDate billdate) {
 		this.billdate = billdate;
 	}
-	public PopUpChallan(int assigneeid, int issue, int pastreceive, int pastreceivedue, int pastpaid, int challanid,
-			int currentreceive, int currentpaid, String productid, LocalDate billdate,int pastpaiddue) {
+//	public PopUpChallan(int assigneeid, int issue, int pastreceive, int pastreceivedue, int pastpaid, int challanid,
+//			int currentreceive, int currentpaid, String productid, LocalDate billdate,int pastpaiddue) {
+//		super();
+//		this.assigneeid = assigneeid;
+//		this.issue = issue;
+//		this.pastreceive = pastreceive;
+//		this.pastreceivedue = pastreceivedue;
+//		this.pastpaid = pastpaid;
+//		this.challanid = challanid;
+//		this.currentreceive = currentreceive;
+//		this.currentpaid = currentpaid;
+//		this.productid = productid;
+//		this.billdate = billdate;
+//		this.pastpaiddue=pastpaiddue;
+//	}
+	
+	public PopUpChallan(int assigneeid, int issue, int pastreceive, int pastreceivedue, int challanid,
+			int currentreceive, String productid, LocalDate billdate,int amountpaid) {
 		super();
 		this.assigneeid = assigneeid;
 		this.issue = issue;
 		this.pastreceive = pastreceive;
 		this.pastreceivedue = pastreceivedue;
-		this.pastpaid = pastpaid;
 		this.challanid = challanid;
 		this.currentreceive = currentreceive;
-		this.currentpaid = currentpaid;
 		this.productid = productid;
 		this.billdate = billdate;
-		this.pastpaiddue=pastpaiddue;
+		this.amountpaid=amountpaid;
 	}
 
 }

@@ -54,13 +54,13 @@ public final class UTable {
 	public static int sortandfiltertotalissue,sortandfiltertotalpaid,sortandfiltertotalreceive,sortandfiltertotalreceivedue,sortandfilterpaiddue;
 
 	
-	public static int getSortandfiltertotalpaid() {
-		return sortandfiltertotalpaid;
-	}
-
-	public static void setSortandfiltertotalpaid(int sortandfiltertotalpaid) {
-		UTable.sortandfiltertotalpaid = sortandfiltertotalpaid;
-	}
+//	public static int getSortandfiltertotalpaid() {
+//		return sortandfiltertotalpaid;
+//	}
+//
+//	public static void setSortandfiltertotalpaid(int sortandfiltertotalpaid) {
+//		UTable.sortandfiltertotalpaid = sortandfiltertotalpaid;
+//	}
 
 	public static int getSortandfiltertotalreceive() {
 		return sortandfiltertotalreceive;
@@ -78,13 +78,13 @@ public final class UTable {
 		UTable.sortandfiltertotalreceivedue = sortandfiltertotalreceivedue;
 	}
 
-	public static int getSortandfilterpaiddue() {
-		return sortandfilterpaiddue;
-	}
-
-	public static void setSortandfilterpaiddue(int sortandfilterpaiddue) {
-		UTable.sortandfilterpaiddue = sortandfilterpaiddue;
-	}
+//	public static int getSortandfilterpaiddue() {
+//		return sortandfilterpaiddue;
+//	}
+//
+//	public static void setSortandfilterpaiddue(int sortandfilterpaiddue) {
+//		UTable.sortandfilterpaiddue = sortandfilterpaiddue;
+//	}
 
 	public static int getSortandfiltertotalissue() {
 		return sortandfiltertotalissue;

@@ -3,17 +3,11 @@ package bean;
 import java.sql.Date;
 
 public class SortAndFilterBean {
-@Override
-	public String toString() {
-		return "SortAndFilterBean [filtername=" + filtername + ", filterproductid=" + filterproductid
-				+ ", assigneename=" + assigneename + ", productid=" + productid + ", fromdate=" + fromdate + ", todate="
-				+ todate + ", billdate=" + billdate + ", challanid=" + challanid + ", issueitem=" + issueitem
-				+ ", receiveitem=" + receiveitem + ", receivedueitem=" + receivedueitem + ", paiditem=" + paiditem
-				+ ", paiditemdue=" + paiditemdue + "]";
-	}
+
 public String filtername,filterproductid,assigneename,productid;
 public Date fromdate,todate,billdate;
-public int challanid,issueitem,receiveitem,receivedueitem,paiditem,paiditemdue;
+public int challanid,issueitem,receiveitem,receivedueitem,amountpaid;
+
 public String getFiltername() {
 	return filtername;
 }
@@ -53,7 +47,7 @@ public void setPastpaid(int pastpaid) {
 	this.pastpaid = pastpaid;
 }
 public SortAndFilterBean(String assigneename, Date billdate, int challanid, String productid, int issueitem,
-		int receiveitem, int receivedueitem, int paiditem, int paiditemdue,int pastreceive,int pastpaid) {
+		int receiveitem, int receivedueitem, int amountpaid,/*int paiditem, int paiditemdue,*/int pastreceive/*,int pastpaid*/) {
 	super();
 	this.assigneename = assigneename;
 	this.billdate = billdate;
@@ -62,10 +56,11 @@ public SortAndFilterBean(String assigneename, Date billdate, int challanid, Stri
 	this.issueitem = issueitem;
 	this.receiveitem = receiveitem;
 	this.receivedueitem = receivedueitem;
-	this.paiditem = paiditem;
-	this.paiditemdue = paiditemdue;
+//	this.paiditem = paiditem;
+//	this.paiditemdue = paiditemdue;
+	this.amountpaid=amountpaid;
 	this.pastreceive=pastreceive;
-	this.pastpaid=pastpaid;
+//	this.pastpaid=pastpaid;
 }
 public Date getTodate() {
 	return todate;
@@ -109,17 +104,23 @@ public int getReceivedueitem() {
 public void setReceivedueitem(int receivedueitem) {
 	this.receivedueitem = receivedueitem;
 }
-public int getPaiditem() {
-	return paiditem;
+//public int getPaiditem() {
+//	return paiditem;
+//}
+//public void setPaiditem(int paiditem) {
+//	this.paiditem = paiditem;
+//}
+//public int getPaiditemdue() {
+//	return paiditemdue;
+//}
+//public void setPaiditemdue(int paiditemdue) {
+//	this.paiditemdue = paiditemdue;
+//}
+public int getAmountpaid() {
+	return amountpaid;
 }
-public void setPaiditem(int paiditem) {
-	this.paiditem = paiditem;
-}
-public int getPaiditemdue() {
-	return paiditemdue;
-}
-public void setPaiditemdue(int paiditemdue) {
-	this.paiditemdue = paiditemdue;
+public void setAmountpaid(int amountpaid) {
+	this.amountpaid = amountpaid;
 }
 
 }

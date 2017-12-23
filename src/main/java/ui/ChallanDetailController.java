@@ -39,9 +39,12 @@ public class ChallanDetailController {
 	    @FXML
 	    private TableColumn<ChallanDetailBean, Integer> receivecolumn = new TableColumn<>("Qty Receive");
 
-	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> paidcolumn = new TableColumn<>("Qty Paid");
+//	    @FXML
+//	    private TableColumn<ChallanDetailBean, Integer> paidcolumn = new TableColumn<>("Qty Paid");
 
+	    @FXML
+	    private TableColumn<ChallanDetailBean, Integer> amountpaidcolumn = new TableColumn<>("Amount Paid");
+	    
 	    @FXML
 	    private TableColumn<ChallanDetailBean, Date> billdatecolumn = new TableColumn<>("Bill Date");
 
@@ -58,7 +61,8 @@ public class ChallanDetailController {
 		public void initialize() throws SQLException, IOException {
 	    	issuecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("issueitem"));
 	    	receivecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("receiveitem"));
-	    	paidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("paiditem"));
+//	    	paidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("paiditem"));
+	    	amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("paiditem"));
 	    	challanidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("challanid"));
 	    	referchallanidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("referchallanid"));
 	    	assigneenamecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, String>("assigneename"));

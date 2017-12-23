@@ -110,7 +110,7 @@ public class DChalan {
 			throws SQLException, IOException {
 		ListTables chalandata = new ListTables();
 		Connection connection = chalandata.returnConnection();
-		String query = "select ChallanID,ProductID,Receive,Issue,Due,Paid,AssigneeID,BillDate from challan where ProductID=?and AssigneeID=?";
+		String query = "select ChallanID,ProductID,Receive,Issue,Due,AssigneeID,BillDate,AmountPaid from challan where ProductID=?and AssigneeID=?";
 		PreparedStatement stmt = connection.prepareStatement(query);
 		stmt.setString(1, productidtext);
 		stmt.setInt(2, assigneeid);
@@ -128,9 +128,9 @@ public class DChalan {
 			LocalDate dateofbill = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
 			
 			list.add(new PopUpChallan(resultset.getInt("AssigneeID"), resultset.getInt("Issue"),
-					resultset.getInt("Receive"), resultset.getInt("Due"), resultset.getInt("Paid"),
-					resultset.getInt("ChallanID"), 0, 0, resultset.getString("ProductID"),
-					dateofbill, resultset.getInt("Issue") - resultset.getInt("Paid")));
+					resultset.getInt("Receive"), resultset.getInt("Due"),
+					resultset.getInt("ChallanID"), 0, resultset.getString("ProductID"),
+					dateofbill,resultset.getInt("AmountPaid")));
 		}
 		UTable.getLoaderstage().close();
 		return list;
@@ -142,18 +142,19 @@ public class DChalan {
 			throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
-		PreparedStatement prepare = connection
-				.prepareStatement("update challan set Receive=?,Due=?,Paid=? where ChallanID=?");
+//		String query = "update challan set Receive=?,Due=?,Paid=? where ChallanID=?";
+		String query = "update challan set Receive=?,Due=? where ChallanID=?";
+		PreparedStatement prepare = connection.prepareStatement(query);
 		for (PopUpChallan p : popupchallanlist) {
 			int totalreceive = MicroService.sumReceiveFromPopUp(p.getPastreceive(), p.getCurrentreceive());
-			int totalpaid = MicroService.sumPaidFromPopUp(p.getPastpaid(), p.getCurrentpaid());
+//			int totalpaid = MicroService.sumPaidFromPopUp(p.getPastpaid(), p.getCurrentpaid());
 			int totaldue = MicroService.sumDueFromPopUp(p.getIssue(), totalreceive);
 			int challanid = p.getChallanid();
 			try {
 				prepare.setInt(1, totalreceive);
 				prepare.setInt(2, totaldue);
-				prepare.setInt(3, totalpaid);
-				prepare.setInt(4, challanid);
+//				prepare.setInt(3, totalpaid);
+				prepare.setInt(3, challanid);
 				prepare.addBatch();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -186,13 +187,13 @@ public class DChalan {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
 		PreparedStatement prepare = connection.prepareStatement(
-				"insert into challanlog(BillDate,ChallanID,ReferChallanID,AssigneeID,ProductID,Issue,Receive,Paid,BillTimeStamp) "
+				"insert into challanlog(BillDate,ChallanID,ReferChallanID,AssigneeID,ProductID,Issue,Receive,BillTimeStamp) "
 						+ "values(?,?,?,?,?,?,?,?,?)");
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
 
 		for (PopUpChallan c : chalanlist) {
-			if (!(c.getCurrentreceive() == 0 && c.getCurrentpaid() == 0)) {
+			if (!(c.getCurrentreceive() == 0 )) {
 				try {
 					prepare.setDate(1,java.sql.Date.valueOf(c.getBilldate()));
 					prepare.setInt(2, c.getChallanid());
@@ -201,8 +202,7 @@ public class DChalan {
 					prepare.setString(5, c.getProductid());
 					prepare.setInt(6, c.getIssue());
 					prepare.setInt(7, c.getCurrentreceive());
-					prepare.setInt(8, c.getCurrentpaid());
-					prepare.setTimestamp(9, new Timestamp(date.getTime()));
+					prepare.setTimestamp(8, new Timestamp(date.getTime()));
 					prepare.addBatch();
 				} catch (SQLException e) {
 					e.printStackTrace();

@@ -43,7 +43,7 @@ public class HighLightCell extends TableCell<SortAndFilterBean, Integer> {
 	public void updateItem(Integer item, boolean empty) {
 		super.updateItem(item, empty);
 		if (item != null && (item == UTable.getSortandfiltertotalissue()||item==UTable.getSortandfiltertotalreceive()
-				||item==UTable.getSortandfiltertotalpaid()||item==UTable.getSortandfiltertotalreceivedue()||item==UTable.getSortandfilterpaiddue())) {
+				||item==UTable.getSortandfiltertotalreceivedue())) {
 			this.setStyle("-fx-background-color:#000000;-fx-text-fill:#ffffff");
 		}
 		

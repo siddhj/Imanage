@@ -25,7 +25,7 @@ public class DSort {
 	ObservableList<SortAndFilterBean> filterlist = FXCollections.observableArrayList();
 //	ObservableList<SummaryBean> summarylist = FXCollections.observableArrayList();	
 	
-	int totalissueitem=0,totalreceiveitem=0,totalreceivedueitem=0,totalpaiditem=0,totalpaiditemdue=0;
+	int totalissueitem=0,totalreceiveitem=0,totalreceivedueitem=0,totalamountpaid=0;
 	
 	String query = "select * from challan as c join assignee as a on c.AssigneeID = a.AssigneeID "
 			+ "where a.Full_Name like ? and c.ProductID like ? and c.BillDateType Between ? and ?";
@@ -43,23 +43,23 @@ public class DSort {
 //FullName is assigned in FirstName as of now will be updated in later stage 
 	while (resultset.next()) {
 		filterlist.add(new SortAndFilterBean(resultset.getString("a.Full_Name"),resultset.getDate("c.BillDateType"),resultset.getInt("c.ChallanID"),
-				resultset.getString("ProductID"),resultset.getInt("c.Issue"),resultset.getInt("c.Receive"),resultset.getInt("c.Due"),resultset.getInt("c.Paid"),
-				resultset.getInt("c.Issue")-resultset.getInt("c.Paid"),resultset.getInt("PastReceive"),resultset.getInt("PastPaid")));
+				resultset.getString("ProductID"),resultset.getInt("c.Issue"),resultset.getInt("c.Receive"),resultset.getInt("c.Due"),
+				resultset.getInt("AmountPaid"),resultset.getInt("PastReceive")));
 
 	totalissueitem +=resultset.getInt("c.Issue");
 	totalreceiveitem+= resultset.getInt("c.Receive");
 	totalreceivedueitem+=resultset.getInt("c.Due");
-	totalpaiditem+=resultset.getInt("c.Paid");
-	totalpaiditemdue+=(resultset.getInt("c.Issue")-resultset.getInt("c.Paid"));
-	
+//	totalpaiditem+=resultset.getInt("c.Paid");
+//	totalpaiditemdue+=(resultset.getInt("c.Issue")-resultset.getInt("c.Paid"));
+	totalamountpaid += resultset.getInt("AmountPaid");
 	}
 	UTable.setSortandfiltertotalissue(totalissueitem);
 	UTable.setSortandfiltertotalreceive(totalreceiveitem);
-	UTable.setSortandfiltertotalpaid(totalpaiditem);
+//	UTable.setSortandfiltertotalpaid(totalpaiditem);
 	UTable.setSortandfiltertotalreceivedue(totalreceivedueitem);
-	UTable.setSortandfilterpaiddue(totalpaiditemdue);
+//	UTable.setSortandfilterpaiddue(totalpaiditemdue);
 
-	filterlist.add(new SortAndFilterBean("***TOTAL*** => ",null,0,"********",totalissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue,0000,0000));
+	filterlist.add(new SortAndFilterBean("***TOTAL*** => ",null,0,"********",totalissueitem,totalreceiveitem,totalreceivedueitem,0000,totalamountpaid));
 	
 //	SummaryBean summary = new SummaryBean(totalissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue);
 //	summarylist.add(summary);

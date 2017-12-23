@@ -48,13 +48,13 @@ public class MicroService {
 		return totalreceive;
 	}
 
-	public int getTotalPaidFromPopUp(ObservableList<PopUpChallan> challanlist) {
-		int totalpaid = 0;
-		for (PopUpChallan c : challanlist) {
-			totalpaid += c.getCurrentpaid();
-		}
-		return totalpaid;
-	}
+//	public int getTotalPaidFromPopUp(ObservableList<PopUpChallan> challanlist) {
+//		int totalpaid = 0;
+//		for (PopUpChallan c : challanlist) {
+//			totalpaid += c.getCurrentpaid();
+//		}
+//		return totalpaid;
+//	}
 
 	public int getTotalDueFromPopUp(ObservableList<PopUpChallan> chalanlist) {
 		int totaldue = 0;

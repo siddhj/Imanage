@@ -93,17 +93,21 @@ public class SortAndFilterController {
     @FXML
     private TableColumn<SortAndFilterBean, Integer> receiveduecolumn = new TableColumn<>("Receive Due Qty");
 
-    @FXML
-    private TableColumn<SortAndFilterBean, Integer> paidcolumn  = new TableColumn<>("Qty Paid");
-
-    @FXML
-    private TableColumn<SortAndFilterBean, Integer> paidduecolumn  = new TableColumn<>("Paid Due Qty");
+//    @FXML
+//    private TableColumn<SortAndFilterBean, Integer> paidcolumn  = new TableColumn<>("Qty Paid");
+//
+//    @FXML
+//    private TableColumn<SortAndFilterBean, Integer> paidduecolumn  = new TableColumn<>("Paid Due Qty");
     
     @FXML
     private TableColumn<SortAndFilterBean, SimpleIntegerProperty> pastreceivecolumn  = new TableColumn<>("Already Receive Qty");
 
     @FXML
-    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> pastpaidcolumn  = new TableColumn<>("Already Paid Qty");
+    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> amountpaidcolumn  = new TableColumn<>("Amount Paid");
+
+    
+//    @FXML
+//    private TableColumn<SortAndFilterBean, SimpleIntegerProperty> pastpaidcolumn  = new TableColumn<>("Already Paid Qty");
 //    public String filtername,filterproductid,assigneename;
 //    public Date fromdate,todate,billdate;
 //    public int challanid,productid,issueitem,receiveitem,receivedueitem,paiditem,paiditemdue;
@@ -119,12 +123,14 @@ public class SortAndFilterController {
 	issuecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("issueitem"));
 	receivecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("receiveitem"));
 	receiveduecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("receivedueitem"));
-	paidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean,Integer>("paiditem"));	
-	paidduecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("paiditemdue"));
+//	paidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean,Integer>("paiditem"));	
+//	paidduecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("paiditemdue"));
 	billdatecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, LocalDate>("billdate"));
 	namecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleStringProperty>("assigneename"));
 	pastreceivecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastreceive"));
-	pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastpaid"));
+//	pastpaidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastpaid"));
+
+	amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("amountpaid"));
 	
 //	Callback<TableColumn<SortAndFilterBean, Integer>, TableCell<SortAndFilterBean, Integer>> cellSortAndFilter = new Callback<TableColumn<SortAndFilterBean, Integer>, TableCell<SortAndFilterBean, Integer>>() {
 //		public TableCell<SortAndFilterBean, Integer> call(TableColumn<SortAndFilterBean, Integer> p) {
