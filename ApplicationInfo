@@ -1,2 +1,8 @@
 In Database 
 1. Paid column is use to store qty of advancepaid.
+
+
+
+Basic Query
+1. select ChallanID,AssigneeID,ProductID,Issue,Receive,Due,Paid,BillDate,BillDateType,AmountPaid 
+			from challan where challanid>15;
