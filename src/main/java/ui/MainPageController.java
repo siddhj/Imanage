@@ -71,10 +71,12 @@ import utility.UTable;
 
 public class MainPageController implements MultiScreen {
 
+	@FXML
+	private Button Imanagebutton;
 
-    @FXML
-    private Button Imanagebutton;
-	
+	@FXML
+	private Button addproductid;
+
 	@FXML
 	private Label assigneenamelabel;
 
@@ -119,17 +121,20 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	private TableColumn<Chalan, String> receiveitemcolumn = new TableColumn<>("Total Qty Received");
-	
-//    @FXML
-//    private TableColumn<Chalan, String> amountpaidcolumn = new TableColumn<>("Amount Paid");
 
-	//not required in v0.9
-//	@FXML
-//	private TableColumn<Chalan, String> totalpaidcolumn = new TableColumn<>("Total Qty Paid");
-//
-//	@FXML
-//	private TableColumn<Chalan, String> advancedpaidcolumn = new TableColumn<>("Qty Advance Paid");
-	
+	// @FXML
+	// private TableColumn<Chalan, String> amountpaidcolumn = new
+	// TableColumn<>("Amount Paid");
+
+	// not required in v0.9
+	// @FXML
+	// private TableColumn<Chalan, String> totalpaidcolumn = new
+	// TableColumn<>("Total Qty Paid");
+	//
+	// @FXML
+	// private TableColumn<Chalan, String> advancedpaidcolumn = new
+	// TableColumn<>("Qty Advance Paid");
+
 	@FXML
 	private Button removebutton;
 
@@ -142,8 +147,8 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private Button clearbutton;
 
-    @FXML
-    private TextArea savechallandescription;
+	@FXML
+	private TextArea savechallandescription;
 
 	@FXML
 	private DatePicker billdate;
@@ -165,19 +170,23 @@ public class MainPageController implements MultiScreen {
 	// method
 	@FXML
 	public void initialize() throws SQLException, IOException {
-		
+
 		productidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("productid"));
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalreceive"));
-//		amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("amountpaid"));
+		// amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,
+		// String>("amountpaid"));
 
-//**	duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
-		
-		//not required in v0.9
-//		advancedpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("advancepaid"));
-//		totalpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalpaid"));
-		
+		// ** duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan,
+		// String>("due"));
+
+		// not required in v0.9
+		// advancedpaidcolumn.setCellValueFactory(new
+		// PropertyValueFactory<Chalan, String>("advancepaid"));
+		// totalpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,
+		// String>("totalpaid"));
+
 		// System.out.println("doen");
 		// listFromDb = new DChalan().chalanDataLoad();
 		// newchalantable.setItems(listFromDb);
@@ -186,6 +195,8 @@ public class MainPageController implements MultiScreen {
 
 		receiveitemcolumn.setEditable(true);
 		parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
+		UTable.setIntialloaderassigneename(parentlist.get(1));
+		UTable.setIntialloaderproductid(parentlist.get(0));
 		TextFields.bindAutoCompletion(assigneename, parentlist.get(1));
 		TextFields.bindAutoCompletion(productidtext, parentlist.get(0));
 
@@ -218,28 +229,31 @@ public class MainPageController implements MultiScreen {
 				}
 			}
 		});
-		//scene.widthProperty().divide(3).subtract(2.1/3)
+		// scene.widthProperty().divide(3).subtract(2.1/3)
 		/* Setting column size in the table */
-		productidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-		issueitemcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-		receiveitemcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-//		amountpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-//		totalpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-//		advancedpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-		
+		productidcolumn.prefWidthProperty()
+				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1 / 3));
+		issueitemcolumn.prefWidthProperty()
+				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1 / 3));
+		receiveitemcolumn.prefWidthProperty()
+				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1 / 3));
+		// amountpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+		// totalpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+		// advancedpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+
 		productidcolumn.maxWidthProperty().bind(productidcolumn.prefWidthProperty());
 		issueitemcolumn.maxWidthProperty().bind(issueitemcolumn.prefWidthProperty());
 		receiveitemcolumn.maxWidthProperty().bind(receiveitemcolumn.prefWidthProperty());
-//		amountpaidcolumn.maxWidthProperty().bind(amountpaidcolumn.prefWidthProperty());
-//		totalpaidcolumn.maxWidthProperty().bind(totalpaidcolumn.prefWidthProperty());
-//		advancedpaidcolumn.maxWidthProperty().bind(advancedpaidcolumn.prefWidthProperty());
-		
+		// amountpaidcolumn.maxWidthProperty().bind(amountpaidcolumn.prefWidthProperty());
+		// totalpaidcolumn.maxWidthProperty().bind(totalpaidcolumn.prefWidthProperty());
+		// advancedpaidcolumn.maxWidthProperty().bind(advancedpaidcolumn.prefWidthProperty());
+
 		productidcolumn.setResizable(false);
 		issueitemcolumn.setResizable(false);
 		receiveitemcolumn.setResizable(false);
-//		amountpaidcolumn.setResizable(false);
-//		totalpaidcolumn.setResizable(false);
-//		advancedpaidcolumn.setResizable(false);
+		// amountpaidcolumn.setResizable(false);
+		// totalpaidcolumn.setResizable(false);
+		// advancedpaidcolumn.setResizable(false);
 		billdate.setValue(LocalDate.now());
 		UTable.setMainpagetableview(newchalantable);
 	}
@@ -256,35 +270,33 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	void saveChalan(ActionEvent event) throws SQLException, IOException {
 		String name = assigneename.getText();
-		
-		if(billdate.getValue()==null)
-		{
+
+		if (billdate.getValue() == null) {
 			Notification.invalidDateFromUser();
 			return;
 		}
 		LocalDate dateofbill = billdate.getValue();
-		
+
 		if (!Validation.parentListNameValidation(parentlist.get(1), assigneename.getText())) {
-			Notification.invalidInput("Invalid Name of Assignee","Assignee Name Entered is invalid. Please check the assignee name again");
+			Notification.invalidInput("Invalid Name of Assignee",
+					"Assignee Name Entered is invalid. Please check the assignee name again");
 			return;
 		}
 		if (!Validation.parentListProductIDValidation(parentlist.get(0), productidtext.getText())) {
-			Notification.invalidInput("Invalid Product ID","Product ID entered is invalid. Please check the product id again");			
+			Notification.invalidInput("Invalid Product ID",
+					"Product ID entered is invalid. Please check the product id again");
 			return;
 		}
-		if(!Validation.checkProductIDAlreadyPresentInTable(productidtext.getText(),newchalantable.getItems()))
-		{
+		if (!Validation.checkProductIDAlreadyPresentInTable(productidtext.getText(), newchalantable.getItems())) {
 			Notification.invalidInput("Product ID is already present in table",
 					"Product ID you have entered is already present in the table. Edit the current exsiting entry for this product id from table");
 			return;
 		}
-		if(!Validation.checkIfAdvancePaidTextBoxIsEmpty(advancedpaidtext.getText()))
-		{
-			Notification.invalidInput("Advance Paid Text Box is Empty",
-					"Enter Some Value in Advance Paid Text Box");
+		if (!Validation.checkIfAdvancePaidTextBoxIsEmpty(advancedpaidtext.getText())) {
+			Notification.invalidInput("Advance Paid Text Box is Empty", "Enter Some Value in Advance Paid Text Box");
 			return;
 		}
-		
+
 		if (dateofbill == null) {
 			Notification.mainWindowInvalidBillDate();
 			return;
@@ -293,9 +305,9 @@ public class MainPageController implements MultiScreen {
 			int AssigneeID = new MicroService().assigneeIDRetrieveFullName(name);
 
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
-					Integer.parseInt(issuetext.getText()), AssigneeID,
-					UTable.getPopupchallantablelist(), Integer.parseInt(receivetext.getText()),
-					dateofbill,savechallandescription.getText(),Integer.parseInt(advancedpaidtext.getText()));
+					Integer.parseInt(issuetext.getText()), AssigneeID, UTable.getPopupchallantablelist(),
+					Integer.parseInt(receivetext.getText()), dateofbill, savechallandescription.getText(),
+					Integer.parseInt(advancedpaidtext.getText()));
 
 			newchalantable.getItems().add(chalan);
 			productidtext.setText("");
@@ -308,7 +320,7 @@ public class MainPageController implements MultiScreen {
 			advancedpaidtext.setDisable(true);
 			// billdate.setValue(null);
 		} catch (NumberFormatException E) {
-			Notification.invalidInput("Something is not right","Please check your input values");
+			Notification.invalidInput("Something is not right", "Please check your input values");
 		}
 		assigneename.setDisable(true);
 		billdate.setDisable(true);
@@ -330,12 +342,11 @@ public class MainPageController implements MultiScreen {
 
 		ObservableList<Chalan> mainpagechalanlist = FXCollections.observableArrayList();
 		mainpagechalanlist.add(selectedchalan);
-		ObservableList<PopUpChallan> popupchallantablelist =null;
-		try{
-		popupchallantablelist = selectedchalan.getPopupchallantableview();
-		}catch(NullPointerException exception)
-		{
-		Notification.nothingIsSelectedNotification();	
+		ObservableList<PopUpChallan> popupchallantablelist = null;
+		try {
+			popupchallantablelist = selectedchalan.getPopupchallantableview();
+		} catch (NullPointerException exception) {
+			Notification.nothingIsSelectedNotification();
 		}
 		UTable.setPopupchallantablelist(popupchallantablelist);
 		UTable.setSelectedchallanfrommainpage(selectedchalan);
@@ -399,7 +410,7 @@ public class MainPageController implements MultiScreen {
 				window.initModality(Modality.WINDOW_MODAL);
 				window.setAlwaysOnTop(true);
 				window.show();
-				
+
 				savechallandescription.setText("");
 				productidtext.setText("");
 				issuetext.setText("");
@@ -422,7 +433,7 @@ public class MainPageController implements MultiScreen {
 		System.out.println("Stage is about to set");
 		Stage window = new Stage();
 		UTable.setPopupstage(window);
-		//When we call fxml loader then the intialize method is being called 
+		// When we call fxml loader then the intialize method is being called
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
@@ -438,7 +449,7 @@ public class MainPageController implements MultiScreen {
 		window.initStyle(StageStyle.UNDECORATED);
 		window.initOwner(UTable.getPrimarystage());
 		window.initModality(Modality.WINDOW_MODAL);
-//		UTable.setPopupstage(window);
+		// UTable.setPopupstage(window);
 		window.show();
 
 	}
@@ -525,102 +536,106 @@ public class MainPageController implements MultiScreen {
 		fileOut.close();
 
 	}
+
 	@FXML
 	public void exportExcel() throws IOException, DocumentException {
 
-//		FileChooser fileChooser = new FileChooser();
-//
-//		// Set extension filter
-//		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pdf (*.pdf)", "*.pdf");
-//		fileChooser.getExtensionFilters().add(extFilter);
-//
-//		// Show save file dialog
-//		File file = fileChooser.showSaveDialog(UTable.getPrimarystage());
+		// FileChooser fileChooser = new FileChooser();
+		//
+		// // Set extension filter
+		// FileChooser.ExtensionFilter extFilter = new
+		// FileChooser.ExtensionFilter("Pdf (*.pdf)", "*.pdf");
+		// fileChooser.getExtensionFilters().add(extFilter);
+		//
+		// // Show save file dialog
+		// File file = fileChooser.showSaveDialog(UTable.getPrimarystage());
 
-//		if (file != null) {
-//			createPdfss(aggregatechallanid,dest);
-//		}
+		// if (file != null) {
+		// createPdfss(aggregatechallanid,dest);
+		// }
 	}
-	
+
 	public void createPdfss() throws IOException, DocumentException {
 		long aggregatechallanid = UTable.getAggregatechallanid();
 		String dest = "C:\\Program Files\\IManage\\";
-		dest =dest+aggregatechallanid;
-		
-		String challanidtext="Challan ID: ",assigneenametext="To: ",amountpaidtext="Amount Paid: ";
-		
+		dest = dest + aggregatechallanid;
+
+		String challanidtext = "Challan ID: ", assigneenametext = "To: ", amountpaidtext = "Amount Paid: ";
+
 		challanidtext = challanidtext + aggregatechallanid;
-		assigneenametext = assigneenametext+assigneename.getText();
+		assigneenametext = assigneenametext + assigneename.getText();
 		amountpaidtext = amountpaidtext + advancedpaidtext.getText();
-		
+
 		float left = 30;
-	    float right = 30;
-	    float top = 60;
-	    float bottom = 0;
-	    Document document = new Document(PageSize.A4, left, right, top, bottom);
-	    PdfWriter.getInstance(document, new FileOutputStream(dest));
-	   
-	    Chunk glue = new Chunk(new VerticalPositionMark());
-	    document.open();
-	    document.setMargins(left, right, 0, bottom);
-	    document.addSubject("New Challan Export");
-	    document.addTitle("Challan");
-	    document.addCreationDate();
-	    document.addAuthor("IManage");
-	    
-	    Paragraph gstin = new Paragraph("GSTIN:08BXEPK4093F1ZE", new Font(FontFamily.HELVETICA, 6));
-	    gstin.setAlignment(Element.ALIGN_LEFT);
-	    gstin.add(new Chunk(glue));
-	    gstin.add("Phone no. 9529833222");
-	    
-	    Paragraph companyname = new Paragraph("Woomniyaa", new Font(FontFamily.HELVETICA, 22));
-	    companyname.setAlignment(Element.ALIGN_CENTER);
-	    
-	    Paragraph companyaddress = new Paragraph("4235, Koolwal Bhawan, Near ICICI Bank, Surajpole Bazar, Jaipur", new Font(FontFamily.HELVETICA, 9));
-	    companyaddress.setAlignment(Element.ALIGN_CENTER);
-	    
-	    Paragraph challanidlabel = new Paragraph(challanidtext, new Font(FontFamily.HELVETICA, 11));
-	    challanidlabel.setAlignment(Element.ALIGN_LEFT);
-	    challanidlabel.add(new Chunk(glue));
-	    challanidlabel.add("Date: ");
-	    
-	    Paragraph assigneename = new Paragraph(assigneenametext, new Font(FontFamily.HELVETICA, 11));
-	    assigneename.setAlignment(Element.ALIGN_LEFT);
-	    DottedLineSeparator dottedline = new DottedLineSeparator();
-	    dottedline.setOffset(-2);
-	    dottedline.setGap(2f);
-	    assigneename.add(dottedline);
+		float right = 30;
+		float top = 60;
+		float bottom = 0;
+		Document document = new Document(PageSize.A4, left, right, top, bottom);
+		PdfWriter.getInstance(document, new FileOutputStream(dest));
 
-	    Paragraph amountpaid = new Paragraph(amountpaidtext, new Font(FontFamily.HELVETICA, 11));
-	    amountpaid.setAlignment(Element.ALIGN_RIGHT);
-	    
-	    Paragraph spacelabel = new Paragraph("  ", new Font(FontFamily.HELVETICA, 11));
-	    spacelabel.setAlignment(Element.ALIGN_CENTER);
-	    
-	    Paragraph signature = new Paragraph("Sign:................................", new Font(FontFamily.HELVETICA, 9));
-	    signature.setAlignment(Element.ALIGN_RIGHT);
+		Chunk glue = new Chunk(new VerticalPositionMark());
+		document.open();
+		document.setMargins(left, right, 0, bottom);
+		document.addSubject("New Challan Export");
+		document.addTitle("Challan");
+		document.addCreationDate();
+		document.addAuthor("IManage");
 
-	    Paragraph parentcompany = new Paragraph("A Unit of Khandelwal Saree Fashion", new Font(FontFamily.HELVETICA, 6));
-	    parentcompany.setAlignment(Element.ALIGN_LEFT);
-	    
-	    document.add(gstin);
-	    document.add(companyname);
-	    document.add(companyaddress);
-	    document.add(challanidlabel);
-	    document.add(assigneename);    
-	    document.add(spacelabel);
-	    
-	    PdfPTable table = new PdfPTable(3);
-	    
-//	    for(int aw = 0; aw < 16; aw++){
-//	        table.addCell("hi");
-//	    }
-	    table.addCell("Product ID");
-	    table.addCell("Quantity Issued");
-	    table.addCell("Quantity Received");
-	    table.setHeaderRows(1);
+		Paragraph gstin = new Paragraph("GSTIN:08BXEPK4093F1ZE", new Font(FontFamily.HELVETICA, 6));
+		gstin.setAlignment(Element.ALIGN_LEFT);
+		gstin.add(new Chunk(glue));
+		gstin.add("Phone no. 9529833222");
 
-	    for (int i = 0; i < newchalantable.getItems().size(); i++) {
+		Paragraph companyname = new Paragraph("Woomniyaa", new Font(FontFamily.HELVETICA, 22));
+		companyname.setAlignment(Element.ALIGN_CENTER);
+
+		Paragraph companyaddress = new Paragraph("4235, Koolwal Bhawan, Near ICICI Bank, Surajpole Bazar, Jaipur",
+				new Font(FontFamily.HELVETICA, 9));
+		companyaddress.setAlignment(Element.ALIGN_CENTER);
+
+		Paragraph challanidlabel = new Paragraph(challanidtext, new Font(FontFamily.HELVETICA, 11));
+		challanidlabel.setAlignment(Element.ALIGN_LEFT);
+		challanidlabel.add(new Chunk(glue));
+		challanidlabel.add("Date: ");
+
+		Paragraph assigneename = new Paragraph(assigneenametext, new Font(FontFamily.HELVETICA, 11));
+		assigneename.setAlignment(Element.ALIGN_LEFT);
+		DottedLineSeparator dottedline = new DottedLineSeparator();
+		dottedline.setOffset(-2);
+		dottedline.setGap(2f);
+		assigneename.add(dottedline);
+
+		Paragraph amountpaid = new Paragraph(amountpaidtext, new Font(FontFamily.HELVETICA, 11));
+		amountpaid.setAlignment(Element.ALIGN_RIGHT);
+
+		Paragraph spacelabel = new Paragraph("  ", new Font(FontFamily.HELVETICA, 11));
+		spacelabel.setAlignment(Element.ALIGN_CENTER);
+
+		Paragraph signature = new Paragraph("Sign:................................", new Font(FontFamily.HELVETICA, 9));
+		signature.setAlignment(Element.ALIGN_RIGHT);
+
+		Paragraph parentcompany = new Paragraph("A Unit of Khandelwal Saree Fashion",
+				new Font(FontFamily.HELVETICA, 6));
+		parentcompany.setAlignment(Element.ALIGN_LEFT);
+
+		document.add(gstin);
+		document.add(companyname);
+		document.add(companyaddress);
+		document.add(challanidlabel);
+		document.add(assigneename);
+		document.add(spacelabel);
+
+		PdfPTable table = new PdfPTable(3);
+
+		// for(int aw = 0; aw < 16; aw++){
+		// table.addCell("hi");
+		// }
+		table.addCell("Product ID");
+		table.addCell("Quantity Issued");
+		table.addCell("Quantity Received");
+		table.setHeaderRows(1);
+
+		for (int i = 0; i < newchalantable.getItems().size(); i++) {
 			for (int j = 0; j < newchalantable.getColumns().size(); j++) {
 				if (newchalantable.getColumns().get(j).getCellData(i) != null) {
 					table.addCell(newchalantable.getColumns().get(j).getCellData(i).toString());
@@ -630,12 +645,12 @@ public class MainPageController implements MultiScreen {
 			}
 		}
 
-	    document.add(table);
-	    document.add(amountpaid);
-	    document.add(spacelabel);
-	    document.add(signature);
-	    document.add(parentcompany);
-	    document.close();
+		document.add(table);
+		document.add(amountpaid);
+		document.add(spacelabel);
+		document.add(signature);
+		document.add(parentcompany);
+		document.close();
 	}
 
 	@FXML
@@ -654,22 +669,40 @@ public class MainPageController implements MultiScreen {
 		billdate.setValue(null);
 
 	}
-	
-    @FXML
-    void openDashboardWindow(ActionEvent event) {
-    	new ProgressDemo().start();
-		 FXMLLoader myLoader = new FXMLLoader(getClass().getResource("DashboardWindow.fxml"));
-       try {
+
+	@FXML
+	void openDashboardWindow(ActionEvent event) {
+		new ProgressDemo().start();
+		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("DashboardWindow.fxml"));
+		try {
 			Parent loadScreen = (Parent) myLoader.load();
 			Stage primarystage = UTable.getPrimarystage();
 			Scene scene = new Scene(loadScreen);
 			primarystage.setScene(scene);
 			UTable.getLoaderstage().close();
-       } catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
+	}
 
+	@FXML
+	void addProductID(ActionEvent event) throws SQLException, IOException {
+		String productid = productidtext.getText();
+		ObservableList<String> productidlist = DLoader.getSingeletonInstanceOfLoader().intialLoader().get(0);
+System.out.println("inside");		
+		if(productidlist.contains(productid))
+		{System.out.println("insideif");
+			Notification.invalidInput("ProductId already present", "Product Id you are trying to add is already present");
+		}
+		else{
+			System.out.println("insideelse");
+			DChalan.getSingeletonInstance().insertNewProductID(productid);
+			TextFields.bindAutoCompletion(productidtext, UTable.getIntialloaderproductid().add(productid));
+			Notification.invalidInput("ProductId added", "Product Id has been added to database");
+		}
+	}
+
+	
 	@FXML
 	void selectDateValue(ActionEvent event) {
 

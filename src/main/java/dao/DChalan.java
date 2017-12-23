@@ -26,10 +26,10 @@ import service.Notification;
 import utility.UTable;
 
 public class DChalan {
-//	public static void main(String args[]) throws SQLException, IOException {
-//		// new DChalan().chalanDataLoad("21D", 1).forEach(c ->
-//		// System.out.println(c.getDue()));
-//	}
+	// public static void main(String args[]) throws SQLException, IOException {
+	// // new DChalan().chalanDataLoad("21D", 1).forEach(c ->
+	// // System.out.println(c.getDue()));
+	// }
 
 	private static final DChalan singletonchalan = new DChalan();
 
@@ -245,4 +245,17 @@ public class DChalan {
 		return list;
 	}
 
+	public void insertNewProductID(String productid) throws SQLException, IOException {
+		Connection connection = ListTables.returnConnection();
+		connection.setAutoCommit(false);
+		String query = "insert into product(ProductID) values(?)";
+		PreparedStatement prepare = connection.prepareStatement(query);
+		try {
+			prepare.setString(1, productid);
+			prepare.execute();
+			connection.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

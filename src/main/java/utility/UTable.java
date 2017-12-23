@@ -1,14 +1,10 @@
 package utility;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 import bean.Assignee;
 import bean.Chalan;
 import bean.ChallanDetailBean;
 import bean.PopUpChallan;
 import bean.SortAndFilterBean;
-import dao.DChalan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -28,6 +24,25 @@ public final class UTable {
 	public static ObservableList<Chalan> mainpagechalanlist = FXCollections.observableArrayList();
 	public static ObservableList<SortAndFilterBean> sortandfilterwindowlist = FXCollections.observableArrayList();
 
+	public static ObservableList<String> intialloaderproductid = FXCollections.observableArrayList();
+	public static ObservableList<String> intialloaderassigneename = FXCollections.observableArrayList();
+	
+	public static ObservableList<String> getIntialloaderproductid() {
+		return intialloaderproductid;
+	}
+
+	public static void setIntialloaderproductid(ObservableList<String> intialloaderproductid) {
+		UTable.intialloaderproductid = intialloaderproductid;
+	}
+
+	public static ObservableList<String> getIntialloaderassigneename() {
+		return intialloaderassigneename;
+	}
+
+	public static void setIntialloaderassigneename(ObservableList<String> intialloaderassigneename) {
+		UTable.intialloaderassigneename = intialloaderassigneename;
+	}
+
 	public static TableView<PopUpChallan> popuptableview;
 	public static TableView<Chalan> mainpagetableview;
 
@@ -36,12 +51,8 @@ public final class UTable {
 	public static TextField duetext;
 	public static TextField paidtextfield;
 	public static TextField textfield;
-
-//	public static TextField sortandfilterassigneename;
-//	public static TextField sortandfilterproductid;
-//	public static Date sortandfilterdatefrom;
-//	public static Date sortandfilterdateto;
-//	
+	
+	
 	public static String sortandfilterassigneename;
 	public static String sortandfilterproductid;
 	public static String sortandfilterfromdate;

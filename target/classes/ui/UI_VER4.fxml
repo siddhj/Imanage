@@ -146,19 +146,24 @@
                   </HBox>
                   <HBox prefHeight="53.0" prefWidth="384.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label styleClass="main_textfield_title" stylesheets="@ninza.css" text="Product ID" textFill="#0c3c60" HBox.hgrow="ALWAYS">
+                        <Label prefHeight="27.0" prefWidth="93.0" styleClass="main_textfield_title" stylesheets="@ninza.css" text="Product ID" textFill="#0c3c60" HBox.hgrow="ALWAYS">
                            <HBox.margin>
-                              <Insets bottom="38.0" left="40.0" />
+                              <Insets bottom="38.0" left="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="productidtext" onAction="#productIdOnActionMethod" prefWidth="200.0" styleClass="text_field_main" stylesheets="@ninza.css">
+                        <TextField fx:id="productidtext" onAction="#productIdOnActionMethod" prefHeight="30.0" prefWidth="187.0" styleClass="text_field_main" stylesheets="@ninza.css">
                            <HBox.margin>
-                              <Insets left="15.0" />
+                              <Insets left="5.0" />
                            </HBox.margin>
                         </TextField>
+                        <Button fx:id="addproductid" mnemonicParsing="false" onAction="#addProductID" prefHeight="31.0" prefWidth="64.0" styleClass="secondary_button_main" stylesheets="@ninza.css" text="Add">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
                   <HBox prefHeight="53.0" prefWidth="318.0" VBox.vgrow="ALWAYS">
