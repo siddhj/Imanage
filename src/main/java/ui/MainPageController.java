@@ -12,14 +12,19 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import com.ProgressDemo;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
+import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
 import service.DataManipulation;
 import service.MicroService;
@@ -115,8 +120,8 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private TableColumn<Chalan, String> receiveitemcolumn = new TableColumn<>("Total Qty Received");
 	
-    @FXML
-    private TableColumn<Chalan, String> amountpaidcolumn = new TableColumn<>("Amount Paid");
+//    @FXML
+//    private TableColumn<Chalan, String> amountpaidcolumn = new TableColumn<>("Amount Paid");
 
 	//not required in v0.9
 //	@FXML
@@ -165,7 +170,7 @@ public class MainPageController implements MultiScreen {
 		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalreceive"));
-		amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("amountpaid"));
+//		amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("amountpaid"));
 
 //**	duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("due"));
 		
@@ -218,21 +223,21 @@ public class MainPageController implements MultiScreen {
 		productidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		issueitemcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		receiveitemcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-		amountpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
+//		amountpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 //		totalpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 //		advancedpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		
 		productidcolumn.maxWidthProperty().bind(productidcolumn.prefWidthProperty());
 		issueitemcolumn.maxWidthProperty().bind(issueitemcolumn.prefWidthProperty());
 		receiveitemcolumn.maxWidthProperty().bind(receiveitemcolumn.prefWidthProperty());
-		amountpaidcolumn.maxWidthProperty().bind(amountpaidcolumn.prefWidthProperty());
+//		amountpaidcolumn.maxWidthProperty().bind(amountpaidcolumn.prefWidthProperty());
 //		totalpaidcolumn.maxWidthProperty().bind(totalpaidcolumn.prefWidthProperty());
 //		advancedpaidcolumn.maxWidthProperty().bind(advancedpaidcolumn.prefWidthProperty());
 		
 		productidcolumn.setResizable(false);
 		issueitemcolumn.setResizable(false);
 		receiveitemcolumn.setResizable(false);
-		amountpaidcolumn.setResizable(false);
+//		amountpaidcolumn.setResizable(false);
 //		totalpaidcolumn.setResizable(false);
 //		advancedpaidcolumn.setResizable(false);
 		billdate.setValue(LocalDate.now());
@@ -298,7 +303,6 @@ public class MainPageController implements MultiScreen {
 			receivetext.setText("0");
 			savechallandescription.setText("");
 			// duetext.setText("");
-			advancedpaidtext.setText("");
 			assigneenamelabel.setText(assigneename.getText());
 			issuetext.setDisable(true);
 			advancedpaidtext.setDisable(true);
@@ -440,8 +444,10 @@ public class MainPageController implements MultiScreen {
 	}
 
 	@FXML
-	void saveChalanData(ActionEvent event) throws SQLException, IOException {
+	void saveChalanData(ActionEvent event) throws SQLException, IOException, DocumentException {
 		new ProgressDemo().start();
+		UTable.setAssigneename(assigneename.getText());
+		UTable.setAmountpaid(advancedpaidtext.getText());
 		ObservableList<Chalan> chalanlist = newchalantable.getItems();
 		DataManipulation man = new DataManipulation();
 		man.getPopUpWindowData(chalanlist);
@@ -519,38 +525,102 @@ public class MainPageController implements MultiScreen {
 		fileOut.close();
 
 	}
+	@FXML
+	public void exportExcel() throws IOException, DocumentException {
+
+//		FileChooser fileChooser = new FileChooser();
+//
+//		// Set extension filter
+//		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pdf (*.pdf)", "*.pdf");
+//		fileChooser.getExtensionFilters().add(extFilter);
+//
+//		// Show save file dialog
+//		File file = fileChooser.showSaveDialog(UTable.getPrimarystage());
+
+//		if (file != null) {
+//			createPdfss(aggregatechallanid,dest);
+//		}
+	}
 	
-	public void createPdfss(File dest) throws IOException, DocumentException {
-	    float left = 30;
+	public void createPdfss() throws IOException, DocumentException {
+		long aggregatechallanid = UTable.getAggregatechallanid();
+		String dest = "C:\\Program Files\\IManage\\";
+		dest =dest+aggregatechallanid;
+		
+		String challanidtext="Challan ID: ",assigneenametext="To: ",amountpaidtext="Amount Paid: ";
+		
+		challanidtext = challanidtext + aggregatechallanid;
+		assigneenametext = assigneenametext+assigneename.getText();
+		amountpaidtext = amountpaidtext + advancedpaidtext.getText();
+		
+		float left = 30;
 	    float right = 30;
 	    float top = 60;
 	    float bottom = 0;
 	    Document document = new Document(PageSize.A4, left, right, top, bottom);
 	    PdfWriter.getInstance(document, new FileOutputStream(dest));
+	   
+	    Chunk glue = new Chunk(new VerticalPositionMark());
 	    document.open();
 	    document.setMargins(left, right, 0, bottom);
-	    Paragraph paragraph1 = new Paragraph("IManage");
-        Paragraph paragraph2 = new Paragraph("Challan Generation");
-        paragraph2.setSpacingAfter(20f);	
-        document.add(paragraph1);
-        document.add(paragraph2);
-        Paragraph p = new Paragraph("Name: "+assigneenamelabel.getText());
-        DottedLineSeparator dottedline = new DottedLineSeparator();
-        dottedline.setOffset(-2);
-        dottedline.setGap(2f);
-        p.add(dottedline);
-        p.setSpacingAfter(20f);
-        document.add(p);
-	    PdfPTable table = new PdfPTable(6);
+	    document.addSubject("New Challan Export");
+	    document.addTitle("Challan");
+	    document.addCreationDate();
+	    document.addAuthor("IManage");
+	    
+	    Paragraph gstin = new Paragraph("GSTIN:08BXEPK4093F1ZE", new Font(FontFamily.HELVETICA, 6));
+	    gstin.setAlignment(Element.ALIGN_LEFT);
+	    gstin.add(new Chunk(glue));
+	    gstin.add("Phone no. 9529833222");
+	    
+	    Paragraph companyname = new Paragraph("Woomniyaa", new Font(FontFamily.HELVETICA, 22));
+	    companyname.setAlignment(Element.ALIGN_CENTER);
+	    
+	    Paragraph companyaddress = new Paragraph("4235, Koolwal Bhawan, Near ICICI Bank, Surajpole Bazar, Jaipur", new Font(FontFamily.HELVETICA, 9));
+	    companyaddress.setAlignment(Element.ALIGN_CENTER);
+	    
+	    Paragraph challanidlabel = new Paragraph(challanidtext, new Font(FontFamily.HELVETICA, 11));
+	    challanidlabel.setAlignment(Element.ALIGN_LEFT);
+	    challanidlabel.add(new Chunk(glue));
+	    challanidlabel.add("Date: ");
+	    
+	    Paragraph assigneename = new Paragraph(assigneenametext, new Font(FontFamily.HELVETICA, 11));
+	    assigneename.setAlignment(Element.ALIGN_LEFT);
+	    DottedLineSeparator dottedline = new DottedLineSeparator();
+	    dottedline.setOffset(-2);
+	    dottedline.setGap(2f);
+	    assigneename.add(dottedline);
+
+	    Paragraph amountpaid = new Paragraph(amountpaidtext, new Font(FontFamily.HELVETICA, 11));
+	    amountpaid.setAlignment(Element.ALIGN_RIGHT);
+	    
+	    Paragraph spacelabel = new Paragraph("  ", new Font(FontFamily.HELVETICA, 11));
+	    spacelabel.setAlignment(Element.ALIGN_CENTER);
+	    
+	    Paragraph signature = new Paragraph("Sign:................................", new Font(FontFamily.HELVETICA, 9));
+	    signature.setAlignment(Element.ALIGN_RIGHT);
+
+	    Paragraph parentcompany = new Paragraph("A Unit of Khandelwal Saree Fashion", new Font(FontFamily.HELVETICA, 6));
+	    parentcompany.setAlignment(Element.ALIGN_LEFT);
+	    
+	    document.add(gstin);
+	    document.add(companyname);
+	    document.add(companyaddress);
+	    document.add(challanidlabel);
+	    document.add(assigneename);    
+	    document.add(spacelabel);
+	    
+	    PdfPTable table = new PdfPTable(3);
 	    
 //	    for(int aw = 0; aw < 16; aw++){
 //	        table.addCell("hi");
 //	    }
-	    for (int j = 0; j < newchalantable.getColumns().size(); j++) {
-	    		table.addCell(newchalantable.getColumns().get(j).getText());
-		}
+	    table.addCell("Product ID");
+	    table.addCell("Quantity Issued");
+	    table.addCell("Quantity Received");
+	    table.setHeaderRows(1);
 
-		for (int i = 0; i < newchalantable.getItems().size(); i++) {
+	    for (int i = 0; i < newchalantable.getItems().size(); i++) {
 			for (int j = 0; j < newchalantable.getColumns().size(); j++) {
 				if (newchalantable.getColumns().get(j).getCellData(i) != null) {
 					table.addCell(newchalantable.getColumns().get(j).getCellData(i).toString());
@@ -560,24 +630,12 @@ public class MainPageController implements MultiScreen {
 			}
 		}
 
-		document.add(table);
+	    document.add(table);
+	    document.add(amountpaid);
+	    document.add(spacelabel);
+	    document.add(signature);
+	    document.add(parentcompany);
 	    document.close();
-	}
-	@FXML
-	public void exportExcel() throws IOException, DocumentException {
-
-		FileChooser fileChooser = new FileChooser();
-
-		// Set extension filter
-		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Pdf (*.pdf)", "*.pdf");
-		fileChooser.getExtensionFilters().add(extFilter);
-
-		// Show save file dialog
-		File file = fileChooser.showSaveDialog(UTable.getPrimarystage());
-
-		if (file != null) {
-			createPdfss(file);
-		}
 	}
 
 	@FXML

@@ -190,7 +190,7 @@ public class DChalan {
 		connection.setAutoCommit(false);
 		PreparedStatement prepare = connection.prepareStatement(
 				"insert into challanlog(BillDate,ChallanID,ReferChallanID,AssigneeID,ProductID,Issue,Receive,BillTimeStamp) "
-						+ "values(?,?,?,?,?,?,?,?,?)");
+						+ "values(?,?,?,?,?,?,?,?)");
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
 

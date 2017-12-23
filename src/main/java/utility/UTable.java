@@ -45,7 +45,25 @@ public final class UTable {
 	public static String sortandfilterassigneename;
 	public static String sortandfilterproductid;
 	public static String sortandfilterfromdate;
+	public static String assigneename;
+	public static String amountpaid;
 	
+	public static String getAssigneename() {
+		return assigneename;
+	}
+
+	public static void setAssigneename(String assigneename) {
+		UTable.assigneename = assigneename;
+	}
+
+	public static String getAmountpaid() {
+		return amountpaid;
+	}
+
+	public static void setAmountpaid(String amountpaid) {
+		UTable.amountpaid = amountpaid;
+	}
+
 	public static TableColumn paidcolumnpopuptable;
 
 	public static int indexofselectedrow;
@@ -268,5 +286,15 @@ public final class UTable {
 		UTable.sortandfilterwindowlist = sortandfilterwindowlist;
 	}
 
+	static long aggregatechallanid;
+
+
+	public static long getAggregatechallanid() {
+		return aggregatechallanid;
+	}
+
+	public static void setAggregatechallanid(long aggregatechallanid) {
+	  UTable.aggregatechallanid = aggregatechallanid;
+	}
 
 }

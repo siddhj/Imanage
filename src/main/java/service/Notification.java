@@ -63,7 +63,7 @@ public class Notification {
 	public static void dataSuccessfullySaved(){
 		Notifications note = Notifications.create()
 				.title("Operation Successful")
-				.text("Data Successfully Stored.")
+				.text("Data Successfully Stored. Check PDF at C:\\Program Files\\IManage")
 				.graphic(null)
 				.hideAfter(Duration.seconds(5))
 				.position(Pos.CENTER)
