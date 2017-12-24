@@ -1,8 +1,10 @@
 In Database 
 1. Paid column is use to store qty of advancepaid.
 
+2. ReferChallanID is the id that is current challan id insertion it should be same as latest challan id insertion
 
+3. For Achieving v0.9.3 using aggregatechallanid as challanid
 
 Basic Query
-1. select ChallanID,AssigneeID,ProductID,Issue,Receive,Due,Paid,BillDate,BillDateType,AmountPaid 
-			from challan where challanid>15;
+1. select ChallanID,AssigneeID,ProductID,Issue,Receive,Due,Paid,BillDate,BillDateType,AmountPaid,AggregateChallanID from challan;
+ where challanid>15;

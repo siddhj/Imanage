@@ -46,8 +46,10 @@ public int getPastpaid() {
 public void setPastpaid(int pastpaid) {
 	this.pastpaid = pastpaid;
 }
+
+long aggregatechallanid;
 public SortAndFilterBean(String assigneename, Date billdate, int challanid, String productid, int issueitem,
-		int receiveitem, int receivedueitem, int amountpaid,/*int paiditem, int paiditemdue,*/int pastreceive/*,int pastpaid*/) {
+		int receiveitem, int receivedueitem, int amountpaid,/*int paiditem, int paiditemdue,*/int pastreceive/*,int pastpaid*/,long aggregatechallanid) {
 	super();
 	this.assigneename = assigneename;
 	this.billdate = billdate;
@@ -61,6 +63,13 @@ public SortAndFilterBean(String assigneename, Date billdate, int challanid, Stri
 	this.amountpaid=amountpaid;
 	this.pastreceive=pastreceive;
 //	this.pastpaid=pastpaid;
+	this.aggregatechallanid=aggregatechallanid;
+}
+public long getAggregatechallanid() {
+	return aggregatechallanid;
+}
+public void setAggregatechallanid(long aggregatechallanid) {
+	this.aggregatechallanid = aggregatechallanid;
 }
 public Date getTodate() {
 	return todate;

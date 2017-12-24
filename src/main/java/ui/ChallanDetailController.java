@@ -62,7 +62,7 @@ public class ChallanDetailController {
 	    	issuecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("issueitem"));
 	    	receivecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("receiveitem"));
 //	    	paidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("paiditem"));
-	    	amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("paiditem"));
+	    	amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("amountpaid"));
 	    	challanidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("challanid"));
 	    	referchallanidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("referchallanid"));
 	    	assigneenamecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, String>("assigneename"));

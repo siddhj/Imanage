@@ -119,7 +119,7 @@ public class SortAndFilterController {
 	@FXML
 	public void initialize() throws SQLException, IOException {
 	productidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleStringProperty>("productid"));
-	challanidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("challanid"));
+	challanidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("aggregatechallanid"));
 	issuecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("issueitem"));
 	receivecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("receiveitem"));
 	receiveduecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("receivedueitem"));
@@ -224,11 +224,11 @@ public class SortAndFilterController {
     @FXML
     void getChallanDetail(ActionEvent event) throws SQLException, IOException {
     	SortAndFilterBean selectedchallan = filterandsorttable.getSelectionModel().getSelectedItem();
-    	int challanid = selectedchallan.getChallanid();
+    	long challanid = selectedchallan.getAggregatechallanid();
     	ObservableList<ChallanDetailBean> challandetaillist = DChalan.getSingeletonInstance().logChallanDataLoad(challanid);
     	UTable.setChallandetaillist(challandetaillist);
     	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("ChallanDetail.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage window = new Stage();

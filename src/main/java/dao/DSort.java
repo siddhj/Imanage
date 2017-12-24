@@ -44,7 +44,7 @@ public class DSort {
 	while (resultset.next()) {
 		filterlist.add(new SortAndFilterBean(resultset.getString("a.Full_Name"),resultset.getDate("c.BillDateType"),resultset.getInt("c.ChallanID"),
 				resultset.getString("ProductID"),resultset.getInt("c.Issue"),resultset.getInt("c.Receive"),resultset.getInt("c.Due"),
-				resultset.getInt("AmountPaid"),resultset.getInt("PastReceive")));
+				resultset.getInt("AmountPaid"),resultset.getInt("PastReceive"),resultset.getLong("AggregateChallanID")));
 
 	totalissueitem +=resultset.getInt("c.Issue");
 	totalreceiveitem+= resultset.getInt("c.Receive");
@@ -59,7 +59,7 @@ public class DSort {
 	UTable.setSortandfiltertotalreceivedue(totalreceivedueitem);
 //	UTable.setSortandfilterpaiddue(totalpaiditemdue);
 
-	filterlist.add(new SortAndFilterBean("***TOTAL*** => ",null,0,"********",totalissueitem,totalreceiveitem,totalreceivedueitem,totalamountpaid,0000));
+	filterlist.add(new SortAndFilterBean("***TOTAL*** => ",null,0,"********",totalissueitem,totalreceiveitem,totalreceivedueitem,totalamountpaid,0000,0));
 	
 //	SummaryBean summary = new SummaryBean(totalissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue);
 //	summarylist.add(summary);

@@ -455,7 +455,7 @@ public class MainPageController implements MultiScreen {
 	}
 
 	@FXML
-	void saveChalanData(ActionEvent event) throws SQLException, IOException, DocumentException {
+	void saveChalanData(ActionEvent event) throws SQLException, IOException, DocumentException, InterruptedException {
 		new ProgressDemo().start();
 		UTable.setAssigneename(assigneename.getText());
 		UTable.setAmountpaid(advancedpaidtext.getText());
@@ -689,12 +689,12 @@ public class MainPageController implements MultiScreen {
 	void addProductID(ActionEvent event) throws SQLException, IOException {
 		String productid = productidtext.getText();
 		ObservableList<String> productidlist = DLoader.getSingeletonInstanceOfLoader().intialLoader().get(0);
-System.out.println("inside");		
-		if(productidlist.contains(productid))
-		{System.out.println("insideif");
-			Notification.invalidInput("ProductId already present", "Product Id you are trying to add is already present");
-		}
-		else{
+		System.out.println("inside");
+		if (productidlist.contains(productid)) {
+			System.out.println("insideif");
+			Notification.invalidInput("ProductId already present",
+					"Product Id you are trying to add is already present");
+		} else {
 			System.out.println("insideelse");
 			DChalan.getSingeletonInstance().insertNewProductID(productid);
 			TextFields.bindAutoCompletion(productidtext, UTable.getIntialloaderproductid().add(productid));
@@ -702,7 +702,6 @@ System.out.println("inside");
 		}
 	}
 
-	
 	@FXML
 	void selectDateValue(ActionEvent event) {
 
