@@ -21,13 +21,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import service.LicenseAuthentication;
-import service.MultiScreen;
 import service.Notification;
 import utility.UTable;
 
-public class LoginScreenController implements Initializable, MultiScreen {
-
-	MainScreenController mainscreen;
+public class LoginScreenController implements Initializable{
+//
+//	MainScreenController mainscreen;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -77,8 +76,5 @@ public class LoginScreenController implements Initializable, MultiScreen {
 		}
 	}
 
-	@Override
-	public void setScreenParent(MainScreenController screencontroller) {
-		mainscreen = screencontroller;
-	}
+
 }

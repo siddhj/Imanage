@@ -28,15 +28,8 @@ public class MultiScreenFramework extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         
-    	MainScreenController mainController = new MainScreenController();
-        mainController.loadScreen(MultiScreenFramework.loginscreen, MultiScreenFramework.loginscreenfile);
-        mainController.loadScreen(MultiScreenFramework.homescreen, MultiScreenFramework.homescreenfile);
-        mainController.loadScreen(MultiScreenFramework.mainpage,MultiScreenFramework.updatedmainpagefile);
-        mainController.setScreen(MultiScreenFramework.loginscreen);
+
         
-//        Group root = new Group();
-//        root.getChildren().addAll(mainController);
-//        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginCSS.fxml"));
         Parent root = (Parent)loader.load();
         Screen screen = Screen.getPrimary();
@@ -54,6 +47,5 @@ public class MultiScreenFramework extends Application {
   
     public static void main(String[] args) {
         launch(args);
-  //  System.out.println(MultiScreenFramework.class.getCanonicalName());
     }
 }

@@ -59,12 +59,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import service.MultiScreen;
 import service.Notification;
 import service.Validation;
 import utility.UTable;
 
-public class MainPageController implements MultiScreen {
+public class MainPageController {
 
 	@FXML
 	private Button Imanagebutton;
@@ -324,14 +323,6 @@ public class MainPageController implements MultiScreen {
 		assigneename.setDisable(true);
 		billdate.setDisable(true);
 		billdate.setValue(LocalDate.now());
-	}
-
-	MainScreenController screencontroller = new MainScreenController();
-
-	@Override
-	public void setScreenParent(MainScreenController screencontroller) {
-		// TODO Auto-generated method stub
-		this.screencontroller = screencontroller;
 	}
 
 	@FXML
