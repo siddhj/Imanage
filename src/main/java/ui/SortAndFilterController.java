@@ -2,19 +2,13 @@ package ui;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
 
 import com.ProgressDemo;
 
-import bean.Chalan;
 import bean.ChallanDetailBean;
-import bean.PopUpChallan;
 import bean.SortAndFilterBean;
-import bean.SummaryBean;
 import dao.DChalan;
-import dao.DLoader;
 import dao.DSort;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -28,19 +22,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
-import service.EditingCell;
-import service.HighLightCell;
-import service.MicroService;
 import service.Validation;
 import utility.UTable;
 
@@ -196,44 +184,6 @@ public class SortAndFilterController {
 
 		UTable.getLoaderstage().close();
 	}
-
-	// @FXML
-	// void getSummaryOfFilter(ActionEvent event) throws IOException {
-	// LocalDate fromdate = datefrom.getValue();
-	// LocalDate todate = dateto.getValue();
-	// String assigneename = assigneenamecombobox.getValue();
-	// String productid = productidcombobox.getValue();
-	//
-	// String sqlstringassigneename =
-	// Validation.nullVarifierStringForDao(assigneename);
-	// String sqlstringproductid =
-	// Validation.nullVarifierStringForDao(productid);
-	// String sqlstringfromdate =
-	// Validation.nullVarifierFromDateForDao(fromdate);
-	// // String sqlstringtodate = Validation.nullVarifierToDateForDao(todate);
-	// UTable.setSortandfilterassigneename(sqlstringassigneename);
-	// UTable.setSortandfilterproductid(sqlstringproductid);
-	// UTable.setSortandfilterfromdate(sqlstringfromdate);
-	// UTable.setSortandfilterwindowlist(filterandsorttable.getItems());
-	//
-	// FXMLLoader loader = new
-	// FXMLLoader(getClass().getResource("SummaryWindow.fxml"));
-	// Parent root = loader.load();
-	// Scene scene = new Scene(root);
-	// Stage window = new Stage();
-	// window.setScene(scene);
-	// Screen screen = Screen.getPrimary();
-	// Rectangle2D bounds = screen.getVisualBounds();
-	// window.setX(bounds.getMinX() + 60);
-	// window.setY(bounds.getMinY() + 70);
-	// window.setWidth((bounds.getWidth() * 80) / 100);
-	// window.setHeight((bounds.getHeight() * 60) / 100);
-	//// window.initStyle(StageStyle.UNDECORATED);
-	//// window.initOwner(UTable.getPrimarystage());
-	//// window.initModality(Modality.WINDOW_MODAL);
-	// window.setAlwaysOnTop(true);
-	// window.show();
-	// }
 
 	@FXML
 	void clearFilterField(ActionEvent event) {
