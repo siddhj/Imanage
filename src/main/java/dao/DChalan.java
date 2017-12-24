@@ -128,9 +128,10 @@ public class DChalan {
 
 			list.add(new PopUpChallan(resultset.getInt("AssigneeID"), resultset.getInt("Issue"),
 					resultset.getInt("Receive"), resultset.getInt("Due"), resultset.getInt("ChallanID"), 0,
-					resultset.getString("ProductID"), dateofbill, resultset.getInt("AmountPaid"),resultset.getLong("AggregateChallanID")));
+					resultset.getString("ProductID"), dateofbill, resultset.getInt("AmountPaid"),
+					resultset.getLong("AggregateChallanID")));
 		}
-		UTable.getLoaderstage().close();
+
 		return list;
 	}
 

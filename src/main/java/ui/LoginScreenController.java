@@ -5,6 +5,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import com.ProgressDemo;
+
+import DataConnectionThread.AssigneeNameAndProductIDLoadThread;
+import dao.DLoader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,12 +45,16 @@ public class LoginScreenController implements Initializable, MultiScreen {
 
 	@FXML
 	private PasswordField passwordtextfield;
-
+	ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
 	@FXML
-	void loginUser(ActionEvent event) throws SQLException, IOException {
-		System.out.println("inside login button");
+	void loginUser(ActionEvent event) throws SQLException, IOException, InterruptedException {
 		// mainscreen.setScreen(MultiScreenFramework.mainpage);
 		new ProgressDemo().start();
+
+		Runnable nameproductrunnable = new AssigneeNameAndProductIDLoadThread();
+		Thread nameproductthread = new Thread(nameproductrunnable);
+		nameproductthread.start();
+		
 		LicenseAuthentication auth = new LicenseAuthentication();
 		boolean licensevalid = auth.macAddressAuthentication(usernametextfield.getText(), passwordtextfield.getText());
 		if (licensevalid == true) {
@@ -55,6 +64,7 @@ public class LoginScreenController implements Initializable, MultiScreen {
 				Stage primarystage = UTable.getPrimarystage();
 				Scene scene = new Scene(loadScreen);
 				primarystage.setScene(scene);
+				nameproductthread.join();
 				UTable.getLoaderstage().close();
 			} catch (IOException e) {
 				e.printStackTrace();

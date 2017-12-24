@@ -1,4 +1,4 @@
-package service;
+package DataConnectionThread;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,9 +10,9 @@ import javafx.collections.ObservableList;
 public class ChallanTableDataUpdateThread implements Runnable {
 
 	private ObservableList<PopUpChallan> popupchallanlist;
-	
-	public ChallanTableDataUpdateThread(ObservableList<PopUpChallan> popupchallanlist){
-		this.popupchallanlist=popupchallanlist;
+
+	public ChallanTableDataUpdateThread(ObservableList<PopUpChallan> popupchallanlist) {
+		this.popupchallanlist = popupchallanlist;
 	}
 
 	@Override
@@ -23,9 +23,7 @@ public class ChallanTableDataUpdateThread implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
-	
+
 }

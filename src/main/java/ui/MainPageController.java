@@ -189,11 +189,10 @@ public class MainPageController implements MultiScreen {
 		// newchalantable.getColumns().addAll(receiveitem);
 
 		receiveitemcolumn.setEditable(true);
-		parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
-		UTable.setIntialloaderassigneename(parentlist.get(1));
-		UTable.setIntialloaderproductid(parentlist.get(0));
-		TextFields.bindAutoCompletion(assigneename, parentlist.get(1));
-		TextFields.bindAutoCompletion(productidtext, parentlist.get(0));
+		
+		TextFields.bindAutoCompletion(productidtext, UTable.getIntialloaderproductid());
+		TextFields.bindAutoCompletion(assigneename, UTable.getIntialloaderassigneename());
+		
 
 		/* Text Field Operations *****/
 		issuetext.setDisable(true);
@@ -421,6 +420,7 @@ public class MainPageController implements MultiScreen {
 		ObservableList<PopUpChallan> chalanlist = DChalan.getSingeletonInstance().chalanDataLoad(productid, assigneeid);
 		// setting chalanlist soon will be deprecated
 		UTable.setPopupchallantablelist(chalanlist);
+		UTable.getLoaderstage().close();
 		// for loading receive data back
 		UTable.setReceiveTextField(receivetext);
 		UTable.setPaidtextfield(advancedpaidtext);
@@ -683,17 +683,20 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	void addProductID(ActionEvent event) throws SQLException, IOException {
 		String productid = productidtext.getText();
+		new ProgressDemo().start();
 		ObservableList<String> productidlist = DLoader.getSingeletonInstanceOfLoader().intialLoader().get(0);
 		System.out.println("inside");
 		if (productidlist.contains(productid)) {
 			System.out.println("insideif");
 			Notification.invalidInput("ProductId already present",
 					"Product Id you are trying to add is already present");
+			UTable.getLoaderstage().close();
 		} else {
 			System.out.println("insideelse");
 			DChalan.getSingeletonInstance().insertNewProductID(productid);
 			TextFields.bindAutoCompletion(productidtext, UTable.getIntialloaderproductid().add(productid));
 			Notification.invalidInput("ProductId added", "Product Id has been added to database");
+			UTable.getLoaderstage().close();
 		}
 	}
 

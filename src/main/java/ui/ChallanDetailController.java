@@ -15,58 +15,63 @@ import javafx.stage.Stage;
 import utility.UTable;
 
 public class ChallanDetailController {
-	  
-		@FXML
-	    private TableView<ChallanDetailBean> challandetailtableview = new TableView<>();
 
-	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> referchallanidcolumn = new TableColumn<>("Parent Challan ID");
+	@FXML
+	private TableView<ChallanDetailBean> challandetailtableview = new TableView<>();
 
-	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> challanidcolumn = new TableColumn<>("Challan ID");
+	@FXML
+	private TableColumn<ChallanDetailBean, Integer> referchallanidcolumn = new TableColumn<>("Parent Challan ID");
 
-	    @FXML
-	    private TableColumn<ChallanDetailBean,String> assigneenamecolumn = new TableColumn<>("Assignee Name");
+	@FXML
+	private TableColumn<ChallanDetailBean, Integer> challanidcolumn = new TableColumn<>("Challan ID");
 
-	    @FXML
-	    private TableColumn<ChallanDetailBean,String> productidcolumn = new TableColumn<>("Product ID");
+	@FXML
+	private TableColumn<ChallanDetailBean, String> assigneenamecolumn = new TableColumn<>("Assignee Name");
 
-	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> issuecolumn = new TableColumn<>("Qty Issue");
+	@FXML
+	private TableColumn<ChallanDetailBean, String> productidcolumn = new TableColumn<>("Product ID");
 
-	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> receivecolumn = new TableColumn<>("Qty Receive");
+	@FXML
+	private TableColumn<ChallanDetailBean, Integer> issuecolumn = new TableColumn<>("Qty Issue");
 
-//	    @FXML
-//	    private TableColumn<ChallanDetailBean, Integer> paidcolumn = new TableColumn<>("Qty Paid");
+	@FXML
+	private TableColumn<ChallanDetailBean, Integer> receivecolumn = new TableColumn<>("Qty Receive");
 
-//	    @FXML
-//	    private TableColumn<ChallanDetailBean, Integer> amountpaidcolumn = new TableColumn<>("Amount Paid");
-//	    
-	    @FXML
-	    private TableColumn<ChallanDetailBean, Date> billdatecolumn = new TableColumn<>("Bill Date");
+	// @FXML
+	// private TableColumn<ChallanDetailBean, Integer> paidcolumn = new
+	// TableColumn<>("Qty Paid");
 
-	    @FXML
-	    private Button closebutton = new Button();
+	// @FXML
+	// private TableColumn<ChallanDetailBean, Integer> amountpaidcolumn = new
+	// TableColumn<>("Amount Paid");
+	//
+	@FXML
+	private TableColumn<ChallanDetailBean, Date> billdatecolumn = new TableColumn<>("Bill Date");
 
-	    @FXML
-	    void closeScreen(ActionEvent event) {
-	    	Stage stage = (Stage) closebutton.getScene().getWindow();
-			stage.close();
-	    }
-	    
-	    @FXML
-		public void initialize() throws SQLException, IOException {
-	    	issuecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("issueitem"));
-	    	receivecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("receiveitem"));
-//	    	paidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("paiditem"));
-//	    	amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("amountpaid"));
-	    	challanidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("challanid"));
-	    	referchallanidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("referchallanid"));
-	    	assigneenamecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, String>("assigneename"));
-	    	productidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, String>("productid"));
-	    	billdatecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Date>("billdate"));
-	    	challandetailtableview.setItems(UTable.getChallandetaillist());
-//	    	challandetailtableview
-	    }
+	@FXML
+	private Button closebutton = new Button();
+
+	@FXML
+	void closeScreen(ActionEvent event) {
+		Stage stage = (Stage) closebutton.getScene().getWindow();
+		stage.close();
+	}
+
+	@FXML
+	public void initialize() throws SQLException, IOException {
+		issuecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("issueitem"));
+		receivecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("receiveitem"));
+		// paidcolumn.setCellValueFactory(new
+		// PropertyValueFactory<ChallanDetailBean, Integer>("paiditem"));
+		// amountpaidcolumn.setCellValueFactory(new
+		// PropertyValueFactory<ChallanDetailBean, Integer>("amountpaid"));
+		challanidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("challanid"));
+		referchallanidcolumn
+				.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("referchallanid"));
+		assigneenamecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, String>("assigneename"));
+		productidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, String>("productid"));
+		billdatecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Date>("billdate"));
+		challandetailtableview.setItems(UTable.getChallandetaillist());
+		// challandetailtableview
+	}
 }
