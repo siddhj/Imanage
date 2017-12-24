@@ -81,7 +81,10 @@ public class MainPageController implements MultiScreen {
 	@FXML
 	private Button tabproductidbutton;
 
-	@FXML
+    @FXML
+    private Button addnewassigneebutton;
+
+    @FXML
 	private Label productidlabel;
 
 	@FXML
@@ -189,10 +192,9 @@ public class MainPageController implements MultiScreen {
 		// newchalantable.getColumns().addAll(receiveitem);
 
 		receiveitemcolumn.setEditable(true);
-		
+
 		TextFields.bindAutoCompletion(productidtext, UTable.getIntialloaderproductid());
 		TextFields.bindAutoCompletion(assigneename, UTable.getIntialloaderassigneename());
-		
 
 		/* Text Field Operations *****/
 		issuetext.setDisable(true);
@@ -226,11 +228,11 @@ public class MainPageController implements MultiScreen {
 		// scene.widthProperty().divide(3).subtract(2.1/3)
 		/* Setting column size in the table */
 		productidcolumn.prefWidthProperty()
-				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1 / 3));
+				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(3).subtract(2.1 / 3));
 		issueitemcolumn.prefWidthProperty()
-				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1 / 3));
+				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(3).subtract(2.1 / 3));
 		receiveitemcolumn.prefWidthProperty()
-				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1 / 3));
+				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(3).subtract(2.1 / 3));
 		// amountpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		// totalpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
 		// advancedpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
@@ -271,12 +273,12 @@ public class MainPageController implements MultiScreen {
 		}
 		LocalDate dateofbill = billdate.getValue();
 
-		if (!Validation.parentListNameValidation(parentlist.get(1), assigneename.getText())) {
+		if (!Validation.parentListNameValidation(UTable.getIntialloaderassigneename(), assigneename.getText())) {
 			Notification.invalidInput("Invalid Name of Assignee",
 					"Assignee Name Entered is invalid. Please check the assignee name again");
 			return;
 		}
-		if (!Validation.parentListProductIDValidation(parentlist.get(0), productidtext.getText())) {
+		if (!Validation.parentListProductIDValidation(UTable.getIntialloaderproductid(), productidtext.getText())) {
 			Notification.invalidInput("Invalid Product ID",
 					"Product ID entered is invalid. Please check the product id again");
 			return;
@@ -296,10 +298,11 @@ public class MainPageController implements MultiScreen {
 			return;
 		}
 		try {
-			ObservableList<String> assigneeandgstin = new MicroService().assigneeIDRetrieveFullName(assigneename.getText());
+			ObservableList<String> assigneeandgstin = new MicroService()
+					.assigneeIDRetrieveFullName(assigneename.getText());
 			int AssigneeID = Integer.parseInt(assigneeandgstin.get(0));
 			String gstin = assigneeandgstin.get(1);
-			
+
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
 					Integer.parseInt(issuetext.getText()), AssigneeID, UTable.getPopupchallantablelist(),
 					Integer.parseInt(receivetext.getText()), dateofbill, savechallandescription.getText(),
@@ -412,7 +415,7 @@ public class MainPageController implements MultiScreen {
 				issuetext.setText("");
 				receivetext.setText("");
 				advancedpaidtext.setText("");
-				billdate.setValue(null);
+//				billdate.setValue(null);
 				return;
 			}
 		}
@@ -463,7 +466,8 @@ public class MainPageController implements MultiScreen {
 		man.getPopUpWindowData(chalanlist);
 		chalanlist.removeAll(chalanlist);
 		UTable.getLoaderstage().close();
-		Notification.dataSuccessfullySaved("Operation Successful","Data Successfully Stored. Check PDF at C:\\Program Files\\IManage");
+		Notification.dataSuccessfullySaved("Operation Successful",
+				"Data Successfully Stored. Check PDF at C:\\Program Files\\IManage");
 		assigneename.setText("");
 		productidtext.setText("");
 		issuetext.setText("");
@@ -536,25 +540,6 @@ public class MainPageController implements MultiScreen {
 	}
 
 	@FXML
-	public void exportExcel() throws IOException, DocumentException {
-
-		// FileChooser fileChooser = new FileChooser();
-		//
-		// // Set extension filter
-		// FileChooser.ExtensionFilter extFilter = new
-		// FileChooser.ExtensionFilter("Pdf (*.pdf)", "*.pdf");
-		// fileChooser.getExtensionFilters().add(extFilter);
-		//
-		// // Show save file dialog
-		// File file = fileChooser.showSaveDialog(UTable.getPrimarystage());
-
-		// if (file != null) {
-		// createPdfss(aggregatechallanid,dest);
-		// }
-	}
-
-
-	@FXML
 	void clearMainPageDataButton(ActionEvent event) {
 		assigneename.setDisable(false);
 		billdate.setDisable(false);
@@ -585,6 +570,22 @@ public class MainPageController implements MultiScreen {
 			e.printStackTrace();
 		}
 	}
+	
+
+    @FXML
+    void openNewAssigneeWindow(ActionEvent event) {
+    	new ProgressDemo().start();
+		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("AssigneeWindow.fxml"));
+		try {
+			Parent loadScreen = (Parent) myLoader.load();
+			Stage primarystage = UTable.getPrimarystage();
+			Scene scene = new Scene(loadScreen);
+			primarystage.setScene(scene);
+			UTable.getLoaderstage().close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
 
 	@FXML
 	void addProductID(ActionEvent event) throws SQLException, IOException {
@@ -634,6 +635,11 @@ public class MainPageController implements MultiScreen {
 
 	@FXML
 	void receiveText(ActionEvent event) {
+
+	}
+
+	@FXML
+	void exportExcel(ActionEvent event) {
 
 	}
 }

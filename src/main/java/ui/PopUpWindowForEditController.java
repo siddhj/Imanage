@@ -180,8 +180,8 @@ public class PopUpWindowForEditController {
 		UTable.getMainpagetableview().getColumns().get(2).setVisible(true);
 //		UTable.getMainpagetableview().getColumns().get(5).setVisible(false);
 //		UTable.getMainpagetableview().getColumns().get(5).setVisible(true);
-		UTable.getMainpagetableview().getColumns().get(4).setVisible(false);
-		UTable.getMainpagetableview().getColumns().get(4).setVisible(true);
+//		UTable.getMainpagetableview().getColumns().get(3).setVisible(false);
+//		UTable.getMainpagetableview().getColumns().get(3).setVisible(true);
 
 		Stage stage = (Stage) savedata.getScene().getWindow();
 		stage.close();

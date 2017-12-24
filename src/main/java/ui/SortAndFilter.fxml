@@ -159,7 +159,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="exploreselectchallan" mnemonicParsing="false" onAction="#getChallanDetail" prefHeight="29.0" prefWidth="128.0" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Edit Selection">
+                  <Button fx:id="exploreselectchallan" mnemonicParsing="false" onAction="#getChallanDetail" prefHeight="31.0" prefWidth="137.0" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Explore Selection">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Button>

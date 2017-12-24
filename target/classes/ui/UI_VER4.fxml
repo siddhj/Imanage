@@ -80,6 +80,11 @@
                                     <Image url="@../Downloads/funnel.png" />
                                  </image>
                               </ImageView>
+                              <Button fx:id="addnewassigneebutton" mnemonicParsing="false" onAction="#openNewAssigneeWindow" styleClass="header-button" stylesheets="@ninza.css" text="Add New Assignee">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
                               <Button fx:id="tabproductidbutton" mnemonicParsing="false" onAction="#tabProductIDButton" styleClass="header-button" stylesheets="@ninza.css" text="Filter">
                                  <HBox.margin>
                                     <Insets right="40.0" />
@@ -317,7 +322,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="279.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <ImageView accessibleRole="BUTTON" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                              <ImageView accessibleRole="BUTTON" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" visible="false" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../Images/layer-2.png" />
                                  </image>
@@ -325,7 +330,7 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Button mnemonicParsing="false" prefWidth="100.0" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Print" textFill="#0078d2" HBox.hgrow="ALWAYS">
+                              <Button mnemonicParsing="false" prefWidth="100.0" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Print" textFill="#0078d2" visible="false" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -333,7 +338,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <ImageView accessibleRole="BUTTON" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                              <ImageView accessibleRole="BUTTON" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" visible="false" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>
@@ -341,7 +346,7 @@
                                     <Image url="@../Images/ic-picture-as-pdf-black-36-px.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="exportexcelbutton" mnemonicParsing="false" onAction="#exportExcel" prefWidth="100.0" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Export PDF" textFill="#0078d2" HBox.hgrow="ALWAYS">
+                              <Button fx:id="exportexcelbutton" mnemonicParsing="false" onAction="#exportExcel" prefWidth="100.0" styleClass="button_left_blackBG" stylesheets="@ninza.css" text="Export PDF" textFill="#0078d2" visible="false" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="8.0" right="32.0" />
                                  </HBox.margin>

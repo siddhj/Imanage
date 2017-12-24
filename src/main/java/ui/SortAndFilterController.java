@@ -246,11 +246,13 @@ public class SortAndFilterController {
 	// Explore Selection Button
 	@FXML
 	void getChallanDetail(ActionEvent event) throws SQLException, IOException {
+		new ProgressDemo().start();
 		SortAndFilterBean selectedchallan = filterandsorttable.getSelectionModel().getSelectedItem();
 		long challanid = selectedchallan.getAggregatechallanid();
 		ObservableList<ChallanDetailBean> challandetaillist = DChalan.getSingeletonInstance()
 				.logChallanDataLoad(challanid);
 		UTable.setChallandetaillist(challandetaillist);
+		UTable.getLoaderstage().close();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ChallanDetail.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
