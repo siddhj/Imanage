@@ -109,7 +109,7 @@ public class DChalan {
 			throws SQLException, IOException {
 		ListTables chalandata = new ListTables();
 		Connection connection = chalandata.returnConnection();
-		String query = "select ChallanID,ProductID,Receive,Issue,Due,AssigneeID,BillDate,AmountPaid from challan where ProductID=?and AssigneeID=?";
+		String query = "select ChallanID,ProductID,Receive,Issue,Due,AssigneeID,BillDate,AmountPaid,AggregateChallanID from challan where ProductID=?and AssigneeID=?";
 		PreparedStatement stmt = connection.prepareStatement(query);
 		stmt.setString(1, productidtext);
 		stmt.setInt(2, assigneeid);
@@ -128,7 +128,7 @@ public class DChalan {
 
 			list.add(new PopUpChallan(resultset.getInt("AssigneeID"), resultset.getInt("Issue"),
 					resultset.getInt("Receive"), resultset.getInt("Due"), resultset.getInt("ChallanID"), 0,
-					resultset.getString("ProductID"), dateofbill, resultset.getInt("AmountPaid")));
+					resultset.getString("ProductID"), dateofbill, resultset.getInt("AmountPaid"),resultset.getLong("AggregateChallanID")));
 		}
 		UTable.getLoaderstage().close();
 		return list;
@@ -182,7 +182,7 @@ public class DChalan {
 		return challanid;
 	}
 
-	public void chalanLogDataInsert(ObservableList<PopUpChallan> chalanlist, int referchallanid)
+	public void chalanLogDataInsert(ObservableList<PopUpChallan> chalanlist, long referchallanid)
 			throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
@@ -196,8 +196,8 @@ public class DChalan {
 			if (!(c.getCurrentreceive() == 0)) {
 				try {
 					prepare.setDate(1, java.sql.Date.valueOf(c.getBilldate()));
-					prepare.setInt(2, c.getChallanid());
-					prepare.setInt(3, referchallanid);
+					prepare.setLong(2, c.getAggregatechallanid());
+					prepare.setLong(3, referchallanid);
 					prepare.setInt(4, c.getAssigneeid());
 					prepare.setString(5, c.getProductid());
 					prepare.setInt(6, c.getIssue());
@@ -219,13 +219,13 @@ public class DChalan {
 		}
 	}
 
-	public ObservableList<ChallanDetailBean> logChallanDataLoad(int challanid) throws SQLException, IOException {
+	public ObservableList<ChallanDetailBean> logChallanDataLoad(long challanid) throws SQLException, IOException {
 		ListTables chalandata = new ListTables();
 		Connection connection = chalandata.returnConnection();
-		String query = "Select l.ReferChallanID,l.ChallanID,l.AssigneeID,l.ProductID,l.Issue,l.Receive,l.Paid,l.BillDate,l.BillTimeStamp,"
+		String query = "Select l.ReferChallanID,l.ChallanID,l.AssigneeID,l.ProductID,l.Issue,l.Receive,l.AmountPaid,l.BillDate,l.BillTimeStamp,"
 				+ "a.Full_Name from challanlog as l join assignee as a on l.AssigneeID = a.AssigneeID where l.ReferChallanID = ?";
 		PreparedStatement stmt = connection.prepareStatement(query);
-		stmt.setInt(1, challanid);
+		stmt.setLong(1, challanid);
 
 		ResultSet resultset = stmt.executeQuery();
 
@@ -236,9 +236,9 @@ public class DChalan {
 
 		while (resultset.next()) {
 			list.add(new ChallanDetailBean(resultset.getString("a.Full_Name"), resultset.getString("l.ProductID"),
-					resultset.getDate("l.BillDate"), resultset.getInt("l.ReferChallanID"),
-					resultset.getInt("l.ChallanID"), resultset.getInt("Issue"), resultset.getInt("Receive"),
-					resultset.getInt("Paid")));
+					resultset.getDate("l.BillDate"), resultset.getLong("l.ReferChallanID"),
+					resultset.getLong("l.ChallanID"), resultset.getInt("Issue"), resultset.getInt("Receive"),
+					resultset.getInt("l.AmountPaid")));
 		}
 		return list;
 	}

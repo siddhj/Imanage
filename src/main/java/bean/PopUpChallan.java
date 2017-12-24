@@ -13,6 +13,13 @@ public class PopUpChallan {
 //	}
 	private String productid;
 	private LocalDate billdate;
+	private long aggregatechallanid;
+	public long getAggregatechallanid() {
+		return aggregatechallanid;
+	}
+	public void setAggregatechallanid(long aggregatechallanid) {
+		this.aggregatechallanid = aggregatechallanid;
+	}
 	public int getAssigneeid() {
 		return assigneeid;
 	}
@@ -91,7 +98,7 @@ public class PopUpChallan {
 //	}
 	
 	public PopUpChallan(int assigneeid, int issue, int pastreceive, int pastreceivedue, int challanid,
-			int currentreceive, String productid, LocalDate billdate,int amountpaid) {
+			int currentreceive, String productid, LocalDate billdate,int amountpaid,long aggregatechallanid) {
 		super();
 		this.assigneeid = assigneeid;
 		this.issue = issue;
@@ -102,6 +109,7 @@ public class PopUpChallan {
 		this.productid = productid;
 		this.billdate = billdate;
 		this.amountpaid=amountpaid;
+		this.aggregatechallanid=aggregatechallanid;
 	}
 
 }
