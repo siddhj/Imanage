@@ -26,11 +26,11 @@ return singletonloader;
 public ObservableList<Assignee> getAssigneeList() throws SQLException, IOException{
 	Connection connection = ListTables.returnConnection();
 	Statement stmt = connection.createStatement();
-	ResultSet result = stmt.executeQuery("SELECT AssigneeID,Full_Name FROM assignee");
+	ResultSet result = stmt.executeQuery("SELECT AssigneeID,Full_Name,GSTIN FROM assignee");
 	ObservableList<Assignee> assigneelist  = FXCollections.observableArrayList();
 	while(result.next())
 	{
-		assigneelist.add(new Assignee(result.getString("Full_Name"),result.getInt("AssigneeID")));
+		assigneelist.add(new Assignee(result.getString("Full_Name"),result.getInt("AssigneeID"),result.getString("GSTIN")));
 	}
 	return assigneelist;
 }
@@ -61,7 +61,7 @@ public ObservableList<ObservableList<String>> intialLoader() throws SQLException
 	
 	public ObservableList<ObservableList<?>> assigneeLoader(Connection connection) throws SQLException, IOException{
 		Statement stmt = connection.createStatement();
-		ResultSet result = stmt.executeQuery("SELECT AssigneeID,Full_Name FROM assignee");
+		ResultSet result = stmt.executeQuery("SELECT AssigneeID,Full_Name,GSTIN FROM assignee");
 		ObservableList <String> namelist = FXCollections.observableArrayList();  
 		ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
 		
@@ -70,8 +70,8 @@ public ObservableList<ObservableList<String>> intialLoader() throws SQLException
 
 		int assigneeid = result.getInt("AssigneeID");	
 		String fullname = result.getString("Full_Name");
-
-		Assignee assign = new Assignee(fullname,assigneeid);
+		String gstin = result.getString("GSTIN");
+		Assignee assign = new Assignee(fullname,assigneeid,gstin);
 		assigneelist.add(assign);
 		namelist.add(fullname);
 		}

@@ -42,17 +42,22 @@ public class MicroService {
 		return assigneeid;
 	}
 	
-	public int assigneeIDRetrieveFullName(String name) throws SQLException, IOException {
+	public ObservableList<String> assigneeIDRetrieveFullName(String name) throws SQLException, IOException {
 		ObservableList<Assignee> assigneelist = DLoader.getSingeletonInstanceOfLoader().getAssigneeList();
+		ObservableList<String> assigneeandgstin = FXCollections.observableArrayList();
 		int assigneeid = 0;
+		String gstin="";
 		for (Assignee al : assigneelist) {
 			System.out.println(al.getFullname());
 			if (al.getFullname().equals(name)) {
 				assigneeid = al.getAssigneeid();
+				gstin = al.getGstin();
+				assigneeandgstin.add(String.valueOf(assigneeid));
+				assigneeandgstin.add(gstin);
 				break;
 			}
 		}
-		return assigneeid;
+		return assigneeandgstin;
 	}
 
 	public int getTotalReceiveFromPopUp(ObservableList<PopUpChallan> challanlist) {

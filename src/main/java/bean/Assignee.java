@@ -25,10 +25,11 @@ public class Assignee {
 
 	private int assigneeid, phonenumber, aadharnumber;
 
-	public Assignee(String fullname, int assigneeid) {
+	public Assignee(String fullname, int assigneeid,String gstin) {
 		super();
 		this.assigneeid = assigneeid;
 		this.fullname=fullname;
+		this.gstin = gstin;
 	}
 	public Assignee() {
 

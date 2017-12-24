@@ -296,8 +296,10 @@ public class MainPageController implements MultiScreen {
 			return;
 		}
 		try {
-			int AssigneeID = new MicroService().assigneeIDRetrieveFullName(name);
-
+			ObservableList<String> assigneeandgstin = new MicroService().assigneeIDRetrieveFullName(assigneename.getText());
+			int AssigneeID = Integer.parseInt(assigneeandgstin.get(0));
+			String gstin = assigneeandgstin.get(1);
+			
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
 					Integer.parseInt(issuetext.getText()), AssigneeID, UTable.getPopupchallantablelist(),
 					Integer.parseInt(receivetext.getText()), dateofbill, savechallandescription.getText(),
@@ -415,7 +417,9 @@ public class MainPageController implements MultiScreen {
 			}
 		}
 		new ProgressDemo().start();
-		int assigneeid = new MicroService().assigneeIDRetrieveFullName(assigneename.getText());
+		ObservableList<String> assigneeandgstin = new MicroService().assigneeIDRetrieveFullName(assigneename.getText());
+		int assigneeid = Integer.parseInt(assigneeandgstin.get(0));
+		String gstin = assigneeandgstin.get(1);
 		String productid = productidtext.getText();
 		ObservableList<PopUpChallan> chalanlist = DChalan.getSingeletonInstance().chalanDataLoad(productid, assigneeid);
 		// setting chalanlist soon will be deprecated
@@ -460,7 +464,6 @@ public class MainPageController implements MultiScreen {
 		chalanlist.removeAll(chalanlist);
 		UTable.getLoaderstage().close();
 		Notification.dataSuccessfullySaved("Operation Successful","Data Successfully Stored. Check PDF at C:\\Program Files\\IManage");
-
 		assigneename.setText("");
 		productidtext.setText("");
 		issuetext.setText("");

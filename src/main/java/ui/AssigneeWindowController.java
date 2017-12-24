@@ -1,4 +1,5 @@
 package ui;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -17,61 +18,59 @@ import service.Notification;
 import utility.UTable;
 
 public class AssigneeWindowController {
-    @FXML
-    private TextField assigneenametextbox;
+	@FXML
+	private TextField assigneenametextbox;
 
-    @FXML
-    private Button Imanagebutton;
-    
-    @FXML
-    private TextField mobilenotextbox;
+	@FXML
+	private Button Imanagebutton;
 
-    @FXML
-    private TextField gstintextbox;
+	@FXML
+	private TextField mobilenotextbox;
 
-    @FXML
-    private TextField aadharnotextbox;
+	@FXML
+	private TextField gstintextbox;
 
-    @FXML
-    private Button clearassigneedetail;
+	@FXML
+	private TextField aadharnotextbox;
 
-    @FXML
-    private Button saveassigneedetail;
+	@FXML
+	private Button clearassigneedetail;
 
-    @FXML
-    void clearAllData(ActionEvent event) {
-assigneenametextbox.setText("");
-mobilenotextbox.setText("");
-gstintextbox.setText("");
-aadharnotextbox.setText("");
-    }
+	@FXML
+	private Button saveassigneedetail;
 
-    @FXML
-    void saveAssigneeData(ActionEvent event) throws SQLException, IOException {
-    	String assigneename = assigneenametextbox.getText();
-    	String mobileno = mobilenotextbox.getText();
-    	String gstin = gstintextbox.getText();
-    	String aadharno = aadharnotextbox.getText();
-    	
-    	if(assigneename==null||mobileno==null||gstin==null)
-    	{
-    		Notification.invalidInput("Invalid Entry", "Please check all the entry again");
-    		return;
-    	}
-    	if(aadharno==null)
-    	{
-    		aadharno="";
-    	}
-    	new ProgressDemo().start();
-    	DNewEntityInsert.getGetSingeltonInstance().assigneeDataInsert(assigneename, mobileno, gstin, aadharno);
-    	UTable.loaderstage.close();
-    	Notification.dataSuccessfullySaved("Assignee Name added", "Assignee name has been successfully added");
-    	assigneenametextbox.setText("");
-    	mobilenotextbox.setText("");
-    	gstintextbox.setText("");
-    	aadharnotextbox.setText("");
-    }
-    
+	@FXML
+	void clearAllData(ActionEvent event) {
+		assigneenametextbox.setText("");
+		mobilenotextbox.setText("");
+		gstintextbox.setText("");
+		aadharnotextbox.setText("");
+	}
+
+	@FXML
+	void saveAssigneeData(ActionEvent event) throws SQLException, IOException {
+		String assigneename = assigneenametextbox.getText();
+		String mobileno = mobilenotextbox.getText();
+		String gstin = gstintextbox.getText();
+		String aadharno = aadharnotextbox.getText();
+
+		if (assigneename == null || mobileno == null || gstin == null) {
+			Notification.invalidInput("Invalid Entry", "Please check all the entry again");
+			return;
+		}
+		if (aadharno == null) {
+			aadharno = "";
+		}
+		new ProgressDemo().start();
+		DNewEntityInsert.getGetSingeltonInstance().assigneeDataInsert(assigneename, mobileno, gstin, aadharno);
+		UTable.loaderstage.close();
+		Notification.dataSuccessfullySaved("Assignee Name added", "Assignee name has been successfully added");
+		assigneenametextbox.setText("");
+		mobilenotextbox.setText("");
+		gstintextbox.setText("");
+		aadharnotextbox.setText("");
+	}
+
 	@FXML
 	void openDashboardWindow(ActionEvent event) {
 		new ProgressDemo().start();
