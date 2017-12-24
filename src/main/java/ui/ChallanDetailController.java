@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import bean.ChallanDetailBean;
-import bean.PopUpChallan;
-import dao.DChalan;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -42,9 +40,9 @@ public class ChallanDetailController {
 //	    @FXML
 //	    private TableColumn<ChallanDetailBean, Integer> paidcolumn = new TableColumn<>("Qty Paid");
 
-	    @FXML
-	    private TableColumn<ChallanDetailBean, Integer> amountpaidcolumn = new TableColumn<>("Amount Paid");
-	    
+//	    @FXML
+//	    private TableColumn<ChallanDetailBean, Integer> amountpaidcolumn = new TableColumn<>("Amount Paid");
+//	    
 	    @FXML
 	    private TableColumn<ChallanDetailBean, Date> billdatecolumn = new TableColumn<>("Bill Date");
 
@@ -62,7 +60,7 @@ public class ChallanDetailController {
 	    	issuecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("issueitem"));
 	    	receivecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("receiveitem"));
 //	    	paidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("paiditem"));
-	    	amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("amountpaid"));
+//	    	amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("amountpaid"));
 	    	challanidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("challanid"));
 	    	referchallanidcolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, Integer>("referchallanid"));
 	    	assigneenamecolumn.setCellValueFactory(new PropertyValueFactory<ChallanDetailBean, String>("assigneename"));
