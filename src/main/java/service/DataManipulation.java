@@ -42,7 +42,6 @@ public class DataManipulation {
 			challandatainsertthread.join();
 			challandataupdatethread.join();
 		}
-
 		MicroService.createPdfss(billdate);
 
 	}

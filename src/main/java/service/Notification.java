@@ -60,10 +60,10 @@ public class Notification {
 //		note.showError();
 //	}
 	
-	public static void dataSuccessfullySaved(){
+	public static void dataSuccessfullySaved(String title,String message){
 		Notifications note = Notifications.create()
-				.title("Operation Successful")
-				.text("Data Successfully Stored. Check PDF at C:\\Program Files\\IManage")
+				.title(title)
+				.text(message)
 				.graphic(null)
 				.hideAfter(Duration.seconds(5))
 				.position(Pos.CENTER)

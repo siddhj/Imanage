@@ -1,7 +1,20 @@
 package bean;
 
 public class Assignee {
-	private String firstname, lastname, description,fullname;
+	private String firstname, lastname, description,fullname,gstin;
+	public Assignee(String fullname, String gstin, int phonenumber, int aadharnumber) {
+		super();
+		this.fullname = fullname;
+		this.gstin = gstin;
+		this.phonenumber = phonenumber;
+		this.aadharnumber = aadharnumber;
+	}
+	public String getGstin() {
+		return gstin;
+	}
+	public void setGstin(String gstin) {
+		this.gstin = gstin;
+	}
 	public String getFullname() {
 		return fullname;
 	}

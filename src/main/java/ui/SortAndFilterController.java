@@ -251,7 +251,6 @@ public class SortAndFilterController {
 		ObservableList<ChallanDetailBean> challandetaillist = DChalan.getSingeletonInstance()
 				.logChallanDataLoad(challanid);
 		UTable.setChallandetaillist(challandetaillist);
-
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ChallanDetail.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);

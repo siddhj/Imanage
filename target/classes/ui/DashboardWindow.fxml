@@ -88,7 +88,7 @@
                      <children>
                         <HBox alignment="CENTER" minHeight="334.0" prefWidth="512.0">
                            <children>
-                              <Button minHeight="150.0" minWidth="300.0" mnemonicParsing="false" styleClass="Dashboard" stylesheets="@ninza.css" text="New Assignee">
+                              <Button fx:id="newassigneebutton" minHeight="150.0" minWidth="300.0" mnemonicParsing="false" onAction="#openAssigneeWindow" styleClass="Dashboard" stylesheets="@ninza.css" text="New Assignee">
                                  <font>
                                     <Font size="32.0" />
                                  </font>
