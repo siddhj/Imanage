@@ -14,9 +14,7 @@ import utility.UTable;
 public class MultiScreenFramework extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        
 
-        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginCSS.fxml"));
         Parent root = (Parent)loader.load();
         Screen screen = Screen.getPrimary();

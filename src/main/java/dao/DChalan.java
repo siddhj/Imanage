@@ -21,7 +21,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import service.MicroService;
 import service.Notification;
-import utility.UTable;
 
 public class DChalan {
 	// public static void main(String args[]) throws SQLException, IOException {
@@ -41,18 +40,12 @@ public class DChalan {
 	public void chalanDataInsert(Chalan c, long aggregatechallanid) throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
-		// String query= "insert into
-		// challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,Paid,PastPaid,PastReceive,BillDate,Paid_Due,Description)
-		// "
-		// + "values(?,?,?,?,?,?,?,?,?,?,?,?)";
-		// aftre amount paid update
 		String query = "insert into challan(ProductID,AssigneeID,Issue,Receive,Due,BillDateType,PastReceive,BillDate,Description,AmountPaid,AggregateChallanID) "
 				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement prepare = connection.prepareStatement(query);
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
 
-		// for (Chalan c : chalanlist) {
 		try {
 			prepare.setString(1, c.getProductid());
 			prepare.setInt(2, c.getAssigneeid());
@@ -77,32 +70,6 @@ public class DChalan {
 			e.printStackTrace();
 			Notification.errorOccuredNotification();
 		}
-		// }
-		// not working why
-		// chalanlist.forEach(c ->{
-		// try {
-		// prepare.setString(1, c.getProductid());
-		// prepare.setInt(2, c.getAssigneeid());
-		// prepare.setInt(3, c.getIssue());
-		// prepare.setInt(4, c.getReceive());
-		// prepare.setInt(5, c.getDue());
-		// //Timestamp is not what we need
-		// prepare.setTimestamp(6, new Timestamp(date.getTime()));
-		// prepare.setInt(7, c.getPaid());
-		// prepare.addBatch();
-		// } catch (SQLException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// try {
-		// prepare.executeBatch();
-		// connection.commit();
-		// statement.close();
-		// } catch (SQLException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// });
 	}
 
 	public ObservableList<PopUpChallan> chalanDataLoad(String productidtext, int assigneeid)
@@ -119,10 +86,6 @@ public class DChalan {
 		ObservableList<PopUpChallan> list = FXCollections.observableArrayList();
 
 		while (resultset.next()) {
-			// int assigneeid, int issue, int pastreceive, int pastdue, int
-			// pastpaid, int challanid,
-			// int currentreceive, int currentpaid, String productid, Date
-			// billdate
 			Instant instant = Instant.ofEpochMilli(resultset.getDate("BillDate").getTime());
 			LocalDate dateofbill = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
 
@@ -135,14 +98,10 @@ public class DChalan {
 		return list;
 	}
 
-	// public void chalanDataUpdatePopUpWindow(int totalreceive,int
-	// totalpaid,int totaldue,int challanid) throws SQLException, IOException {
 	public void chalanDataUpdatePopUpWindow(ObservableList<PopUpChallan> popupchallanlist)
 			throws SQLException, IOException {
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
-		// String query = "update challan set Receive=?,Due=?,Paid=? where
-		// ChallanID=?";
 		String query = "update challan set Receive=?,Due=? where ChallanID=?";
 		PreparedStatement prepare = connection.prepareStatement(query);
 		for (PopUpChallan p : popupchallanlist) {
