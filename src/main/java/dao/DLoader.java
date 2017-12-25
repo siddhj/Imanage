@@ -8,14 +8,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.apache.log4j.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import ui.MultiScreenFramework;
 
 public class DLoader {
 public static ObservableList<Assignee> assigneelist;
 
 private static final DLoader singletonloader = new DLoader();
-
+final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
 private DLoader(){
 }
 
@@ -36,7 +40,7 @@ public ObservableList<Assignee> getAssigneeList() throws SQLException, IOExcepti
 }
 
 
-public ObservableList<ObservableList<String>> intialLoader() throws SQLException, IOException{
+public ObservableList<ObservableList<String>> intialLoader(){
 		Connection connection = ListTables.returnConnection();
 		ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
 		ObservableList<ObservableList<?>>	assigneeloaderlist = assigneeLoader(connection);
@@ -44,36 +48,62 @@ public ObservableList<ObservableList<String>> intialLoader() throws SQLException
 		//assigneelist = (ObservableList<Assignee>) assigneeloaderlist.get(1);
 		ObservableList<String> productlist = productIDLoader(connection);	
 		parentlist.add(productlist);parentlist.add(namelist);
-		connection.close();
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return parentlist;
 		}
 	
-	public ObservableList<String> productIDLoader(Connection connection) throws SQLException, IOException{
-		Statement stmt = connection.createStatement();
-		ResultSet result = stmt.executeQuery("SELECT ProductID FROM product");
+	public ObservableList<String> productIDLoader(Connection connection) {
+		ResultSet result =null;
+		try {
+			Statement stmt = connection.createStatement();
+			result = stmt.executeQuery("SELECT ProductID FROM product");
+		} catch (SQLException e) {
+			logger.error("system error",e);
+		}
 		ObservableList <String> productlist = FXCollections.observableArrayList();
-		while(result.next())
-		{
-			productlist.add(result.getString("ProductID"));
+		try {
+			while(result.next())
+			{
+				productlist.add(result.getString("ProductID"));
+			}
+		} catch (SQLException e) {
+			logger.error("productid loader",e);
 		}
 		return productlist;
 	}
 	
-	public ObservableList<ObservableList<?>> assigneeLoader(Connection connection) throws SQLException, IOException{
-		Statement stmt = connection.createStatement();
-		ResultSet result = stmt.executeQuery("SELECT AssigneeID,Full_Name,GSTIN FROM assignee");
+	public ObservableList<ObservableList<?>> assigneeLoader(Connection connection){
+		
+		Statement stmt=null;
+		ResultSet result=null;
+		try {
+			stmt = connection.createStatement();
+		result = stmt.executeQuery("SELECT AssigneeID,Full_Name,GSTIN FROM assignee");
+		} catch (SQLException e) {
+			
+		}
 		ObservableList <String> namelist = FXCollections.observableArrayList();  
 		ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
 		
-		while(result.next())
-		{
+		try {
+			while(result.next())
+			{
 
-		int assigneeid = result.getInt("AssigneeID");	
-		String fullname = result.getString("Full_Name");
-		String gstin = result.getString("GSTIN");
-		Assignee assign = new Assignee(fullname,assigneeid,gstin);
-		assigneelist.add(assign);
-		namelist.add(fullname);
+			int assigneeid = result.getInt("AssigneeID");	
+			String fullname = result.getString("Full_Name");
+			String gstin = result.getString("GSTIN");
+			Assignee assign = new Assignee(fullname,assigneeid,gstin);
+			assigneelist.add(assign);
+			namelist.add(fullname);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		ObservableList<ObservableList<?>> parentlist = FXCollections.observableArrayList();

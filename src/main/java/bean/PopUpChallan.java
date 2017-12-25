@@ -111,5 +111,12 @@ public class PopUpChallan {
 		this.amountpaid=amountpaid;
 		this.aggregatechallanid=aggregatechallanid;
 	}
+	@Override
+	public String toString() {
+		return "PopUpChallan [assigneeid=" + assigneeid + ", issue=" + issue + ", pastreceive=" + pastreceive
+				+ ", pastreceivedue=" + pastreceivedue + ", challanid=" + challanid + ", currentreceive="
+				+ currentreceive + ", amountpaid=" + amountpaid + ", productid=" + productid + ", billdate=" + billdate
+				+ ", aggregatechallanid=" + aggregatechallanid + "]";
+	}
 
 }

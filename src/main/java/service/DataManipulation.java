@@ -4,19 +4,21 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
 import com.itextpdf.text.DocumentException;
 
 import bean.Chalan;
 import bean.PopUpChallan;
 import dao.DChalan;
 import javafx.collections.ObservableList;
+import ui.MultiScreenFramework;
 import DataConnectionThread.ChallanInsertThread;
 import DataConnectionThread.ChallanTableDataUpdateThread;
 import utility.UTable;
 
 public class DataManipulation {
-	public void getPopUpWindowData(ObservableList<Chalan> mainpagechallanlist)
-			throws SQLException, IOException, DocumentException, InterruptedException {
+	public void getPopUpWindowData(ObservableList<Chalan> mainpagechallanlist){
 		long aggregatechallanid = new Date().getTime();
 		UTable.setAggregatechallanid(aggregatechallanid);
 		DChalan chalan = DChalan.getSingeletonInstance();
@@ -39,10 +41,21 @@ public class DataManipulation {
 
 			chalan.chalanLogDataInsert(popupwindowchallanlist, aggregatechallanid);
 
-			challandatainsertthread.join();
-			challandataupdatethread.join();
+			try {
+				challandatainsertthread.join();
+			} catch (InterruptedException e) {
+			logger.error("insertinto challan thread error",e);
+			}
+			try {
+				challandataupdatethread.join();
+			} catch (InterruptedException e) {
+				logger.error("update challan thread error",e);
+				
+			}
 		}
+		
 		MicroService.createPdfss(billdate);
 
 	}
+	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
 }

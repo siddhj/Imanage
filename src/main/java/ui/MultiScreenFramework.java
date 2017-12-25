@@ -2,6 +2,8 @@ package ui;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -12,9 +14,12 @@ import javafx.stage.Stage;
 import utility.UTable;
 
 public class MultiScreenFramework extends Application {
-    @Override
+   
+	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
+	
+	@Override
     public void start(Stage primaryStage) throws IOException {
-
+		logger.info("Application Started");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginCSS.fxml"));
         Parent root = (Parent)loader.load();
         Screen screen = Screen.getPrimary();

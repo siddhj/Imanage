@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
 import com.ListTables;
 
 import bean.Chalan;
@@ -23,7 +25,7 @@ import service.MicroService;
 import service.Notification;
 
 public class DChalan {
-
+	 final static Logger logger = Logger.getLogger(ListTables.class);	
 	private static final DChalan singletonchalan = new DChalan();
 
 	private DChalan() {
@@ -68,12 +70,13 @@ public class DChalan {
 		}
 	}
 
-	public ObservableList<PopUpChallan> chalanDataLoad(String productidtext, int assigneeid)
-			throws SQLException, IOException {
+	public ObservableList<PopUpChallan> chalanDataLoad(String productidtext, int assigneeid){
 		ListTables chalandata = new ListTables();
 		Connection connection = chalandata.returnConnection();
 		String query = "select ChallanID,ProductID,Receive,Issue,Due,AssigneeID,BillDate,AmountPaid,AggregateChallanID from challan where ProductID=?and AssigneeID=?";
-		PreparedStatement stmt = connection.prepareStatement(query);
+		PreparedStatement stmt=null;
+		try {
+			stmt = connection.prepareStatement(query);
 		stmt.setString(1, productidtext);
 		stmt.setInt(2, assigneeid);
 
@@ -89,9 +92,13 @@ public class DChalan {
 					resultset.getInt("Receive"), resultset.getInt("Due"), resultset.getInt("ChallanID"), 0,
 					resultset.getString("ProductID"), dateofbill, resultset.getInt("AmountPaid"),
 					resultset.getLong("AggregateChallanID")));
-		}
-
+		
 		return list;
+		}
+		} catch (SQLException e) {
+			logger.error("SQL Exception", e);
+		}
+		return null;
 	}
 
 	public void chalanDataUpdatePopUpWindow(ObservableList<PopUpChallan> popupchallanlist)
@@ -138,13 +145,18 @@ public class DChalan {
 		return challanid;
 	}
 
-	public void chalanLogDataInsert(ObservableList<PopUpChallan> chalanlist, long referchallanid)
-			throws SQLException, IOException {
+	public void chalanLogDataInsert(ObservableList<PopUpChallan> chalanlist, long referchallanid){
 		Connection connection = ListTables.returnConnection();
-		connection.setAutoCommit(false);
-		PreparedStatement prepare = connection.prepareStatement(
+		PreparedStatement prepare = null;
+		try {
+			connection.setAutoCommit(false);
+			prepare = connection.prepareStatement(
 				"insert into challanlog(BillDate,ChallanID,ReferChallanID,AssigneeID,ProductID,Issue,Receive,BillTimeStamp) "
 						+ "values(?,?,?,?,?,?,?,?)");
+		} catch (SQLException e1) {
+			logger.error("system error:unable to get connection",e1);
+		}
+	
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
 
@@ -161,7 +173,7 @@ public class DChalan {
 					prepare.setTimestamp(8, new Timestamp(date.getTime()));
 					prepare.addBatch();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					logger.error("following are the input: "+c.toString(),e);
 				}
 				try {
 					prepare.executeBatch();
@@ -199,11 +211,20 @@ public class DChalan {
 		return list;
 	}
 
-	public void insertNewProductID(String productid) throws SQLException, IOException {
+	public void insertNewProductID(String productid) {
 		Connection connection = ListTables.returnConnection();
-		connection.setAutoCommit(false);
+		try {
+			connection.setAutoCommit(false);
+		} catch (SQLException e1) {
+			logger.error("system error",e1);
+		}
 		String query = "insert into product(ProductID) values(?)";
-		PreparedStatement prepare = connection.prepareStatement(query);
+		PreparedStatement prepare=null;
+		try {
+			prepare = connection.prepareStatement(query);
+		} catch (SQLException e1) {
+			logger.error("insert new product id",e1);
+		}
 		try {
 			prepare.setString(1, productid);
 			prepare.execute();

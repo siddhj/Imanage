@@ -8,3 +8,18 @@ In Database
 Basic Query
 1. select ChallanID,AssigneeID,ProductID,Issue,Receive,Due,Paid,BillDate,BillDateType,AmountPaid,AggregateChallanID from challan;
  where challanid>15;
+ 
+ /**********************************************************************************************************/
+INFO
+ 1. Application Started
+ 2. 
+ 
+ DEBUG
+ 1. <buttonname> button end
+ 2. <buttonname> button clicked
+ 
+ ERROR
+ 1. <buttonname> button error for loading screen
+ 
+ FATAL
+ 1. Unable to read credential for authentication// GOOGLE CREDENTIAL ERROR

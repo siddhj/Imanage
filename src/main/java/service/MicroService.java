@@ -1,9 +1,12 @@
 package service;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+
+import org.apache.log4j.Logger;
 
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -25,10 +28,11 @@ import dao.DLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
+import ui.MultiScreenFramework;
 import utility.UTable;
 
 public class MicroService {
-
+	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
 	public int assigneeIDRetrieve(String name) {
 		ObservableList<Assignee> assigneelist = DLoader.assigneelist;
 		int assigneeid = 0;
@@ -146,7 +150,7 @@ public class MicroService {
 		return newchalan;
 	}
 
-	public static void createPdfss(String date) throws IOException, DocumentException {
+	public static void createPdfss(String date){
 		TableView<Chalan> newchalantable = UTable.getMainpagetableview();
 		long aggregatechallanid = UTable.getAggregatechallanid();
 		String dest = "C:\\Program Files\\IManage\\";
@@ -163,8 +167,12 @@ public class MicroService {
 	    float right = 30;
 	    float top = 60;
 	    float bottom = 0;
-	    Document document = new Document(PageSize.A4, left, right, top, bottom);
-	    PdfWriter.getInstance(document, new FileOutputStream(dest));
+	    Document document = new Document(PageSize.A5, left, right, top, bottom);
+	    try {
+			PdfWriter.getInstance(document, new FileOutputStream(dest));
+		} catch (FileNotFoundException | DocumentException e) {
+			logger.error("pdf generation",e);
+		}
 	   
 	    Chunk glue = new Chunk(new VerticalPositionMark());
 	    document.open();
@@ -209,14 +217,18 @@ public class MicroService {
 	    Paragraph parentcompany = new Paragraph("A Unit of Khandelwal Saree Fashion", new Font(FontFamily.HELVETICA, 6));
 	    parentcompany.setAlignment(Element.ALIGN_LEFT);
 	    
+	    try {
+			
 	    document.add(gstin);
 	    document.add(companyname);
 	    document.add(companyaddress);
 	    document.add(spacelabel);
-	    document.add(challanidlabel);
+	 	document.add(challanidlabel);
 	    document.add(assigneename);    
 	    document.add(spacelabel);
-	    
+		} catch (DocumentException e) {
+		logger.error("create pdf", e);
+		}
 	    PdfPTable table = new PdfPTable(3);
 	    
 //	    for(int aw = 0; aw < 16; aw++){
@@ -237,13 +249,15 @@ public class MicroService {
 			}
 		}
 
-	    document.add(table);
+	    try {
+		document.add(table);
 	    document.add(amountpaid);
 	    document.add(spacelabel);
 	    document.add(signature);
-	    document.add(parentcompany);
+		document.add(parentcompany);
 	    document.close();
+	    } catch (DocumentException e) {
+			logger.error("create pdf", e);
+		}
 	}
-
-
 }

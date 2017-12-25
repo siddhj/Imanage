@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.controlsfx.control.textfield.*;
+import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -68,10 +69,10 @@ public class MainPageController {
 	@FXML
 	private Button tabproductidbutton;
 
-    @FXML
-    private Button addnewassigneebutton;
+	@FXML
+	private Button addnewassigneebutton;
 
-    @FXML
+	@FXML
 	private Label productidlabel;
 
 	@FXML
@@ -122,6 +123,8 @@ public class MainPageController {
 	@FXML
 	private DatePicker billdate;
 
+	final static Logger logger = Logger.getLogger(MainPageController.class);
+	
 	@FXML
 	void removeRow(ActionEvent event) {
 		Chalan chalan = newchalantable.getSelectionModel().getSelectedItem();
@@ -145,7 +148,7 @@ public class MainPageController {
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalreceive"));
 
 		newchalantable.setEditable(true);
-		
+
 		receiveitemcolumn.setEditable(true);
 
 		TextFields.bindAutoCompletion(productidtext, UTable.getIntialloaderproductid());
@@ -180,7 +183,7 @@ public class MainPageController {
 				}
 			}
 		});
-		
+
 		/* Setting column size in the table */
 		productidcolumn.prefWidthProperty()
 				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(3).subtract(2.1 / 3));
@@ -188,7 +191,7 @@ public class MainPageController {
 				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(3).subtract(2.1 / 3));
 		receiveitemcolumn.prefWidthProperty()
 				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(3).subtract(2.1 / 3));
-		
+
 		productidcolumn.maxWidthProperty().bind(productidcolumn.prefWidthProperty());
 		issueitemcolumn.maxWidthProperty().bind(issueitemcolumn.prefWidthProperty());
 		receiveitemcolumn.maxWidthProperty().bind(receiveitemcolumn.prefWidthProperty());
@@ -198,6 +201,8 @@ public class MainPageController {
 		receiveitemcolumn.setResizable(false);
 		billdate.setValue(LocalDate.now());
 		UTable.setMainpagetableview(newchalantable);
+		
+		logger.debug("New Challan Window Loaded");
 	}
 
 	public ObservableList<Chalan> getData() {
@@ -212,7 +217,7 @@ public class MainPageController {
 	@FXML
 	void saveChalan(ActionEvent event) throws SQLException, IOException {
 		String name = assigneename.getText();
-
+		logger.debug("save button clicked");
 		if (billdate.getValue() == null) {
 			Notification.invalidDateFromUser();
 			return;
@@ -266,14 +271,17 @@ public class MainPageController {
 			// billdate.setValue(null);
 		} catch (NumberFormatException E) {
 			Notification.invalidInput("Something is not right", "Please check your input values");
+			logger.error("save button error",E);
 		}
 		assigneename.setDisable(true);
 		billdate.setDisable(true);
 		billdate.setValue(LocalDate.now());
+		logger.debug("save button end");
 	}
 
 	@FXML
-	void exploreSelectionPopUpWindow(ActionEvent event) throws IOException {
+	void exploreSelectionPopUpWindow(ActionEvent event){
+		logger.debug("explore selection button clicked");
 		Chalan selectedchalan = newchalantable.getSelectionModel().getSelectedItem();
 		int indexofselectedrow = newchalantable.getSelectionModel().getSelectedIndex();
 
@@ -291,7 +299,13 @@ public class MainPageController {
 		UTable.setMainpagechalanlist(newchalantable.getItems());
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
-		Parent root = loader.load();
+		Parent root=null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			logger.error("explore selection button error",e);
+			e.printStackTrace();
+		}
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
 		window.setScene(scene);
@@ -313,9 +327,8 @@ public class MainPageController {
 
 	/* This is the action event for receive button */
 	@FXML
-	void popupWindow(ActionEvent event) throws IOException, SQLException {
-		System.out.println("this is the receive button");
-
+	void popupWindow(ActionEvent event) {
+		logger.debug("receive button clicked");
 		ObservableList<Chalan> mainpagechalanlist = newchalantable.getItems();
 
 		for (Chalan C : mainpagechalanlist) {
@@ -328,7 +341,12 @@ public class MainPageController {
 				UTable.setMainpagechalanlist(mainpagechalanlist);
 				UTable.setPopupchallantablelist(C.getPopupchallantableview());
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
-				Parent root = loader.load();
+				Parent root=null;
+				try {
+					root = loader.load();
+				} catch (IOException e) {
+					logger.error("receive button error for loading screen",e);
+				}
 				Scene scene = new Scene(root);
 				Stage window = new Stage();
 				window.setScene(scene);
@@ -349,12 +367,18 @@ public class MainPageController {
 				issuetext.setText("");
 				receivetext.setText("");
 				advancedpaidtext.setText("");
-//				billdate.setValue(null);
+				// billdate.setValue(null);
 				return;
 			}
+			logger.debug("receive button end");
 		}
 		new ProgressDemo().start();
-		ObservableList<String> assigneeandgstin = new MicroService().assigneeIDRetrieveFullName(assigneename.getText());
+		ObservableList<String> assigneeandgstin=null;
+		try {
+			assigneeandgstin = new MicroService().assigneeIDRetrieveFullName(assigneename.getText());
+		} catch (SQLException | IOException e) {
+			logger.error("receive button error");
+		}
 		int assigneeid = Integer.parseInt(assigneeandgstin.get(0));
 		String gstin = assigneeandgstin.get(1);
 		String productid = productidtext.getText();
@@ -371,7 +395,12 @@ public class MainPageController {
 		UTable.setPopupstage(window);
 		// When we call fxml loader then the intialize method is being called
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
-		Parent root = loader.load();
+		Parent root=null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			logger.error("receive button error for loading screen", e);
+		}
 		Scene scene = new Scene(root);
 
 		Screen screen = Screen.getPrimary();
@@ -381,17 +410,16 @@ public class MainPageController {
 		window.setWidth((bounds.getWidth() * 90) / 100);
 		window.setHeight((bounds.getHeight() * 70) / 100);
 		window.setScene(scene);
-		System.out.println("Utable set");
 		window.initStyle(StageStyle.UNDECORATED);
 		window.initOwner(UTable.getPrimarystage());
 		window.initModality(Modality.WINDOW_MODAL);
-		// UTable.setPopupstage(window);
 		window.show();
-
+		logger.debug("receive button end");
 	}
 
 	@FXML
-	void saveChalanData(ActionEvent event) throws SQLException, IOException, DocumentException, InterruptedException {
+	void saveChalanData(ActionEvent event) {
+		logger.debug("save challan data button clicked");
 		new ProgressDemo().start();
 		UTable.setAssigneename(assigneename.getText());
 		UTable.setAmountpaid(advancedpaidtext.getText());
@@ -413,11 +441,12 @@ public class MainPageController {
 		billdate.setDisable(false);
 		assigneenamelabel.setText("");
 		billdate.setValue(LocalDate.now());
+		logger.debug("save challan data button end");
 	}
 
 	@FXML
 	void tabProductIDButton(ActionEvent event) {
-		System.out.println("inside product id select button");
+		logger.debug("filter button clicked");
 		new ProgressDemo().start();
 		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("SortAndFilter.fxml"));
 		try {
@@ -475,6 +504,7 @@ public class MainPageController {
 
 	@FXML
 	void clearMainPageDataButton(ActionEvent event) {
+		logger.debug("clean button clicked");
 		assigneename.setDisable(false);
 		billdate.setDisable(false);
 		ObservableList<Chalan> chalanlist = newchalantable.getItems();
@@ -492,6 +522,7 @@ public class MainPageController {
 
 	@FXML
 	void openDashboardWindow(ActionEvent event) {
+		logger.debug("open dashboard button clicked");
 		new ProgressDemo().start();
 		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("DashboardWindow.fxml"));
 		try {
@@ -504,11 +535,11 @@ public class MainPageController {
 			e.printStackTrace();
 		}
 	}
-	
 
-    @FXML
-    void openNewAssigneeWindow(ActionEvent event) {
-    	new ProgressDemo().start();
+	@FXML
+	void openNewAssigneeWindow(ActionEvent event) {
+		logger.debug("open assignee window clicked");
+		new ProgressDemo().start();
 		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("AssigneeWindow.fxml"));
 		try {
 			Parent loadScreen = (Parent) myLoader.load();
@@ -519,10 +550,10 @@ public class MainPageController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
+	}
 
 	@FXML
-	void addProductID(ActionEvent event) throws SQLException, IOException {
+	void addProductID(ActionEvent event) {
 		String productid = productidtext.getText();
 		new ProgressDemo().start();
 		ObservableList<String> productidlist = DLoader.getSingeletonInstanceOfLoader().intialLoader().get(0);
