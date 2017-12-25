@@ -217,7 +217,7 @@ public class Notification {
 		note.showError();
 	}
 	
-	public static void errorOccuredNotification(){
+	public static void errorOccuredNotification(String title,String message){
 		Notifications note = Notifications.create()
 				.title("Some Error Occured")
 				.text("Please Check Your Internet Connection. If error still exsist contact system admin")
@@ -234,4 +234,22 @@ public class Notification {
 		note.darkStyle();
 		note.showError();
 	}
+	
+	public static void someExceptionOccured(String title,String message){
+		Notifications note = Notifications.create()
+				.title(title)
+				.text(message)
+				.graphic(null)
+				.hideAfter(Duration.seconds(20))
+				.position(Pos.CENTER)
+				.onAction(new EventHandler<ActionEvent>(){
+
+					@Override
+					public void handle(ActionEvent event) {
+					}
+				});
+		note.darkStyle();
+		note.showError();
+	}
+
 }

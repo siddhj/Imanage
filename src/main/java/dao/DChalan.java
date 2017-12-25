@@ -58,16 +58,16 @@ public class DChalan {
 			prepare.setLong(11, aggregatechallanid);
 			prepare.addBatch();
 		} catch (SQLException e) {
-			e.printStackTrace();
-			Notification.errorOccuredNotification();
+			logger.error("chalan data insert: "+c.toString(), e);
+			Notification.errorOccuredNotification("Some Error Occured","Please Check Your Internet Connection. If error still exsist contact system admin");
 		}
 		try {
 			prepare.executeBatch();
 			connection.commit();
 		} catch (SQLException e) {
-			e.printStackTrace();
-			Notification.errorOccuredNotification();
-		}
+			logger.error("chalan data insert: "+c.toString(), e);
+			Notification.errorOccuredNotification("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");	
+			}
 	}
 
 	public ObservableList<PopUpChallan> chalanDataLoad(String productidtext, int assigneeid){
@@ -97,6 +97,7 @@ public class DChalan {
 		}
 		} catch (SQLException e) {
 			logger.error("SQL Exception", e);
+			Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
 		}
 		return null;
 	}
@@ -120,13 +121,20 @@ public class DChalan {
 				prepare.setInt(3, challanid);
 				prepare.addBatch();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
+				String log=null;
+				for(PopUpChallan popup: popupchallanlist)
+				{
+					log+=popup.toString();
+				}
+				logger.error("chalan data upload: "+log , e);
 			}
 		}
 		try {
 			prepare.executeBatch();
 			connection.commit();
 		} catch (SQLException e) {
+			Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
 			e.printStackTrace();
 		}
 

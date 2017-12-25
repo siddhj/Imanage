@@ -17,12 +17,6 @@ public class AssigneeNameAndProductIDLoadThread implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		try {
-			parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
-		} catch (SQLException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		UTable.setIntialloaderproductid(parentlist.get(0));
 		UTable.setIntialloaderassigneename(parentlist.get(1));
 	}

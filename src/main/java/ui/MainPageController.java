@@ -458,7 +458,7 @@ public class MainPageController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			UTable.getLoaderstage().close();
-			Notification.errorOccuredNotification();
+			Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
 			e.printStackTrace();
 		}
 
@@ -554,6 +554,7 @@ public class MainPageController {
 
 	@FXML
 	void addProductID(ActionEvent event) {
+		logger.debug("New Product Add Button Clicked");
 		String productid = productidtext.getText();
 		new ProgressDemo().start();
 		ObservableList<String> productidlist = DLoader.getSingeletonInstanceOfLoader().intialLoader().get(0);

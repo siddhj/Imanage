@@ -95,6 +95,13 @@ public class Chalan{
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "Chalan [assigneeid=" + assigneeid + ", issue=" + issue + ", receive=" + receive + ", due=" + due
+				+ ", challanid=" + challanid + ", amountpaid=" + amountpaid + ", totalreceive=" + totalreceive
+				+ ", productid=" + productid + ", comment=" + comment + ", billdate=" + billdate
+				+ ", popupchallantableview=" + popupchallantableview + "]";
+	}
 	public int getAssigneeid() {
 		return assigneeid;
 	}

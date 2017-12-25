@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import org.apache.log4j.Logger;
+
 import com.ProgressDemo;
 
 import DataConnectionThread.AssigneeNameAndProductIDLoadThread;
@@ -44,6 +47,8 @@ public class LoginScreenController implements Initializable{
 
 	@FXML
 	private PasswordField passwordtextfield;
+	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
+	
 	ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
 	@FXML
 	void loginUser(ActionEvent event) throws SQLException, IOException, InterruptedException {
