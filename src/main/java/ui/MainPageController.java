@@ -99,26 +99,10 @@ public class MainPageController {
 	private TableColumn<Chalan, String> productidcolumn = new TableColumn<>("Product Id");
 
 	@FXML
-	private TableColumn<Chalan, String> namecolumn = new TableColumn<>("Name");
-
-	@FXML
 	private TableColumn<Chalan, String> issueitemcolumn = new TableColumn<>("Qty Issued");
 
 	@FXML
 	private TableColumn<Chalan, String> receiveitemcolumn = new TableColumn<>("Total Qty Received");
-
-	// @FXML
-	// private TableColumn<Chalan, String> amountpaidcolumn = new
-	// TableColumn<>("Amount Paid");
-
-	// not required in v0.9
-	// @FXML
-	// private TableColumn<Chalan, String> totalpaidcolumn = new
-	// TableColumn<>("Total Qty Paid");
-	//
-	// @FXML
-	// private TableColumn<Chalan, String> advancedpaidcolumn = new
-	// TableColumn<>("Qty Advance Paid");
 
 	@FXML
 	private Button removebutton;
@@ -157,27 +141,11 @@ public class MainPageController {
 	public void initialize() throws SQLException, IOException {
 
 		productidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("productid"));
-		namecolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("assigneeid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalreceive"));
-		// amountpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,
-		// String>("amountpaid"));
 
-		// ** duecolumn.setCellValueFactory(new PropertyValueFactory<Chalan,
-		// String>("due"));
-
-		// not required in v0.9
-		// advancedpaidcolumn.setCellValueFactory(new
-		// PropertyValueFactory<Chalan, String>("advancepaid"));
-		// totalpaidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan,
-		// String>("totalpaid"));
-
-		// System.out.println("doen");
-		// listFromDb = new DChalan().chalanDataLoad();
-		// newchalantable.setItems(listFromDb);
 		newchalantable.setEditable(true);
-		// newchalantable.getColumns().addAll(receiveitem);
-
+		
 		receiveitemcolumn.setEditable(true);
 
 		TextFields.bindAutoCompletion(productidtext, UTable.getIntialloaderproductid());
@@ -212,7 +180,7 @@ public class MainPageController {
 				}
 			}
 		});
-		// scene.widthProperty().divide(3).subtract(2.1/3)
+		
 		/* Setting column size in the table */
 		productidcolumn.prefWidthProperty()
 				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(3).subtract(2.1 / 3));
@@ -220,23 +188,14 @@ public class MainPageController {
 				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(3).subtract(2.1 / 3));
 		receiveitemcolumn.prefWidthProperty()
 				.bind(UTable.getPrimarystage().getScene().widthProperty().divide(3).subtract(2.1 / 3));
-		// amountpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-		// totalpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-		// advancedpaidcolumn.prefWidthProperty().bind(UTable.getPrimarystage().getScene().widthProperty().divide(7).subtract(2.1/3));
-
+		
 		productidcolumn.maxWidthProperty().bind(productidcolumn.prefWidthProperty());
 		issueitemcolumn.maxWidthProperty().bind(issueitemcolumn.prefWidthProperty());
 		receiveitemcolumn.maxWidthProperty().bind(receiveitemcolumn.prefWidthProperty());
-		// amountpaidcolumn.maxWidthProperty().bind(amountpaidcolumn.prefWidthProperty());
-		// totalpaidcolumn.maxWidthProperty().bind(totalpaidcolumn.prefWidthProperty());
-		// advancedpaidcolumn.maxWidthProperty().bind(advancedpaidcolumn.prefWidthProperty());
 
 		productidcolumn.setResizable(false);
 		issueitemcolumn.setResizable(false);
 		receiveitemcolumn.setResizable(false);
-		// amountpaidcolumn.setResizable(false);
-		// totalpaidcolumn.setResizable(false);
-		// advancedpaidcolumn.setResizable(false);
 		billdate.setValue(LocalDate.now());
 		UTable.setMainpagetableview(newchalantable);
 	}
@@ -330,10 +289,6 @@ public class MainPageController {
 		UTable.setSelectedchallanfrommainpage(selectedchalan);
 		UTable.setIndexofselectedrow(indexofselectedrow);
 		UTable.setMainpagechalanlist(newchalantable.getItems());
-		// for loading receive data back
-		// UTable.setReceiveTextField(receivetext);
-		// UTable.setPaidtextfield(paidtext);
-		// UTable.setDuetext(duetext);
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
 		Parent root = loader.load();

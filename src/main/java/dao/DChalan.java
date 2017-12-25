@@ -23,10 +23,6 @@ import service.MicroService;
 import service.Notification;
 
 public class DChalan {
-	// public static void main(String args[]) throws SQLException, IOException {
-	// // new DChalan().chalanDataLoad("21D", 1).forEach(c ->
-	// // System.out.println(c.getDue()));
-	// }
 
 	private static final DChalan singletonchalan = new DChalan();
 

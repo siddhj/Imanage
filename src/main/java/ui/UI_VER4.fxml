@@ -365,7 +365,6 @@
                               <TableColumn fx:id="productidcolumn" maxWidth="300.0" minWidth="80.0" prefWidth="150.0" text="Product ID" />
                             <TableColumn fx:id="issueitemcolumn" maxWidth="300.0" minWidth="80.0" prefWidth="102.0" style="-fx-border-width: 0 2 0 2; -fx-border-color: #ffffff;" text="Qty Issued" />
                             <TableColumn fx:id="receiveitemcolumn" maxWidth="300.0" minWidth="120.0" prefWidth="140.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Total Qty Received" />
-                              <TableColumn fx:id="duecolumn" maxWidth="300.0" minWidth="148.0" prefWidth="-1.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: #ffffff;" text="Due Items" visible="false" />
                           </columns>
                            <HBox.margin>
                               <Insets />

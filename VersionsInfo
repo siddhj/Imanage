@@ -1,4 +1,4 @@
-/****************** v0.9 **************************/
+									/****************** v0.9 **************************/
 Objective : 
 1. To add Amount Paid
 2. To remove paid related quantity
@@ -24,8 +24,14 @@ in case of paidqty.
 					Integer.parseInt(receivetext.getText()),dateofbill,savechallandescription.getText());
 2. AdvancePaid textfield could act as total payment that is being done on that day
 
-/****************** v0.9.1 *************************/
+							/****************** v0.9.1 *************************/
 Objective : Add window for adding productid on the go
 
-/****************** v0.9.2 ************************/
+							/****************** v0.9.2 ************************/
 Objective : Improve the Performace
+
+							/****************** v0.9.3 ************************/
+Objective : Multithreading
+
+							/****************** v0.9.x ************************/
+Objective : Logging and on the air accesss
