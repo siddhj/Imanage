@@ -187,10 +187,6 @@ public class DChalan {
 		ResultSet resultset = stmt.executeQuery();
 
 		ObservableList<ChallanDetailBean> list = FXCollections.observableArrayList();
-		// String assigneename, String productid, Date billdate, int
-		// referchallanid, int challanid,
-		// int issueitem, int receiveitem, int paiditem
-
 		while (resultset.next()) {
 			list.add(new ChallanDetailBean(resultset.getString("a.Full_Name"), resultset.getString("l.ProductID"),
 					resultset.getDate("l.BillDate"), resultset.getLong("l.ReferChallanID"),

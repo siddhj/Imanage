@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.File;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -13,7 +14,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import com.ProgressDemo;
-import com.itextpdf.text.DocumentException;
 import service.DataManipulation;
 import service.MicroService;
 import java.sql.SQLException;
@@ -283,8 +283,7 @@ public class MainPageController {
 	void exploreSelectionPopUpWindow(ActionEvent event){
 		logger.debug("explore selection button clicked");
 		Chalan selectedchalan = newchalantable.getSelectionModel().getSelectedItem();
-		int indexofselectedrow = newchalantable.getSelectionModel().getSelectedIndex();
-
+		
 		ObservableList<Chalan> mainpagechalanlist = FXCollections.observableArrayList();
 		mainpagechalanlist.add(selectedchalan);
 		ObservableList<PopUpChallan> popupchallantablelist = null;
@@ -295,7 +294,7 @@ public class MainPageController {
 		}
 		UTable.setPopupchallantablelist(popupchallantablelist);
 		UTable.setSelectedchallanfrommainpage(selectedchalan);
-		UTable.setIndexofselectedrow(indexofselectedrow);
+//		UTable.setIndexofselectedrow(indexofselectedrow);
 		UTable.setMainpagechalanlist(newchalantable.getItems());
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("PopUpWindowForEdit.fxml"));
@@ -304,6 +303,7 @@ public class MainPageController {
 			root = loader.load();
 		} catch (IOException e) {
 			logger.error("explore selection button error",e);
+			Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root);
@@ -398,9 +398,8 @@ public class MainPageController {
 		UTable.setReceiveTextField(receivetext);
 		UTable.setPaidtextfield(advancedpaidtext);
 		UTable.setDuetext(duetext);
-		System.out.println("Stage is about to set");
 		Stage window = new Stage();
-		UTable.setPopupstage(window);
+		
 		// When we call fxml loader then the intialize method is being called
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Popup.fxml"));
 		Parent root=null;

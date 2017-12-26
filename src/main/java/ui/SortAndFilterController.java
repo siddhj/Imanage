@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import org.apache.log4j.Logger;
+
 import com.ProgressDemo;
 
 import bean.ChallanDetailBean;
@@ -81,28 +83,12 @@ public class SortAndFilterController {
 	@FXML
 	private TableColumn<SortAndFilterBean, Integer> receiveduecolumn = new TableColumn<>("Receive Due Qty");
 
-	// @FXML
-	// private TableColumn<SortAndFilterBean, Integer> paidcolumn = new
-	// TableColumn<>("Qty Paid");
-	//
-	// @FXML
-	// private TableColumn<SortAndFilterBean, Integer> paidduecolumn = new
-	// TableColumn<>("Paid Due Qty");
-
 	@FXML
 	private TableColumn<SortAndFilterBean, SimpleIntegerProperty> pastreceivecolumn = new TableColumn<>(
 			"Already Receive Qty");
 
 	@FXML
 	private TableColumn<SortAndFilterBean, SimpleIntegerProperty> amountpaidcolumn = new TableColumn<>("Amount Paid");
-
-	// @FXML
-	// private TableColumn<SortAndFilterBean, SimpleIntegerProperty>
-	// pastpaidcolumn = new TableColumn<>("Already Paid Qty");
-	// public String filtername,filterproductid,assigneename;
-	// public Date fromdate,todate,billdate;
-	// public int
-	// challanid,productid,issueitem,receiveitem,receivedueitem,paiditem,paiditemdue;
 
 	@FXML
 	private Button exploreselectchallan;
@@ -116,44 +102,18 @@ public class SortAndFilterController {
 		issuecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("issueitem"));
 		receivecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("receiveitem"));
 		receiveduecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("receivedueitem"));
-		// paidcolumn.setCellValueFactory(new
-		// PropertyValueFactory<SortAndFilterBean,Integer>("paiditem"));
-		// paidduecolumn.setCellValueFactory(new
-		// PropertyValueFactory<SortAndFilterBean, Integer>("paiditemdue"));
 		billdatecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, LocalDate>("billdate"));
 		namecolumn
 				.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleStringProperty>("assigneename"));
 		pastreceivecolumn
 				.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastreceive"));
-		// pastpaidcolumn.setCellValueFactory(new
-		// PropertyValueFactory<SortAndFilterBean,
-		// SimpleIntegerProperty>("pastpaid"));
-
 		amountpaidcolumn
 				.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("amountpaid"));
 
-		// Callback<TableColumn<SortAndFilterBean, Integer>,
-		// TableCell<SortAndFilterBean, Integer>> cellSortAndFilter = new
-		// Callback<TableColumn<SortAndFilterBean, Integer>,
-		// TableCell<SortAndFilterBean, Integer>>() {
-		// public TableCell<SortAndFilterBean, Integer>
-		// call(TableColumn<SortAndFilterBean, Integer> p) {
-		// return new HighLightCell();
-		// }
-		// };
-		//
-		// issuecolumn.setCellFactory(cellSortAndFilter);
-		// receivecolumn.setCellFactory(cellSortAndFilter);
-		// receiveduecolumn.setCellFactory(cellSortAndFilter);
-		// paidcolumn.setCellFactory(cellSortAndFilter);
-		// paidduecolumn.setCellFactory(cellSortAndFilter);
-
-		// 1. Product and 2. Name
 		UTable.getIntialloaderassigneename().add("None");
 		UTable.getIntialloaderproductid().add("None");
 		assigneenamecombobox.getItems().addAll(UTable.getIntialloaderassigneename());
 		productidcombobox.getItems().addAll(UTable.getIntialloaderproductid());
-		// UTable.getStage().close();
 	}
 
 	@FXML
@@ -193,18 +153,31 @@ public class SortAndFilterController {
 		productidcombobox.setValue(null);
 	}
 
+	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
+
 	// Explore Selection Button
 	@FXML
-	void getChallanDetail(ActionEvent event) throws SQLException, IOException {
+	void getChallanDetail(ActionEvent event) {
 		new ProgressDemo().start();
 		SortAndFilterBean selectedchallan = filterandsorttable.getSelectionModel().getSelectedItem();
 		long challanid = selectedchallan.getAggregatechallanid();
-		ObservableList<ChallanDetailBean> challandetaillist = DChalan.getSingeletonInstance()
-				.logChallanDataLoad(challanid);
+		ObservableList<ChallanDetailBean> challandetaillist = null;
+		try {
+			challandetaillist = DChalan.getSingeletonInstance().logChallanDataLoad(challanid);
+		} catch (SQLException | IOException e) {
+			logger.error("explore selection button challanid:" + challanid, e);
+			e.printStackTrace();
+		}
 		UTable.setChallandetaillist(challandetaillist);
 		UTable.getLoaderstage().close();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ChallanDetail.fxml"));
-		Parent root = loader.load();
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			logger.error("unable to load challandetail", e);
+			e.printStackTrace();
+		}
 		Scene scene = new Scene(root);
 		Stage window = new Stage();
 		window.setScene(scene);

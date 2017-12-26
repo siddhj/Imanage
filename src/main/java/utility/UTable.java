@@ -1,31 +1,22 @@
 package utility;
 
 import bean.Assignee;
+
 import bean.Chalan;
 import bean.ChallanDetailBean;
 import bean.PopUpChallan;
 import bean.SortAndFilterBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public final class UTable {
-	
+
 	public static Stage loaderstage;
 	public static Stage primarystage;
-	public static Stage popupstage;
 	public static Stage applicationloaderstage;
-	
-	public static Stage getApplicationloaderstage() {
-		return applicationloaderstage;
-	}
-
-	public static void setApplicationloaderstage(Stage applicationloaderstage) {
-		UTable.applicationloaderstage = applicationloaderstage;
-	}
 
 	private static ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
 	public static ObservableList<PopUpChallan> popupchallantablelist = FXCollections.observableArrayList();
@@ -35,7 +26,40 @@ public final class UTable {
 
 	public static ObservableList<String> intialloaderproductid = FXCollections.observableArrayList();
 	public static ObservableList<String> intialloaderassigneename = FXCollections.observableArrayList();
-	
+
+	public static TableView<PopUpChallan> popuptableview;
+	public static TableView<Chalan> mainpagetableview;
+
+	public static Chalan selectedchallanfrommainpage;
+
+	public static TextField duetext;
+	public static TextField paidtextfield;
+	public static TextField textfield;
+
+	public static String sortandfilterassigneename;
+	public static String sortandfilterproductid;
+	public static String sortandfilterfromdate;
+	public static String assigneename;
+	public static String amountpaid;
+
+	public static int sortandfiltertotalissue,sortandfiltertotalreceive,sortandfiltertotalreceivedue;
+
+	public static Stage getApplicationloaderstage() {
+		return applicationloaderstage;
+	}
+
+	public static void setApplicationloaderstage(Stage applicationloaderstage) {
+		UTable.applicationloaderstage = applicationloaderstage;
+	}
+
+	public static String getAssigneename() {
+		return assigneename;
+	}
+
+	public static void setAssigneename(String assigneename) {
+		UTable.assigneename = assigneename;
+	}
+
 	public static ObservableList<String> getIntialloaderproductid() {
 		return intialloaderproductid;
 	}
@@ -52,30 +76,6 @@ public final class UTable {
 		UTable.intialloaderassigneename = intialloaderassigneename;
 	}
 
-	public static TableView<PopUpChallan> popuptableview;
-	public static TableView<Chalan> mainpagetableview;
-
-	public static Chalan selectedchallanfrommainpage;
-
-	public static TextField duetext;
-	public static TextField paidtextfield;
-	public static TextField textfield;
-	
-	
-	public static String sortandfilterassigneename;
-	public static String sortandfilterproductid;
-	public static String sortandfilterfromdate;
-	public static String assigneename;
-	public static String amountpaid;
-	
-	public static String getAssigneename() {
-		return assigneename;
-	}
-
-	public static void setAssigneename(String assigneename) {
-		UTable.assigneename = assigneename;
-	}
-
 	public static String getAmountpaid() {
 		return amountpaid;
 	}
@@ -83,22 +83,6 @@ public final class UTable {
 	public static void setAmountpaid(String amountpaid) {
 		UTable.amountpaid = amountpaid;
 	}
-
-	public static TableColumn paidcolumnpopuptable;
-
-	public static int indexofselectedrow;
-//	public static inttotalpaid;
-//	totallissueitem,totalreceiveitem,totalreceivedueitem,totalpaiditem,totalpaiditemdue
-	public static int sortandfiltertotalissue,sortandfiltertotalpaid,sortandfiltertotalreceive,sortandfiltertotalreceivedue,sortandfilterpaiddue;
-
-	
-//	public static int getSortandfiltertotalpaid() {
-//		return sortandfiltertotalpaid;
-//	}
-//
-//	public static void setSortandfiltertotalpaid(int sortandfiltertotalpaid) {
-//		UTable.sortandfiltertotalpaid = sortandfiltertotalpaid;
-//	}
 
 	public static int getSortandfiltertotalreceive() {
 		return sortandfiltertotalreceive;
@@ -116,14 +100,6 @@ public final class UTable {
 		UTable.sortandfiltertotalreceivedue = sortandfiltertotalreceivedue;
 	}
 
-//	public static int getSortandfilterpaiddue() {
-//		return sortandfilterpaiddue;
-//	}
-//
-//	public static void setSortandfilterpaiddue(int sortandfilterpaiddue) {
-//		UTable.sortandfilterpaiddue = sortandfilterpaiddue;
-//	}
-
 	public static int getSortandfiltertotalissue() {
 		return sortandfiltertotalissue;
 	}
@@ -139,21 +115,13 @@ public final class UTable {
 	public static void setMainpagetableview(TableView<Chalan> mainpagetableview) {
 		UTable.mainpagetableview = mainpagetableview;
 	}
-	
+
 	public static Chalan getSelectedchallanfrommainpage() {
 		return selectedchallanfrommainpage;
 	}
 
 	public static void setSelectedchallanfrommainpage(Chalan selectedchallanfrommainpage) {
 		UTable.selectedchallanfrommainpage = selectedchallanfrommainpage;
-	}
-
-	public static int getIndexofselectedrow() {
-		return indexofselectedrow;
-	}
-
-	public static void setIndexofselectedrow(int indexofselectedrow) {
-		UTable.indexofselectedrow = indexofselectedrow;
 	}
 
 	public static ObservableList<Chalan> getMainpagechalanlist() {
@@ -172,15 +140,6 @@ public final class UTable {
 		UTable.primarystage = primarystage;
 	}
 
-//	public static ObservableList<PopUpChallan> getChallanlist() {
-//		return challanlist;
-//	}
-//
-//	public static void setChallanlist(ObservableList<PopUpChallan> challanlist) {
-//		UTable.challanlist = challanlist;
-//	}
-
-
 	public static ObservableList<Assignee> getAssigneelist() {
 		return assigneelist;
 	}
@@ -197,7 +156,6 @@ public final class UTable {
 		return textfield;
 	}
 
-
 	public static TextField getPaidtextfield() {
 		return paidtextfield;
 	}
@@ -205,7 +163,6 @@ public final class UTable {
 	public static void setPaidtextfield(TextField paidtextfield) {
 		UTable.paidtextfield = paidtextfield;
 	}
-
 
 	public static TextField getDuetext() {
 		return duetext;
@@ -215,22 +172,12 @@ public final class UTable {
 		UTable.duetext = duetext;
 	}
 
-
 	public static TableView<PopUpChallan> getPopuptableview() {
 		return popuptableview;
 	}
 
 	public static void setPopuptableview(TableView<PopUpChallan> popuptableview) {
 		UTable.popuptableview = popuptableview;
-	}
-
-
-	public static TableColumn getPaidcolumnpopuptable() {
-		return paidcolumnpopuptable;
-	}
-
-	public static void setPaidcolumnpopuptable(TableColumn paidcolumnpopuptable) {
-		UTable.paidcolumnpopuptable = paidcolumnpopuptable;
 	}
 
 	public static ObservableList<PopUpChallan> getPopupchallantablelist() {
@@ -241,15 +188,6 @@ public final class UTable {
 		UTable.popupchallantablelist = popupchallantablelist;
 	}
 
-	//this is not required for v0.9
-//	public static int getTotalpaid() {
-//		return totalpaid;
-//	}
-//
-//	public static void setTotalpaid(int totalpaid) {
-//		UTable.totalpaid = totalpaid;
-//	}
-	
 	public static Stage getLoaderstage() {
 		return loaderstage;
 	}
@@ -264,14 +202,6 @@ public final class UTable {
 
 	public static void setChallandetaillist(ObservableList<ChallanDetailBean> challandetaillist) {
 		UTable.challandetaillist = challandetaillist;
-	}
-	
-	public static Stage getPopupstage() {
-		return popupstage;
-	}
-
-	public static void setPopupstage(Stage popupstage) {
-		UTable.popupstage = popupstage;
 	}
 
 	public static String getSortandfilterassigneename() {
@@ -308,13 +238,12 @@ public final class UTable {
 
 	static long aggregatechallanid;
 
-
 	public static long getAggregatechallanid() {
 		return aggregatechallanid;
 	}
 
 	public static void setAggregatechallanid(long aggregatechallanid) {
-	  UTable.aggregatechallanid = aggregatechallanid;
+		UTable.aggregatechallanid = aggregatechallanid;
 	}
 
 }
