@@ -1,20 +1,31 @@
 package DataConnectionThread;
 
+import java.sql.SQLException;
+
+import dao.DLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utility.UTable;
 
-public class AssigneeNameAndProductIDLoadThread implements Runnable{
+public class AssigneeNameAndProductIDLoadThread implements Runnable {
 
-	public AssigneeNameAndProductIDLoadThread(){
-		
+	public AssigneeNameAndProductIDLoadThread() {
+
 	}
-	ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
+
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		UTable.setIntialloaderproductid(parentlist.get(0));
-		UTable.setIntialloaderassigneename(parentlist.get(1));
+		ObservableList<ObservableList<String>> parentlist;
+		try {
+			parentlist = DLoader.getSingeletonInstanceOfLoader().intialLoader();
+			UTable.setIntialloaderproductid(parentlist.get(0));
+			UTable.setIntialloaderassigneename(parentlist.get(1));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
-	
+
 }

@@ -65,6 +65,8 @@ public class LicenseAuthentication {
 			LoginVariable.setNewassigneeaccess(log.isNewassigneeaccess());
 			LoginVariable.setLogstoreaddress(log.getLogstoreaddress());
 			LoginVariable.setLicenseid(log.getLicenseid());
+			LoginVariable.setLogemailaddress(log.getLogemailaddress());
+			LoginVariable.setLogemailpassword(log.getLogemailpassword());
 		}}catch(Exception e){
 			logger.error("Some Error Occured While Setting LoginVariables",e);
 		}

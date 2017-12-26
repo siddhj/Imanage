@@ -3,7 +3,20 @@ package bean;
 import java.time.LocalDate;
 
 public class LoginVerification {
-private String jarversion,firmname,gstin,filestoreaddress,logstoreaddress;
+private String jarversion,firmname,gstin,filestoreaddress,logstoreaddress,logemailaddress,logemailpassword;
+public String getLogemailaddress() {
+	return logemailaddress;
+}
+public void setLogemailaddress(String logemailaddress) {
+	this.logemailaddress = logemailaddress;
+}
+public String getLogemailpassword() {
+	return logemailpassword;
+}
+public void setLogemailpassword(String logemailpassword) {
+	this.logemailpassword = logemailpassword;
+}
+
 private boolean newchallanaccess,sortandfilteraccess,newassigneeaccess;
 private LocalDate logdate;
 private int licenseid;
@@ -70,7 +83,7 @@ public void setNewassigneeaccess(boolean newassigneeaccess) {
 }
 public LoginVerification(String jarversion, String firmname, String gstin, String filestoreaddress,
 		boolean newchallanaccess, boolean sortandfilteraccess, boolean newassigneeaccess,String logstoreaddress
-		,LocalDate logdate, int licenseid) {
+		,LocalDate logdate, int licenseid,String logemailaddress,String logemailpassword) {
 	super();
 	this.jarversion = jarversion;
 	this.firmname = firmname;
@@ -82,13 +95,17 @@ public LoginVerification(String jarversion, String firmname, String gstin, Strin
 	this.logstoreaddress=logstoreaddress;
 	this.logdate=logdate;
 	this.licenseid=licenseid;
+	this.logemailaddress=logemailaddress;
+	this.logemailpassword=logemailpassword;
 }
-
 @Override
 public String toString() {
 	return "LoginVerification [jarversion=" + jarversion + ", firmname=" + firmname + ", gstin=" + gstin
-			+ ", filestoreaddress=" + filestoreaddress + ", newchallanaccess=" + newchallanaccess
-			+ ", sortandfilteraccess=" + sortandfilteraccess + ", newassigneeaccess=" + newassigneeaccess + "]";
+			+ ", filestoreaddress=" + filestoreaddress + ", logstoreaddress=" + logstoreaddress + ", logemailaddress="
+			+ logemailaddress + ", logemailpassword=" + logemailpassword + ", newchallanaccess=" + newchallanaccess
+			+ ", sortandfilteraccess=" + sortandfilteraccess + ", newassigneeaccess=" + newassigneeaccess + ", logdate="
+			+ logdate + ", licenseid=" + licenseid + "]";
 }
+
 
 }

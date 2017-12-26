@@ -214,10 +214,12 @@ public class MainPageController {
 		return forTableColumn();
 	}
 
+	//save button
 	@FXML
 	void saveChalan(ActionEvent event) throws SQLException, IOException {
 //		String name = assigneename.getText();
 		logger.debug("save button clicked");
+		new ProgressDemo().start();
 		if (billdate.getValue() == null) {
 			Notification.invalidDateFromUser();
 			return;
@@ -273,6 +275,7 @@ public class MainPageController {
 			Notification.invalidInput("Something is not right", "Please check your input values");
 			logger.error("save button error",E);
 		}
+		UTable.getLoaderstage().close();
 		assigneename.setDisable(true);
 		billdate.setDisable(true);
 		billdate.setValue(LocalDate.now());

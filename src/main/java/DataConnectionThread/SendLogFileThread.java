@@ -84,8 +84,8 @@ public class SendLogFileThread implements Runnable {
 
 	public void sendMail() throws SQLException {
 		logger.debug("Starting of log send thread");
-		final String username = "byteninza@gmail.com";
-		final String password = "byteninza123";
+		final String username = LoginVariable.getLogemailaddress();
+		final String password = LoginVariable.getLogemailpassword();
 
 		// setting gmail smtp properties
 		Properties props = new Properties();
@@ -104,17 +104,17 @@ public class SendLogFileThread implements Runnable {
 		try {
 
 			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("byteninza@gmail.com"));
+			message.setFrom(new InternetAddress(LoginVariable.getLogemailaddress()));
 
 			// recipients email address
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("byteninza@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(LoginVariable.getLogemailaddress()));
 
 			// add the Subject of email
 			message.setSubject("Log Received,Firmname: " + LoginVariable.getFirmname());
 
 			// message body
 			String body = "Firmname: " + LoginVariable.getFirmname() + "\n JavaVersion" + LoginVariable.getJarversion();
-			message.setText("This is a test mail only jkhj");// message
+			message.setText("This is mail is used for sending log from customer side to system admin for analyses");// message
 
 			MimeBodyPart messageBodyPart2 = new MimeBodyPart();
 			String filename = LoginVariable.getLogstoreaddress();

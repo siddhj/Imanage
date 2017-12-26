@@ -1,7 +1,19 @@
 package utility;
 
 public class LoginVariable {
-	private static String jarversion,firmname,gstin,filestoreaddress,logstoreaddress;
+	private static String jarversion,firmname,gstin,filestoreaddress,logstoreaddress,logemailaddress,logemailpassword;
+	public static String getLogemailaddress() {
+		return logemailaddress;
+	}
+	public static void setLogemailaddress(String logemailaddress) {
+		LoginVariable.logemailaddress = logemailaddress;
+	}
+	public static String getLogemailpassword() {
+		return logemailpassword;
+	}
+	public static void setLogemailpassword(String logemailpassword) {
+		LoginVariable.logemailpassword = logemailpassword;
+	}
 	private static int licenseid;
 	public static int getLicenseid() {
 		return licenseid;
