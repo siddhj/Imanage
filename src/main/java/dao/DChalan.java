@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,8 +15,6 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-import com.ListTables;
-
 import bean.Chalan;
 import bean.ChallanDetailBean;
 import bean.PopUpChallan;
@@ -25,7 +24,7 @@ import service.MicroService;
 import service.Notification;
 
 public class DChalan {
-	 final static Logger logger = Logger.getLogger(ListTables.class);	
+	final static Logger logger = Logger.getLogger(ListTables.class);
 	private static final DChalan singletonchalan = new DChalan();
 
 	private DChalan() {
@@ -43,45 +42,32 @@ public class DChalan {
 		PreparedStatement prepare = connection.prepareStatement(query);
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
-
-		try {
-			prepare.setString(1, c.getProductid());
-			prepare.setInt(2, c.getAssigneeid());
-			prepare.setInt(3, c.getIssue());
-			prepare.setInt(4, c.getReceive());
-			prepare.setInt(5, c.getDue());
-			prepare.setDate(6, java.sql.Date.valueOf(c.getBilldate()));
-			prepare.setInt(7, c.getTotalreceive());
-			prepare.setTimestamp(8, new Timestamp(date.getTime()));
-			prepare.setString(9, c.getComment());
-			prepare.setInt(10, c.getAmountpaid());
-			prepare.setLong(11, aggregatechallanid);
-			prepare.addBatch();
-		} catch (SQLException e) {
-			logger.error("chalan data insert: "+c.toString(), e);
-			Notification.errorOccuredNotification("Some Error Occured","Please Check Your Internet Connection. If error still exsist contact system admin");
-		}
-		try {
-			prepare.executeBatch();
-			connection.commit();
-		} catch (SQLException e) {
-			logger.error("chalan data insert: "+c.toString(), e);
-			Notification.errorOccuredNotification("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");	
-			}
+		prepare.setString(1, c.getProductid());
+		prepare.setInt(2, c.getAssigneeid());
+		prepare.setInt(3, c.getIssue());
+		prepare.setInt(4, c.getReceive());
+		prepare.setInt(5, c.getDue());
+		prepare.setDate(6, java.sql.Date.valueOf(c.getBilldate()));
+		prepare.setInt(7, c.getTotalreceive());
+		prepare.setTimestamp(8, new Timestamp(date.getTime()));
+		prepare.setString(9, c.getComment());
+		prepare.setInt(10, c.getAmountpaid());
+		prepare.setLong(11, aggregatechallanid);
+		prepare.addBatch();
+		prepare.executeBatch();
+		connection.commit();
 	}
 
-	public ObservableList<PopUpChallan> chalanDataLoad(String productidtext, int assigneeid){
+	public ObservableList<PopUpChallan> chalanDataLoad(String productidtext, int assigneeid) throws SQLException {
 		ListTables chalandata = new ListTables();
 		Connection connection = chalandata.returnConnection();
 		String query = "select ChallanID,ProductID,Receive,Issue,Due,AssigneeID,BillDate,AmountPaid,AggregateChallanID from challan where ProductID=?and AssigneeID=?";
-		PreparedStatement stmt=null;
-		try {
-			stmt = connection.prepareStatement(query);
+		PreparedStatement stmt = null;
+		stmt = connection.prepareStatement(query);
 		stmt.setString(1, productidtext);
 		stmt.setInt(2, assigneeid);
 
 		ResultSet resultset = stmt.executeQuery();
-
 		ObservableList<PopUpChallan> list = FXCollections.observableArrayList();
 
 		while (resultset.next()) {
@@ -92,14 +78,8 @@ public class DChalan {
 					resultset.getInt("Receive"), resultset.getInt("Due"), resultset.getInt("ChallanID"), 0,
 					resultset.getString("ProductID"), dateofbill, resultset.getInt("AmountPaid"),
 					resultset.getLong("AggregateChallanID")));
-		
+		}
 		return list;
-		}
-		} catch (SQLException e) {
-			logger.error("SQL Exception", e);
-			Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
-		}
-		return null;
 	}
 
 	public void chalanDataUpdatePopUpWindow(ObservableList<PopUpChallan> popupchallanlist)
@@ -121,20 +101,21 @@ public class DChalan {
 				prepare.setInt(3, challanid);
 				prepare.addBatch();
 			} catch (SQLException e) {
-				Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
-				String log=null;
-				for(PopUpChallan popup: popupchallanlist)
-				{
-					log+=popup.toString();
+				Notification.someExceptionOccured("Some Error Occured",
+						"Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
+				String log = null;
+				for (PopUpChallan popup : popupchallanlist) {
+					log += popup.toString();
 				}
-				logger.error("chalan data upload: "+log , e);
+				logger.error("chalan data upload: " + log, e);
 			}
 		}
 		try {
 			prepare.executeBatch();
 			connection.commit();
 		} catch (SQLException e) {
-			Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
+			Notification.someExceptionOccured("Some Error Occured",
+					"Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
 			e.printStackTrace();
 		}
 
@@ -153,18 +134,18 @@ public class DChalan {
 		return challanid;
 	}
 
-	public void chalanLogDataInsert(ObservableList<PopUpChallan> chalanlist, long referchallanid){
+	public void chalanLogDataInsert(ObservableList<PopUpChallan> chalanlist, long referchallanid) {
 		Connection connection = ListTables.returnConnection();
 		PreparedStatement prepare = null;
 		try {
 			connection.setAutoCommit(false);
 			prepare = connection.prepareStatement(
-				"insert into challanlog(BillDate,ChallanID,ReferChallanID,AssigneeID,ProductID,Issue,Receive,BillTimeStamp) "
-						+ "values(?,?,?,?,?,?,?,?)");
+					"insert into challanlog(BillDate,ChallanID,ReferChallanID,AssigneeID,ProductID,Issue,Receive,BillTimeStamp) "
+							+ "values(?,?,?,?,?,?,?,?)");
 		} catch (SQLException e1) {
-			logger.error("system error:unable to get connection",e1);
+			logger.error("system error:unable to get connection", e1);
 		}
-	
+
 		Date date = new Date();
 		Object param = new Timestamp(date.getTime());
 
@@ -181,7 +162,7 @@ public class DChalan {
 					prepare.setTimestamp(8, new Timestamp(date.getTime()));
 					prepare.addBatch();
 				} catch (SQLException e) {
-					logger.error("following are the input: "+c.toString(),e);
+					logger.error("following are the input: " + c.toString(), e);
 				}
 				try {
 					prepare.executeBatch();
@@ -224,14 +205,14 @@ public class DChalan {
 		try {
 			connection.setAutoCommit(false);
 		} catch (SQLException e1) {
-			logger.error("system error",e1);
+			logger.error("system error", e1);
 		}
 		String query = "insert into product(ProductID) values(?)";
-		PreparedStatement prepare=null;
+		PreparedStatement prepare = null;
 		try {
 			prepare = connection.prepareStatement(query);
 		} catch (SQLException e1) {
-			logger.error("insert new product id",e1);
+			logger.error("insert new product id productid: "+productid, e1);
 		}
 		try {
 			prepare.setString(1, productid);

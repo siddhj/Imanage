@@ -33,24 +33,17 @@ public class ProgressDemo //implements Runnable
 		UTable.setLoaderstage(loaderstage);
 	}
 
-//	@Override
-//	public void run() {
-//		System.out.println("inside the multithread");
-//		Stage stage = new Stage();
-//		Label label = new Label("Loading....");
-//		FlowPane root = new FlowPane();
-//		root.setPadding(new Insets(10));
-//		root.setHgap(10);
-//		root.getChildren().addAll(label);
-//		Scene scene = new Scene(root);
-//		stage.setTitle("Please Wait While Processing");
-//		stage.setScene(scene);
-//		stage.show();	
-//		UTable.setStage(stage);
-//	}
-
-//	public static void main(String[] args) {
-//		 new ProgressDemo().start();
-//	}
+	public void applicaionstart() {
+		Stage loaderstage = new Stage();
+		FlowPane root = new FlowPane();
+		 ProgressIndicator p1 = new ProgressIndicator();
+		root.getChildren().addAll(p1);
+		
+		Scene scene = new Scene(root);
+		loaderstage.setTitle("Please Wait this will take few minutes");
+		loaderstage.setScene(scene);
+		loaderstage.show();	
+		UTable.setApplicationloaderstage(loaderstage);
+	}
 
 }

@@ -382,7 +382,15 @@ public class MainPageController {
 		int assigneeid = Integer.parseInt(assigneeandgstin.get(0));
 		String gstin = assigneeandgstin.get(1);
 		String productid = productidtext.getText();
-		ObservableList<PopUpChallan> chalanlist = DChalan.getSingeletonInstance().chalanDataLoad(productid, assigneeid);
+		ObservableList<PopUpChallan> chalanlist=null;
+		try {
+			chalanlist = DChalan.getSingeletonInstance().chalanDataLoad(productid, assigneeid);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			logger.error("chalanlist: "+chalanlist.toString(),e1);
+			Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
+			e1.printStackTrace();
+		}
 		// setting chalanlist soon will be deprecated
 		UTable.setPopupchallantablelist(chalanlist);
 		UTable.getLoaderstage().close();
@@ -557,7 +565,14 @@ public class MainPageController {
 		logger.debug("New Product Add Button Clicked");
 		String productid = productidtext.getText();
 		new ProgressDemo().start();
-		ObservableList<String> productidlist = DLoader.getSingeletonInstanceOfLoader().intialLoader().get(0);
+		ObservableList<String> productidlist=null;
+		try {
+			productidlist = DLoader.getSingeletonInstanceOfLoader().intialLoader().get(0);
+		} catch (SQLException e) {
+			logger.error("intial loader: productidlist: "+productidlist.toString(),e);
+			Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
+			e.printStackTrace();
+		}
 		System.out.println("inside");
 		if (productidlist.contains(productid)) {
 			System.out.println("insideif");

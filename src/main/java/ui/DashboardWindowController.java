@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.ProgressDemo;
 
+import DataConnectionThread.SendLogFileThread;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,10 @@ public class DashboardWindowController {
 
     @FXML
     private Button newassigneebutton;
+
+	@FXML
+	public void initialize(){
+			}
     
     @FXML
     void openChallanWindow(ActionEvent event) throws IOException {

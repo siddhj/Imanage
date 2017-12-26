@@ -1,7 +1,20 @@
 package utility;
 
 public class LoginVariable {
-	private static String jarversion,firmname,gstin,filestoreaddress;
+	private static String jarversion,firmname,gstin,filestoreaddress,logstoreaddress;
+	private static int licenseid;
+	public static int getLicenseid() {
+		return licenseid;
+	}
+	public static void setLicenseid(int licenseid) {
+		LoginVariable.licenseid = licenseid;
+	}
+	public static String getLogstoreaddress() {
+		return logstoreaddress;
+	}
+	public static void setLogstoreaddress(String logstoreaddress) {
+		LoginVariable.logstoreaddress = logstoreaddress;
+	}
 	private static boolean newchallanaccess,sortandfilteraccess,newassigneeaccess;
 	
 	public static String getJarversion() {

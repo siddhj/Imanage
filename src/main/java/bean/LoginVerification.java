@@ -1,8 +1,31 @@
 package bean;
 
+import java.time.LocalDate;
+
 public class LoginVerification {
-private String jarversion,firmname,gstin,filestoreaddress;
+private String jarversion,firmname,gstin,filestoreaddress,logstoreaddress;
 private boolean newchallanaccess,sortandfilteraccess,newassigneeaccess;
+private LocalDate logdate;
+private int licenseid;
+public int getLicenseid() {
+	return licenseid;
+}
+public void setLicenseid(int licenseid) {
+	this.licenseid = licenseid;
+}
+public LocalDate getLogdate() {
+	return logdate;
+}
+public void setLogdate(LocalDate logdate) {
+	this.logdate = logdate;
+}
+public String getLogstoreaddress() {
+	return logstoreaddress;
+}
+public void setLogstoreaddress(String logstoreaddress) {
+	this.logstoreaddress = logstoreaddress;
+}
+
 public String getJarversion() {
 	return jarversion;
 }
@@ -46,7 +69,8 @@ public void setNewassigneeaccess(boolean newassigneeaccess) {
 	this.newassigneeaccess = newassigneeaccess;
 }
 public LoginVerification(String jarversion, String firmname, String gstin, String filestoreaddress,
-		boolean newchallanaccess, boolean sortandfilteraccess, boolean newassigneeaccess) {
+		boolean newchallanaccess, boolean sortandfilteraccess, boolean newassigneeaccess,String logstoreaddress
+		,LocalDate logdate, int licenseid) {
 	super();
 	this.jarversion = jarversion;
 	this.firmname = firmname;
@@ -55,7 +79,11 @@ public LoginVerification(String jarversion, String firmname, String gstin, Strin
 	this.newchallanaccess = newchallanaccess;
 	this.sortandfilteraccess = sortandfilteraccess;
 	this.newassigneeaccess = newassigneeaccess;
+	this.logstoreaddress=logstoreaddress;
+	this.logdate=logdate;
+	this.licenseid=licenseid;
 }
+
 @Override
 public String toString() {
 	return "LoginVerification [jarversion=" + jarversion + ", firmname=" + firmname + ", gstin=" + gstin

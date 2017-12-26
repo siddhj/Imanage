@@ -17,6 +17,15 @@ public final class UTable {
 	public static Stage loaderstage;
 	public static Stage primarystage;
 	public static Stage popupstage;
+	public static Stage applicationloaderstage;
+	
+	public static Stage getApplicationloaderstage() {
+		return applicationloaderstage;
+	}
+
+	public static void setApplicationloaderstage(Stage applicationloaderstage) {
+		UTable.applicationloaderstage = applicationloaderstage;
+	}
 
 	private static ObservableList<Assignee> assigneelist = FXCollections.observableArrayList();
 	public static ObservableList<PopUpChallan> popupchallantablelist = FXCollections.observableArrayList();
