@@ -7,7 +7,13 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
+import bean.LoginVerification;
 import dao.DLoader;
+import javafx.collections.ObservableList;
+import ui.MultiScreenFramework;
+import utility.LoginVariable;
 
 public class LicenseAuthentication {
 //	public static void main(String args[]) throws SQLException, IOException {
@@ -26,7 +32,12 @@ public class LicenseAuthentication {
 				sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
 			}
 			System.out.println(sb.toString());
-			return DLoader.getSingeletonInstanceOfLoader().usernamepasswordVerfication(sb.toString(),username,password);
+			ObservableList<LoginVerification> loginverificationlist = DLoader.getSingeletonInstanceOfLoader().usernamepasswordVerfication(sb.toString(),username,password);
+			if(loginverificationlist.size()>0)
+			{
+				return true;
+			}
+			return false;
 		} catch (UnknownHostException e) {
 
 			e.printStackTrace();
@@ -37,5 +48,23 @@ public class LicenseAuthentication {
 			return false;
 		}
 
+	}
+	
+	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
+	public void setLoginVariable(ObservableList<LoginVerification> loginverificationlist){
+		logger.debug("Login Variable Set");
+		try{
+		for(LoginVerification log : loginverificationlist)
+		{
+			LoginVariable.setJarversion(log.getJarversion());
+			LoginVariable.setFirmname(log.getFirmname());
+			LoginVariable.setGstin(log.getGstin());
+			LoginVariable.setFilestoreaddress(log.getFilestoreaddress());
+			LoginVariable.setNewchallanaccess(log.isNewassigneeaccess());
+			LoginVariable.setSortandfilteraccess(log.isSortandfilteraccess());
+			LoginVariable.setNewassigneeaccess(log.isNewassigneeaccess());
+		}}catch(Exception e){
+			logger.error("Some Error Occured While Setting LoginVariables",e);
+		}
 	}
 }

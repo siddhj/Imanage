@@ -2,6 +2,8 @@ package dao;
 
 import com.ListTables;
 import bean.Assignee;
+import bean.LoginVerification;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -126,7 +128,9 @@ public ObservableList<ObservableList<String>> intialLoader(){
 		return false;
 	}
 	
-	public boolean usernamepasswordVerfication(String macaddress,String username,String password) throws SQLException, IOException{
+	public ObservableList<LoginVerification> usernamepasswordVerfication(String macaddress,String username,String password) throws SQLException, IOException{
+		ObservableList<LoginVerification> loginverificationlist = FXCollections.observableArrayList();
+		
 		Connection connection = ListTables.returnConnection();
 		String query = "SELECT * FROM license where LicenseKey = ? and username=? and password =?";
 		PreparedStatement stmt = connection.prepareStatement(query);
@@ -136,10 +140,14 @@ public ObservableList<ObservableList<String>> intialLoader(){
 
 		ResultSet resultset = stmt.executeQuery();
 		resultset.beforeFirst();
+//		String jarversion, String firmname, String gstin, String filestoreaddress,
+//		boolean newchallanaccess, boolean sortandfilteraccess, boolean newassigneeaccess
 		while(resultset.next())
 		{
-			return true;
+			loginverificationlist.add(new LoginVerification(resultset.getString("JarVersion"),resultset.getString("FirmName"),
+					resultset.getString("GSTIN"),resultset.getString("FileStoreAddress"),resultset.getBoolean("NewChallanAccess"),
+					resultset.getBoolean("SortAndFilterAccess"),resultset.getBoolean("NewAssigneeAccess")));
 		}
-		return false;
+		return loginverificationlist;
 	}
 }

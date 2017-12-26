@@ -23,12 +23,14 @@ import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
 import bean.Assignee;
 import bean.Chalan;
+import bean.LoginVerification;
 import bean.PopUpChallan;
 import dao.DLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import ui.MultiScreenFramework;
+import utility.LoginVariable;
 import utility.UTable;
 
 public class MicroService {
@@ -153,7 +155,8 @@ public class MicroService {
 	public static void createPdfss(String date){
 		TableView<Chalan> newchalantable = UTable.getMainpagetableview();
 		long aggregatechallanid = UTable.getAggregatechallanid();
-		String dest = "C:\\Program Files\\IManage\\";
+	
+		String dest = LoginVariable.getFilestoreaddress();
 		dest =dest+aggregatechallanid+".pdf";
 		
 		String challanidtext="Challan ID: ",assigneenametext="To: ",amountpaidtext="Amount Paid: ",billdate="Date: ";
