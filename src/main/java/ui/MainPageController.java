@@ -216,7 +216,7 @@ public class MainPageController {
 
 	@FXML
 	void saveChalan(ActionEvent event) throws SQLException, IOException {
-		String name = assigneename.getText();
+//		String name = assigneename.getText();
 		logger.debug("save button clicked");
 		if (billdate.getValue() == null) {
 			Notification.invalidDateFromUser();
@@ -252,7 +252,7 @@ public class MainPageController {
 			ObservableList<String> assigneeandgstin = new MicroService()
 					.assigneeIDRetrieveFullName(assigneename.getText());
 			int AssigneeID = Integer.parseInt(assigneeandgstin.get(0));
-			String gstin = assigneeandgstin.get(1);
+//			String gstin = assigneeandgstin.get(1);
 
 			Chalan chalan = new Chalan(productidtext.getText(), Integer.parseInt(issuetext.getText()), 0,
 					Integer.parseInt(issuetext.getText()), AssigneeID, UTable.getPopupchallantablelist(),
@@ -380,7 +380,6 @@ public class MainPageController {
 			logger.error("receive button error");
 		}
 		int assigneeid = Integer.parseInt(assigneeandgstin.get(0));
-		String gstin = assigneeandgstin.get(1);
 		String productid = productidtext.getText();
 		ObservableList<PopUpChallan> chalanlist=null;
 		try {
@@ -568,7 +567,7 @@ public class MainPageController {
 		try {
 			productidlist = DLoader.getSingeletonInstanceOfLoader().intialLoader().get(0);
 		} catch (SQLException e) {
-			logger.error("intial loader: productidlist: "+productidlist.toString(),e);
+			logger.error("intial loader",e);
 			Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
 			e.printStackTrace();
 		}

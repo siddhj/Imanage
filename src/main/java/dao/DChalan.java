@@ -41,7 +41,7 @@ public class DChalan {
 				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement prepare = connection.prepareStatement(query);
 		Date date = new Date();
-		Object param = new Timestamp(date.getTime());
+	
 		prepare.setString(1, c.getProductid());
 		prepare.setInt(2, c.getAssigneeid());
 		prepare.setInt(3, c.getIssue());
@@ -59,8 +59,7 @@ public class DChalan {
 	}
 
 	public ObservableList<PopUpChallan> chalanDataLoad(String productidtext, int assigneeid) throws SQLException {
-		ListTables chalandata = new ListTables();
-		Connection connection = chalandata.returnConnection();
+		Connection connection = ListTables.returnConnection();
 		String query = "select ChallanID,ProductID,Receive,Issue,Due,AssigneeID,BillDate,AmountPaid,AggregateChallanID from challan where ProductID=?and AssigneeID=?";
 		PreparedStatement stmt = null;
 		stmt = connection.prepareStatement(query);
@@ -122,8 +121,7 @@ public class DChalan {
 	}
 
 	public int getLastChallanID() throws SQLException, IOException {
-		ListTables chalandata = new ListTables();
-		Connection connection = chalandata.returnConnection();
+		Connection connection = ListTables.returnConnection();
 		String query = "select ChallanID from challan order by ChallanID desc limit 1";
 		PreparedStatement stmt = connection.prepareStatement(query);
 		int challanid = 0;
@@ -147,8 +145,7 @@ public class DChalan {
 		}
 
 		Date date = new Date();
-		Object param = new Timestamp(date.getTime());
-
+	
 		for (PopUpChallan c : chalanlist) {
 			if (!(c.getCurrentreceive() == 0)) {
 				try {
@@ -177,8 +174,7 @@ public class DChalan {
 	}
 
 	public ObservableList<ChallanDetailBean> logChallanDataLoad(long challanid) throws SQLException, IOException {
-		ListTables chalandata = new ListTables();
-		Connection connection = chalandata.returnConnection();
+		Connection connection = ListTables.returnConnection();
 		String query = "Select l.ReferChallanID,l.ChallanID,l.AssigneeID,l.ProductID,l.Issue,l.Receive,l.AmountPaid,l.BillDate,l.BillTimeStamp,"
 				+ "a.Full_Name from challanlog as l join assignee as a on l.AssigneeID = a.AssigneeID where l.ReferChallanID = ?";
 		PreparedStatement stmt = connection.prepareStatement(query);

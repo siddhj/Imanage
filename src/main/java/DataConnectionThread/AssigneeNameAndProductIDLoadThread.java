@@ -1,9 +1,5 @@
 package DataConnectionThread;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
-import dao.DLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import utility.UTable;

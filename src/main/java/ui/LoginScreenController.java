@@ -11,7 +11,6 @@ import com.ProgressDemo;
 
 import DataConnectionThread.AssigneeNameAndProductIDLoadThread;
 import DataConnectionThread.SendLogFileThread;
-import dao.DLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
