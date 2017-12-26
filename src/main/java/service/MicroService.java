@@ -169,7 +169,6 @@ public class MicroService {
 	public static void createPdfss(String date) {
 		TableView<Chalan> newchalantable = UTable.getMainpagetableview();
 		long aggregatechallanid = UTable.getAggregatechallanid();
-
 		String dest = LoginVariable.getFilestoreaddress();
 		dest = dest + aggregatechallanid + ".pdf";
 
@@ -187,10 +186,12 @@ public class MicroService {
 		float bottom = 0;
 		Document document = new Document(PageSize.A5, left, right, top, bottom);
 		try {
-			PdfWriter.getInstance(document, new FileOutputStream(dest));
+			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
+			writer.setPageEvent(new WatermarkPageEvent());
 		} catch (FileNotFoundException | DocumentException e) {
 			logger.error("pdf generation", e);
 		}
+		
 
 		Chunk glue = new Chunk(new VerticalPositionMark());
 		document.open();
@@ -225,7 +226,7 @@ public class MicroService {
 		assigneename.add(dottedline);
 
 		Paragraph amountpaid = new Paragraph(amountpaidtext, new Font(FontFamily.HELVETICA, 11));
-		amountpaid.setAlignment(Element.ALIGN_CENTER);
+		amountpaid.setAlignment(Element.ALIGN_LEFT);
 
 		Paragraph spacelabel = new Paragraph("  ", new Font(FontFamily.HELVETICA, 11));
 		spacelabel.setAlignment(Element.ALIGN_CENTER);

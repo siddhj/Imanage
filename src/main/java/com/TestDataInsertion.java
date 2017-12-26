@@ -12,18 +12,18 @@ public class TestDataInsertion {
 
 	public static void main(String args[]) throws SQLException
 	{
-//		String address = "C:\\Program Files\\IManage\\log\\log4j-application.log";
-//			Connection connection = ListTables.returnConnection();
-//			connection.setAutoCommit(false);
-//			String query = "update license set LogStoreAddress=? where LicenseID=?";
-//			PreparedStatement prepare=null;
-//			prepare = connection.prepareStatement(query);
-//			prepare.setString(1,address);
+		String address = "C:\\Program Files\\IManage\\";
+			Connection connection = ListTables.returnConnection();
+			connection.setAutoCommit(false);
+			String query = "update license set FileStoreAddress=?";
+			PreparedStatement prepare=null;
+			prepare = connection.prepareStatement(query);
+			prepare.setString(1,address);
 //			prepare.setInt(2, 3);
-//			prepare.execute();
-//			connection.commit();
-		insertLocalDateTest();
-		compareDateTest();
+			prepare.execute();
+			connection.commit();
+//		insertLocalDateTest();
+//		compareDateTest();
 	}
 	public static void insertLocalDateTest() throws SQLException{
 		LocalDate localdate = LocalDate.now();
