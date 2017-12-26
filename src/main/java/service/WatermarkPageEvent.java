@@ -16,7 +16,7 @@ public class WatermarkPageEvent extends PdfPageEventHelper {
     @Override
     public void onEndPage(PdfWriter writer, Document document) {
         ColumnText.showTextAligned(writer.getDirectContentUnder(),
-                Element.ALIGN_CENTER, new Phrase("IManage Software", FONT),
+                Element.ALIGN_CENTER, new Phrase("IManage", FONT),
                 297.5f, 421, writer.getPageNumber() % 2 == 1 ? 45 : -45);
     }
 }
