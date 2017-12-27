@@ -35,6 +35,7 @@ public class LoginScreenController implements Initializable{
 //	public static final String jarversion,firmname,gstin,filestoreaddress;
 //	public static final boolean newchallanaccess,sortandfilteraccess,newassigneeaccess; 
 //	
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 

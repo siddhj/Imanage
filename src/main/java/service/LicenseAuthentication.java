@@ -51,7 +51,7 @@ public class LicenseAuthentication {
 	
 	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
 	public void setLoginVariable(ObservableList<LoginVerification> loginverificationlist){
-		logger.debug("Login Variable Set");
+		logger.info("Login Variable Set");
 		try{
 		for(LoginVerification log : loginverificationlist)
 		{
