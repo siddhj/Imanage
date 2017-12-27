@@ -50,6 +50,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import service.Notification;
 import service.Validation;
+import utility.LoginVariable;
 import utility.UTable;
 
 public class MainPageController {
@@ -455,7 +456,8 @@ public class MainPageController {
 
 	@FXML
 	void tabProductIDButton(ActionEvent event) {
-		logger.debug("filter button clicked");
+		logger.info("filter button clicked");
+		if(LoginVariable.isSortandfilteraccess()){
 		new ProgressDemo().start();
 		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("SortAndFilter.fxml"));
 		try {
@@ -469,6 +471,8 @@ public class MainPageController {
 			UTable.getLoaderstage().close();
 			Notification.someExceptionOccured("Some Error Occured","Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
 			e.printStackTrace();
+		}}else{
+    		Notification.errorOccuredNotification("Access Expired","You do not have right to access to sort and filter window. Contact System Admin");
 		}
 
 	}
@@ -476,40 +480,6 @@ public class MainPageController {
 	@FXML
 	private Button exportexcelbutton;
 
-	public void saveExcelFile(File file) throws IOException {
-		Workbook workbook = new HSSFWorkbook();
-		Sheet spreadsheet = workbook.createSheet("sample");
-
-		Row row = spreadsheet.createRow(0);
-
-		row.createCell(0).setCellValue("Name:");
-		row.createCell(1).setCellValue(assigneenamelabel.getText());
-
-		row.createCell(3).setCellValue("Bill Date:");
-		row.createCell(4).setCellValue(new java.sql.Date(new Date().getTime()));
-
-		row = spreadsheet.createRow(2);
-
-		for (int j = 0; j < newchalantable.getColumns().size(); j++) {
-			row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getText());
-		}
-
-		for (int i = 3; i < newchalantable.getItems().size() + 3; i++) {
-			row = spreadsheet.createRow(i + 1);
-			for (int j = 0; j < newchalantable.getColumns().size(); j++) {
-				if (newchalantable.getColumns().get(j).getCellData(i) != null) {
-					row.createCell(j).setCellValue(newchalantable.getColumns().get(j).getCellData(i).toString());
-				} else {
-					row.createCell(j).setCellValue("");
-				}
-			}
-		}
-
-		FileOutputStream fileOut = new FileOutputStream(file);
-		workbook.write(fileOut);
-		fileOut.close();
-
-	}
 
 	@FXML
 	void clearMainPageDataButton(ActionEvent event) {
@@ -547,7 +517,8 @@ public class MainPageController {
 
 	@FXML
 	void openNewAssigneeWindow(ActionEvent event) {
-		logger.debug("open assignee window clicked");
+		logger.info("open assignee window clicked");
+		if(LoginVariable.isNewassigneeaccess()){
 		new ProgressDemo().start();
 		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("AssigneeWindow.fxml"));
 		try {
@@ -558,6 +529,8 @@ public class MainPageController {
 			UTable.getLoaderstage().close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}}else{
+    		Notification.errorOccuredNotification("Access Expired","You do not have right to access to create new assignee. Contact System Admin");
 		}
 	}
 

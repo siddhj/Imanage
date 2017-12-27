@@ -219,8 +219,8 @@ public class Notification {
 	
 	public static void errorOccuredNotification(String title,String message){
 		Notifications note = Notifications.create()
-				.title("Some Error Occured")
-				.text("Please Check Your Internet Connection. If error still exsist contact system admin")
+				.title(title)
+				.text(message)
 				.graphic(null)
 				.hideAfter(Duration.seconds(5))
 				.position(Pos.BOTTOM_RIGHT)

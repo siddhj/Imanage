@@ -89,7 +89,7 @@ public class LoginScreenController implements Initializable{
 			}
 		} else {
 
-			UTable.getLoaderstage().close();
+//			UTable.getLoaderstage().close();
 			Notification.authenticationValidation("License ID or username/password is invalid", "Please make sure you enter correct username/password. If still unable to login contact system admin. Your license may be invalid");
 		}
 	}

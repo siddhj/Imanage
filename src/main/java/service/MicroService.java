@@ -76,15 +76,6 @@ public class MicroService {
 		return totalreceive;
 	}
 
-	// public int getTotalPaidFromPopUp(ObservableList<PopUpChallan>
-	// challanlist) {
-	// int totalpaid = 0;
-	// for (PopUpChallan c : challanlist) {
-	// totalpaid += c.getCurrentpaid();
-	// }
-	// return totalpaid;
-	// }
-
 	public int getTotalDueFromPopUp(ObservableList<PopUpChallan> chalanlist) {
 		int totaldue = 0;
 		for (PopUpChallan c : chalanlist) {
@@ -103,56 +94,6 @@ public class MicroService {
 
 	public static int sumDueFromPopUp(int issue, int totalreceive) {
 		return issue - totalreceive;
-	}
-
-	public static ObservableList<PopUpChallan> updatePopUpTableView(ObservableList<PopUpChallan> popuptable,
-			int newreceive, int challanid) {
-		ObservableList<PopUpChallan> newchalan = FXCollections.observableArrayList();
-		for (PopUpChallan c : popuptable) {
-			if (c.getChallanid() == challanid) {
-				// int issue = c.getIssue();
-				// int olddue = c.getDue();
-				// int due = issue - newreceive;
-				// if (newreceive > issue) {
-				// Notification.popupWindowInvalidReceiveValueGreaterThenIssue();
-				// due = c.getDue();
-				// newreceive = c.getReceive();
-				// } else if (due < 0) {
-				// Notification.popupWindowInvalidValueLessThenZero();
-				// due = c.getDue();
-				// newreceive = c.getReceive();
-				// }
-				// c.setDue(due);
-				// c.setReceive(newreceive);
-				// newchalan.add(c);
-			} else {
-				// newchalan.add(c);
-			}
-		}
-		return newchalan;
-	}
-
-	public static ObservableList<PopUpChallan> paidUpdatePopUpTableView(ObservableList<PopUpChallan> popuptable,
-			int newpaid, int challanid) {
-		ObservableList<PopUpChallan> newchalan = FXCollections.observableArrayList();
-		for (PopUpChallan c : popuptable) {
-			if (c.getChallanid() == challanid) {
-				// int oldpaid = c.getPaid();
-				// if(newpaid>c.getReceive())
-				// {
-				// newpaid = oldpaid;
-				// Notification.popupWindowInvalidPaidValueGreaterThenReceive();
-				// }
-				// c.setPaid(newpaid);
-				// newchalan.add(c);
-			} else {
-				// newchalan.add(c);
-				// System.out.println(
-				// "else" + c.getChallanid() + ":" + c.getIssue() + ":" +
-				// c.getReceive() + ":" + c.getDue());
-			}
-		}
-		return newchalan;
 	}
 
 	public static void truncateLogFile() {
@@ -253,9 +194,7 @@ public class MicroService {
 		}
 		PdfPTable table = new PdfPTable(3);
 
-		// for(int aw = 0; aw < 16; aw++){
-		// table.addCell("hi");
-		// }
+
 		table.addCell("Product ID");
 		table.addCell("Quantity Issued");
 		table.addCell("Quantity Received");

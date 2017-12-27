@@ -50,17 +50,18 @@ public class LicenseAuthentication {
 	}
 	
 	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
+	
 	public void setLoginVariable(ObservableList<LoginVerification> loginverificationlist){
-		logger.info("Login Variable Set");
+		
 		try{
 		for(LoginVerification log : loginverificationlist)
 		{
-			System.out.println(log.getLogstoreaddress());
+			System.out.println(log.isNewchallanaccess());
 			LoginVariable.setJarversion(log.getJarversion());
 			LoginVariable.setFirmname(log.getFirmname());
 			LoginVariable.setGstin(log.getGstin());
 			LoginVariable.setFilestoreaddress(log.getFilestoreaddress());
-			LoginVariable.setNewchallanaccess(log.isNewassigneeaccess());
+			LoginVariable.setNewchallanaccess(log.isNewchallanaccess());
 			LoginVariable.setSortandfilteraccess(log.isSortandfilteraccess());
 			LoginVariable.setNewassigneeaccess(log.isNewassigneeaccess());
 			LoginVariable.setLogstoreaddress(log.getLogstoreaddress());

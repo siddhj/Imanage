@@ -31,7 +31,9 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import service.Notification;
 import service.Validation;
+import utility.LoginVariable;
 import utility.UTable;
 
 public class SortAndFilterController {
@@ -196,7 +198,8 @@ public class SortAndFilterController {
 
 	@FXML
 	void tabChallanButton(ActionEvent event) {
-		System.out.println("inside product id select button");
+		logger.info("To open new challan window");
+		if(LoginVariable.isNewchallanaccess()){
 		new ProgressDemo().start();
 		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
 		try {
@@ -207,6 +210,9 @@ public class SortAndFilterController {
 			UTable.getLoaderstage().close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}}
+		else{
+    		Notification.errorOccuredNotification("Access Expired","You do not have right to access to create new challan. Contact System Admin");
 		}
 	}
 

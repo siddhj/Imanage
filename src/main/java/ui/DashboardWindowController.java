@@ -31,7 +31,8 @@ public class DashboardWindowController {
     
     @FXML
     void openChallanWindow(ActionEvent event) throws IOException {
-    		if(LoginVariable.isNewchallanaccess()){
+    	System.out.println("New Challan Entry"+LoginVariable.isNewchallanaccess());
+    	if(LoginVariable.isNewchallanaccess()){
     		new ProgressDemo().start();
     		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
 			Parent loadScreen = (Parent) myLoader.load();
