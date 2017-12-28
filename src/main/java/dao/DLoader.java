@@ -135,7 +135,8 @@ public class DLoader {
 							resultset.getBoolean("NewChallanAccess"), resultset.getBoolean("SortAndFilterAccess"),
 							resultset.getBoolean("NewAssigneeAddAccess"), resultset.getString("LogStoreAddress"),
 							resultset.getDate("LastLogDate").toLocalDate(), resultset.getInt("LicenseID"),
-							resultset.getString("LogEmailAddress"),resultset.getString("LogEmailPassword")));
+							resultset.getString("LogEmailAddress"),resultset.getString("LogEmailPassword"),
+							resultset.getString("LicenseKey")));
 		}
 		return loginverificationlist;
 	}

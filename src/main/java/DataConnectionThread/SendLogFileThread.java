@@ -110,7 +110,7 @@ public class SendLogFileThread implements Runnable {
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(LoginVariable.getLogemailaddress()));
 
 			// add the Subject of email
-			message.setSubject("Log Received,Firmname: " + LoginVariable.getFirmname());
+			message.setSubject("Log Received,Firmname: " + LoginVariable.getFirmname()+", LicenseID: "+LoginVariable.getLicenseid());
 
 			// message body
 			String body = "Firmname: " + LoginVariable.getFirmname() + "\n JavaVersion" + LoginVariable.getJarversion();

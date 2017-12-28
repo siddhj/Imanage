@@ -2,6 +2,8 @@ package utility;
 
 public class LoginVariable {
 	private static String jarversion,firmname,gstin,filestoreaddress,logstoreaddress,logemailaddress,logemailpassword;
+	private static boolean newchallanaccess,sortandfilteraccess,newassigneeaccess;
+
 	public static String getLogemailaddress() {
 		return logemailaddress;
 	}
@@ -27,7 +29,6 @@ public class LoginVariable {
 	public static void setLogstoreaddress(String logstoreaddress) {
 		LoginVariable.logstoreaddress = logstoreaddress;
 	}
-	private static boolean newchallanaccess,sortandfilteraccess,newassigneeaccess;
 	
 	public static String getJarversion() {
 		return jarversion;

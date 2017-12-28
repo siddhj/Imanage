@@ -3,6 +3,7 @@ package dao;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
@@ -26,35 +27,22 @@ public class DNewEntityInsert {
 	public static void setGetSingeltonInstance(DNewEntityInsert getSingeltonInstance) {
 		DNewEntityInsert.getSingeltonInstance = getSingeltonInstance;
 	}
-
-	public void chalanDataInsert(ObservableList<Assignee> assigneelist) throws SQLException, IOException {
+	
+	public boolean isAssigneeDeatilAlreadyPresent(String gstin,String mobileno) throws SQLException{
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
-		Statement statement = connection.createStatement();
-		PreparedStatement prepare = connection
-				.prepareStatement("insert into assignee(First_Name,Last_Name,Phone_Number,Aadhar_Number,Description) "
-						+ "values(?,?,?,?,?)");
 		Date date = new Date();
-
-		for (Assignee a : assigneelist) {
-			try {
-				prepare.setString(1, a.getFirstname());
-				prepare.setString(2, a.getLastname());
-				prepare.setInt(3, a.getPhonenumber());
-				prepare.setInt(4, a.getAadharnumber());
-				prepare.setString(5, a.getDescription());
-				prepare.addBatch();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			try {
-				prepare.executeBatch();
-				connection.commit();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
+		date.getTime();
+		PreparedStatement prepare = connection
+				.prepareStatement("select * from assignee where GSTIN=? OR PhoneNo=?");
+		prepare.setString(1, gstin);
+		prepare.setString(2, mobileno);
+		ResultSet result = prepare.executeQuery();
+		while(result.next())
+		{
+			return false;
 		}
+		return true;
 	}
 	
 	public void assigneeDataInsert(String assigneename,String mobileno,String gstin,String aadharno) throws SQLException, IOException {

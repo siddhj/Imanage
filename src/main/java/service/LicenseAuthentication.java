@@ -24,12 +24,14 @@ public class LicenseAuthentication {
 		InetAddress ip;
 		try {
 			ip = InetAddress.getLocalHost();
+			logger.info("IP Address: "+ip);
 			NetworkInterface network = NetworkInterface.getByInetAddress(ip);
 			byte[] mac = network.getHardwareAddress();
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < mac.length; i++) {
 				sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
 			}
+			logger.info("mac address: "+sb.toString());
 			ObservableList<LoginVerification> loginverificationlist = DLoader.getSingeletonInstanceOfLoader().usernamepasswordVerfication(sb.toString(),username,password);
 			if(loginverificationlist.size()>0)
 			{
@@ -68,6 +70,7 @@ public class LicenseAuthentication {
 			LoginVariable.setLicenseid(log.getLicenseid());
 			LoginVariable.setLogemailaddress(log.getLogemailaddress());
 			LoginVariable.setLogemailpassword(log.getLogemailpassword());
+
 		}}catch(Exception e){
 			logger.error("Some Error Occured While Setting LoginVariables",e);
 		}

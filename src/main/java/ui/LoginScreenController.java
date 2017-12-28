@@ -83,6 +83,7 @@ public class LoginScreenController implements Initializable{
 				nameproductthread.join();
 				UTable.getApplicationloaderstage().close();
 			} catch (IOException e) {
+				UTable.getLoaderstage().close();
 				logger.error("Error in license authentication", e);
 				e.printStackTrace();
 				UTable.getApplicationloaderstage().close();

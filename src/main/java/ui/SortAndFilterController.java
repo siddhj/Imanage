@@ -39,31 +39,22 @@ import utility.UTable;
 public class SortAndFilterController {
 	@FXML
 	private Button filterdata = new Button();
-
 	@FXML
 	private Button clearbutton;
-
 	@FXML
 	private Button tabchallanbutton;
-
 	@FXML
 	private Button Imanagebutton;
-
 	@FXML
 	private ComboBox<String> assigneenamecombobox = new ComboBox<>();
-
 	@FXML
 	private ComboBox<String> productidcombobox = new ComboBox<>();
-
 	@FXML
 	private DatePicker datefrom = new DatePicker();
-
 	@FXML
 	private DatePicker dateto = new DatePicker();
-
 	@FXML
 	private TableView<SortAndFilterBean> filterandsorttable = new TableView<>();
-
 	@FXML
 	private TableColumn<SortAndFilterBean, SimpleIntegerProperty> challanidcolumn = new TableColumn<>("Challan ID");
 
@@ -199,20 +190,21 @@ public class SortAndFilterController {
 	@FXML
 	void tabChallanButton(ActionEvent event) {
 		logger.info("To open new challan window");
-		if(LoginVariable.isNewchallanaccess()){
-		new ProgressDemo().start();
-		FXMLLoader myLoader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
-		try {
-			Parent loadScreen = (Parent) myLoader.load();
-			Stage primarystage = UTable.getPrimarystage();
-			Scene scene = new Scene(loadScreen);
-			primarystage.setScene(scene);
-			UTable.getLoaderstage().close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}}
-		else{
-    		Notification.errorOccuredNotification("Access Expired","You do not have right to access to create new challan. Contact System Admin");
+		if (LoginVariable.isNewchallanaccess()) {
+			new ProgressDemo().start();
+			FXMLLoader myLoader = new FXMLLoader(getClass().getResource("UI_VER4.fxml"));
+			try {
+				Parent loadScreen = (Parent) myLoader.load();
+				Stage primarystage = UTable.getPrimarystage();
+				Scene scene = new Scene(loadScreen);
+				primarystage.setScene(scene);
+				UTable.getLoaderstage().close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			Notification.errorOccuredNotification("Access Expired",
+					"You do not have right to access to create new challan. Contact System Admin");
 		}
 	}
 

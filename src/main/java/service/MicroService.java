@@ -1,7 +1,6 @@
 package service;
 
 import java.io.File;
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -133,7 +132,6 @@ public class MicroService {
 			logger.error("pdf generation", e);
 		}
 		
-
 		Chunk glue = new Chunk(new VerticalPositionMark());
 		document.open();
 		document.setMargins(left, right, 0, bottom);
