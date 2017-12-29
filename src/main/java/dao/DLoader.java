@@ -115,7 +115,7 @@ public class DLoader {
 
 	public ObservableList<LoginVerification> usernamepasswordVerfication(String macaddress, String username,
 			String password) throws SQLException {
-		final String activejarversion="v0.9.5";
+		final String activejarversion="v0.9.7";
 		ObservableList<LoginVerification> loginverificationlist = FXCollections.observableArrayList();
 		Connection connection = ListTables.returnConnection();
 		String query = "SELECT * FROM license where LicenseKey = ? and username=? and password =? and ActiveJarVersion=?";

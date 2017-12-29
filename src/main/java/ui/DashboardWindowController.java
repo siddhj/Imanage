@@ -2,7 +2,7 @@ package ui;
 
 import java.io.IOException;
 
-import com.ProgressDemo;
+import utility.ProgressDemo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

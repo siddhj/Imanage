@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
 
-import com.ProgressDemo;
+import utility.ProgressDemo;
 
 import DataConnectionThread.AssigneeNameAndProductIDLoadThread;
 import DataConnectionThread.SendLogFileThread;
@@ -52,12 +52,19 @@ public class LoginScreenController implements Initializable{
 
 	@FXML
 	private PasswordField passwordtextfield;
-	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
+	//final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
 	
 	ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
+	
+	@FXML
+	public void intialize(){
+	System.out.println("intialize loaded");
+	
+	}
+	
 	@FXML
 	void loginUser(ActionEvent event) throws SQLException, IOException, InterruptedException {
-		// mainscreen.setScreen(MultiScreenFramework.mainpage);
+		
 		new ProgressDemo().applicaionstart();
 
 		Runnable nameproductrunnable = new AssigneeNameAndProductIDLoadThread();
@@ -83,8 +90,8 @@ public class LoginScreenController implements Initializable{
 				nameproductthread.join();
 				UTable.getApplicationloaderstage().close();
 			} catch (IOException e) {
-				UTable.getLoaderstage().close();
-				logger.error("Error in license authentication", e);
+				UTable.getApplicationloaderstage().close();
+		//		logger.error("Error in license authentication", e);
 				e.printStackTrace();
 				UTable.getApplicationloaderstage().close();
 			}

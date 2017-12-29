@@ -1,24 +1,15 @@
 package ui;
 
-import java.io.File;
-
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.controlsfx.control.textfield.*;
 import org.apache.log4j.Logger;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-
-import com.ProgressDemo;
+import utility.ProgressDemo;
 import service.DataManipulation;
 import service.MicroService;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
 
 import bean.Chalan;
 import bean.PopUpChallan;
@@ -439,7 +430,7 @@ public class MainPageController {
 		chalanlist.removeAll(chalanlist);
 		UTable.getLoaderstage().close();
 		Notification.dataSuccessfullySaved("Operation Successful",
-				"Data Successfully Stored. Check PDF at C:\\Program Files\\IManage");
+				"Data Successfully Stored. Check PDF at "+LoginVariable.getFilestoreaddress());
 		assigneename.setText("");
 		productidtext.setText("");
 		issuetext.setText("");

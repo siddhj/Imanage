@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.ProgressDemo;
+import utility.ProgressDemo;
 
 import dao.DNewEntityInsert;
 import javafx.collections.ObservableList;

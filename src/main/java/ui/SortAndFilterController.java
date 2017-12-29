@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import org.apache.log4j.Logger;
 
-import com.ProgressDemo;
+import utility.ProgressDemo;
 
 import bean.ChallanDetailBean;
 import bean.SortAndFilterBean;
@@ -39,20 +39,28 @@ import utility.UTable;
 public class SortAndFilterController {
 	@FXML
 	private Button filterdata = new Button();
+	
 	@FXML
 	private Button clearbutton;
+	
 	@FXML
 	private Button tabchallanbutton;
+	
 	@FXML
 	private Button Imanagebutton;
+	
 	@FXML
 	private ComboBox<String> assigneenamecombobox = new ComboBox<>();
+	
 	@FXML
 	private ComboBox<String> productidcombobox = new ComboBox<>();
+	
 	@FXML
 	private DatePicker datefrom = new DatePicker();
+	
 	@FXML
 	private DatePicker dateto = new DatePicker();
+	
 	@FXML
 	private TableView<SortAndFilterBean> filterandsorttable = new TableView<>();
 	@FXML
@@ -221,6 +229,10 @@ public class SortAndFilterController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	void generatePdfForSummary(ActionEvent event) {
+
 	}
 
 }
