@@ -15,23 +15,27 @@ public class CreateFileAndFolder {
 	public static void main(String args[]) throws IOException {
 		checkAndCreateNewLogFile();
 	}
-
+	public static String challanpdfpath="\\IManage\\ChallanPdf\\";
 	public static void checkAndCreateNewLogFile() throws IOException {
 		// find the drives. //priority D,E,F and so on.
 		ArrayList<String> drivenames = getDriveNames();
 		Collections.sort(drivenames);
 		String uri = "IManage\\Logs\\";
 		outerloop: for (String name : drivenames) {
-			// loop through name and find if present //check for each standard
-			// path
-			// exsist.
 			if (isPathValid(createPathURI(name, uri,"info.log"))) {
 				System.out.println("Folder is already present");
 				setLogfilepath(name+uri+"info.log");
-				System.out.println(name+uri+"info.log");
+				
+				createNewPdfFolder(name);
+				setPdffilepath(name+challanpdfpath);
+				
 				break outerloop;
 			} else {
 				createNewFileInFolder(name, "info.log", uri);
+				
+				createNewPdfFolder(name);
+				setPdffilepath(name+challanpdfpath);
+				
 				break outerloop;
 			}
 		}
@@ -81,15 +85,6 @@ public class CreateFileAndFolder {
 		}
 		return false;
 	}
-	private static String logfilepath;
-	public static String getLogfilepath() {
-		return logfilepath;
-	}
-
-	public static void setLogfilepath(String logfilepath) {
-		CreateFileAndFolder.logfilepath = logfilepath;
-	}
-
 	public static void createNewFileInFolder(String drivename, String filename, String uri) throws IOException {
 		System.out.println(drivename + uri);
 		if (new File(drivename + uri).mkdirs()) {
@@ -101,15 +96,33 @@ public class CreateFileAndFolder {
 		}
 	}
 
-	// new address for pdf file
-	public static void createNewFolderForPDF(String drivename) {
-		if (new File(drivename + "IManage\\Challanpdf\\").mkdirs()) {
-			System.out.println("new folder created");
+	public static void createNewPdfFolder(String drivename)
+	{
+		if(new File(drivename+challanpdfpath).mkdirs())
+		{
+			System.out.println("pdf path created");
 		}
+		
+	}
+	
+	private static String logfilepath,pdffilepath;
+	
+	public static String getPdffilepath() {
+		return pdffilepath;
 	}
 
-	public static void createNewPath() {
-
+	public static void setPdffilepath(String pdffilepath) {
+		CreateFileAndFolder.pdffilepath = pdffilepath;
 	}
+
+	public static String getLogfilepath() {
+		return logfilepath;
+	}
+
+	public static void setLogfilepath(String logfilepath) {
+		CreateFileAndFolder.logfilepath = logfilepath;
+	}
+
+
 
 }

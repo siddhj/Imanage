@@ -5,11 +5,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.RollingFileAppender;
-import org.apache.log4j.SimpleLayout;
 
 import com.CreateFileAndFolder;
 
@@ -48,11 +46,12 @@ public class LoginScreenController implements Initializable {
 	 static Logger logger;
 	@FXML
 	private PasswordField passwordtextfield;
-	private static String logfilepath;
+	private static String logfilepath,challanpdfpath;
 	static {
 		try {
 			CreateFileAndFolder.checkAndCreateNewLogFile();
 			logfilepath = CreateFileAndFolder.getLogfilepath();
+			challanpdfpath = CreateFileAndFolder.getPdffilepath();
 			PatternLayout layout = new PatternLayout();
 			layout.setConversionPattern("%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n");
 			logger = Logger.getLogger(LoginScreenController.class);
@@ -62,16 +61,15 @@ public class LoginScreenController implements Initializable {
 			logger.addAppender(appender);
 			} catch (Exception e) {
 			logger.error("logfilepath: "+logfilepath, e);
-			//e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		System.out.println("intialize loaded");
-		logger.info("testing :"+logfilepath);
-
+		logger.info("Application is intialized. Log File Path are set.");
+		logger.info("path of log file: "+logfilepath);
 		LoginVariable.setLogstoreaddress(logfilepath);
+		LoginVariable.setFilestoreaddress(challanpdfpath);
 	}
 
 	ObservableList<ObservableList<String>> parentlist = FXCollections.observableArrayList();
@@ -79,23 +77,23 @@ public class LoginScreenController implements Initializable {
 	@FXML
 	void loginUser(ActionEvent event) throws SQLException, IOException, InterruptedException {
 		new ProgressDemo().applicaionstart();
-
+		logger.info("Login Button is clicked");
+	
 		Runnable nameproductrunnable = new AssigneeNameAndProductIDLoadThread();
 		Thread nameproductthread = new Thread(nameproductrunnable);
 		nameproductthread.start();
 
 		LicenseAuthentication auth = new LicenseAuthentication();
 		boolean licensevalid = auth.macAddressAuthentication(usernametextfield.getText(), passwordtextfield.getText());
-		
-		System.out.println(LoginVariable.getLicenseid());
 		if (licensevalid == true) {
+			Runnable filepathsetrunnable = new FilePathSetThread(logfilepath,challanpdfpath,LoginVariable.getLicenseid());
+			Thread filepathsetthread = new Thread(filepathsetrunnable);
+			filepathsetthread.start();
+			logger.info("Log File Address Updated in Database");
+
 			Runnable sendlogrunnable = new SendLogFileThread(LoginVariable.getLicenseid());
 			Thread sendlogfilethread = new Thread(sendlogrunnable);
 			sendlogfilethread.run();
-			
-			Runnable filepathsetrunnable = new FilePathSetThread(logfilepath,LoginVariable.getLicenseid());
-			Thread filepathsetthread = new Thread(filepathsetrunnable);
-			filepathsetthread.start();
 		}
 		if (licensevalid == true) {
 			logger.info("Login Credential are valid. Ready To Go!!!!");

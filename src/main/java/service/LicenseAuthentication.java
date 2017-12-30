@@ -13,13 +13,15 @@ import bean.LoginVerification;
 import dao.DLoader;
 import javafx.collections.ObservableList;
 import ui.MultiScreenFramework;
+import utility.Logging;
 import utility.LoginVariable;
 
 public class LicenseAuthentication {
-//	public static void main(String args[]) throws SQLException, IOException {
-//		new LicenseAuthentication().macAddressAuthentication();
-//	}
 
+	public LicenseAuthentication(){
+		logger.addAppender(Logging.getAppender());
+	}
+		
 	public boolean macAddressAuthentication(String username,String password) throws SQLException, IOException {
 		InetAddress ip;
 		try {
@@ -44,7 +46,7 @@ public class LicenseAuthentication {
 			e.printStackTrace();
 			return false;
 		} catch (SocketException e) {
-
+			logger.error("Socket Issue",e);
 			e.printStackTrace();
 			return false;
 		}
@@ -62,7 +64,7 @@ public class LicenseAuthentication {
 			LoginVariable.setJarversion(log.getJarversion());
 			LoginVariable.setFirmname(log.getFirmname());
 			LoginVariable.setGstin(log.getGstin());
-			LoginVariable.setFilestoreaddress(log.getFilestoreaddress());
+//			LoginVariable.setFilestoreaddress(log.getFilestoreaddress());
 			LoginVariable.setNewchallanaccess(log.isNewchallanaccess());
 			LoginVariable.setSortandfilteraccess(log.isSortandfilteraccess());
 			LoginVariable.setNewassigneeaccess(log.isNewassigneeaccess());

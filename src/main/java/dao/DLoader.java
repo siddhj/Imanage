@@ -144,15 +144,15 @@ public class DLoader {
 		return loginverificationlist;
 	}
 	
-	public void setFilePath(String logfilepath,int licenseid) throws SQLException{
+	public void setFilePath(String logfilepath,String challanpdfpath,int licenseid) throws SQLException{
 		Connection connection = ListTables.returnConnection();
 		connection.setAutoCommit(false);
-		String query = "update license set LogStoreAddress=? where LicenseID=?";
+		String query = "update license set LogStoreAddress=?,FileStoreAddress=? where LicenseID=?";
 		PreparedStatement prepare = connection.prepareStatement(query);
 				try {
 				prepare.setString(1, logfilepath);
-//				prepare.setString(2, pdffilepath);
-				prepare.setInt(2, licenseid);
+				prepare.setString(2, challanpdfpath);
+				prepare.setInt(3, licenseid);
 				prepare.addBatch();
 				prepare.executeBatch();
 				connection.commit();

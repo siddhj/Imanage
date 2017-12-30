@@ -15,8 +15,6 @@ import utility.UTable;
 
 public class MultiScreenFramework extends Application {
    
-	//final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
-	
 	@Override
     public void start(Stage primaryStage) throws IOException {
 		//logger.info("Application Started");
