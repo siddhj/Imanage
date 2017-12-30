@@ -88,6 +88,7 @@ public class DChalan {
 		String query = "update challan set Receive=?,Due=? where ChallanID=?";
 		PreparedStatement prepare = connection.prepareStatement(query);
 		for (PopUpChallan p : popupchallanlist) {
+			logger.info("Challan Data Update info: "+p.toString());
 			int totalreceive = MicroService.sumReceiveFromPopUp(p.getPastreceive(), p.getCurrentreceive());
 			// int totalpaid = MicroService.sumPaidFromPopUp(p.getPastpaid(),
 			// p.getCurrentpaid());
@@ -147,6 +148,7 @@ public class DChalan {
 		Date date = new Date();
 	
 		for (PopUpChallan c : chalanlist) {
+			logger.info("Challan Entry For Receiving: "+c.toString());
 			if (!(c.getCurrentreceive() == 0)) {
 				try {
 					prepare.setDate(1, java.sql.Date.valueOf(c.getBilldate()));

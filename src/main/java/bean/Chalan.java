@@ -94,7 +94,6 @@ public class Chalan{
 		
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Chalan [assigneeid=" + assigneeid + ", issue=" + issue + ", receive=" + receive + ", due=" + due

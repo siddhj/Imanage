@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import javax.swing.filechooser.FileSystemView;
 
 public class CreateFileAndFolder {
@@ -122,7 +121,4 @@ public class CreateFileAndFolder {
 	public static void setLogfilepath(String logfilepath) {
 		CreateFileAndFolder.logfilepath = logfilepath;
 	}
-
-
-
 }
