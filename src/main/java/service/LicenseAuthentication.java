@@ -66,7 +66,7 @@ public class LicenseAuthentication {
 			LoginVariable.setNewchallanaccess(log.isNewchallanaccess());
 			LoginVariable.setSortandfilteraccess(log.isSortandfilteraccess());
 			LoginVariable.setNewassigneeaccess(log.isNewassigneeaccess());
-			LoginVariable.setLogstoreaddress(log.getLogstoreaddress());
+//			LoginVariable.setLogstoreaddress(log.getLogstoreaddress());
 			LoginVariable.setLicenseid(log.getLicenseid());
 			LoginVariable.setLogemailaddress(log.getLogemailaddress());
 			LoginVariable.setLogemailpassword(log.getLogemailpassword());

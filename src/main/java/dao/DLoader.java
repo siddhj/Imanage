@@ -2,6 +2,7 @@ package dao;
 
 import bean.Assignee;
 import bean.LoginVerification;
+import bean.PopUpChallan;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,6 +15,8 @@ import org.apache.log4j.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import service.MicroService;
+import service.Notification;
 import ui.MultiScreenFramework;
 
 public class DLoader {
@@ -140,4 +143,23 @@ public class DLoader {
 		}
 		return loginverificationlist;
 	}
+	
+	public void setFilePath(String logfilepath,int licenseid) throws SQLException{
+		Connection connection = ListTables.returnConnection();
+		connection.setAutoCommit(false);
+		String query = "update license set LogStoreAddress=? where LicenseID=?";
+		PreparedStatement prepare = connection.prepareStatement(query);
+				try {
+				prepare.setString(1, logfilepath);
+//				prepare.setString(2, pdffilepath);
+				prepare.setInt(2, licenseid);
+				prepare.addBatch();
+				prepare.executeBatch();
+				connection.commit();
+				} catch (SQLException e) {
+				Notification.someExceptionOccured("Some Error Occured",
+						"Please Check Your Internet Connection.\n Restart your application \n if error appear again contact system admin");
+				logger.error("chalan data upload: ", e);
+			}
+		}
 }

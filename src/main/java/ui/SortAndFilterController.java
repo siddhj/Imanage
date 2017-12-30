@@ -33,34 +33,35 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import service.Notification;
 import service.Validation;
+import utility.Logging;
 import utility.LoginVariable;
 import utility.UTable;
 
 public class SortAndFilterController {
 	@FXML
 	private Button filterdata = new Button();
-	
+
 	@FXML
 	private Button clearbutton;
-	
+
 	@FXML
 	private Button tabchallanbutton;
-	
+
 	@FXML
 	private Button Imanagebutton;
-	
+
 	@FXML
 	private ComboBox<String> assigneenamecombobox = new ComboBox<>();
-	
+
 	@FXML
 	private ComboBox<String> productidcombobox = new ComboBox<>();
-	
+
 	@FXML
 	private DatePicker datefrom = new DatePicker();
-	
+
 	@FXML
 	private DatePicker dateto = new DatePicker();
-	
+
 	@FXML
 	private TableView<SortAndFilterBean> filterandsorttable = new TableView<>();
 	@FXML
@@ -96,10 +97,9 @@ public class SortAndFilterController {
 
 	@FXML
 	public void initialize() throws SQLException, IOException {
-		productidcolumn
-				.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleStringProperty>("productid"));
-		challanidcolumn.setCellValueFactory(
-				new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("aggregatechallanid"));
+		logger.addAppender(Logging.getAppender());
+		productidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleStringProperty>("productid"));
+		challanidcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("aggregatechallanid"));
 		issuecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("issueitem"));
 		receivecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("receiveitem"));
 		receiveduecolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, Integer>("receivedueitem"));

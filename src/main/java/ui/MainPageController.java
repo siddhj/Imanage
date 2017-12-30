@@ -41,6 +41,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import service.Notification;
 import service.Validation;
+import utility.Logging;
 import utility.LoginVariable;
 import utility.UTable;
 
@@ -134,7 +135,7 @@ public class MainPageController {
 	// method
 	@FXML
 	public void initialize() throws SQLException, IOException {
-
+		logger.addAppender(Logging.getAppender());
 		productidcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("productid"));
 		issueitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("issue"));
 		receiveitemcolumn.setCellValueFactory(new PropertyValueFactory<Chalan, String>("totalreceive"));

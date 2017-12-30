@@ -15,11 +15,11 @@ import utility.UTable;
 
 public class MultiScreenFramework extends Application {
    
-	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
+	//final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
 	
 	@Override
     public void start(Stage primaryStage) throws IOException {
-		logger.info("Application Started");
+		//logger.info("Application Started");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginCSS.fxml"));
         Parent root = (Parent)loader.load();
         Screen screen = Screen.getPrimary();
