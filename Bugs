@@ -1,5 +1,9 @@
 1. Receive button on main challan window should give an error if it is clicked without enteting product id : Resolved
 
 /*************************************v0.9.5**********************************/
-1. When new assignee added changes is not reflected in list.
-2. 
+1. When new assignee added changes is not reflected in list: Resolved
+/*************************************v0.9.8**********************************/
+1. Screen Loader is not closed when user is not able to signed in.
+2. When PDF is saved incorrect url is displayed
+3. when no Element is selected and explore button is clicked on Sort and filter button loader is diaplyed instead
+of notification

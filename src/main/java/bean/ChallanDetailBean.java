@@ -4,22 +4,47 @@ import java.sql.Date;
 
 public class ChallanDetailBean {
 	public String assigneename, productid;
-	public Date billdate;
+	public Date challanidbilldate,referchallanidbilldate;
 	public int issueitem, receiveitem, amountpaid;
-	private long referchallanid, challanid;
+	private long referchallanid, prereceivedchallanid;
 
-	public ChallanDetailBean(String assigneename, String productid, Date billdate, long referchallanid, long challanid,
-			int issueitem, int receiveitem, int amountpaid /* int paiditem */ ) {
+	public ChallanDetailBean(String assigneename, String productid, Date challanidbilldate, long referchallanid, long prereceivedchallanid,
+			int issueitem, int receiveitem, int amountpaid,Date referchallanidbilldate) {
 		super();
 		this.assigneename = assigneename;
 		this.productid = productid;
-		this.billdate = billdate;
+		this.challanidbilldate = challanidbilldate;
 		this.referchallanid = referchallanid;
-		this.challanid = challanid;
+		this.prereceivedchallanid = prereceivedchallanid;
 		this.issueitem = issueitem;
 		this.receiveitem = receiveitem;
-		// this.paiditem = paiditem;
 		this.amountpaid = amountpaid;
+		this.referchallanidbilldate=referchallanidbilldate;
+	}
+
+
+	public Date getChallanidbilldate() {
+		return challanidbilldate;
+	}
+
+	public void setChallanidbilldate(Date challanidbilldate) {
+		this.challanidbilldate = challanidbilldate;
+	}
+
+	public Date getReferchallanidbilldate() {
+		return referchallanidbilldate;
+	}
+
+	public void setReferchallanidbilldate(Date referchallanidbilldate) {
+		this.referchallanidbilldate = referchallanidbilldate;
+	}
+
+	public long getPrereceivedchallanid() {
+		return prereceivedchallanid;
+	}
+
+	public void setPrereceivedchallanid(long prereceivedchallanid) {
+		this.prereceivedchallanid = prereceivedchallanid;
 	}
 
 	public String getAssigneename() {
@@ -38,28 +63,12 @@ public class ChallanDetailBean {
 		this.productid = productid;
 	}
 
-	public Date getBilldate() {
-		return billdate;
-	}
-
-	public void setBilldate(Date billdate) {
-		this.billdate = billdate;
-	}
-
 	public long getReferchallanid() {
 		return referchallanid;
 	}
 
 	public void setReferchallanid(long referchallanid) {
 		this.referchallanid = referchallanid;
-	}
-
-	public long getChallanid() {
-		return challanid;
-	}
-
-	public void setChallanid(long challanid) {
-		this.challanid = challanid;
 	}
 
 	public int getIssueitem() {

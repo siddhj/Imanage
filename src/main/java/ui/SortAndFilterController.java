@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import org.apache.log4j.Logger;
 
 import utility.ProgressDemo;
-
+import utility.SortAndFilterUtility;
 import bean.ChallanDetailBean;
 import bean.SortAndFilterBean;
 import dao.DChalan;
@@ -170,6 +170,12 @@ public class SortAndFilterController {
 	void getChallanDetail(ActionEvent event) {
 		new ProgressDemo().start();
 		SortAndFilterBean selectedchallan = filterandsorttable.getSelectionModel().getSelectedItem();
+		if(selectedchallan==null){
+			Notification.invalidInput("No Row Is Selected", "Please select a row before clicking explore selection button");
+			UTable.getLoaderstage().close();
+			return;
+		}
+
 		long challanid = selectedchallan.getAggregatechallanid();
 		ObservableList<ChallanDetailBean> challandetaillist = null;
 		try {
@@ -193,14 +199,14 @@ public class SortAndFilterController {
 		window.setScene(scene);
 		Screen screen = Screen.getPrimary();
 		Rectangle2D bounds = screen.getVisualBounds();
-		window.setX(bounds.getMinX() + 60);
+		window.setX(bounds.getMinX() + 200);
 		window.setY(bounds.getMinY() + 70);
-		window.setWidth((bounds.getWidth() * 72) / 100);
-		window.setHeight((bounds.getHeight() * 65) / 100);
+		window.setHeight((bounds.getHeight() * 72) / 100);
 		window.setAlwaysOnTop(true);
 		window.initStyle(StageStyle.UNDECORATED);
 		window.initOwner(UTable.getPrimarystage());
 		window.initModality(Modality.WINDOW_MODAL);
+		SortAndFilterUtility.setChallandetailstage(window);
 		window.show();
 	}
 

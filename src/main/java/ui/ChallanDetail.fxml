@@ -2,24 +2,24 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@ninza.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ChallanDetailController">
+<AnchorPane prefHeight="524.0" prefWidth="641.0" stylesheets="@ninza.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ChallanDetailController">
    <children>
-      <BorderPane layoutX="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="0.0" prefHeight="524.0" prefWidth="977.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <HBox alignment="TOP_CENTER" prefHeight="400.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="challandetailtableview" prefHeight="400.0" prefWidth="975.0" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="challandetailtableview" prefHeight="400.0" prefWidth="922.0" HBox.hgrow="ALWAYS">
                     <columns>
-                      <TableColumn fx:id="referchallanidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Refer Challan ID" />
-                      <TableColumn fx:id="challanidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Challan ID" />
-                        <TableColumn fx:id="assigneenamecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Assignee Name" />
+                      <TableColumn fx:id="challanidcolumn" maxWidth="154.0" minWidth="80.0" prefWidth="154.0" text="Pre Received ChallanID" />
                         <TableColumn fx:id="productidcolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Product ID" />
                         <TableColumn fx:id="issuecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text=" Qty Issued" />
                         <TableColumn fx:id="receivecolumn" maxWidth="150.0" minWidth="80.0" prefWidth="120.0" text="Qty Received" />
@@ -46,6 +46,59 @@
                </BorderPane.margin>
             </HBox>
          </bottom>
+         <top>
+            <HBox prefHeight="54.0" prefWidth="975.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="54.0" prefWidth="637.0">
+                     <children>
+                        <HBox prefHeight="35.0" prefWidth="363.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="118.0" text="Assignee Name">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="assigneenameholderlabel" prefHeight="30.0" prefWidth="308.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Button fx:id="exportpdfbutton" mnemonicParsing="false" onAction="#exportChallanPdf" prefHeight="25.0" prefWidth="196.0" text="Export PDF" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="30.0" prefWidth="363.0">
+                           <children>
+                              <HBox prefHeight="25.0" prefWidth="337.0">
+                                 <children>
+                                    <Label fx:id="challanidlabel" prefHeight="54.0" prefWidth="146.0" text="Challan ID ">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="referchallanidholderlabel" prefHeight="25.0" prefWidth="224.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="25.0" prefWidth="279.0">
+                                 <children>
+                                    <Label prefHeight="56.0" prefWidth="94.0" text="Bill Date">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="billdateholderlabel" prefHeight="25.0" prefWidth="169.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>

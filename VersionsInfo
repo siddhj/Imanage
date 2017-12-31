@@ -40,6 +40,11 @@ Objective : Logging
 Objective : On The air access restriction
 
 							/****************** v0.9.8 ************************/
-Objective : Dynamic creation of file and folder name. 
-
+Objective : 
+1. Dynamic creation of file and folder name with input from user.
+2. PDF generation Capablity on Sort and filter page
+3. Revamping of Explore Challan Window on sort and filter window
+4. PDF Generation Capablity of Summary.
+5. Description to add on PDF
+6. Unable User to create Challan in Back Date (Take FeedBack First)
 

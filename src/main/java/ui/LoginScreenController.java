@@ -107,13 +107,14 @@ public class LoginScreenController implements Initializable {
 				UTable.getApplicationloaderstage().close();
 			} catch (IOException e) {
 				UTable.getApplicationloaderstage().close();
+				Notification.invalidInput("Something is not right.", "1. check your internet connection \n"
+						+ "2. Again give input \n3. If error is still present CONTACT SYSTEM ADMIN");
 				logger.error("Error in license authentication", e);
 				e.printStackTrace();
-				UTable.getApplicationloaderstage().close();
 			}
 		} else {
 
-			// UTable.getLoaderstage().close();
+			UTable.getApplicationloaderstage().close();
 			Notification.authenticationValidation("License ID or username/password is invalid",
 					"Please make sure you enter correct username/password. If still unable to login contact system admin. Your license may be invalid");
 		}

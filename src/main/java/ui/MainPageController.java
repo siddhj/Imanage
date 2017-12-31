@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.controlsfx.control.textfield.*;
@@ -429,7 +430,9 @@ public class MainPageController {
 		ObservableList<Chalan> chalanlist = newchalantable.getItems();
 		DataManipulation man = new DataManipulation();
 		String billdateforpdf = man.getPopUpWindowData(chalanlist);
-		PdfGenerate.pdfFileLocationForSave(billdateforpdf);
+		
+		File pdffilelocation = PdfGenerate.pdfFileLocationForSave(billdateforpdf);
+		if(pdffilelocation!=null)PdfGenerate.createPdfss(billdateforpdf,pdffilelocation);
 		
 		chalanlist.removeAll(chalanlist);
 		UTable.getLoaderstage().close();
