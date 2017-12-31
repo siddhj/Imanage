@@ -92,9 +92,11 @@ public class SortAndFilterController {
 	@FXML
 	private TableColumn<SortAndFilterBean, SimpleIntegerProperty> amountpaidcolumn = new TableColumn<>("Amount Paid");
 
+    
     @FXML
-    private TableColumn<SortAndFilterBean, String> descriptioncolumn = new TableColumn<>("Description");
-	
+    private TableColumn<SortAndFilterBean, String> commentcolumn = new TableColumn<>("Description");
+
+    
 	@FXML
 	private Button exploreselectchallan;
 
@@ -113,12 +115,15 @@ public class SortAndFilterController {
 				.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastreceive"));
 		amountpaidcolumn
 				.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("amountpaid"));
-		descriptioncolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, String>("comment"));
-
+		commentcolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, String>("comment"));
+	
+		
+		
 		UTable.getIntialloaderassigneename().add("None");
 		UTable.getIntialloaderproductid().add("None");
 		assigneenamecombobox.getItems().addAll(UTable.getIntialloaderassigneename());
 		productidcombobox.getItems().addAll(UTable.getIntialloaderproductid());
+		filterandsorttable.getColumns().add(commentcolumn);
 	}
 
 	@FXML
@@ -158,7 +163,7 @@ public class SortAndFilterController {
 		productidcombobox.setValue(null);
 	}
 
-	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
+	final static Logger logger = Logger.getLogger(SortAndFilterController.class);
 
 	// Explore Selection Button
 	@FXML

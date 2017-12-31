@@ -180,7 +180,6 @@
                         <TableColumn fx:id="receiveduecolumn" maxWidth="100.0" minWidth="120.0" prefWidth="-1.0" text="Receive Due Qty" />
                         <TableColumn fx:id="pastreceivecolumn" maxWidth="200.0" minWidth="120.0" prefWidth="-1.0" text="Pre Received Qty" />
                         <TableColumn fx:id="amountpaidcolumn" maxWidth="200.0" minWidth="150.0" prefWidth="-1.0" text="Amount Paid" />
-                        <TableColumn prefWidth="75.0" text="Description" />
                      </columns>
                   </TableView>
                   <ScrollBar orientation="VERTICAL" />
