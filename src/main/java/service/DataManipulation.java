@@ -15,7 +15,7 @@ import utility.UTable;
 
 public class DataManipulation {
 
-	public void getPopUpWindowData(ObservableList<Chalan> mainpagechallanlist) {
+	public String getPopUpWindowData(ObservableList<Chalan> mainpagechallanlist) {
 		long aggregatechallanid = new Date().getTime();
 		UTable.setAggregatechallanid(aggregatechallanid);
 		DChalan chalan = DChalan.getSingeletonInstance();
@@ -46,8 +46,7 @@ public class DataManipulation {
 
 			}
 		}
-		MicroService.createPdfss(billdate);
-
+		return billdate;
 	}
 
 	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);

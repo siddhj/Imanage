@@ -4,10 +4,16 @@ import java.sql.Date;
 
 public class SortAndFilterBean {
 
-public String filtername,filterproductid,assigneename,productid;
-public Date fromdate,todate,billdate;
-public int challanid,issueitem,receiveitem,receivedueitem,amountpaid;
+private String filtername,filterproductid,assigneename,productid,comment;
+private Date fromdate,todate,billdate;
+private int challanid,issueitem,receiveitem,receivedueitem,amountpaid;
 
+public String getComment() {
+	return comment;
+}
+public void setComment(String comment) {
+	this.comment = comment;
+}
 public String getFiltername() {
 	return filtername;
 }
@@ -49,7 +55,7 @@ public void setPastpaid(int pastpaid) {
 
 long aggregatechallanid;
 public SortAndFilterBean(String assigneename, Date billdate, int challanid, String productid, int issueitem,
-		int receiveitem, int receivedueitem, int amountpaid,/*int paiditem, int paiditemdue,*/int pastreceive/*,int pastpaid*/,long aggregatechallanid) {
+		int receiveitem, int receivedueitem, int amountpaid,int pastreceive,long aggregatechallanid,String comment) {
 	super();
 	this.assigneename = assigneename;
 	this.billdate = billdate;
@@ -58,12 +64,10 @@ public SortAndFilterBean(String assigneename, Date billdate, int challanid, Stri
 	this.issueitem = issueitem;
 	this.receiveitem = receiveitem;
 	this.receivedueitem = receivedueitem;
-//	this.paiditem = paiditem;
-//	this.paiditemdue = paiditemdue;
 	this.amountpaid=amountpaid;
 	this.pastreceive=pastreceive;
-//	this.pastpaid=pastpaid;
 	this.aggregatechallanid=aggregatechallanid;
+	this.comment=comment;
 }
 public long getAggregatechallanid() {
 	return aggregatechallanid;

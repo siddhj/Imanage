@@ -92,6 +92,9 @@ public class SortAndFilterController {
 	@FXML
 	private TableColumn<SortAndFilterBean, SimpleIntegerProperty> amountpaidcolumn = new TableColumn<>("Amount Paid");
 
+    @FXML
+    private TableColumn<SortAndFilterBean, String> descriptioncolumn = new TableColumn<>("Description");
+	
 	@FXML
 	private Button exploreselectchallan;
 
@@ -110,6 +113,7 @@ public class SortAndFilterController {
 				.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("pastreceive"));
 		amountpaidcolumn
 				.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, SimpleIntegerProperty>("amountpaid"));
+		descriptioncolumn.setCellValueFactory(new PropertyValueFactory<SortAndFilterBean, String>("comment"));
 
 		UTable.getIntialloaderassigneename().add("None");
 		UTable.getIntialloaderproductid().add("None");
@@ -140,7 +144,7 @@ public class SortAndFilterController {
 		DSort sort = new DSort();
 		ObservableList<SortAndFilterBean> filterlist = sort.getFilterData(sqlstringassigneename.trim(),
 				sqlstringproductid.trim(), sqlstringfromdate, sqlstringtodate);
-
+		filterlist.forEach(f->{System.out.println("fd:"+f.getComment());});
 		filterandsorttable.setItems(filterlist);
 
 		UTable.getLoaderstage().close();

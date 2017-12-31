@@ -3,10 +3,8 @@ package service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.time.LocalDate;
 
 import org.apache.log4j.Logger;
 
@@ -23,107 +21,47 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
-import bean.Assignee;
 import bean.Chalan;
-import bean.PopUpChallan;
-import dao.DLoader;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
 import ui.MultiScreenFramework;
 import utility.LoginVariable;
 import utility.UTable;
 
-public class MicroService {
-	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
-
-	public int assigneeIDRetrieve(String name) {
-		ObservableList<Assignee> assigneelist = DLoader.assigneelist;
-		int assigneeid = 0;
-		for (Assignee al : assigneelist) {
-			System.out.println(al.getFullname());
-			if (al.getFullname().equals(name)) {
-				assigneeid = al.getAssigneeid();
-				break;
-			}
-		}
-		return assigneeid;
-	}
-
-	public ObservableList<String> assigneeIDRetrieveFullName(String name) throws SQLException, IOException {
-		ObservableList<Assignee> assigneelist = DLoader.getSingeletonInstanceOfLoader().getAssigneeList();
-		ObservableList<String> assigneeandgstin = FXCollections.observableArrayList();
-		int assigneeid = 0;
-		String gstin = "";
-		for (Assignee al : assigneelist) {
-			System.out.println(al.getFullname());
-			if (al.getFullname().equals(name)) {
-				assigneeid = al.getAssigneeid();
-				gstin = al.getGstin();
-				assigneeandgstin.add(String.valueOf(assigneeid));
-				assigneeandgstin.add(gstin);
-				break;
-			}
-		}
-		return assigneeandgstin;
-	}
-
-	public int getTotalReceiveFromPopUp(ObservableList<PopUpChallan> challanlist) {
-		int totalreceive = 0;
-		for (PopUpChallan c : challanlist) {
-			totalreceive += c.getCurrentreceive();
-		}
-		return totalreceive;
-	}
-
-	public int getTotalDueFromPopUp(ObservableList<PopUpChallan> chalanlist) {
-		int totaldue = 0;
-		for (PopUpChallan c : chalanlist) {
-			totaldue += c.getPastreceivedue();
-		}
-		return totaldue;
-	}
-
-	public static int sumReceiveFromPopUp(int pastreceive, int currentreceive) {
-		return pastreceive + currentreceive;
-	}
-
-	public static int sumPaidFromPopUp(int pastpaid, int currentpaid) {
-		return pastpaid + currentpaid;
-	}
-
-	public static int sumDueFromPopUp(int issue, int totalreceive) {
-		return issue - totalreceive;
-	}
-
-	public static void truncateLogFile() {
-		PrintWriter writer;
-		try {
-			writer = new PrintWriter(new File(LoginVariable.getLogstoreaddress()));
-			writer.write("");
-			writer.close();
-		} catch (FileNotFoundException e) {
-			logger.error("Error While reading accessing file: "+LoginVariable.getLogstoreaddress(), e);
-		}
+public class PdfGenerate {
+	
+	public static void pdfFileLocationForSave(String billdateforpdf ){
+		FileChooser fileChooser = new FileChooser();
+		  
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF Files (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
+        
+        //Show save file dialog
+        File file = fileChooser.showSaveDialog(UTable.getPrimarystage());
+        if(file != null){
+            createPdfss(billdateforpdf, file);
+        }
 	}
 	
-	public void newAssigneeVerification(){
-		
-	}
-
-		
-	public static void createPdfsForSummary(String date) {
-
-		//get values from filters 
-		// name of assignee if not null
-		// product id if not null
-		//date from if not null
-		
+//	  private void SaveFile(String content, File file){
+//	        try {
+//	            FileWriter fileWriter = null;
+//	             
+//	            fileWriter = new FileWriter(file);
+//	            fileWriter.write(content);
+//	            fileWriter.close();
+//	        } catch (IOException ex) {
+/////	            logger.getLogger(JavaFX_Text.class.getName()).log(Level.SEVERE, null, ex);
+//	        }
+//	         
+//	    }
+	
+	public static void createPdfss(String date,File file) {
 		TableView<Chalan> newchalantable = UTable.getMainpagetableview();
 		long aggregatechallanid = UTable.getAggregatechallanid();
-		long time = LocalDate.now().toEpochDay();
 		String dest = LoginVariable.getFilestoreaddress();
-		dest = dest + "SUMMARY "+time + ".pdf";
+		dest = dest + aggregatechallanid + ".pdf";
 
 		String challanidtext = "Challan ID: ", assigneenametext = "To: ", amountpaidtext = "Amount Paid: ",
 				billdate = "Date: ";
@@ -139,7 +77,7 @@ public class MicroService {
 		float bottom = 0;
 		Document document = new Document(PageSize.A5, left, right, top, bottom);
 		try {
-			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
+			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file));
 			writer.setPageEvent(new WatermarkPageEvent());
 		} catch (FileNotFoundException | DocumentException e) {
 			logger.error("pdf generation", e);
@@ -164,11 +102,7 @@ public class MicroService {
 		Paragraph companyaddress = new Paragraph("4235, Koolwal Bhawan, Near ICICI Bank, Surajpole Bazar, Jaipur",
 				new Font(FontFamily.HELVETICA, 9));
 		companyaddress.setAlignment(Element.ALIGN_CENTER);
-		
-		Paragraph summary = new Paragraph("----SUMMARY----",
-				new Font(FontFamily.HELVETICA, 9));
-		summary.setAlignment(Element.ALIGN_CENTER);
-		
+
 		Paragraph challanidlabel = new Paragraph(challanidtext, new Font(FontFamily.HELVETICA, 11));
 		challanidlabel.setAlignment(Element.ALIGN_LEFT);
 		challanidlabel.add(new Chunk(glue));
@@ -201,13 +135,15 @@ public class MicroService {
 			document.add(companyname);
 			document.add(companyaddress);
 			document.add(spacelabel);
-			document.add(summary);
+			document.add(challanidlabel);
+			document.add(assigneename);
 			document.add(spacelabel);
 		} catch (DocumentException e) {
 			logger.error("create pdf", e);
 		}
 		PdfPTable table = new PdfPTable(3);
-		//new cells 
+
+
 		table.addCell("Product ID");
 		table.addCell("Quantity Issued");
 		table.addCell("Quantity Received");
@@ -225,6 +161,7 @@ public class MicroService {
 
 		try {
 			document.add(table);
+			document.add(amountpaid);
 			document.add(spacelabel);
 			document.add(signature);
 			document.add(parentcompany);
@@ -233,4 +170,7 @@ public class MicroService {
 			logger.error("create pdf", e);
 		}
 	}
+
+	final static Logger logger = Logger.getLogger(MultiScreenFramework.class);
+	
 }

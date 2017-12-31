@@ -40,6 +40,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import service.Notification;
+import service.PdfGenerate;
 import service.Validation;
 import utility.Logging;
 import utility.LoginVariable;
@@ -427,7 +428,9 @@ public class MainPageController {
 		UTable.setAmountpaid(advancedpaidtext.getText());
 		ObservableList<Chalan> chalanlist = newchalantable.getItems();
 		DataManipulation man = new DataManipulation();
-		man.getPopUpWindowData(chalanlist);
+		String billdateforpdf = man.getPopUpWindowData(chalanlist);
+		PdfGenerate.pdfFileLocationForSave(billdateforpdf);
+		
 		chalanlist.removeAll(chalanlist);
 		UTable.getLoaderstage().close();
 		Notification.dataSuccessfullySaved("Operation Successful",
