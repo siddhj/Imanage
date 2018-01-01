@@ -42,14 +42,15 @@ public class PdfGenerate {
         File file = fileChooser.showSaveDialog(UTable.getPrimarystage());
         logger.info("Path of the file saved: "+file.toString());
         if(file != null){
-//        	createPdfss(billdateforpdf, file);
+        	//createPdfss(billdateforpdf, file);
         	return file;
         }
         return null;
     }
-		
-	public static void createPdfss(String date,File file) {
-		TableView<Chalan> newchalantable = UTable.getMainpagetableview();
+//	String date,String referchallanid,String assigneenamelabel,
+//	TableView<ChallanDetailBean> challandetailtableview,File file
+	public static void createPdfss(String date,String assigneenamelabel,String description,TableView<Chalan> newchalantable,File file) {
+	//	TableView<Chalan> newchalantable = UTable.getMainpagetableview();
 		long aggregatechallanid = UTable.getAggregatechallanid();
 		String dest = LoginVariable.getFilestoreaddress();
 		dest = dest + aggregatechallanid + ".pdf";
@@ -58,10 +59,12 @@ public class PdfGenerate {
 				billdate = "Date: ";
 
 		challanidtext = challanidtext + aggregatechallanid;
-		assigneenametext = assigneenametext + UTable.getAssigneename();
+		assigneenametext = assigneenametext + assigneenamelabel;
 		amountpaidtext = amountpaidtext + UTable.getAmountpaid();
 		billdate = billdate + date;
-
+		String descriptionlabel="Description: "; 
+		descriptionlabel=descriptionlabel+description;
+		
 		float left = 15;
 		float right = 15;
 		float top = 30;
@@ -108,6 +111,9 @@ public class PdfGenerate {
 
 		Paragraph amountpaid = new Paragraph(amountpaidtext, new Font(FontFamily.HELVETICA, 11));
 		amountpaid.setAlignment(Element.ALIGN_LEFT);
+		
+		Paragraph descriptionparagraph = new Paragraph(descriptionlabel, new Font(FontFamily.HELVETICA, 9));
+		descriptionparagraph.setAlignment(Element.ALIGN_LEFT);
 
 		Paragraph spacelabel = new Paragraph("  ", new Font(FontFamily.HELVETICA, 11));
 		spacelabel.setAlignment(Element.ALIGN_CENTER);
@@ -158,6 +164,7 @@ public class PdfGenerate {
 		try {
 			document.add(table);
 			document.add(amountpaid);
+			document.add(descriptionparagraph);
 			document.add(spacelabel);
 			document.add(signature);
 			document.add(parentcompany);
@@ -179,9 +186,9 @@ public class PdfGenerate {
 		amountpaidtext = "";
 		billdate = billdate + date;
 
-		float left = 30;
-		float right = 30;
-		float top = 60;
+		float left = 15;
+		float right = 15;
+		float top = 30;
 		float bottom = 0;
 		Document document = new Document(PageSize.A5, left, right, top, bottom);
 		try {

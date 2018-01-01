@@ -172,6 +172,7 @@ public class SortAndFilterController {
 		SortAndFilterBean selectedchallan = filterandsorttable.getSelectionModel().getSelectedItem();
 		if(selectedchallan==null){
 			Notification.invalidInput("No Row Is Selected", "Please select a row before clicking explore selection button");
+			logger.info("No Row is Selected");
 			UTable.getLoaderstage().close();
 			return;
 		}

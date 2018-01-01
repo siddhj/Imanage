@@ -260,7 +260,6 @@ public class MainPageController {
 			productidtext.setText("");
 			issuetext.setText("");
 			receivetext.setText("0");
-			savechallandescription.setText("");
 			// duetext.setText("");
 			assigneenamelabel.setText(assigneename.getText());
 			issuetext.setDisable(true);
@@ -431,8 +430,10 @@ public class MainPageController {
 		DataManipulation man = new DataManipulation();
 		String billdateforpdf = man.getPopUpWindowData(chalanlist);
 		
+		String assigneenameforpdf = assigneename.getText();
+		String description = savechallandescription.getText();
 		File pdffilelocation = PdfGenerate.pdfFileLocationForSave(billdateforpdf);
-		if(pdffilelocation!=null)PdfGenerate.createPdfss(billdateforpdf,pdffilelocation);
+		if(pdffilelocation!=null)PdfGenerate.createPdfss(billdateforpdf,assigneenameforpdf,description,newchalantable,pdffilelocation);
 		
 		chalanlist.removeAll(chalanlist);
 		UTable.getLoaderstage().close();
